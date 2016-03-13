@@ -1,8 +1,11 @@
 # README #
 
 we done it when I study in first term of first year in kasetsert university
-- It about the shopping page for customer or owner
-- It have shopping page, Customer page and Owner page
+- It about the *shopping page* for customer or owner
+- It have 
+  - **Shopping page** <- Page that let user can go in and select product
+  - **Customer page** <- Page go all customer that is the membership of this store
+  - **Owner page**    <- Page that request username and password, inside it has all stock of this store product
 - Use java GUI and Window Builder for create GUI page
 
 ### What is this repository for? ###
@@ -12,4 +15,4 @@ we done it when I study in first term of first year in kasetsert university
 
 ### Who do I talk to? ###
 
-* kamontat
+* Kamontat
