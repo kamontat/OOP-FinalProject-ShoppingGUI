@@ -13,6 +13,8 @@ we done it when I study in first term of first year in kasetsert university
 * final project for OOP1
 * Version: 5.0.0
 
-### Who do I talk to? ###
+### Who done this project? ###
 
-* Kamontat
+1. *Kamontat*
+2. *Maythawee*
+3. *Palita*
