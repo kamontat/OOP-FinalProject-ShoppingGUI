@@ -91,8 +91,8 @@ public class MainMenu extends JFrame {
 		getContentPane().add(bg2);
 
 		// JLabel show information of Button
-		JLabel lblViewProduct = new JLabel("<HTML>1) LIST ALL PRODUCT <br>2) SHOW PAYMENT<br>3) BASKET INFORMATION</HTML>",
-				JLabel.CENTER);
+		JLabel lblViewProduct = new JLabel(
+				"<HTML>1) LIST ALL PRODUCT <br>2) SHOW PAYMENT<br>3) BASKET INFORMATION</HTML>", JLabel.CENTER);
 		lblViewProduct.setBounds(33, 0, 238, 90);
 		pageButtonContainer.add(lblViewProduct);
 		lblViewProduct.setForeground(new Color(248, 248, 255));
