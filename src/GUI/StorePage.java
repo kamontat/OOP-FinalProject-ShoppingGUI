@@ -2,19 +2,16 @@ package GUI;
 
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+
 import Code.*;
+
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class StorePage extends JFrame {
@@ -22,53 +19,26 @@ public class StorePage extends JFrame {
 	static JTextField searchField;
 	private JLabel txtRevenue, txtExpense, txtProfit;
 	private JTextField txtStock;
-	private JTextField textField_0, textField_1, textField_2, textField_3, textField_4, textField_5, textField_6,
-			textField_7, textField_8, textField_9, textField_10, textField_11, textField_12, textField_13, textField_14;
+	private JTextField textField_0, textField_1, textField_2, textField_3, textField_4, textField_5, textField_6, textField_7, textField_8, textField_9, textField_10, textField_11, textField_12, textField_13, textField_14;
 	private String showInDialog;
-	private int currNumProduct;
-	private JTextField txtProductType, txtProductId, txtName, txtSizeLength, txtMaterial, txtPrice;
-	private JTextField txtWeigth;
-	private JTextField txtBuyingPrice;
-	private String[] headLine = new String[] { "Prodect Type", "Product ID", "Name", "Weight", "Size", "Material",
-			"Buying Price", "Price" };
-	private String[][] info = { { "Ring", "1001", "Blue Topazes", "3.5", "6\" ", "Gold", "10,000", "22,000" },
-			{ "Ring", "1002", "Midnight Titanium", "5.1", "9\"", "Steel and Titanium", "9,400", "13,800" },
-			{ "Ring", "1003", "Pink Diamonds", " 3.7", "6\"", "Diamonds & rose gold", "69,500", "202,000" },
-			{ "Ring", "1004", "Silver Bow", "2.6", "6\"", "Silver", "3,700", "6,600" },
-			{ "Ring", "1005", "X Diamonds", "4.2", "6\"", "Pink sapphires", "83,200", "253,000" },
-			{ "Pendant", "1006", "Mixed Cluster", " 12.3", "Medium", "Platinum and Diamonds", "60,500", "155,000" },
-			{ "Pendant", "1007", "Olive Leaf", "11.1", "Small", "Silver", "9,600", "13,000" },
-			{ "Pendant", "1008", "Pierced", "10.7", "Small", "Gold and Diamonds", "16,000", "25,200" },
-			{ "Pendant", "1009", "Silver Bow", "10.3", "Small", "Silver", "3,300", "5,600" },
-			{ "Pendant", "1010", "Whitegold Bow", "11.6", "Small", "White gold & diamonds", "86,900", "111,000" },
-			{ "Earing", "1011", "Blue Topazes Olive Leaf", "1.3", "Mini", "Gold & blue topazes", "16,800", "24,600" },
-			{ "Earing", "1012", "Bow Earing", "1.5", "Mini", "Rose gold", "10,500", "14,200" },
-			{ "Earing", "1013", "Color By The Yard", "1.1", "Mini", "Silver and Pink sapphires", "26,000", "30,600" },
-			{ "Earing", "1014", "Rivals Night Sky", "2.4", "Medium", "Platinum & diamonds", "489,000", "504,000" },
-			{ "Earing", "1015", "Silver Olive Leaf", "1.8", "Medium", "Silver", "2,900", "5,600" } };
+	private String[] headLine = new String[]{"Prodect Type", "Product ID", "Name", "Weight", "Size", "Material", "Buying Price", "Price"};
+	private String[][] info = {{"Ring", "1001", "Blue Topazes", "3.5", "6\" ", "Gold", "10,000", "22,000"}, {"Ring", "1002", "Midnight Titanium", "5.1", "9\"", "Steel and Titanium", "9,400", "13,800"}, {"Ring", "1003", "Pink Diamonds", " 3.7", "6\"", "Diamonds & rose gold", "69,500", "202,000"}, {"Ring", "1004", "Silver Bow", "2.6", "6\"", "Silver", "3,700", "6,600"}, {"Ring", "1005", "X Diamonds", "4.2", "6\"", "Pink sapphires", "83,200", "253,000"}, {"Pendant", "1006", "Mixed Cluster", " 12.3", "Medium", "Platinum and Diamonds", "60,500", "155,000"}, {"Pendant", "1007", "Olive Leaf", "11.1", "Small", "Silver", "9,600", "13,000"}, {"Pendant", "1008", "Pierced", "10.7", "Small", "Gold and Diamonds", "16,000", "25,200"}, {"Pendant", "1009", "Silver Bow", "10.3", "Small", "Silver", "3,300", "5,600"}, {"Pendant", "1010", "Whitegold Bow", "11.6", "Small", "White gold & diamonds", "86,900", "111,000"}, {"Earing", "1011", "Blue Topazes Olive Leaf", "1.3", "Mini", "Gold & blue topazes", "16,800", "24,600"}, {"Earing", "1012", "Bow Earing", "1.5", "Mini", "Rose gold", "10,500", "14,200"}, {"Earing", "1013", "Color By The Yard", "1.1", "Mini", "Silver and Pink sapphires", "26,000", "30,600"}, {"Earing", "1014", "Rivals Night Sky", "2.4", "Medium", "Platinum & diamonds", "489,000", "504,000"}, {"Earing", "1015", "Silver Olive Leaf", "1.8", "Medium", "Silver", "2,900", "5,600"}};
 	private DefaultTableModel model = new DefaultTableModel(info, headLine);
 	private JTable table = new JTable(model);
 	private TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
-	private JLabel labelSearch;
 	// check run only first time
 	static private boolean check = true;
-	private JButton btnHistory;
-	private JLabel lblShowHistoryProduct;
 	static private int indexOfProduct = 0;
 
 	public static int getIndexOfProduct() {
 		return indexOfProduct;
 	}
 
-	public static void setIndexOfProduct(int indexOfProduct) {
-		StorePage.indexOfProduct = indexOfProduct;
-	}
-
 	public StorePage() {
 		super("Store Page");
 		getContentPane().setBackground(SystemColor.activeCaptionText);
 		initComponent();
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
 	public void run() {
@@ -80,10 +50,6 @@ public class StorePage extends JFrame {
 
 	public static boolean isCheck() {
 		return check;
-	}
-
-	public static void setCheck(boolean check) {
-		StorePage.check = check;
 	}
 
 	public void initComponent() {
@@ -288,18 +254,12 @@ public class StorePage extends JFrame {
 		lblNewLabel_1.setBounds(893, 187, 171, 32);
 		getContentPane().add(lblNewLabel_1);
 
-		JComboBox<String> choice = new JComboBox<String>(
-				new String[] { "Choose Product", "-- Rings --", "1. (1001) Blue Topaz", "2. (1002) Midnight Titanium",
-						"3. (1003) Pink Diamonds", "4. (1004) Silver Bow", "5. (1005) X Diamonds", "-- Pendants --",
-						"1. (1006) Mixed Cluster Pendant", "2. (1007) Olive Leaf Pendant", "3. (1008) Pierced Pendant",
-						"4. (1009) Silver Bow Pendant", "5. (1010) White Gold Bow Pendant", "-- Earings --",
-						"1. (1011) Blue Topazes Olive Leaf", "2. (1012) Bow Earring", "3. (1013) Color By The Yard",
-						"4. (1014) Rivals Night Sky", "5. (1015) Silver Olive Leaf" });
+		JComboBox<String> choice = new JComboBox<>(new String[]{"Choose Product", "-- Rings --", "1. (1001) Blue Topaz", "2. (1002) Midnight Titanium", "3. (1003) Pink Diamonds", "4. (1004) Silver Bow", "5. (1005) X Diamonds", "-- Pendants --", "1. (1006) Mixed Cluster Pendant", "2. (1007) Olive Leaf Pendant", "3. (1008) Pierced Pendant", "4. (1009) Silver Bow Pendant", "5. (1010) White Gold Bow Pendant", "-- Earings --", "1. (1011) Blue Topazes Olive Leaf", "2. (1012) Bow Earring", "3. (1013) Color By The Yard", "4. (1014) Rivals Night Sky", "5. (1015) Silver Olive Leaf"});
 		choice.setToolTipText("Choose Product");
 		choice.setBounds(893, 150, 171, 32);
 		getContentPane().add(choice);
 
-		txtProductType = new JTextField();
+		JTextField txtProductType = new JTextField();
 		txtProductType.setFont(new Font("Century Gothic", Font.PLAIN, 12));
 		txtProductType.setBackground(SystemColor.windowBorder);
 		txtProductType.setHorizontalAlignment(SwingConstants.CENTER);
@@ -308,7 +268,7 @@ public class StorePage extends JFrame {
 		getContentPane().add(txtProductType);
 		txtProductType.setColumns(10);
 
-		txtProductId = new JTextField();
+		JTextField txtProductId = new JTextField();
 		txtProductId.setFont(new Font("Heiti TC", Font.PLAIN, 12));
 		txtProductId.setBackground(SystemColor.windowBorder);
 		txtProductId.setHorizontalAlignment(SwingConstants.CENTER);
@@ -317,7 +277,7 @@ public class StorePage extends JFrame {
 		getContentPane().add(txtProductId);
 		txtProductId.setColumns(10);
 
-		txtName = new JTextField();
+		JTextField txtName = new JTextField();
 		txtName.setFont(new Font("Heiti TC", Font.PLAIN, 13));
 		txtName.setBackground(SystemColor.windowBorder);
 		txtName.setHorizontalAlignment(SwingConstants.CENTER);
@@ -326,7 +286,7 @@ public class StorePage extends JFrame {
 		getContentPane().add(txtName);
 		txtName.setColumns(10);
 
-		txtSizeLength = new JTextField();
+		JTextField txtSizeLength = new JTextField();
 		txtSizeLength.setFont(new Font("Heiti TC", Font.PLAIN, 13));
 		txtSizeLength.setBackground(SystemColor.windowBorder);
 		txtSizeLength.setHorizontalAlignment(SwingConstants.CENTER);
@@ -335,7 +295,7 @@ public class StorePage extends JFrame {
 		getContentPane().add(txtSizeLength);
 		txtSizeLength.setColumns(10);
 
-		txtMaterial = new JTextField();
+		JTextField txtMaterial = new JTextField();
 		txtMaterial.setFont(new Font("Heiti TC", Font.PLAIN, 13));
 		txtMaterial.setText("MATERIAL");
 		txtMaterial.setBackground(SystemColor.windowBorder);
@@ -344,7 +304,7 @@ public class StorePage extends JFrame {
 		getContentPane().add(txtMaterial);
 		txtMaterial.setColumns(10);
 
-		txtPrice = new JTextField();
+		JTextField txtPrice = new JTextField();
 		txtPrice.setFont(new Font("Heiti TC", Font.PLAIN, 13));
 		txtPrice.setBackground(SystemColor.windowBorder);
 		txtPrice.setText("PRICE");
@@ -353,7 +313,7 @@ public class StorePage extends JFrame {
 		getContentPane().add(txtPrice);
 		txtPrice.setColumns(10);
 
-		txtWeigth = new JTextField();
+		JTextField txtWeigth = new JTextField();
 		txtWeigth.setFont(new Font("Heiti TC", Font.PLAIN, 13));
 		txtWeigth.setBackground(SystemColor.windowBorder);
 		txtWeigth.setText("WEIGHT");
@@ -362,7 +322,7 @@ public class StorePage extends JFrame {
 		getContentPane().add(txtWeigth);
 		txtWeigth.setColumns(10);
 
-		txtBuyingPrice = new JTextField();
+		JTextField txtBuyingPrice = new JTextField();
 		txtBuyingPrice.setFont(new Font("Heiti TC", Font.PLAIN, 13));
 		txtBuyingPrice.setBackground(SystemColor.windowBorder);
 		txtBuyingPrice.setText("BUYING PRICE");
@@ -371,15 +331,14 @@ public class StorePage extends JFrame {
 		getContentPane().add(txtBuyingPrice);
 		txtBuyingPrice.setColumns(10);
 
-		JLabel label = new JLabel(
-				"1001       1002        1003        1004        1005        1006       1007        1008        1009        1010        1011       1012        1013        1014       1015 ");
+		JLabel label = new JLabel("1001       1002        1003        1004        1005        1006       1007        1008        1009        1010        1011       1012        1013        1014       1015 ");
 		label.setForeground(SystemColor.text);
 		label.setFont(new Font("Heiti TC", Font.PLAIN, 13));
 		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setBounds(95, 484, 763, 20);
 		getContentPane().add(label);
 
-		labelSearch = new JLabel("- SEARCH -");
+		JLabel labelSearch = new JLabel("- SEARCH -");
 		labelSearch.setForeground(Color.WHITE);
 		labelSearch.setFont(new Font("Heiti TC", Font.PLAIN, 16));
 		labelSearch.setBounds(170, 84, 90, 20);
@@ -411,67 +370,67 @@ public class StorePage extends JFrame {
 		lblWelcomeTo.setBounds(232, 23, 563, 35);
 		getContentPane().add(lblWelcomeTo);
 
-		btnHistory = new JButton("HISTORY");
+		JButton btnHistory = new JButton("HISTORY");
 		btnHistory.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boolean check = true;
 				String msg = (String) choice.getSelectedItem();
 
 				switch (msg) {
-				case "Choose Product":
-				case "-- Rings --":
-				case "-- Pendants --":
-				case "-- Earings --":
-					showInDialog = "Please select the product!";
-					showDialog(showInDialog);
-					check = false;
-					break;
-				case "1. (1001) Blue Topaz":
-					indexOfProduct = 0;
-					break;
-				case "2. (1002) Midnight Titanium":
-					indexOfProduct = 1;
-					break;
-				case "3. (1003) Pink Diamonds":
-					indexOfProduct = 2;
-					break;
-				case "4. (1004) Silver Bow":
-					indexOfProduct = 3;
-					break;
-				case "5. (1005) X Diamonds":
-					indexOfProduct = 4;
-					break;
-				case "1. (1006) Mixed Cluster Pendant":
-					indexOfProduct = 5;
-					break;
-				case "2. (1007) Olive Leaf Pendant":
-					indexOfProduct = 6;
-					break;
-				case "3. (1008) Pierced Pendant":
-					indexOfProduct = 7;
-					break;
-				case "4. (1009) Silver Bow Pendant":
-					indexOfProduct = 8;
-					break;
-				case "5. (1010) White Gold Bow Pendant":
-					indexOfProduct = 9;
-					break;
+					case "Choose Product":
+					case "-- Rings --":
+					case "-- Pendants --":
+					case "-- Earings --":
+						showInDialog = "Please select the product!";
+						showDialog(showInDialog);
+						check = false;
+						break;
+					case "1. (1001) Blue Topaz":
+						indexOfProduct = 0;
+						break;
+					case "2. (1002) Midnight Titanium":
+						indexOfProduct = 1;
+						break;
+					case "3. (1003) Pink Diamonds":
+						indexOfProduct = 2;
+						break;
+					case "4. (1004) Silver Bow":
+						indexOfProduct = 3;
+						break;
+					case "5. (1005) X Diamonds":
+						indexOfProduct = 4;
+						break;
+					case "1. (1006) Mixed Cluster Pendant":
+						indexOfProduct = 5;
+						break;
+					case "2. (1007) Olive Leaf Pendant":
+						indexOfProduct = 6;
+						break;
+					case "3. (1008) Pierced Pendant":
+						indexOfProduct = 7;
+						break;
+					case "4. (1009) Silver Bow Pendant":
+						indexOfProduct = 8;
+						break;
+					case "5. (1010) White Gold Bow Pendant":
+						indexOfProduct = 9;
+						break;
 
-				case "1. (1011) Blue Topazes Olive Leaf":
-					indexOfProduct = 10;
-					break;
-				case "2. (1012) Bow Earring":
-					indexOfProduct = 11;
-					break;
-				case "3. (1013) Color By The Yard":
-					indexOfProduct = 12;
-					break;
-				case "4. (1014) Rivals Night Sky":
-					indexOfProduct = 13;
-					break;
-				case "5. (1015) Silver Olive Leaf":
-					indexOfProduct = 14;
-					break;
+					case "1. (1011) Blue Topazes Olive Leaf":
+						indexOfProduct = 10;
+						break;
+					case "2. (1012) Bow Earring":
+						indexOfProduct = 11;
+						break;
+					case "3. (1013) Color By The Yard":
+						indexOfProduct = 12;
+						break;
+					case "4. (1014) Rivals Night Sky":
+						indexOfProduct = 13;
+						break;
+					case "5. (1015) Silver Olive Leaf":
+						indexOfProduct = 14;
+						break;
 				}
 				if (check) {
 					HistoryOfStorePage history = new HistoryOfStorePage();
@@ -484,7 +443,7 @@ public class StorePage extends JFrame {
 		btnHistory.setBounds(903, 330, 161, 60);
 		getContentPane().add(btnHistory);
 
-		lblShowHistoryProduct = new JLabel("SHOW HISTORY PRODUCT");
+		JLabel lblShowHistoryProduct = new JLabel("SHOW HISTORY PRODUCT");
 		lblShowHistoryProduct.setHorizontalAlignment(SwingConstants.CENTER);
 		lblShowHistoryProduct.setForeground(Color.WHITE);
 		lblShowHistoryProduct.setFont(new Font("Heiti TC", Font.BOLD, 13));
@@ -514,59 +473,59 @@ public class StorePage extends JFrame {
 				String msg = (String) choice.getSelectedItem();
 
 				switch (msg) {
-				case "Choose Product":
-				case "-- Rings --":
-				case "-- Pendants --":
-				case "-- Earings --":
-					showInDialog = "Please select the product!";
-					showDialog(showInDialog);
-					break;
-				case "1. (1001) Blue Topaz":
-					setText(0, textField_0, Product1, 3);
-					break;
-				case "2. (1002) Midnight Titanium":
-					setText(1, textField_1, Product2, 3);
-					break;
-				case "3. (1003) Pink Diamonds":
-					setText(2, textField_2, Product3, 1);
-					break;
-				case "4. (1004) Silver Bow":
-					setText(3, textField_3, Product4, 5);
-					break;
-				case "5. (1005) X Diamonds":
-					setText(4, textField_4, Product5, 1);
-					break;
-				case "1. (1006) Mixed Cluster Pendant":
-					setText(5, textField_5, Product6, 1);
-					break;
-				case "2. (1007) Olive Leaf Pendant":
-					setText(6, textField_6, Product7, 3);
-					break;
-				case "3. (1008) Pierced Pendant":
-					setText(7, textField_7, Product8, 3);
-					break;
-				case "4. (1009) Silver Bow Pendant":
-					setText(8, textField_8, Product9, 5);
-					break;
-				case "5. (1010) White Gold Bow Pendant":
-					setText(9, textField_9, Product10, 1);
-					break;
+					case "Choose Product":
+					case "-- Rings --":
+					case "-- Pendants --":
+					case "-- Earings --":
+						showInDialog = "Please select the product!";
+						showDialog(showInDialog);
+						break;
+					case "1. (1001) Blue Topaz":
+						setText(0, textField_0, Product1, 3);
+						break;
+					case "2. (1002) Midnight Titanium":
+						setText(1, textField_1, Product2, 3);
+						break;
+					case "3. (1003) Pink Diamonds":
+						setText(2, textField_2, Product3, 1);
+						break;
+					case "4. (1004) Silver Bow":
+						setText(3, textField_3, Product4, 5);
+						break;
+					case "5. (1005) X Diamonds":
+						setText(4, textField_4, Product5, 1);
+						break;
+					case "1. (1006) Mixed Cluster Pendant":
+						setText(5, textField_5, Product6, 1);
+						break;
+					case "2. (1007) Olive Leaf Pendant":
+						setText(6, textField_6, Product7, 3);
+						break;
+					case "3. (1008) Pierced Pendant":
+						setText(7, textField_7, Product8, 3);
+						break;
+					case "4. (1009) Silver Bow Pendant":
+						setText(8, textField_8, Product9, 5);
+						break;
+					case "5. (1010) White Gold Bow Pendant":
+						setText(9, textField_9, Product10, 1);
+						break;
 
-				case "1. (1011) Blue Topazes Olive Leaf":
-					setText(10, textField_10, Product11, 3);
-					break;
-				case "2. (1012) Bow Earring":
-					setText(11, textField_11, Product12, 3);
-					break;
-				case "3. (1013) Color By The Yard":
-					setText(12, textField_12, Product13, 3);
-					break;
-				case "4. (1014) Rivals Night Sky":
-					setText(13, textField_13, Product14, 1);
-					break;
-				case "5. (1015) Silver Olive Leaf":
-					setText(14, textField_14, Product15, 5);
-					break;
+					case "1. (1011) Blue Topazes Olive Leaf":
+						setText(10, textField_10, Product11, 3);
+						break;
+					case "2. (1012) Bow Earring":
+						setText(11, textField_11, Product12, 3);
+						break;
+					case "3. (1013) Color By The Yard":
+						setText(12, textField_12, Product13, 3);
+						break;
+					case "4. (1014) Rivals Night Sky":
+						setText(13, textField_13, Product14, 1);
+						break;
+					case "5. (1015) Silver Olive Leaf":
+						setText(14, textField_14, Product15, 5);
+						break;
 				}
 
 			}
@@ -576,7 +535,7 @@ public class StorePage extends JFrame {
 	public void setText(int index, JTextField text, int numProduct, int numRestock) {
 		showInDialog = "Your restock is successful!";
 		showDialog(showInDialog);
-		currNumProduct = updateNumber(numProduct, numRestock);
+		int currNumProduct = updateNumber(numProduct, numRestock);
 		text.setText(currNumProduct + "");
 		store.getProductList().get(index).setCurrNumStock(currNumProduct);
 		store.restockInstore(index);
@@ -605,19 +564,13 @@ public class StorePage extends JFrame {
 	}
 
 	private void showDialog(String str) {
-		String str2 = str;
-		if (!str2.equals("")) {
-			JOptionPane.showMessageDialog(this, str2, "N2M'S JEWELRY STORE", JOptionPane.PLAIN_MESSAGE);
-		} else {
-			str2 = "";
+		if (!str.equals("")) {
+			JOptionPane.showMessageDialog(this, str, "N2M'S JEWELRY STORE", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 
 	public int getNumber(JTextField text) {
-		int number = 0;
-		String info = text.getText();
-		number = Integer.valueOf(info);
-		return number;
+		return Integer.valueOf(text.getText());
 	}
 
 	public int updateNumber(int product, int numOfRestock) {
