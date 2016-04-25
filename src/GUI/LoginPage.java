@@ -1,32 +1,22 @@
 package GUI;
 
-import java.awt.EventQueue;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+import javax.swing.*;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import javax.swing.JPasswordField;
 import java.awt.Color;
 
 public class LoginPage extends JFrame {
-	private JPanel contentPane;
 	private JTextField textField;
-	final private String[][] userAndPass = { { "Emmy", "emmy" }, { "Net", "net" }, { "May", "may" }, {"N2M", ""}};
+	final private String[][] userList = {{"Emmy", "emmy"}, {"Net", "net"}, {"May", "may"}, {"N2M", ""}};
 	private JPasswordField passwordField;
 
 	public LoginPage() {
 		super("Login");
 		this.initComponent();
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
 	public void run() {
@@ -36,8 +26,8 @@ public class LoginPage extends JFrame {
 
 	public void initComponent() {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		contentPane = new JPanel();
+
+		JPanel contentPane = new JPanel();
 		contentPane.setBackground(Color.BLACK);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -101,8 +91,8 @@ public class LoginPage extends JFrame {
 					pass += passwordField.getPassword()[i];
 				}
 				boolean check = true;
-				for (int i = 0; i < userAndPass.length; i++) {
-					if (userAndPass[i][0].equals(textField.getText()) && userAndPass[i][1].equals(pass)) {
+				for (String[] user : userList) {
+					if (user[0].equals(textField.getText()) && user[1].equals(pass)) {
 						StorePage store = new StorePage();
 						store.run();
 						setVisible(false);

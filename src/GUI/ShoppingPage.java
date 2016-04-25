@@ -147,40 +147,31 @@ public class ShoppingPage extends JFrame {
 
 		// create New Button
 		// Ring
-		JButton buttonBlueTopazesRing = new JButton(
-				new ImageIcon(loader.getResource("Image/Ring/BlueTopazesRing.jpg")));
+		JButton buttonBlueTopazesRing = new JButton(new ImageIcon(loader.getResource("Image/Ring/BlueTopazesRing.jpg")));
 		buttonBlueTopazesRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>designed to be stacked or worn alone<br><br>Size: 6<br><br>Material 18k gold with a blue topaz, Carat weight 1.00<br><br>Price: 22,200 ฿</html>",
-						"Blue Topazes Ring", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>designed to be stacked or worn alone<br><br>Size: 6<br><br>Material 18k gold with a blue topaz, Carat weight 1.00<br><br>Price: 22,200 ฿</html>", "Blue Topazes Ring", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 0, 22200);
 
 			}
 		});
 
-		JButton buttonMidnightTitaniumRing = new JButton(
-				new ImageIcon(loader.getResource("Image/Ring/MidnightTitaniumRing.jpg")));
+		JButton buttonMidnightTitaniumRing = new JButton(new ImageIcon(loader.getResource("Image/Ring/MidnightTitaniumRing.jpg")));
 		buttonMidnightTitaniumRing.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>the classic cars and racing is highlighted<br><br>Size: 9<br><br>stainless steel and midnight titanium<br><br>Price: 13,800 ฿</html>",
-						"Midnight Titanium Ring", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>the classic cars and racing is highlighted<br><br>Size: 9<br><br>stainless steel and midnight titanium<br><br>Price: 13,800 ฿</html>", "Midnight Titanium Ring", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 1, 13800);
 			}
 		});
 
-		JButton buttonPinkDiamondsRing = new JButton(
-				new ImageIcon(loader.getResource("Image/Ring/PinkDiamondsRing.jpg")));
+		JButton buttonPinkDiamondsRing = new JButton(new ImageIcon(loader.getResource("Image/Ring/PinkDiamondsRing.jpg")));
 		buttonPinkDiamondsRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>Pink diamonds lends radiance to a sparkling white diamond center stone<br><br>Size: 6<br><br>diamonds in platinum and 18k rose gold.<br>Pink diamonds, carat total weight 0.02<br>white diamonds, carat total weight 0.34 <br><br>Price: 202,000 ฿</html>",
-						"Pink Diamonds Ring", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>Pink diamonds lends radiance to a sparkling white diamond center stone<br><br>Size: 6<br><br>diamonds in platinum and 18k rose gold.<br>Pink diamonds, carat total weight 0.02<br>white diamonds, carat total weight 0.34 <br><br>Price: 202,000 ฿</html>", "Pink Diamonds Ring", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 2, 202000);
 			}
 		});
@@ -189,9 +180,7 @@ public class ShoppingPage extends JFrame {
 		buttonSilverBowRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>Bow is a charming symbol of our most important ties<br><br>Size: 6<br><br>Sterling silver<br><br>Price: 6,600 ฿</html>",
-						"Silver Bow Ring", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>Bow is a charming symbol of our most important ties<br><br>Size: 6<br><br>Sterling silver<br><br>Price: 6,600 ฿</html>", "Silver Bow Ring", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 3, 6600);
 			}
 		});
@@ -200,83 +189,63 @@ public class ShoppingPage extends JFrame {
 		buttonXDiamondsRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>rendition of an “X,” the popular symbol of love<br><br>Size: 6<br><br>18k gold with diamonds and pink sapphires in platinum<br>Round brilliant diamonds, carat total weight 0.59<br>round pink sapphires, carat total weight 0.75<br><br>Price: 253,000 ฿</html>",
-						"X Diamonds Ring", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>rendition of an “X,” the popular symbol of love<br><br>Size: 6<br><br>18k gold with diamonds and pink sapphires in platinum<br>Round brilliant diamonds, carat total weight 0.59<br>round pink sapphires, carat total weight 0.75<br><br>Price: 253,000 ฿</html>", "X Diamonds Ring", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 4, 253000);
 			}
 		});
 
 		// Pendant
-		JButton buttonMixedClusterPendant = new JButton(
-				new ImageIcon(loader.getResource("Image/Pendant/MixedClusterPendant.jpg")));
+		JButton buttonMixedClusterPendant = new JButton(new ImageIcon(loader.getResource("Image/Pendant/MixedClusterPendant.jpg")));
 		buttonMixedClusterPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>The elegant simplicity of this pendant makes it as appropriate for day as it is for evening<br><br>Size: Medium<br><br>Platinum with mixed-cut diamonds<br>Marquise diamonds, carat total weight 0.27<br>Pear-shaped diamonds, carat total weight 0.20<br><br>Price: 155,000 ฿</html>",
-						"Mixed Cluster Pendant", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>The elegant simplicity of this pendant makes it as appropriate for day as it is for evening<br><br>Size: Medium<br><br>Platinum with mixed-cut diamonds<br>Marquise diamonds, carat total weight 0.27<br>Pear-shaped diamonds, carat total weight 0.20<br><br>Price: 155,000 ฿</html>", "Mixed Cluster Pendant", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 5, 155000);
 			}
 		});
 
-		JButton buttonOliveLeafPendant = new JButton(
-				new ImageIcon(loader.getResource("Image/Pendant/OliveLeafPendant.jpg")));
+		JButton buttonOliveLeafPendant = new JButton(new ImageIcon(loader.getResource("Image/Pendant/OliveLeafPendant.jpg")));
 		buttonOliveLeafPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>A beautiful tribute to the olive branch<br><br>sterling silver<br><br>Size: Small<br><br>Price: 13,000 ฿</html>",
-						"Olive Leaf Pendant", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>A beautiful tribute to the olive branch<br><br>sterling silver<br><br>Size: Small<br><br>Price: 13,000 ฿</html>", "Olive Leaf Pendant", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 6, 13000);
 			}
 		});
 
-		JButton buttonPiercedPendant = new JButton(
-				new ImageIcon(loader.getResource("Image/Pendant/PiercedPendant.jpg")));
+		JButton buttonPiercedPendant = new JButton(new ImageIcon(loader.getResource("Image/Pendant/PiercedPendant.jpg")));
 		buttonPiercedPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>this pendant accentuate the strong lines of timeless Roman numerals<br><br>Size: Small<br><br>18k gold with round brilliant diamonds<br><br>Price: 25,200 ฿</html>",
-						"Pierced Pendant", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>this pendant accentuate the strong lines of timeless Roman numerals<br><br>Size: Small<br><br>18k gold with round brilliant diamonds<br><br>Price: 25,200 ฿</html>", "Pierced Pendant", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 7, 25200);
 			}
 		});
 
-		JButton buttonSilverBowPendant = new JButton(
-				new ImageIcon(loader.getResource("Image/Pendant/SilverBowPendant.jpg")));
+		JButton buttonSilverBowPendant = new JButton(new ImageIcon(loader.getResource("Image/Pendant/SilverBowPendant.jpg")));
 		buttonSilverBowPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>Fluid sterling silver accentuates the flowing design of this pendant<br><br>Size: Small<br><br>sterling silver<br><br>Price: 5,600 ฿</html>",
-						"Silver Bow Pendant", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>Fluid sterling silver accentuates the flowing design of this pendant<br><br>Size: Small<br><br>sterling silver<br><br>Price: 5,600 ฿</html>", "Silver Bow Pendant", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 8, 5600);
 			}
 		});
 
-		JButton buttonWhiteGoldBowPendant = new JButton(
-				new ImageIcon(loader.getResource("Image/Pendant/WhiteGoldBowPendant.jpg")));
+		JButton buttonWhiteGoldBowPendant = new JButton(new ImageIcon(loader.getResource("Image/Pendant/WhiteGoldBowPendant.jpg")));
 		buttonWhiteGoldBowPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>This asymmetrical pendant is a fluid reminder of special moments<br><br>Size: Small<br><br>18k white gold with round brilliant diamonds Carat total weight 0.20<br><br>Price: 111,000 ฿</html>",
-						"White Gold Bow Pendant", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>This asymmetrical pendant is a fluid reminder of special moments<br><br>Size: Small<br><br>18k white gold with round brilliant diamonds Carat total weight 0.20<br><br>Price: 111,000 ฿</html>", "White Gold Bow Pendant", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 9, 111000);
 			}
 		});
 
 		// Earring
-		JButton buttonBlueTopazesOliveLeafEarring = new JButton(
-				new ImageIcon(loader.getResource("Image/Earring/BlueTopazesOliveLeafEarring.jpg")));
+		JButton buttonBlueTopazesOliveLeafEarring = new JButton(new ImageIcon(loader.getResource("Image/Earring/BlueTopazesOliveLeafEarring.jpg")));
 		buttonBlueTopazesOliveLeafEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>symbol of peace or victory<br><br>Size: Mini<br><br>18k gold with blue topazes. Carat total weight 3.00<br><br>Price: 24,600 ฿</html>",
-						"Blue Topazes Olive Leaf Earring", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>symbol of peace or victory<br><br>Size: Mini<br><br>18k gold with blue topazes. Carat total weight 3.00<br><br>Price: 24,600 ฿</html>", "Blue Topazes Olive Leaf Earring", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 10, 24600);
 			}
 		});
@@ -285,44 +254,33 @@ public class ShoppingPage extends JFrame {
 		buttonBowEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>this design captures the sweeping movement of a flowing ribbon<br><br>Size: Mini<br><br>18k rose gold<br><br>Price: 14,200 ฿</html>",
-						"Bow Earring", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>this design captures the sweeping movement of a flowing ribbon<br><br>Size: Mini<br><br>18k rose gold<br><br>Price: 14,200 ฿</html>", "Bow Earring", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 11, 14200);
 			}
 		});
 
-		JButton buttonColorByTheYardEarring = new JButton(
-				new ImageIcon(loader.getResource("Image/Earring/ColorByTheYardEarring.jpg")));
+		JButton buttonColorByTheYardEarring = new JButton(new ImageIcon(loader.getResource("Image/Earring/ColorByTheYardEarring.jpg")));
 		buttonColorByTheYardEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>the color in the yard<br><br>sterling silver with two round pink sapphires<br><br>Size: Mini<br><br>Price: 30,600 ฿</html>",
-						"Color By The Yard Earring", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>the color in the yard<br><br>sterling silver with two round pink sapphires<br><br>Size: Mini<br><br>Price: 30,600 ฿</html>", "Color By The Yard Earring", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 12, 30600);
 			}
 		});
-		JButton buttonRivalsNightSkyEarring = new JButton(
-				new ImageIcon(loader.getResource("Image/Earring/RivalsNightSkyEarring.jpg")));
+		JButton buttonRivalsNightSkyEarring = new JButton(new ImageIcon(loader.getResource("Image/Earring/RivalsNightSkyEarring.jpg")));
 		buttonRivalsNightSkyEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>celebrates the blazing brilliance of diamonds<br><br>Size: Medium<br><br>Platinum with marquise diamonds, Carat total weight 1.62<br><br>Price: 504,000 ฿</html>",
-						"Rivals Night Sky Earring", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>celebrates the blazing brilliance of diamonds<br><br>Size: Medium<br><br>Platinum with marquise diamonds, Carat total weight 1.62<br><br>Price: 504,000 ฿</html>", "Rivals Night Sky Earring", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 13, 504000);
 			}
 		});
 
-		JButton buttonSilverOliveLeafEarring = new JButton(
-				new ImageIcon(loader.getResource("Image/Earring/SilverOliveLeafEarring.jpg")));
+		JButton buttonSilverOliveLeafEarring = new JButton(new ImageIcon(loader.getResource("Image/Earring/SilverOliveLeafEarring.jpg")));
 		buttonSilverOliveLeafEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String text = JOptionPane.showInputDialog(null,
-						"<html>a symbol of peace and abundance<br><br>Size: Medium<br><br>sterling silver<br><br>Price: 5,600 ฿</html>",
-						"Silver Olive Leaf Earring", JOptionPane.PLAIN_MESSAGE);
+				String text = JOptionPane.showInputDialog(null, "<html>a symbol of peace and abundance<br><br>Size: Medium<br><br>sterling silver<br><br>Price: 5,600 ฿</html>", "Silver Olive Leaf Earring", JOptionPane.PLAIN_MESSAGE);
 				updateData(text, 14, 5600);
 			}
 		});
@@ -379,8 +337,7 @@ public class ShoppingPage extends JFrame {
 		secondContainer.add(buttonZoneContainer, BorderLayout.SOUTH);
 		// finish add
 
-		textProductCustomer = new JLabel(String.format("<html><pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre></html>",
-				"ProductID", "Name", "Material", "Size", "Weight", "Price", "Number"));
+		textProductCustomer = new JLabel(String.format("<html><pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre></html>", "ProductID", "Name", "Material", "Size", "Weight", "Price", "Number"));
 		textProductCustomer.setFont(new Font("Century Gothic", Font.PLAIN, 14));
 		textProductCustomer.setVerticalAlignment(SwingConstants.TOP);
 		textProductCustomer.setHorizontalAlignment(SwingConstants.LEFT);
@@ -414,7 +371,7 @@ public class ShoppingPage extends JFrame {
 
 	/**
 	 * Open Main by use ActionListener (Only MainButton)
-	 * 
+	 *
 	 * @param button
 	 */
 	public void backToMain(JButton button) {
@@ -441,7 +398,7 @@ public class ShoppingPage extends JFrame {
 
 	/**
 	 * check that text is or not Integer
-	 * 
+	 *
 	 * @param text
 	 * @return if text equals Integer will return int, otherwise return -1
 	 */
@@ -457,7 +414,7 @@ public class ShoppingPage extends JFrame {
 	 * text in number that customer want to buy Check text is or not valid Check
 	 * CurrNumStock in Stock Update Display with basket that customer buy Update
 	 * Price and Shipping And Update every thing must update in Shopping
-	 * 
+	 *
 	 * @param text
 	 * @param index
 	 * @param price
@@ -467,8 +424,7 @@ public class ShoppingPage extends JFrame {
 		int num = checkInteger(text);
 		// check is availaility
 		int availStatus = store.checkAvailability(productList.get(index), num);
-		String printBasket = String.format("<pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name",
-				"Material", "Size", "Weight", "Price", "Number");
+		String printBasket = String.format("<pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Material", "Size", "Weight", "Price", "Number");
 		if (num > 0) {
 			if (availStatus == 1) {
 				numProductCustomer += num;
@@ -482,14 +438,10 @@ public class ShoppingPage extends JFrame {
 				basket.addItemInComboBox(element.getName());
 			} else {
 				// if the stock isn't enough, notify shopper
-				JOptionPane.showMessageDialog(null,
-						String.format("Sorry. We only have %d left. Please reorder.\n",
-								store.getProductList().get(index).getCurrNumStock()),
-						"Warning", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, String.format("Sorry. We only have %d left. Please reorder.\n", store.getProductList().get(index).getCurrNumStock()), "Warning", JOptionPane.WARNING_MESSAGE);
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Sorry. Please, Enter Only Positive Number", "Error",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Sorry. Please, Enter Only Positive Number", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 		// update display in basket
@@ -505,7 +457,7 @@ public class ShoppingPage extends JFrame {
 
 	/**
 	 * Update Shopping page by paramater
-	 * 
+	 *
 	 * @param updateProduct
 	 * @param updateNumProduct
 	 * @param updatePrice
@@ -518,7 +470,7 @@ public class ShoppingPage extends JFrame {
 
 	/**
 	 * Open BasketPage by use ActionListener (Only BasketButton)
-	 * 
+	 *
 	 * @param button
 	 */
 	public void ToBasket(JButton button) {
@@ -533,7 +485,7 @@ public class ShoppingPage extends JFrame {
 
 	/**
 	 * Open PaymentPage by use ActionListener (Only PaymentButton)
-	 * 
+	 *
 	 * @param button
 	 */
 	public void ToPayment(JButton button) {

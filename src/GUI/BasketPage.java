@@ -1,40 +1,45 @@
 package GUI;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import java.io.*;
+import Code.Customer;
+import Code.OrderElement;
+import Code.Shipping;
+import Code.Store;
+
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
 
-import Code.*;
-
-public class BasketPage extends JFrame {
+class BasketPage extends JFrame {
 
 	private Store store = MainMenu.getStore();
 	private Customer shopper;
-	private JLabel textProductCustomer, textMemberClass, textCustomer, textPriceShipping, textFinalPrice;
+	private JLabel textProductCustomer;
+	private JLabel textPriceShipping;
+	private JLabel textFinalPrice;
 	private JComboBox<String> comboProduct;
 
-	public BasketPage() {
+	BasketPage() {
 		super("Basket Page");
 		getContentPane().setBackground(Color.BLACK);
 		initComponent();
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
-	public void run() {
+	void run() {
 		setBounds(1000, 550, 650, 500);
 		setResizable(false);
 		setBackground(Color.LIGHT_GRAY);
 		setVisible(true);
 	}
 
-	public void initComponent() {
+	private void initComponent() {
 		getContentPane().setLayout(null);
 		// make shopper Present
 		shopper = store.getCustomerList().get(CustomerPage.getIndexOfCustomer());
 
-		comboProduct = new JComboBox<String>(toArray(shopper.getBasket()));
+		comboProduct = new JComboBox<>(toArray(shopper.getBasket()));
 		comboProduct.setForeground(UIManager.getColor("Desktop.background"));
 		comboProduct.setFont(new Font("Andale Mono", Font.PLAIN, 13));
 		comboProduct.setBounds(453, 118, 197, 30);
@@ -49,8 +54,7 @@ public class BasketPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int productIndex = comboProduct.getSelectedIndex();
 				OrderElement order = shopper.getBasket().get(productIndex);
-				String textChange = JOptionPane.showInputDialog(null, "Change from " + order.getNum() + " To ..?",
-						comboProduct.getSelectedItem().toString(), JOptionPane.INFORMATION_MESSAGE);
+				String textChange = JOptionPane.showInputDialog(null, "Change from " + order.getNum() + " To ..?", comboProduct.getSelectedItem().toString(), JOptionPane.INFORMATION_MESSAGE);
 				int num = Integer.parseInt(textChange);
 				// return old order
 				store.refundStock(order);
@@ -130,12 +134,12 @@ public class BasketPage extends JFrame {
 		firstContainer.add(customerInformationContainer);
 		customerInformationContainer.setLayout(new FlowLayout());
 
-		textCustomer = new JLabel(shopper.toString());
+		JLabel textCustomer = new JLabel(shopper.toString());
 		textCustomer.setForeground(Color.WHITE);
 		textCustomer.setFont(new Font("Century Gothic", Font.PLAIN, 17));
 		customerInformationContainer.add(textCustomer);
 
-		textMemberClass = new JLabel(shopper.getMemberClass());
+		JLabel textMemberClass = new JLabel(shopper.getMemberClass());
 		textMemberClass.setBounds(199, 7, 190, 57);
 		firstContainer.add(textMemberClass);
 		textMemberClass.setFont(new Font("Gujarati MT", Font.PLAIN, 27));
@@ -176,8 +180,7 @@ public class BasketPage extends JFrame {
 	 * set basket of Customer in this JFrame
 	 */
 	public void setTextproductCustomerInBasket() {
-		String printBasket = String.format("<pre>%-10s %-31s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Size",
-				"Weight", "Price", "Number");
+		String printBasket = String.format("<pre>%-10s %-31s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Size", "Weight", "Price", "Number");
 		printBasket += shopper.getBasketStringWithoutMaterial();
 		textProductCustomer.setText("<html>" + printBasket + "</html>");
 	}
@@ -185,9 +188,8 @@ public class BasketPage extends JFrame {
 	/**
 	 * set basket of Customer in Shopping Page
 	 */
-	public void setTextproductCustomerInShopping() {
-		String printBasket = String.format("<pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name",
-				"Material", "Size", "Weight", "Price", "Number");
+	private void setTextproductCustomerInShopping() {
+		String printBasket = String.format("<pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Material", "Size", "Weight", "Price", "Number");
 		printBasket += shopper.getBasketString();
 		ShoppingPage.getTextProductCustomer().setText("<html>" + printBasket + "</html>");
 		updateElseInShopping();
@@ -196,13 +198,12 @@ public class BasketPage extends JFrame {
 	/**
 	 * Update num product customer and price of product
 	 */
-	public void updateElseInShopping() {
+	void updateElseInShopping() {
 		int numProductCustmer = 0;
 		int priceProductCustmer = 0;
 		for (int i = 0; i < shopper.getBasket().size(); i++) {
 			numProductCustmer += shopper.getBasket().get(i).getNum();
-			priceProductCustmer += shopper.getBasket().get(i).getNum()
-					* shopper.getBasket().get(i).getProduct().getPrice();
+			priceProductCustmer += shopper.getBasket().get(i).getNum() * shopper.getBasket().get(i).getProduct().getPrice();
 		}
 		// set 2 attribute that must update when we change product
 		ShoppingPage.setNumProductCustomer(numProductCustmer);
@@ -215,26 +216,25 @@ public class BasketPage extends JFrame {
 	/**
 	 * Update shipping price to present and set in textLabel
 	 */
-	public void updatePriceShipping() {
-		ArrayList<OrderElement> basket = shopper.getBasket();
+	void updatePriceShipping() {
+		ArrayList<OrderElement> baskets = shopper.getBasket();
 		double totalWeight = 0;
-		for (int i = 0; i < basket.size(); i++) {
-			totalWeight += basket.get(i).getProduct().getWeight() * basket.get(i).getNum();
+		for (OrderElement basket : baskets) {
+			totalWeight += basket.getProduct().getWeight() * basket.getNum();
 		}
 		Shipping shipping = new Shipping(totalWeight, false, false);
-		String tempOutput = String.format("<html>" + "Weight: %.2f<br>Price: %d</html>", totalWeight,
-				shipping.getShippingFee());
+		String tempOutput = String.format("<html>" + "Weight: %.2f<br>Price: %d</html>", totalWeight, shipping.getShippingFee());
 		textPriceShipping.setText(tempOutput);
 	}
 
 	/**
 	 * Update final price to present and set in textLabel
 	 */
-	public void updateFinalPrice() {
-		ArrayList<OrderElement> basket = shopper.getBasket();
+	void updateFinalPrice() {
+		ArrayList<OrderElement> baskets = shopper.getBasket();
 		double totalWeight = 0;
-		for (int i = 0; i < basket.size(); i++) {
-			totalWeight += basket.get(i).getProduct().getWeight() * basket.get(i).getNum();
+		for (OrderElement basket : baskets) {
+			totalWeight += basket.getProduct().getWeight() * basket.getNum();
 		}
 		Shipping shipping = new Shipping(totalWeight, false, false);
 		// priceProductCustmer
@@ -245,17 +245,18 @@ public class BasketPage extends JFrame {
 	/**
 	 * add paramater text in combo box that text is product that customer add
 	 * more
-	 * 
+	 *
 	 * @param text
+	 * 		text to add in combo box
 	 */
-	public void addItemInComboBox(String text) {
+	void addItemInComboBox(String text) {
 		comboProduct.addItem(text);
 	}
 
 	/**
 	 * change Name product in ArrayList(OrderElement) to String[]
 	 */
-	public String[] toArray(ArrayList<OrderElement> array) {
+	private String[] toArray(ArrayList<OrderElement> array) {
 		String[] temp = new String[array.size()];
 		for (int i = 0; i < array.size(); i++) {
 			temp[i] = array.get(i).getName();

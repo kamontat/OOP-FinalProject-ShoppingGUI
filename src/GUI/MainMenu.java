@@ -15,21 +15,20 @@ import Code.*;
 public class MainMenu extends JFrame {
 
 	static private Store store;
-	private ArrayList<Customer> customerList = new ArrayList<Customer>();
-	private ArrayList<ProductExt> productList = new ArrayList<ProductExt>();
+	private ArrayList<Customer> customerList = new ArrayList<>();
+	private ArrayList<ProductExt> productList = new ArrayList<>();
 
 	// check run only first time
-	private boolean check = ShoppingPage.isCheck() && CustomerPage.isCheck() && StorePage.isCheck()
-			&& PaymentPage.isCheck();
+	private boolean check = ShoppingPage.isCheck() && CustomerPage.isCheck() && StorePage.isCheck() && PaymentPage.isCheck();
 
-	public MainMenu() throws IOException {
+	MainMenu() throws IOException {
 		super("Main Menu");
 		getContentPane().setBackground(new Color(0, 0, 0));
 		initComponent();
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
-	public void run() {
+	void run() {
 		setBounds(50, 50, 880, 500);
 		setVisible(true);
 		setResizable(false);
@@ -39,27 +38,11 @@ public class MainMenu extends JFrame {
 		return store;
 	}
 
-	public ArrayList<Customer> getCustomerList() {
-		return customerList;
-	}
-
-	public ArrayList<ProductExt> getProductList() {
-		return productList;
-	}
-
 	public static void setStore(Store store) {
 		MainMenu.store = store;
 	}
 
-	public void setCustomerList(ArrayList<Customer> customerList) {
-		this.customerList = customerList;
-	}
-
-	public void setProductList(ArrayList<ProductExt> productList) {
-		this.productList = productList;
-	}
-
-	public void initComponent() throws IOException {
+	private void initComponent() throws IOException {
 		getContentPane().setLayout(null);
 
 		if (check) {
@@ -80,8 +63,7 @@ public class MainMenu extends JFrame {
 
 		// add image title
 		ClassLoader loader = this.getClass().getClassLoader();
-		URL imgTitle = loader.getResource("image/bg1.png");
-		JLabel bg2 = new JLabel(new ImageIcon(imgTitle));
+		JLabel bg2 = new JLabel(new ImageIcon(loader.getResource("image/bg1.png")));
 		bg2.setBounds(143, 6, 522, 146);
 		bg2.setBackground(new Color(0, 0, 0));
 		FlowLayout flowForImg = new FlowLayout();
@@ -91,21 +73,17 @@ public class MainMenu extends JFrame {
 		getContentPane().add(bg2);
 
 		// JLabel show information of Button
-		JLabel lblViewProduct = new JLabel(
-				"<HTML>1) LIST ALL PRODUCT <br>2) SHOW PAYMENT<br>3) BASKET INFORMATION</HTML>", JLabel.CENTER);
+		JLabel lblViewProduct = new JLabel("<HTML>1) LIST ALL PRODUCT <br>2) SHOW PAYMENT<br>3) BASKET INFORMATION</HTML>", JLabel.CENTER);
 		lblViewProduct.setBounds(33, 0, 238, 90);
 		pageButtonContainer.add(lblViewProduct);
 		lblViewProduct.setForeground(new Color(248, 248, 255));
 		lblViewProduct.setFont(new Font("Heiti TC", Font.PLAIN, 15));
-		JLabel lblSearchCustomer = new JLabel(
-				"<HTML>1) SEARCH CUSTOMER <br>2) ADD & REMOVE CUSTOMER <br>3) CHOOSE CUSTOMER</HTML>", JLabel.CENTER);
+		JLabel lblSearchCustomer = new JLabel("<HTML>1) SEARCH CUSTOMER <br>2) ADD & REMOVE CUSTOMER <br>3) CHOOSE CUSTOMER</HTML>", JLabel.CENTER);
 		lblSearchCustomer.setBounds(293, 0, 238, 90);
 		pageButtonContainer.add(lblSearchCustomer);
 		lblSearchCustomer.setFont(new Font("Heiti TC", Font.PLAIN, 15));
 		lblSearchCustomer.setForeground(Color.WHITE);
-		JLabel lblSearchProduct = new JLabel(
-				"<HTML>1) SEARCH PRODUCT <br>2) SHOW STOCK & RESTOCK <br>3) VIEW REVENUE, EXPENSE, PROFIT</HTML>",
-				JLabel.CENTER);
+		JLabel lblSearchProduct = new JLabel("<HTML>1) SEARCH PRODUCT <br>2) SHOW STOCK & RESTOCK <br>3) VIEW REVENUE, EXPENSE, PROFIT</HTML>", JLabel.CENTER);
 		lblSearchProduct.setBounds(533, 0, 275, 90);
 		pageButtonContainer.add(lblSearchProduct);
 		lblSearchProduct.setForeground(Color.WHITE);
@@ -151,37 +129,33 @@ public class MainMenu extends JFrame {
 	 * assign product into the arrayList and this method I run Only 1 time that
 	 * we run this program
 	 */
-	public void assignProduct() {
+	private void assignProduct() {
 		productList.add(new ProductExt("Blue Topazes Ring", 3.5, 22200, 10, 3, "18k Gold", "6", 10000));
 		productList.add(new ProductExt("Midnight Titanium Ring", 5.1, 13800, 10, 3, "Steel & Titanium", "9", 9400));
 		productList.add(new ProductExt("Pink Diamonds Ring", 3.7, 202000, 5, 1, "Diamonds", "6", 69500));
 		productList.add(new ProductExt("Silver Bow Ring", 2.6, 6600, 20, 5, "Silver", "6", 3700));
 		productList.add(new ProductExt("X Diamonds Ring", 4.2, 253000, 5, 1, "Pink sapphires", "6", 83200));
 
-		productList.add(
-				new ProductExt("Mixed Cluster Pendant", 12.3, 155000, 5, 1, "Platinum and Diamonds", "Medium", 60500));
+		productList.add(new ProductExt("Mixed Cluster Pendant", 12.3, 155000, 5, 1, "Platinum and Diamonds", "Medium", 60500));
 		productList.add(new ProductExt("Olive Leaf Pendant", 11.1, 13000, 10, 3, "Silver", "Small", 9600));
 		productList.add(new ProductExt("Pierced Pendant", 10.7, 25200, 10, 3, "Gold and Diamonds", "Small", 16000));
 		productList.add(new ProductExt("Silver Bow Pendant", 10.3, 5600, 20, 5, "Silver", "Small", 3300));
-		productList.add(
-				new ProductExt("White Gold Bow Pendant", 11.6, 111000, 5, 1, "White Gold & Diamonds", "Small", 86900));
+		productList.add(new ProductExt("White Gold Bow Pendant", 11.6, 111000, 5, 1, "White Gold & Diamonds", "Small", 86900));
 
 		productList.add(new ProductExt("Blue Topazes Olive Leaf Earring", 1.3, 24600, 10, 3, "Gold", "Mini", 16800));
 		productList.add(new ProductExt("Bow Earring", 1.5, 14200, 10, 3, "Rose Gold", "Mini", 10500));
-		productList.add(new ProductExt("Color By The Yard Earring", 1.1, 30600, 10, 3, "Silver & Pink Sapphires",
-				"Mini", 26000));
-		productList.add(
-				new ProductExt("Rivals Night Sky Earring", 2.4, 504000, 3, 1, "Platinum & Diamonds", "Medium", 489000));
+		productList.add(new ProductExt("Color By The Yard Earring", 1.1, 30600, 10, 3, "Silver & Pink Sapphires", "Mini", 26000));
+		productList.add(new ProductExt("Rivals Night Sky Earring", 2.4, 504000, 3, 1, "Platinum & Diamonds", "Medium", 489000));
 		productList.add(new ProductExt("Silver Olive Leaf Earring", 1.8, 5600, 20, 5, "Silver", "Medium", 2900));
 	}
 
 	/**
 	 * assign product into the arrayList By use text file and this method I run
 	 * Only 1 time that we run this program
-	 * 
+	 *
 	 * @throws IOException
 	 */
-	public void assignCustomer() throws IOException {
+	private void assignCustomer() throws IOException {
 		Customer.setNumCustomers(Customer.getNumCustomers() - customerList.size());
 		customerList.removeAll(customerList);
 
@@ -203,10 +177,11 @@ public class MainMenu extends JFrame {
 
 	/**
 	 * Open ShoppingPage by use ActionListener (Only ShoppingButton)
-	 * 
+	 *
 	 * @param button
+	 * 		shopping button
 	 */
-	public void toShopping(JButton button) {
+	private void toShopping(JButton button) {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -219,10 +194,11 @@ public class MainMenu extends JFrame {
 
 	/**
 	 * Open StorePage by use ActionListener (Only StoreButton)
-	 * 
+	 *
 	 * @param button
+	 * 		store button
 	 */
-	public void toStore(JButton button) {
+	private void toStore(JButton button) {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -235,32 +211,33 @@ public class MainMenu extends JFrame {
 
 	/**
 	 * Open CustomerPage by use ActionListener (Only CustomerButton)
-	 * 
+	 *
 	 * @param button
+	 * 		customer page button
 	 */
-	public void toCustomer(JButton button) {
+	private void toCustomer(JButton button) {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				CustomerPage customer = null;
+				CustomerPage customer;
 				try {
 					customer = new CustomerPage();
+					customer.run();
+					setVisible(false);
 				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					JOptionPane.showMessageDialog(null, "it's don't have customer page", "Error Message", JOptionPane.ERROR_MESSAGE);
 				}
-				customer.run();
-				setVisible(false);
 			}
 		});
 	}
 
 	/**
 	 * Exit Program by use ActionListener (Only ExitButton)
-	 * 
+	 *
 	 * @param button
+	 * 		exit button
 	 */
-	public void exit(JButton button) {
+	private void exit(JButton button) {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

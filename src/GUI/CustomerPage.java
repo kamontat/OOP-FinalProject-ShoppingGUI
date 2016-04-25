@@ -5,7 +5,9 @@ import javax.swing.border.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
+
 import Code.*;
+
 import java.io.*;
 
 public class CustomerPage extends JFrame {
@@ -223,14 +225,8 @@ public class CustomerPage extends JFrame {
 				ArrayList<Integer> indexList = store.searchCustomer(comboBox.getSelectedItem().toString(), searchByCustomerName.getText());
 				if (indexList.size() != 0) {
 					String textCustomerSearchList = "";
-					for (int i = 0; i < indexList.size(); i++) {
-						textCustomerSearchList += String.format("<pre>     %-14s  %-18s  %-24s  %-17s  %3d  %16s</pre>",
-								store.getCustomerList().get(indexList.get(i)).getID(),
-								store.getCustomerList().get(indexList.get(i)).getName(),
-								store.getCustomerList().get(indexList.get(i)).getLastname(),
-								store.getCustomerList().get(indexList.get(i)).getGender(),
-								store.getCustomerList().get(indexList.get(i)).getAge(),
-								store.getCustomerList().get(indexList.get(i)).getMemberClass());
+					for (Integer index : indexList) {
+						textCustomerSearchList += String.format("<pre>     %-14s  %-18s  %-24s  %-17s  %3d  %16s</pre>", store.getCustomerList().get(index).getID(), store.getCustomerList().get(index).getName(), store.getCustomerList().get(index).getLastname(), store.getCustomerList().get(index).getGender(), store.getCustomerList().get(index).getAge(), store.getCustomerList().get(index).getMemberClass());
 					}
 					labelCustomerList.setText("<html>" + textCustomerSearchList + "</html>");
 				} else {
@@ -259,8 +255,7 @@ public class CustomerPage extends JFrame {
 				lastname = JOptionPane.showInputDialog(null, "LASTNAME : ", "ADD LASTNAME", JOptionPane.PLAIN_MESSAGE);
 				gender = JOptionPane.showInputDialog(null, "GENDER(M/F) : ", "ADD GENDER", JOptionPane.PLAIN_MESSAGE);
 				age = JOptionPane.showInputDialog(null, "AGE : ", "ADD AGE", JOptionPane.PLAIN_MESSAGE);
-				member = JOptionPane.showInputDialog(null, "Member(None/Green/Silver/Gold) : ", "ADD MEMBER",
-						JOptionPane.PLAIN_MESSAGE);
+				member = JOptionPane.showInputDialog(null, "Member(None/Green/Silver/Gold) : ", "ADD MEMBER", JOptionPane.PLAIN_MESSAGE);
 				Customer shopper = new Customer(id, name, lastname, gender, Integer.parseInt(age), member);
 				store.addCustomer(shopper);
 				// write CustomerList to file text
@@ -322,20 +317,20 @@ public class CustomerPage extends JFrame {
 		buttonMainMenu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				MainMenu menu;
 				check = false;
-				MainMenu menu = null;
 				try {
 					menu = new MainMenu();
+					menu.run();
+					setVisible(false);
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
-				menu.run();
-				setVisible(false);
 			}
 		});
 		
 		// create new JComboBox
-		comboBox = new JComboBox<String>(new String[]{"Name", "Lastname", "Age", "MemberClass"});
+		comboBox = new JComboBox<>(new String[]{"Name", "Lastname", "Age", "MemberClass"});
 		comboBox.setBounds(39, 35, 185, 27);
 		searchAndAddContainer.add(comboBox);
 
@@ -353,29 +348,22 @@ public class CustomerPage extends JFrame {
 		try {
 			FileWriter write = new FileWriter(output);
 			for (int i = 0; i < store.getCustomerList().size(); i++) {
-				String tempOutput = String.format("%s %s %s %s %d %s \n", store.getCustomerList().get(i).getID(),
-						store.getCustomerList().get(i).getName(), store.getCustomerList().get(i).getLastname(),
-						store.getCustomerList().get(i).getGender(), store.getCustomerList().get(i).getAge(),
-						store.getCustomerList().get(i).getMemberClass());
+				String tempOutput = String.format("%s %s %s %s %d %s \n", store.getCustomerList().get(i).getID(), store.getCustomerList().get(i).getName(), store.getCustomerList().get(i).getLastname(), store.getCustomerList().get(i).getGender(), store.getCustomerList().get(i).getAge(), store.getCustomerList().get(i).getMemberClass());
 				write.write(tempOutput);
 			}
 			write.close();
 		} catch (Exception e) {
-
+			System.err.println(output + " file isn't exist.");
 		}
 	}
 
 	/**
-	 * 
 	 * @return Customer List
 	 */
 	public String toCustomerListString() {
 		String textCustomerList = "";
 		for (int i = 0; i < customerList.size(); i++) {
-			textCustomerList += String.format("<pre>     %-14s  %-18s  %-24s  %-17s  %3d  %16s</pre>",
-					store.getCustomerList().get(i).getID(), store.getCustomerList().get(i).getName(),
-					store.getCustomerList().get(i).getLastname(), store.getCustomerList().get(i).getGender(),
-					store.getCustomerList().get(i).getAge(), store.getCustomerList().get(i).getMemberClass());
+			textCustomerList += String.format("<pre>     %-14s  %-18s  %-24s  %-17s  %3d  %16s</pre>", store.getCustomerList().get(i).getID(), store.getCustomerList().get(i).getName(), store.getCustomerList().get(i).getLastname(), store.getCustomerList().get(i).getGender(), store.getCustomerList().get(i).getAge(), store.getCustomerList().get(i).getMemberClass());
 		}
 		return textCustomerList;
 
