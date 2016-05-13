@@ -1,16 +1,16 @@
 package GUI;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Scanner;
+import Code.Customer;
+import Code.ProductExt;
+import Code.Store;
 
 import javax.swing.*;
-
-import Code.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 public class MainMenu extends JFrame {
 

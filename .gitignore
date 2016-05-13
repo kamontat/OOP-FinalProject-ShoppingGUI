@@ -26,9 +26,7 @@ local.properties
 
 # IntelliJ
 out/production
-
-# mpeltonen/sbt-idea plugin
-.idea_modules/
+*.MF
 
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
