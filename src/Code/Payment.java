@@ -1,4 +1,4 @@
-package Code;
+package code;
 
 public class Payment {
 	private double totalPrice;

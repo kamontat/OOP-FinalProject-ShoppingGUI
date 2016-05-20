@@ -1,16 +1,21 @@
-package GUI;
+package gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import java.io.*;
+import code.Customer;
+import code.OrderElement;
+import code.Shipping;
+import code.Store;
+import gui1.MainPage;
+
 import javax.swing.*;
-
-import Code.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.*;
 
 public class PaymentPage extends JFrame {
 
-	private Store store = MainMenu.getStore();
+	private Store store = MainPage.store;
 	private Customer shopper;
 	private JLabel textProductCustomer, textMemberClass, textCustomer, textPriceShipping, textFinalPrice;
 	private JComboBox<String> comboProduct;
@@ -71,8 +76,7 @@ public class PaymentPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				int productIndex = comboProduct.getSelectedIndex();
 				OrderElement order = shopper.getBasket().get(productIndex);
-				String textChange = JOptionPane.showInputDialog(null, "Change from " + order.getNum() + " To ..?",
-						comboProduct.getSelectedItem().toString(), JOptionPane.INFORMATION_MESSAGE);
+				String textChange = JOptionPane.showInputDialog(null, "Change from " + order.getNum() + " To ..?", comboProduct.getSelectedItem().toString(), JOptionPane.INFORMATION_MESSAGE);
 				int num = Integer.parseInt(textChange);
 				// return old order
 				store.refundStock(order);
@@ -308,8 +312,7 @@ public class PaymentPage extends JFrame {
 	 * set basket of Customer in this JFrame
 	 */
 	public void setTextproductCustomerInBasket() {
-		String printBasket = String.format("<pre>%-10s %-31s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Size",
-				"Weight", "Price", "Number");
+		String printBasket = String.format("<pre>%-10s %-31s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Size", "Weight", "Price", "Number");
 		printBasket += shopper.getBasketStringWithoutMaterial();
 		textProductCustomer.setText("<html>" + printBasket + "</html>");
 	}
@@ -318,8 +321,7 @@ public class PaymentPage extends JFrame {
 	 * set basket of Customer in Shopping Page
 	 */
 	public void setTextproductCustomerInShopping() {
-		String printBasket = String.format("<pre>%-8s %-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "OrderID",
-				"ProductID", "Name", "Material", "Size", "Weight", "Price", "Number");
+		String printBasket = String.format("<pre>%-8s %-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "OrderID", "ProductID", "Name", "Material", "Size", "Weight", "Price", "Number");
 		printBasket += shopper.getBasketString();
 		ShoppingPage.getTextProductCustomer().setText("<html>" + printBasket + "</html>");
 		updateElseInShopping();
@@ -333,8 +335,7 @@ public class PaymentPage extends JFrame {
 		int priceProductCustmer = 0;
 		for (int i = 0; i < shopper.getBasket().size(); i++) {
 			numProductCustmer += shopper.getBasket().get(i).getNum();
-			priceProductCustmer += shopper.getBasket().get(i).getNum()
-					* shopper.getBasket().get(i).getProduct().getPrice();
+			priceProductCustmer += shopper.getBasket().get(i).getNum() * shopper.getBasket().get(i).getProduct().getPrice();
 		}
 		// set 2 attribute that must update when we change product
 		ShoppingPage.setNumProductCustomer(numProductCustmer);
@@ -354,8 +355,7 @@ public class PaymentPage extends JFrame {
 			totalWeight += basket.get(i).getProduct().getWeight() * basket.get(i).getNum();
 		}
 		Shipping shipping = new Shipping(totalWeight, register, express);
-		String tempOutput = String.format("<html>" + "Weight: %.2f<br>Price: %d</html>", totalWeight,
-				shipping.getShippingFee());
+		String tempOutput = String.format("<html>" + "Weight: %.2f<br>Price: %d</html>", totalWeight, shipping.getShippingFee());
 		textPriceShipping.setText(tempOutput);
 	}
 
@@ -377,7 +377,7 @@ public class PaymentPage extends JFrame {
 	/**
 	 * add paramater text in combo box that text is product that customer add
 	 * more
-	 * 
+	 *
 	 * @param text
 	 */
 	public void addItemInComboBox(String text) {

@@ -6,7 +6,7 @@ we done it when I study in first term of first year in kasetsert university
   - **Shopping page** <- Page that let user can go in and select product
   - **Customer page** <- Page go all customer that is the membership of this store
   - **Owner page**    <- Page that request username and password, inside it has all stock of this store product
-- Use java GUI and Window Builder for create GUI page
+- Use java gui and Window Builder for create gui page
 
 ### What is this repository for? ###
 

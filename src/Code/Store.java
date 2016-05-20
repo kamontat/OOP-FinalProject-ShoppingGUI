@@ -1,4 +1,4 @@
-package Code;
+package code;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,14 @@ public class Store {
 		this.revenue = revenue;
 		this.expense = expense;
 		this.restockProduct = false;
+	}
 
+	public Store(ArrayList<ProductExt> productList, ArrayList<Customer> customerList, String revenue, String expense) {
+		this.productList = productList;
+		this.customerList = customerList;
+		this.revenue = Double.parseDouble(revenue);
+		this.expense = Double.parseDouble(expense);
+		this.restockProduct = false;
 	}
 
 	public ArrayList<ProductExt> getProductList() {
@@ -101,8 +108,7 @@ public class Store {
 				index.add(i);
 			} else if (type.equalsIgnoreCase("age") && customerList.get(i).getAge() == Integer.parseInt(text)) {
 				index.add(i);
-			} else if (type.equalsIgnoreCase("memberclass")
-					&& customerList.get(i).getMemberClass().equalsIgnoreCase(text)) {
+			} else if (type.equalsIgnoreCase("memberclass") && customerList.get(i).getMemberClass().equalsIgnoreCase(text)) {
 				index.add(i);
 			}
 		}
@@ -150,9 +156,8 @@ public class Store {
 
 	/**
 	 * return the number to currstock
-	 * 
+	 *
 	 * @param element
-	 * 
 	 */
 	public void refundStock(OrderElement element) {
 		ProductExt customerProduct = element.getProduct();
@@ -168,7 +173,7 @@ public class Store {
 	/**
 	 * create Order by using paramater and store it into HistoryList Update
 	 * revenue and expense And clear product in basket
-	 * 
+	 *
 	 * @param customer
 	 * @param registered
 	 * @param express
@@ -201,7 +206,7 @@ public class Store {
 	/**
 	 * Check product in history list of all customer if it equals keep it in
 	 * arraylist
-	 * 
+	 *
 	 * @param product
 	 * @return arrayList of Customer
 	 */
@@ -210,8 +215,7 @@ public class Store {
 		for (int i = 0; i < customerList.size(); i++) {
 			for (int j = 0; j < customerList.get(i).getHistoryList().size(); j++) {
 				for (int k = 0; k < customerList.get(i).getHistoryList().get(j).getBuyList().size(); k++) {
-					if (customerList.get(i).getHistoryList().get(j).getBuyList().get(k).getName()
-							.equals(product.getName())) {
+					if (customerList.get(i).getHistoryList().get(j).getBuyList().get(k).getName().equals(product.getName())) {
 						customer.add(customerList.get(i));
 					}
 				}

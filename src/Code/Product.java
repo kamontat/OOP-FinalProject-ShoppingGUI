@@ -1,4 +1,4 @@
-package Code;
+package code;
 
 public class Product {
 	private String productID;
@@ -30,7 +30,17 @@ public class Product {
 		this.currNumStock = currNumStock;
 		this.numRestocks = numRestocks;
 		restock = false;
-		
+	}
+
+	public Product(String name, String weight, String price, String currNumStock, String numRestocks) {
+		numProducts++;
+		productID = Integer.toString(numProducts);
+		this.name = name;
+		this.weight = Double.parseDouble(weight);
+		this.price = Double.parseDouble(price);
+		this.currNumStock = Integer.parseInt(currNumStock);
+		this.numRestocks = Integer.parseInt(numRestocks);
+		restock = false;
 	}
 	
 	public String getProductID() {
@@ -111,8 +121,9 @@ public class Product {
 			restock = false;
 		}
 	}
+
 	public String toString() {
 		String format = "%s. %s, %.3f, %.2f, %d, %d";
-		return String.format(format,this.productID, this.name, this.weight, this.price, this.currNumStock, this.numRestocks);
+		return String.format(format, this.productID, this.name, this.weight, this.price, this.currNumStock, this.numRestocks);
 	}
 }

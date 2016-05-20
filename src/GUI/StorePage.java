@@ -1,18 +1,17 @@
-package GUI;
+package gui;
 
-import java.awt.*;
+import code.Store;
+
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-
-import Code.*;
-
+import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
 
 public class StorePage extends JFrame {
 	private Store store = MainMenu.getStore();
@@ -21,8 +20,9 @@ public class StorePage extends JFrame {
 	private JTextField txtStock;
 	private JTextField textField_0, textField_1, textField_2, textField_3, textField_4, textField_5, textField_6, textField_7, textField_8, textField_9, textField_10, textField_11, textField_12, textField_13, textField_14;
 	private String showInDialog;
-	private String[] headLine = new String[]{"Prodect Type", "Product ID", "Name", "Weight", "Size", "Material", "Buying Price", "Price"};
-	private String[][] info = {{"Ring", "1001", "Blue Topazes", "3.5", "6\" ", "Gold", "10,000", "22,000"}, {"Ring", "1002", "Midnight Titanium", "5.1", "9\"", "Steel and Titanium", "9,400", "13,800"}, {"Ring", "1003", "Pink Diamonds", " 3.7", "6\"", "Diamonds & rose gold", "69,500", "202,000"}, {"Ring", "1004", "Silver Bow", "2.6", "6\"", "Silver", "3,700", "6,600"}, {"Ring", "1005", "X Diamonds", "4.2", "6\"", "Pink sapphires", "83,200", "253,000"}, {"Pendant", "1006", "Mixed Cluster", " 12.3", "Medium", "Platinum and Diamonds", "60,500", "155,000"}, {"Pendant", "1007", "Olive Leaf", "11.1", "Small", "Silver", "9,600", "13,000"}, {"Pendant", "1008", "Pierced", "10.7", "Small", "Gold and Diamonds", "16,000", "25,200"}, {"Pendant", "1009", "Silver Bow", "10.3", "Small", "Silver", "3,300", "5,600"}, {"Pendant", "1010", "Whitegold Bow", "11.6", "Small", "White gold & diamonds", "86,900", "111,000"}, {"Earing", "1011", "Blue Topazes Olive Leaf", "1.3", "Mini", "Gold & blue topazes", "16,800", "24,600"}, {"Earing", "1012", "Bow Earing", "1.5", "Mini", "Rose gold", "10,500", "14,200"}, {"Earing", "1013", "Color By The Yard", "1.1", "Mini", "Silver and Pink sapphires", "26,000", "30,600"}, {"Earing", "1014", "Rivals Night Sky", "2.4", "Medium", "Platinum & diamonds", "489,000", "504,000"}, {"Earing", "1015", "Silver Olive Leaf", "1.8", "Medium", "Silver", "2,900", "5,600"}};
+	private String[] headLine = new String[]{"Product Type", "Product ID", "Name", "Weight", "Size", "Material", "Buying Price", "Price"};
+	private String[][] info = {{"Ring", "1001", "Blue Topazes", "3.5", "6\" ", "Gold", "10,000", "22,000"}, {"Ring", "1002", "Midnight Titanium", "5.1", "9\"", "Steel and Titanium", "9,400", "13,800"}, {"Ring", "1003", "Pink Diamonds", " 3.7", "6\"", "Diamonds & rose gold", "69,500", "202,000"}, {"Ring", "1004", "Silver Bow", "2.6", "6\"", "Silver", "3,700", "6,600"}, {"Ring", "1005", "X Diamonds", "4.2", "6\"", "Pink sapphires", "83,200", "253,000"}, {"Pendant", "1006", "Mixed Cluster", " 12.3", "Medium", "Platinum and Diamonds", "60,500", "155,000"}, {"Pendant", "1007", "Olive Leaf", "11.1", "Small", "Silver", "9,600", "13,000"}, {"Pendant", "1008", "Pierced", "10.7", "Small", "Gold and Diamonds", "16,000", "25,200"}, {"Pendant", "1009", "Silver Bow", "10.3", "Small", "Silver", "3,300", "5,600"}, {"Pendant", "1010", "Whitegold Bow", "11.6", "Small", "White gold & diamonds", "86,900", "111,000"}, {"Earing", "1011", "Blue Topazes Olive Leaf", "1.3", "Mini", "Gold & blue topazes", "16,800", "24,600"}, {"Earing", "1012", "Bow Earing", "1.5", "Mini", "Rose gold", "10,500", "14,200"}, {"Earring", "1013", "Color By The Yard", "1.1", "Mini", "Silver and Pink sapphires", "26,000", "30,600"}, {"Earing", "1014", "Rivals Night Sky", "2.4", "Medium", "Platinum & diamonds", "489,000", "504,000"}, {"Earing", "1015", "Silver Olive Leaf", "1.8", "Medium", "Silver", "2,900", "5,600"}};
+
 	private DefaultTableModel model = new DefaultTableModel(info, headLine);
 	private JTable table = new JTable(model);
 	private TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());

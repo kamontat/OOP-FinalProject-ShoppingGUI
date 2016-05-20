@@ -1,12 +1,11 @@
-package GUI;
+package gui;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-import java.io.*;
 import javax.swing.*;
 
-import Code.*;
+import code.*;
 
 public class HistoryOfStorePage extends JFrame {
 

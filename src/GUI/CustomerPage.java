@@ -1,14 +1,17 @@
-package GUI;
+package gui;
+
+import code.Customer;
+import code.Store;
+import gui1.MainPage;
 
 import javax.swing.*;
-import javax.swing.border.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
-
-import Code.*;
-
-import java.io.*;
 
 public class CustomerPage extends JFrame {
 	// every J must have in this program
@@ -16,7 +19,7 @@ public class CustomerPage extends JFrame {
 	private JLabel labelCustomerList;
 	private JComboBox<String> comboBox;
 	// get customerList and store in MainMenu
-	private Store store = MainMenu.getStore();
+	private Store store = MainPage.store;
 	private ArrayList<Customer> customerList = store.getCustomerList();
 	// variable else
 	private String id, name, lastname, gender, age, member;
@@ -49,6 +52,7 @@ public class CustomerPage extends JFrame {
 	}
 
 	public void run() {
+		System.out.println("Customer page run");
 		setBounds(50, 50, 1000, 875);
 		setBackground(new Color(216, 191, 216));
 		setVisible(true);

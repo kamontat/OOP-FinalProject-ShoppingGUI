@@ -1,4 +1,4 @@
-package Code;
+package code;
 
 import java.util.*;
 
@@ -20,6 +20,15 @@ public class Customer extends Person {
 
 	public Customer(String ID, String name, String lastname, String gender, int age, String memberClass) {
 		super(ID, name, lastname, gender, age);
+		numCustomers++;
+		this.memberClass = memberClass;
+		basket = new ArrayList<OrderElement>();
+		historyList = new ArrayList<Order>();
+		customerID = "Member" + numCustomers;
+	}
+
+	public Customer(String ID, String name, String lastname, String gender, String age, String memberClass) {
+		super(ID, name, lastname, gender, Integer.parseInt(age));
 		numCustomers++;
 		this.memberClass = memberClass;
 		basket = new ArrayList<OrderElement>();
@@ -104,9 +113,7 @@ public class Customer extends Person {
 		String format = "<pre>%-10s %-31s %-25s %-6s %-6.1f %,-8.0f   %-6d</pre>";
 		for (int i = 0; i < basket.size(); i++) {
 			customerProduct = basket.get(i).getProduct();
-			output += String.format(format, customerProduct.getProductID(), customerProduct.getName(),
-					customerProduct.getMaterial(), customerProduct.getSize(), customerProduct.getWeight(),
-					customerProduct.getPrice(), basket.get(i).getNum());
+			output += String.format(format, customerProduct.getProductID(), customerProduct.getName(), customerProduct.getMaterial(), customerProduct.getSize(), customerProduct.getWeight(), customerProduct.getPrice(), basket.get(i).getNum());
 		}
 		return output;
 	}
@@ -117,9 +124,7 @@ public class Customer extends Person {
 		String format = "<pre>%-10s %-31s %-6s %-6.1f %,-8.0f   %-6d</pre>";
 		for (int i = 0; i < basket.size(); i++) {
 			customerProduct = basket.get(i).getProduct();
-			output += String.format(format, customerProduct.getProductID(), customerProduct.getName(),
-					customerProduct.getSize(), customerProduct.getWeight(), customerProduct.getPrice(),
-					basket.get(i).getNum());
+			output += String.format(format, customerProduct.getProductID(), customerProduct.getName(), customerProduct.getSize(), customerProduct.getWeight(), customerProduct.getPrice(), basket.get(i).getNum());
 		}
 		return output;
 	}
@@ -146,7 +151,6 @@ public class Customer extends Person {
 
 	public String toString() {
 		String format = "%s %s %s %s %s %d";
-		return String.format(format, this.customerID, super.getID(), super.getName(), super.getLastname(),
-				super.getGender(), super.getAge());
+		return String.format(format, this.customerID, super.getID(), super.getName(), super.getLastname(), super.getGender(), super.getAge());
 	}
 }

@@ -1,9 +1,10 @@
-package GUI;
+package gui;
 
-import Code.Customer;
-import Code.OrderElement;
-import Code.Shipping;
-import Code.Store;
+import code.Customer;
+import code.OrderElement;
+import code.Shipping;
+import code.Store;
+import gui1.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,7 @@ import java.util.*;
 
 class BasketPage extends JFrame {
 
-	private Store store = MainMenu.getStore();
+	private Store store = MainPage.store;
 	private Customer shopper;
 	private JLabel textProductCustomer;
 	private JLabel textPriceShipping;
@@ -36,6 +37,7 @@ class BasketPage extends JFrame {
 
 	private void initComponent() {
 		getContentPane().setLayout(null);
+
 		// make shopper Present
 		shopper = store.getCustomerList().get(CustomerPage.getIndexOfCustomer());
 

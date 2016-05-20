@@ -1,9 +1,10 @@
-package Code;
+package code;
 
 public class ProductExt extends Product {
 	private String material;
 	private String size;
 	private double buyingPrice;
+
 	public ProductExt() {
 		super();
 		material = "";
@@ -16,6 +17,13 @@ public class ProductExt extends Product {
 		this.material = material;
 		this.size = size;
 		this.buyingPrice = buyingPrice;
+	}
+
+	public ProductExt(String name, String weight, String price, String currNumStock, String numRestocks, String material, String size, String buyingPrice) {
+		super(name, weight, price, currNumStock, numRestocks);
+		this.material = material;
+		this.size = size;
+		this.buyingPrice = Double.parseDouble(buyingPrice);
 	}
 
 	public String getSize() {

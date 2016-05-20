@@ -1,8 +1,8 @@
-package GUI;
+package gui;
 
-import Code.Customer;
-import Code.ProductExt;
-import Code.Store;
+import code.Customer;
+import code.ProductExt;
+import code.Store;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,8 +62,7 @@ public class MainMenu extends JFrame {
 		informationPositionContainer.setLayout(null);
 
 		// add image title
-		ClassLoader loader = this.getClass().getClassLoader();
-		JLabel bg2 = new JLabel(new ImageIcon(loader.getResource("image/bg1.png")));
+		JLabel bg2 = new JLabel(new ImageIcon("image/bg1.png"));
 		bg2.setBounds(143, 6, 522, 146);
 		bg2.setBackground(new Color(0, 0, 0));
 		FlowLayout flowForImg = new FlowLayout();
@@ -159,7 +158,7 @@ public class MainMenu extends JFrame {
 		Customer.setNumCustomers(Customer.getNumCustomers() - customerList.size());
 		customerList.removeAll(customerList);
 
-		File input = new File("/Users/kamontat/Documents/workspace/ProjectGUILab12/Customer.txt/");
+		File input = new File("src/textfile/Customer.txt");
 		Scanner scan = new Scanner(input);
 
 		while (scan.hasNext()) {

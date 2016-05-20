@@ -1,12 +1,17 @@
-package GUI;
+package gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.ArrayList;
-import java.io.*;
+import code.Customer;
+import code.OrderElement;
+import code.ProductExt;
+import code.Store;
+import gui1.MainPage;
+
 import javax.swing.*;
-
-import Code.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.*;
 
 public class ShoppingPage extends JFrame {
 	// every J must have in this program
@@ -16,7 +21,7 @@ public class ShoppingPage extends JFrame {
 	// To import file image
 	private ClassLoader loader = this.getClass().getClassLoader();
 	// get store in MainMenu
-	private Store store = MainMenu.getStore();
+	private Store store = MainPage.store;
 	// get product and customer from store
 	private ArrayList<ProductExt> productList = store.getProductList();
 	private Customer shopper = store.getCustomerList().get(CustomerPage.getIndexOfCustomer());
@@ -147,7 +152,7 @@ public class ShoppingPage extends JFrame {
 
 		// create New Button
 		// Ring
-		JButton buttonBlueTopazesRing = new JButton(new ImageIcon(loader.getResource("Image/Ring/BlueTopazesRing.jpg")));
+		JButton buttonBlueTopazesRing = new JButton(new ImageIcon(loader.getResource("images/Ring/BlueTopazesRing.jpg")));
 		buttonBlueTopazesRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -157,7 +162,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonMidnightTitaniumRing = new JButton(new ImageIcon(loader.getResource("Image/Ring/MidnightTitaniumRing.jpg")));
+		JButton buttonMidnightTitaniumRing = new JButton(new ImageIcon(loader.getResource("images/Ring/MidnightTitaniumRing.jpg")));
 		buttonMidnightTitaniumRing.addActionListener(new ActionListener() {
 
 			@Override
@@ -167,7 +172,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonPinkDiamondsRing = new JButton(new ImageIcon(loader.getResource("Image/Ring/PinkDiamondsRing.jpg")));
+		JButton buttonPinkDiamondsRing = new JButton(new ImageIcon(loader.getResource("images/Ring/PinkDiamondsRing.jpg")));
 		buttonPinkDiamondsRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -176,7 +181,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonSilverBowRing = new JButton(new ImageIcon(loader.getResource("Image/Ring/SilverBowRing.jpg")));
+		JButton buttonSilverBowRing = new JButton(new ImageIcon(loader.getResource("images/Ring/SilverBowRing.jpg")));
 		buttonSilverBowRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -185,7 +190,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonXDiamondsRing = new JButton(new ImageIcon(loader.getResource("Image/Ring/XDiamondsRing.jpg")));
+		JButton buttonXDiamondsRing = new JButton(new ImageIcon(loader.getResource("images/Ring/XDiamondsRing.jpg")));
 		buttonXDiamondsRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -195,7 +200,7 @@ public class ShoppingPage extends JFrame {
 		});
 
 		// Pendant
-		JButton buttonMixedClusterPendant = new JButton(new ImageIcon(loader.getResource("Image/Pendant/MixedClusterPendant.jpg")));
+		JButton buttonMixedClusterPendant = new JButton(new ImageIcon(loader.getResource("images/Pendant/MixedClusterPendant.jpg")));
 		buttonMixedClusterPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -204,7 +209,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonOliveLeafPendant = new JButton(new ImageIcon(loader.getResource("Image/Pendant/OliveLeafPendant.jpg")));
+		JButton buttonOliveLeafPendant = new JButton(new ImageIcon(loader.getResource("images/Pendant/OliveLeafPendant.jpg")));
 		buttonOliveLeafPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -213,7 +218,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonPiercedPendant = new JButton(new ImageIcon(loader.getResource("Image/Pendant/PiercedPendant.jpg")));
+		JButton buttonPiercedPendant = new JButton(new ImageIcon(loader.getResource("images/Pendant/PiercedPendant.jpg")));
 		buttonPiercedPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -222,7 +227,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonSilverBowPendant = new JButton(new ImageIcon(loader.getResource("Image/Pendant/SilverBowPendant.jpg")));
+		JButton buttonSilverBowPendant = new JButton(new ImageIcon(loader.getResource("images/Pendant/SilverBowPendant.jpg")));
 		buttonSilverBowPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -231,7 +236,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonWhiteGoldBowPendant = new JButton(new ImageIcon(loader.getResource("Image/Pendant/WhiteGoldBowPendant.jpg")));
+		JButton buttonWhiteGoldBowPendant = new JButton(new ImageIcon(loader.getResource("images/Pendant/WhiteGoldBowPendant.jpg")));
 		buttonWhiteGoldBowPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -241,7 +246,7 @@ public class ShoppingPage extends JFrame {
 		});
 
 		// Earring
-		JButton buttonBlueTopazesOliveLeafEarring = new JButton(new ImageIcon(loader.getResource("Image/Earring/BlueTopazesOliveLeafEarring.jpg")));
+		JButton buttonBlueTopazesOliveLeafEarring = new JButton(new ImageIcon(loader.getResource("images/Earring/BlueTopazesOliveLeafEarring.jpg")));
 		buttonBlueTopazesOliveLeafEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -250,7 +255,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonBowEarring = new JButton(new ImageIcon(loader.getResource("Image/Earring/BowEarring.jpg")));
+		JButton buttonBowEarring = new JButton(new ImageIcon(loader.getResource("images/Earring/BowEarring.jpg")));
 		buttonBowEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -259,7 +264,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonColorByTheYardEarring = new JButton(new ImageIcon(loader.getResource("Image/Earring/ColorByTheYardEarring.jpg")));
+		JButton buttonColorByTheYardEarring = new JButton(new ImageIcon(loader.getResource("images/Earring/ColorByTheYardEarring.jpg")));
 		buttonColorByTheYardEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -267,7 +272,7 @@ public class ShoppingPage extends JFrame {
 				updateData(text, 12, 30600);
 			}
 		});
-		JButton buttonRivalsNightSkyEarring = new JButton(new ImageIcon(loader.getResource("Image/Earring/RivalsNightSkyEarring.jpg")));
+		JButton buttonRivalsNightSkyEarring = new JButton(new ImageIcon(loader.getResource("images/Earring/RivalsNightSkyEarring.jpg")));
 		buttonRivalsNightSkyEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -276,7 +281,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonSilverOliveLeafEarring = new JButton(new ImageIcon(loader.getResource("Image/Earring/SilverOliveLeafEarring.jpg")));
+		JButton buttonSilverOliveLeafEarring = new JButton(new ImageIcon(loader.getResource("images/Earring/SilverOliveLeafEarring.jpg")));
 		buttonSilverOliveLeafEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -420,39 +425,40 @@ public class ShoppingPage extends JFrame {
 	 * @param price
 	 */
 	public void updateData(String text, int index, int price) {
-		// check if text isn't integer
-		int num = checkInteger(text);
-		// check is availaility
-		int availStatus = store.checkAvailability(productList.get(index), num);
-		String printBasket = String.format("<pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Material", "Size", "Weight", "Price", "Number");
-		if (num > 0) {
-			if (availStatus == 1) {
-				numProductCustomer += num;
-				priceProductCustomer += num * price;
+		if (text != null) {
+			// check if text isn't integer
+			int num = checkInteger(text);
+			// check is availaility
+			int availStatus = store.checkAvailability(productList.get(index), num);
+			String printBasket = String.format("<pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Material", "Size", "Weight", "Price", "Number");
+			if (num > 0) {
+				if (availStatus == 1) {
+					numProductCustomer += num;
+					priceProductCustomer += num * price;
 
-				OrderElement element = new OrderElement(store.getProductList().get(index), num);
-				shopper.addToBasket(element);
-				// the store updates stock
-				store.updateStock(element);
-				// update comboBox in basket
-				basket.addItemInComboBox(element.getName());
+					OrderElement element = new OrderElement(store.getProductList().get(index), num);
+					shopper.addToBasket(element);
+					// the store updates stock
+					store.updateStock(element);
+					// update comboBox in basket
+					basket.addItemInComboBox(element.getName());
+				} else {
+					// if the stock isn't enough, notify shopper
+					JOptionPane.showMessageDialog(null, String.format("Sorry. We only have %d left. Please reorder.\n", store.getProductList().get(index).getCurrNumStock()), "Warning", JOptionPane.WARNING_MESSAGE);
+				}
 			} else {
-				// if the stock isn't enough, notify shopper
-				JOptionPane.showMessageDialog(null, String.format("Sorry. We only have %d left. Please reorder.\n", store.getProductList().get(index).getCurrNumStock()), "Warning", JOptionPane.WARNING_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Sorry. Please, Enter Only Positive Number", "Error", JOptionPane.ERROR_MESSAGE);
 			}
-		} else {
-			JOptionPane.showMessageDialog(null, "Sorry. Please, Enter Only Positive Number", "Error", JOptionPane.ERROR_MESSAGE);
+			// update display in basket
+			basket.setTextproductCustomerInBasket();
+			basket.updateElseInShopping();
+			basket.updatePriceShipping();
+			basket.updateFinalPrice();
+
+			String tempPrice = String.format("%,d", priceProductCustomer);
+			printBasket += shopper.getBasketString();
+			updatePage(printBasket, Integer.toString(numProductCustomer), tempPrice);
 		}
-
-		// update display in basket
-		basket.setTextproductCustomerInBasket();
-		basket.updateElseInShopping();
-		basket.updatePriceShipping();
-		basket.updateFinalPrice();
-
-		String tempPrice = String.format("%,d", priceProductCustomer);
-		printBasket += shopper.getBasketString();
-		updatePage(printBasket, Integer.toString(numProductCustomer), tempPrice);
 	}
 
 	/**
