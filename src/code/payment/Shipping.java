@@ -1,4 +1,4 @@
-package code;
+package code.payment;
 
 public class Shipping {
 	private double totalWeight;

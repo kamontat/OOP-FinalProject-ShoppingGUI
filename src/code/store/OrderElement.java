@@ -1,4 +1,6 @@
-package code;
+package code.store;
+
+import code.product.ProductExt;
 
 public class OrderElement {
 	private ProductExt product;

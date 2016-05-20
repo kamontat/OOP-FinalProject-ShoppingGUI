@@ -1,4 +1,4 @@
-package code;
+package code.product;
 
 public class Product {
 	private String productID;

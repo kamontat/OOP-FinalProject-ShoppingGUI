@@ -1,8 +1,8 @@
 package gui;
 
-import code.Customer;
-import code.ProductExt;
-import code.Store;
+import code.customer.Customer;
+import code.product.ProductExt;
+import code.store.Store;
 
 import javax.swing.*;
 import java.awt.*;

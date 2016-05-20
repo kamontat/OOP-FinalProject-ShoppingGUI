@@ -1,4 +1,4 @@
-package code;
+package code.product;
 
 public class ProductExt extends Product {
 	private String material;

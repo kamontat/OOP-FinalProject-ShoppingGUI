@@ -1,4 +1,8 @@
-package code;
+package code.customer;
+
+import code.store.Order;
+import code.store.OrderElement;
+import code.product.ProductExt;
 
 import java.util.*;
 

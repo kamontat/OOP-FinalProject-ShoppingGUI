@@ -1,6 +1,6 @@
 package gui;
 
-import code.Store;
+import code.store.Store;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;

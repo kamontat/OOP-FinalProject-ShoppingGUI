@@ -1,4 +1,8 @@
-package code;
+package code.store;
+
+import code.customer.Customer;
+import code.payment.Payment;
+import code.payment.Shipping;
 
 import java.util.ArrayList;
 

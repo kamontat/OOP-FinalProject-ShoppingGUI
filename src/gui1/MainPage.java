@@ -1,9 +1,9 @@
 package gui1;
 
-import code.Customer;
-import code.FileFactory;
-import code.ProductExt;
-import code.Store;
+import code.customer.Customer;
+import code.file.FileFactory;
+import code.product.ProductExt;
+import code.store.Store;
 import gui.CustomerPage;
 import gui.LoginPage;
 import gui.ShoppingPage;

@@ -1,9 +1,9 @@
 package gui;
 
-import code.Customer;
-import code.OrderElement;
-import code.ProductExt;
-import code.Store;
+import code.customer.Customer;
+import code.store.OrderElement;
+import code.product.ProductExt;
+import code.store.Store;
 import gui1.MainPage;
 
 import javax.swing.*;

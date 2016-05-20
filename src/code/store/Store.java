@@ -1,4 +1,7 @@
-package code;
+package code.store;
+
+import code.customer.Customer;
+import code.product.ProductExt;
 
 import java.util.ArrayList;
 

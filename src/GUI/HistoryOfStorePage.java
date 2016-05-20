@@ -5,7 +5,9 @@ import java.awt.event.*;
 import java.util.*;
 import javax.swing.*;
 
-import code.*;
+import code.customer.Customer;
+import code.product.ProductExt;
+import code.store.Store;
 
 public class HistoryOfStorePage extends JFrame {
 

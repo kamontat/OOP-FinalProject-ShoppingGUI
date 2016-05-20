@@ -1,7 +1,7 @@
 package gui;
 
-import code.Customer;
-import code.Store;
+import code.customer.Customer;
+import code.store.Store;
 import gui1.MainPage;
 
 import javax.swing.*;
@@ -52,7 +52,6 @@ public class CustomerPage extends JFrame {
 	}
 
 	public void run() {
-		System.out.println("Customer page run");
 		setBounds(50, 50, 1000, 875);
 		setBackground(new Color(216, 191, 216));
 		setVisible(true);
