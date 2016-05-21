@@ -116,10 +116,8 @@ public class Product {
 	}
 	
 	public void restock() {
-		if (restock) {
-			currNumStock += numRestocks;
-			restock = false;
-		}
+		currNumStock += numRestocks;
+		restock = false;
 	}
 
 	public String toString() {

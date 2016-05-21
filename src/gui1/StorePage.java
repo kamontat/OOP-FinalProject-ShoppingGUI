@@ -1,5 +1,6 @@
 package gui1;
 
+import code.product.ProductExt;
 import code.store.Store;
 
 import javax.swing.*;
@@ -7,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -31,10 +34,13 @@ public class StorePage extends JFrame {
 		super("Store Page");
 		setContentPane(panel);
 		settingTable();
+		restock();
 
+		updateLabel(store.getRevenue(), store.getExpense());
 	}
 
 	private void settingTable() {
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		table.setModel(new PersonModel(MainPage.getProductList(), new String[]{"Name", "Weight", "Price", "In Stock", "Restock", "Material", "Size", "Buying Price"}));
 
 		table.getColumnModel().getColumn(0).setMinWidth(190);
@@ -49,7 +55,6 @@ public class StorePage extends JFrame {
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
 		searching(rowSorter);
-
 	}
 
 	private void searching(TableRowSorter<TableModel> sorter) {
@@ -84,6 +89,46 @@ public class StorePage extends JFrame {
 				}
 			}
 		});
+	}
+
+	private void restock() {
+		restockButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int row = table.getSelectedRow();
+
+				if (row == -1) {
+					JOptionPane.showMessageDialog(null, "Please, choose some product", "Error", JOptionPane.ERROR_MESSAGE);
+				} else {
+					ProductExt product = store.getProductList().get(row);
+
+					if (product.isRestock()) {
+						store.addExpense(product.restockProductExt());
+						store.setRestockProduct(false);
+						updateLabel(store.getRevenue(), store.getExpense());
+						updateTable(product.getCurrNumStock(), row, 3);
+					} else {
+						int choose = JOptionPane.showConfirmDialog(null, "This product still have in stock", "Do you sure?", JOptionPane.YES_NO_OPTION);
+						if (choose == 0) {
+							store.addExpense(store.getProductList().get(row).restockProductExt());
+							store.setRestockProduct(false);
+							updateLabel(store.getRevenue(), store.getExpense());
+							updateTable(product.getCurrNumStock(), row, 3);
+						}
+					}
+				}
+			}
+		});
+	}
+
+	private void updateLabel(double reven, double expen) {
+		revenueLabel.setText("Revenue: " + reven);
+		expenseLabel.setText("Expense: " + expen);
+		profitLabel.setText("Profit: " + (reven - expen));
+	}
+
+	private void updateTable(Object newValue, int row, int column) {
+		table.setValueAt(newValue, row, column);
 	}
 
 	private class PersonModel extends DefaultTableModel {

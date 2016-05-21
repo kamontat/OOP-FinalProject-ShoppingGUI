@@ -68,8 +68,16 @@ public class Store {
 		this.revenue = revenue;
 	}
 
+	public void addRevenue(double revenue) {
+		this.revenue += revenue;
+	}
+
 	public void setExpense(double expense) {
 		this.expense = expense;
+	}
+
+	public void addExpense(double expense) {
+		this.expense += expense;
 	}
 
 	public void setRestockProduct(boolean restockProduct) {
@@ -187,11 +195,6 @@ public class Store {
 		revenue += order.getPayment().getValue();
 		expense += order.getPayment().getShippingFee();
 		customer.clearBasket();
-	}
-
-	public void restockInstore(int index) {
-		this.expense += productList.get(index).restockProductExt();
-		restockProduct = false;
 	}
 
 	public double getProfit() {

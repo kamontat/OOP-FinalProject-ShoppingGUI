@@ -534,7 +534,7 @@ public class StorePage extends JFrame {
 		int currNumProduct = updateNumber(numProduct, numRestock);
 		text.setText(currNumProduct + "");
 		store.getProductList().get(index).setCurrNumStock(currNumProduct);
-		store.restockInstore(index);
+
 		txtRevenue.setText("Revenue : " + store.getRevenue());
 		txtExpense.setText("Expense : " + store.getExpense());
 		txtProfit.setText("Profit : " + store.getProfit());
