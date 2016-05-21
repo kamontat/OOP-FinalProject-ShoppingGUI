@@ -44,6 +44,9 @@ public class StorePage extends JFrame {
 
 	private void settingTable() {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		// Disable dragging
+		table.getTableHeader().setReorderingAllowed(false);
+
 		table.setModel(new PersonModel(MainPage.getProductList(), new String[]{"Name", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"}));
 
 		table.getColumnModel().getColumn(0).setMinWidth(240); // name
@@ -196,6 +199,10 @@ public class StorePage extends JFrame {
 			}
 		}
 
+		@Override
+		public boolean isCellEditable(int row, int column) {
+			return false;
+		}
 	}
 
 	public void run(Point point) {

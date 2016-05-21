@@ -32,7 +32,7 @@ public class LoginPage extends JDialog {
 		String password = String.valueOf(passwordField.getPassword());
 
 		if (checkAdmin(user, password)) {
-			gui1.StorePage store = new gui1.StorePage();
+			StorePage store = new StorePage();
 			store.run(getLocation());
 
 			page.dispose();
