@@ -1,17 +1,19 @@
 package gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.swing.*;
-
 import code.customer.Customer;
 import code.product.ProductExt;
 import code.store.Store;
+import gui1.MainPage;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.*;
 
 public class HistoryOfStorePage extends JFrame {
 
-	private Store store = MainMenu.getStore();
+	private Store store = MainPage.store;
 	private ProductExt product;
 	private JLabel textCustomerProduct, textProduct;
 
@@ -69,9 +71,7 @@ public class HistoryOfStorePage extends JFrame {
 		String printHistoryList = "<pre>";
 		printHistoryList += String.format(format, "customerID", "personID", "Name", "Lastname", "Gender", "Age");
 		for (int i = 0; i < allCustomer.size(); i++) {
-			printHistoryList += String.format(format, allCustomer.get(i).getCustomerID(), allCustomer.get(i).getID(),
-					allCustomer.get(i).getName(), allCustomer.get(i).getLastname(), allCustomer.get(i).getGender(),
-					Integer.toString(allCustomer.get(i).getAge()));
+			printHistoryList += String.format(format, allCustomer.get(i).getCustomerID(), allCustomer.get(i).getID(), allCustomer.get(i).getName(), allCustomer.get(i).getLastname(), allCustomer.get(i).getGender(), Integer.toString(allCustomer.get(i).getAge()));
 		}
 
 		printHistoryList += "</pre>";

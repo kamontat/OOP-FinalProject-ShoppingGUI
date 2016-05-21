@@ -6,10 +6,11 @@ import javax.swing.*;
 
 import code.customer.Customer;
 import code.store.Store;
+import gui1.MainPage;
 
 public class HistoryOfCustomerPage extends JFrame {
 
-	private Store store = MainMenu.getStore();
+	private Store store = MainPage.store;
 	private Customer shopper;
 	private JLabel textProductCustomer, textMemberClass, textCustomer;
 
@@ -76,8 +77,7 @@ public class HistoryOfCustomerPage extends JFrame {
 		});
 		getContentPane().add(buttonclose);
 
-		String printHistoryList = String.format("<pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "ProductID",
-				"Name", "Material", "Size", "Weight", "Price", "Number");
+		String printHistoryList = String.format("<pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Material", "Size", "Weight", "Price", "Number");
 
 		printHistoryList += shopper.getHistoryListString();
 		shopper.clearBasket();

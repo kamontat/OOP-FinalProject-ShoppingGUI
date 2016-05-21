@@ -14,7 +14,7 @@ public class LoginPage extends JFrame {
 	private JPasswordField passwordField;
 
 	public LoginPage() {
-		super("Login");
+		super("LoginPage");
 		this.initComponent();
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
@@ -55,7 +55,7 @@ public class LoginPage extends JFrame {
 		lblNewLabel.setBounds(167, 293, 250, 30);
 		contentPane.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("- Login -");
+		JLabel lblNewLabel_1 = new JLabel("- LoginPage -");
 		lblNewLabel_1.setForeground(Color.WHITE);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("paaymaay", Font.BOLD | Font.ITALIC, 50));
@@ -118,5 +118,10 @@ public class LoginPage extends JFrame {
 				setVisible(false);
 			}
 		});
+	}
+
+	public static void main(String[] args) {
+		LoginPage login = new LoginPage();
+		login.run();
 	}
 }

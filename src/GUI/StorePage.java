@@ -1,6 +1,7 @@
 package gui;
 
 import code.store.Store;
+import gui1.MainPage;
 
 import javax.swing.*;
 import javax.swing.event.DocumentEvent;
@@ -14,7 +15,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class StorePage extends JFrame {
-	private Store store = MainMenu.getStore();
+	private Store store = MainPage.store;
+
 	static JTextField searchField;
 	private JLabel txtRevenue, txtExpense, txtProfit;
 	private JTextField txtStock;

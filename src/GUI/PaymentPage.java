@@ -264,14 +264,9 @@ public class PaymentPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				check = false;
 				store.checkOut(shopper, register, express);
-
-				try {
-					MainMenu menu = new MainMenu();
-					menu.run();
-					setVisible(false);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				MainPage menu = new MainPage();
+				menu.run();
+				setVisible(false);
 			}
 		});
 		getContentPane().add(buttonBuy);

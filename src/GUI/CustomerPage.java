@@ -347,11 +347,11 @@ public class CustomerPage extends JFrame {
 	 * Update text File with the Newest CustomerList in store
 	 */
 	public void writeCustomerList() {
-		File output = new File("Customer.txt");
+		File output = new File("src/textfile/Customer.txt");
 		try {
 			FileWriter write = new FileWriter(output);
 			for (int i = 0; i < store.getCustomerList().size(); i++) {
-				String tempOutput = String.format("%s %s %s %s %d %s \n", store.getCustomerList().get(i).getID(), store.getCustomerList().get(i).getName(), store.getCustomerList().get(i).getLastname(), store.getCustomerList().get(i).getGender(), store.getCustomerList().get(i).getAge(), store.getCustomerList().get(i).getMemberClass());
+				String tempOutput = String.format("%s:%s:%s:%s:%d:%s \n", store.getCustomerList().get(i).getID(), store.getCustomerList().get(i).getName(), store.getCustomerList().get(i).getLastname(), store.getCustomerList().get(i).getGender(), store.getCustomerList().get(i).getAge(), store.getCustomerList().get(i).getMemberClass());
 				write.write(tempOutput);
 			}
 			write.close();

@@ -5,12 +5,13 @@ import code.file.FileFactory;
 import code.product.ProductExt;
 import code.store.Store;
 import gui.CustomerPage;
-import gui.LoginPage;
 import gui.ShoppingPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+
+;
 
 /**
  * @author kamontat
@@ -100,7 +101,7 @@ public class MainPage extends JFrame {
 		exitButton.addActionListener(e -> System.exit(0));
 	}
 
-	public void setCustomerButton() {
+	private void setCustomerButton() {
 		customerButton.addActionListener(e -> {
 			try {
 				CustomerPage customer = new CustomerPage();
@@ -112,7 +113,7 @@ public class MainPage extends JFrame {
 		});
 	}
 
-	public void setShoppingButton() {
+	private void setShoppingButton() {
 		shoppingButton.addActionListener(e -> {
 			ShoppingPage shopping = new ShoppingPage();
 			shopping.run();
@@ -120,29 +121,20 @@ public class MainPage extends JFrame {
 		});
 	}
 
-	public void setStoreButton() {
+	private void setStoreButton() {
 		storeButton.addActionListener(e -> {
 			LoginPage login = new LoginPage();
-			login.run();
-			setVisible(false);
+			login.run(getLocation());
 		});
 	}
 
 	/**
 	 * run this gui
 	 */
-	void run() {
+	public void run() {
 		pack();
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(650, 400));
-	}
-
-	/**
-	 * test program
-	 */
-	public static void main(String[] args) {
-		MainPage page = new MainPage();
-		page.run();
 	}
 }
