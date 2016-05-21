@@ -17,7 +17,7 @@
         <properties>
           <font name="PCMyungjo" size="42" style="1"/>
           <foreground color="-1"/>
-          <text value="- WELCOME TO MY STORE'S PAGE -"/>
+          <text value="- WELCOME TO STORE PAGE -"/>
         </properties>
       </component>
       <grid id="5e726" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
@@ -68,7 +68,7 @@
               <fillsViewportHeight value="true"/>
               <font size="15" style="0"/>
               <foreground color="-16777216"/>
-              <gridColor color="-16777216"/>
+              <gridColor color="-5592406"/>
               <toolTipText value="click to choose"/>
             </properties>
             <clientProperties>

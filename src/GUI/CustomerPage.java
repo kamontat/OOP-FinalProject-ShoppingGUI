@@ -364,4 +364,13 @@ public class CustomerPage extends JFrame {
 		return textCustomerList;
 
 	}
+
+	public static void main(String[] args) {
+		try {
+			CustomerPage page = new CustomerPage();
+			page.run();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

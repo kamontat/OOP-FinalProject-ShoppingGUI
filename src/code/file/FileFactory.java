@@ -51,6 +51,9 @@ public class FileFactory {
 
 			while ((temp = read.readLine()) != null) {
 				String[] info = temp.split(separate);
+				for (int i = 0; i < info.length; i++) {
+					info[i] = info[i].trim();
+				}
 				text.add(info);
 			}
 

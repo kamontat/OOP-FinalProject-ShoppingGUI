@@ -470,7 +470,7 @@ public class ShoppingPage extends JFrame {
 	}
 
 	/**
-	 * Open BasketPage by use ActionListener (Only BasketButton)
+	 * Open CustomerPage by use ActionListener (Only BasketButton)
 	 *
 	 * @param button
 	 */

@@ -133,6 +133,13 @@ public class Customer extends Person {
 		return output;
 	}
 
+	/**
+	 * @return Array 6 Element
+	 */
+	public Object[] getCustomerInfo() {
+		return new Object[]{getID(), getName(), getLastname(), getGender(), getAge(), getMemberClass()};
+	}
+
 	public String getHistoryListString() {
 		String output = "<pre>";
 

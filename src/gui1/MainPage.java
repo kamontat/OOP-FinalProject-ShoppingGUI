@@ -1,23 +1,20 @@
 package gui1;
 
+import code.Interface.ButtonAction;
 import code.customer.Customer;
 import code.file.FileFactory;
 import code.product.ProductExt;
 import code.store.Store;
-import gui.CustomerPage;
-import gui.ShoppingPage;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-;
-
 /**
  * @author kamontat
  * @since 20/5/59 - 22:55
  */
-public class MainPage extends JFrame {
+public class MainPage extends JFrame implements ButtonAction {
 	private JButton customerButton;
 	private JButton shoppingButton;
 	private JButton storeButton;
@@ -34,22 +31,26 @@ public class MainPage extends JFrame {
 
 		setContentPane(panel);
 
-		setCustomerButton();
-		setShoppingButton();
-		setStoreButton();
-		setExitButton();
+		toShopping(this, shoppingButton);
+		toCustomer(this, customerButton);
+		toLogin(this, storeButton);
+		toExit(exitButton);
 	}
 
 	public static Object[][] getProductList() {
-		Object[][] temp = new Object[productList.size()][ProductExt.numberInfo];
+		Object[][] temp = new Object[productList.size()][9];
 		for (int i = 0; i < productList.size(); i++) {
 			temp[i] = productList.get(i).getProductInfo();
 		}
 		return temp;
 	}
 
-	public static ArrayList<Customer> getCustomerList() {
-		return customerList;
+	public static Object[][] getCustomerList() {
+		Object[][] temp = new Object[customerList.size()][6];
+		for (int i = 0; i < customerList.size(); i++) {
+			temp[i] = customerList.get(i).getCustomerInfo();
+		}
+		return temp;
 	}
 
 	/**
@@ -107,37 +108,6 @@ public class MainPage extends JFrame {
 		}
 
 		return temp;
-	}
-
-	private void setExitButton() {
-		exitButton.addActionListener(e -> System.exit(0));
-	}
-
-	private void setCustomerButton() {
-		customerButton.addActionListener(e -> {
-			try {
-				CustomerPage customer = new CustomerPage();
-				customer.run();
-				setVisible(false);
-			} catch (Exception e1) {
-				JOptionPane.showMessageDialog(null, "it's don't have customer page", "Error Message", JOptionPane.ERROR_MESSAGE);
-			}
-		});
-	}
-
-	private void setShoppingButton() {
-		shoppingButton.addActionListener(e -> {
-			ShoppingPage shopping = new ShoppingPage();
-			shopping.run();
-			setVisible(false);
-		});
-	}
-
-	private void setStoreButton() {
-		storeButton.addActionListener(e -> {
-			LoginPage login = new LoginPage(this);
-			login.run(getLocation());
-		});
 	}
 
 	/**

@@ -1,22 +1,21 @@
 package gui1;
 
+import code.Interface.ButtonAction;
 import code.product.ProductExt;
 import code.store.Store;
 import gui.HistoryOfStorePage;
+import code.Interface.Table;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 /**
  * @author kamontat
  * @since 21/5/59 - 12:26
  */
-public class StorePage extends JFrame {
+public class StorePage extends JFrame implements Table, ButtonAction {
 	private Store store = MainPage.store;
 
 	private JPanel panel;
@@ -34,8 +33,9 @@ public class StorePage extends JFrame {
 		setContentPane(panel);
 
 		settingTable();
+		// assign button
 
-		toMain();
+		toMain(this, mainButton);
 		restock();
 		history();
 
@@ -47,74 +47,21 @@ public class StorePage extends JFrame {
 		// Disable dragging
 		table.getTableHeader().setReorderingAllowed(false);
 
-		table.setModel(new PersonModel(MainPage.getProductList(), new String[]{"Name", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"}));
+		table.setModel(new PersonModel(MainPage.getProductList(), new String[]{"ID", "Name", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"}));
 
-		table.getColumnModel().getColumn(0).setMinWidth(240); // name
-		table.getColumnModel().getColumn(1).setMinWidth(180); // material
-		table.getColumnModel().getColumn(2).setMinWidth(65); // size
-		table.getColumnModel().getColumn(3).setMinWidth(65); // weight
-		table.getColumnModel().getColumn(4).setMinWidth(75); // stock
-		table.getColumnModel().getColumn(5).setMinWidth(65); // restock
-		table.getColumnModel().getColumn(6).setMinWidth(80); // price
-		table.getColumnModel().getColumn(7).setMinWidth(85); // buying price
+		table.getColumnModel().getColumn(0).setMinWidth(50); // id
+		table.getColumnModel().getColumn(1).setMinWidth(240); // name
+		table.getColumnModel().getColumn(2).setMinWidth(180); // material
+		table.getColumnModel().getColumn(3).setMinWidth(65); // size
+		table.getColumnModel().getColumn(4).setMinWidth(65); // weight
+		table.getColumnModel().getColumn(5).setMinWidth(75); // stock
+		table.getColumnModel().getColumn(6).setMinWidth(65); // restock
+		table.getColumnModel().getColumn(7).setMinWidth(80); // price
+		table.getColumnModel().getColumn(8).setMinWidth(85); // buying price
 
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
-		searching(rowSorter);
-	}
-
-	private void searching(TableRowSorter<TableModel> sorter) {
-		searchField.addKeyListener(new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				String text = searchField.getText();
-				if (text.trim().length() == 0) {
-					sorter.setRowFilter(null);
-				} else {
-					try {
-						sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-					} catch (Exception ignored) {
-
-					}
-				}
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				String text = searchField.getText();
-				if (text.trim().length() == 0) {
-					sorter.setRowFilter(null);
-				} else {
-					try {
-						sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-					} catch (Exception ignored) {
-
-					}
-				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				String text = searchField.getText();
-				if (text.trim().length() == 0) {
-					sorter.setRowFilter(null);
-				} else {
-					try {
-						sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
-					} catch (Exception ignored) {
-
-					}
-				}
-			}
-		});
-	}
-
-	private void toMain() {
-		mainButton.addActionListener(e -> {
-			MainPage page = new MainPage();
-			page.run(getLocation());
-			dispose();
-		});
+		searching(searchField, rowSorter);
 	}
 
 	private void restock() {
@@ -124,21 +71,20 @@ public class StorePage extends JFrame {
 			if (row == -1) {
 				JOptionPane.showMessageDialog(null, "Please, choose some product", "Error", JOptionPane.ERROR_MESSAGE);
 			} else {
-				String productName = String.valueOf(table.getValueAt(row, 0));
-				ProductExt product = store.searchProduct(productName);
+				ProductExt product = getProductAt(row);
 
 				if (product.isRestock()) {
 					store.addExpense(product.restockProductExt());
 					store.setRestockProduct(false);
 					updateLabel(store.getRevenue(), store.getExpense());
-					updateTable(product.getCurrNumStock(), row, 4);
+					updateTable(product.getCurrNumStock(), row, 5);
 				} else {
 					int choose = JOptionPane.showConfirmDialog(null, "This product still have in stock", "Do you sure?", JOptionPane.YES_NO_OPTION);
 					if (choose == 0) {
 						store.addExpense(product.restockProductExt());
 						store.setRestockProduct(false);
 						updateLabel(store.getRevenue(), store.getExpense());
-						updateTable(product.getCurrNumStock(), row, 4);
+						updateTable(product.getCurrNumStock(), row, 5);
 					}
 				}
 			}
@@ -149,12 +95,14 @@ public class StorePage extends JFrame {
 		historyButton.addActionListener(e -> {
 
 			int row = table.getSelectedRow();
-			String productName = String.valueOf(table.getValueAt(row, 0));
-			ProductExt product = store.searchProduct(productName);
-
-			HistoryOfStorePage page = new HistoryOfStorePage(product);
+			HistoryOfStorePage page = new HistoryOfStorePage(getProductAt(row));
 			page.run();
 		});
+	}
+
+	private ProductExt getProductAt(int row) {
+		String productName = String.valueOf(table.getValueAt(row, 1));
+		return store.searchProduct(productName);
 	}
 
 	private void updateLabel(double reven, double expen) {
@@ -167,46 +115,8 @@ public class StorePage extends JFrame {
 		table.setValueAt(newValue, row, column);
 	}
 
-	/**
-	 * own model that specific in each of column
-	 */
-	private class PersonModel extends DefaultTableModel {
-		PersonModel(Object[][] data, Object[] columnNames) {
-			super(data, columnNames);
-		}
-
-		@Override
-		public Class<?> getColumnClass(int columnIndex) {
-			switch (columnIndex) {
-				case 0:
-					return String.class;
-				case 1:
-					return String.class;
-				case 2:
-					return String.class;
-				case 3:
-					return Double.class;
-				case 4:
-					return Integer.class;
-				case 5:
-					return Integer.class;
-				case 6:
-					return Double.class;
-				case 7:
-					return Double.class;
-				default:
-					return String.class;
-			}
-		}
-
-		@Override
-		public boolean isCellEditable(int row, int column) {
-			return false;
-		}
-	}
-
 	public void run(Point point) {
-		setMinimumSize(new Dimension(860, 500));
+		setMinimumSize(new Dimension(925, 500));
 		pack();
 		setLocation(point);
 		setVisible(true);

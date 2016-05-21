@@ -47,10 +47,10 @@ public class LoginPage extends JDialog {
 	}
 
 	private boolean checkAdmin(String user, String pass) {
-		return user.equals("admin") && pass.equals("Password");
+		return user.equals("admin") && pass.equals("password");
 	}
 
-	void run(Point point) {
+	public void run(Point point) {
 		setMinimumSize(new Dimension(340, 240));
 		pack();
 		setLocation(point);
