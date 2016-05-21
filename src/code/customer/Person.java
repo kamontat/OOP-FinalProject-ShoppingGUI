@@ -96,8 +96,7 @@ public class Person {
 	}
 	
 	public Person clone() {
-		Person temp = new Person(this.ID, this.name, this.lastname, this.gender, this.age);
-		return temp;
+		return new Person(this.ID, this.name, this.lastname, this.gender, this.age);
 	}
 	
 	public String toString() {

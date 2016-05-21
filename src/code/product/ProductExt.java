@@ -56,20 +56,12 @@ public class ProductExt extends Product {
 	}
 
 	public ProductExt clone() {
-		ProductExt productExt = new ProductExt(super.getName(), super.getWeight(), super.getPrice(), super.getCurrNumStock(), super.getNumRestocks(), this.material, this.size, this.buyingPrice);
-		return productExt;
+		return new ProductExt(super.getName(), super.getWeight(), super.getPrice(), super.getCurrNumStock(), super.getNumRestocks(), this.material, this.size, this.buyingPrice);
 	}
 	
 	public double restockProductExt() {
 		super.restock();
 		return this.buyingPrice * super.getNumRestocks();
-	}
-	
-	public boolean equals(String name, String color, String size) {
-		if (super.getName().equals(name) && this.material.equals(color) && this.size.equals(size)) {
-			return true;
-		}
-		return false;
 	}
 	
 	public String toString() {

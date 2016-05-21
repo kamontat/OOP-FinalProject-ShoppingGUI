@@ -59,7 +59,7 @@ public class PaymentPage extends JFrame {
 		customerInformationContainer.setLayout(new FlowLayout());
 
 		// assign ComboBox
-		comboProduct = new JComboBox<String>(toArray(shopper.getBasket()));
+		comboProduct = new JComboBox<String>(toArray(shopper.getBasketList()));
 		comboProduct.setForeground(UIManager.getColor("Desktop.background"));
 		comboProduct.setFont(new Font("Andale Mono", Font.PLAIN, 13));
 		comboProduct.setBounds(456, 101, 144, 30);
@@ -74,7 +74,7 @@ public class PaymentPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int productIndex = comboProduct.getSelectedIndex();
-				OrderElement order = shopper.getBasket().get(productIndex);
+				OrderElement order = shopper.getBasketList().get(productIndex);
 				String textChange = JOptionPane.showInputDialog(null, "Change from " + order.getNum() + " To ..?", comboProduct.getSelectedItem().toString(), JOptionPane.INFORMATION_MESSAGE);
 				int num = Integer.parseInt(textChange);
 				// return old order
@@ -100,9 +100,9 @@ public class PaymentPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int productIndex = comboProduct.getSelectedIndex();
-				OrderElement order = shopper.getBasket().get(productIndex);
+				OrderElement order = shopper.getBasketList().get(productIndex);
 				store.refundStock(order);
-				shopper.getBasket().remove(productIndex);
+				shopper.getBasketList().remove(productIndex);
 				// update textProductCustomer, textNumProduct, textPrice
 				setTextproductCustomerInBasket();
 				setTextproductCustomerInShopping();
@@ -213,8 +213,8 @@ public class PaymentPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				check = false;
 				// return currNumStock
-				for (int i = 0; i < shopper.getBasket().size(); i++) {
-					store.refundStock(shopper.getBasket().get(i));
+				for (int i = 0; i < shopper.getBasketList().size(); i++) {
+					store.refundStock(shopper.getBasketList().get(i));
 				}
 				shopper.clearBasket();
 
@@ -324,9 +324,9 @@ public class PaymentPage extends JFrame {
 	public void updateElseInShopping() {
 		int numProductCustmer = 0;
 		int priceProductCustmer = 0;
-		for (int i = 0; i < shopper.getBasket().size(); i++) {
-			numProductCustmer += shopper.getBasket().get(i).getNum();
-			priceProductCustmer += shopper.getBasket().get(i).getNum() * shopper.getBasket().get(i).getProduct().getPrice();
+		for (int i = 0; i < shopper.getBasketList().size(); i++) {
+			numProductCustmer += shopper.getBasketList().get(i).getNum();
+			priceProductCustmer += shopper.getBasketList().get(i).getNum() * shopper.getBasketList().get(i).getProduct().getPrice();
 		}
 		// set 2 attribute that must update when we change product
 		ShoppingPage.setNumProductCustomer(numProductCustmer);
@@ -340,7 +340,7 @@ public class PaymentPage extends JFrame {
 	 * Update shipping price to present and set in textLabel
 	 */
 	public void updatePriceShipping() {
-		ArrayList<OrderElement> basket = shopper.getBasket();
+		ArrayList<OrderElement> basket = shopper.getBasketList();
 		double totalWeight = 0;
 		for (int i = 0; i < basket.size(); i++) {
 			totalWeight += basket.get(i).getProduct().getWeight() * basket.get(i).getNum();
@@ -354,7 +354,7 @@ public class PaymentPage extends JFrame {
 	 * Update final price to present and set in textLabel
 	 */
 	public void updateFinalPrice() {
-		ArrayList<OrderElement> basket = shopper.getBasket();
+		ArrayList<OrderElement> basket = shopper.getBasketList();
 		double totalWeight = 0;
 		for (int i = 0; i < basket.size(); i++) {
 			totalWeight += basket.get(i).getProduct().getWeight() * basket.get(i).getNum();

@@ -383,8 +383,8 @@ public class ShoppingPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// return currNumStock
-				for (int i = 0; i < shopper.getBasket().size(); i++) {
-					store.refundStock(shopper.getBasket().get(i));
+				for (int i = 0; i < shopper.getBasketList().size(); i++) {
+					store.refundStock(shopper.getBasketList().get(i));
 				}
 				shopper.clearBasket();
 

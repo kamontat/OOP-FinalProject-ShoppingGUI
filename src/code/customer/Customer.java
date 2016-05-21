@@ -9,7 +9,7 @@ import java.util.*;
 public class Customer extends Person {
 	private String customerID;
 	private String memberClass;
-	private ArrayList<OrderElement> basket;
+	private ArrayList<OrderElement> basketList;
 	private ArrayList<Order> historyList;
 	private static int numCustomers;
 
@@ -17,26 +17,26 @@ public class Customer extends Person {
 		super();
 		numCustomers++;
 		memberClass = "None";
-		basket = new ArrayList<OrderElement>();
-		historyList = new ArrayList<Order>();
+		basketList = new ArrayList<>();
+		historyList = new ArrayList<>();
 		customerID = "Member" + numCustomers;
 	}
 
-	public Customer(String ID, String name, String lastname, String gender, int age, String memberClass) {
-		super(ID, name, lastname, gender, age);
+	public Customer(String ID, String name, String lastName, String gender, int age, String memberClass) {
+		super(ID, name, lastName, gender, age);
 		numCustomers++;
 		this.memberClass = memberClass;
-		basket = new ArrayList<OrderElement>();
-		historyList = new ArrayList<Order>();
+		basketList = new ArrayList<>();
+		historyList = new ArrayList<>();
 		customerID = "Member" + numCustomers;
 	}
 
-	public Customer(String ID, String name, String lastname, String gender, String age, String memberClass) {
-		super(ID, name, lastname, gender, Integer.parseInt(age));
+	public Customer(String ID, String name, String lastName, String gender, String age, String memberClass) {
+		super(ID, name, lastName, gender, Integer.parseInt(age));
 		numCustomers++;
 		this.memberClass = memberClass;
-		basket = new ArrayList<OrderElement>();
-		historyList = new ArrayList<Order>();
+		basketList = new ArrayList<>();
+		historyList = new ArrayList<>();
 		customerID = "Member" + numCustomers;
 	}
 
@@ -48,8 +48,8 @@ public class Customer extends Person {
 		return memberClass;
 	}
 
-	public ArrayList<OrderElement> getBasket() {
-		return basket;
+	public ArrayList<OrderElement> getBasketList() {
+		return basketList;
 	}
 
 	public ArrayList<Order> getHistoryList() {
@@ -68,8 +68,8 @@ public class Customer extends Person {
 		this.memberClass = memberClass;
 	}
 
-	public void setBasket(ArrayList<OrderElement> basket) {
-		this.basket = basket;
+	public void setBasketList(ArrayList<OrderElement> basketList) {
+		this.basketList = basketList;
 	}
 
 	public void setHistoryList(ArrayList<Order> historyList) {
@@ -81,32 +81,32 @@ public class Customer extends Person {
 	}
 
 	public void addToBasket(OrderElement element) {
-		basket.add(element);
+		basketList.add(element);
 	}
 
 	public double getBasketTotalWeight() {
 		double weight = 0;
-		for (int i = 0; i < basket.size(); i++) {
-			weight += basket.get(i).getProduct().getWeight() * basket.get(i).getNum();
+		for (OrderElement basket : basketList) {
+			weight += basket.getProduct().getWeight() * basket.getNum();
 		}
 		return weight;
 	}
 
 	public double getBasketTotalPrice() {
 		double price = 0;
-		for (int i = 0; i < basket.size(); i++) {
-			price += basket.get(i).getProduct().getPrice() * basket.get(i).getNum();
+		for (OrderElement basket : basketList) {
+			price += basket.getProduct().getPrice() * basket.getNum();
 
 		}
 		return price;
 	}
 
 	public void clearBasket() {
-		basket.removeAll(basket);
+		basketList.removeAll(basketList);
 	}
 
 	public void addToHistoryList(Order order) {
-		if (basket.size() != 0) {
+		if (basketList.size() != 0) {
 			historyList.add(order.clone());
 		}
 	}
@@ -115,9 +115,9 @@ public class Customer extends Person {
 		String output = "";
 		ProductExt customerProduct;
 		String format = "<pre>%-10s %-31s %-25s %-6s %-6.1f %,-8.0f   %-6d</pre>";
-		for (int i = 0; i < basket.size(); i++) {
-			customerProduct = basket.get(i).getProduct();
-			output += String.format(format, customerProduct.getProductID(), customerProduct.getName(), customerProduct.getMaterial(), customerProduct.getSize(), customerProduct.getWeight(), customerProduct.getPrice(), basket.get(i).getNum());
+		for (OrderElement basket : basketList) {
+			customerProduct = basket.getProduct();
+			output += String.format(format, customerProduct.getProductID(), customerProduct.getName(), customerProduct.getMaterial(), customerProduct.getSize(), customerProduct.getWeight(), customerProduct.getPrice(), basket.getNum());
 		}
 		return output;
 	}
@@ -126,9 +126,9 @@ public class Customer extends Person {
 		String output = "";
 		ProductExt customerProduct;
 		String format = "<pre>%-10s %-31s %-6s %-6.1f %,-8.0f   %-6d</pre>";
-		for (int i = 0; i < basket.size(); i++) {
-			customerProduct = basket.get(i).getProduct();
-			output += String.format(format, customerProduct.getProductID(), customerProduct.getName(), customerProduct.getSize(), customerProduct.getWeight(), customerProduct.getPrice(), basket.get(i).getNum());
+		for (OrderElement basket : basketList) {
+			customerProduct = basket.getProduct();
+			output += String.format(format, customerProduct.getProductID(), customerProduct.getName(), customerProduct.getSize(), customerProduct.getWeight(), customerProduct.getPrice(), basket.getNum());
 		}
 		return output;
 	}
@@ -136,21 +136,18 @@ public class Customer extends Person {
 	public String getHistoryListString() {
 		String output = "<pre>";
 
-		for (int i = 0; i < historyList.size(); i++) {
-			basket.removeAll(basket);
-			basket.addAll(historyList.get(i).getBuyList());
+		for (Order history : historyList) {
+			basketList.removeAll(basketList);
+			basketList.addAll(history.getBuyList());
 			String format = "OrderNumber: %s %s";
-			output += String.format(format, historyList.get(i).getOrderID(), getBasketString());
+			output += String.format(format, history.getOrderID(), getBasketString());
 		}
 		output += "</pre>";
 		return output;
 	}
 
 	public boolean equals(String personID, String name, String lastname) {
-		if (super.getID().equals(personID) && super.getName().equals(name) && super.getLastname().equals(lastname)) {
-			return true;
-		}
-		return false;
+		return super.getID().equals(personID) && super.getName().equals(name) && super.getLastname().equals(lastname);
 	}
 
 	public String toString() {

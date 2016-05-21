@@ -7,7 +7,7 @@ import code.payment.Shipping;
 import java.util.ArrayList;
 
 public class Order {
-	private ArrayList<OrderElement> buyList = new ArrayList<OrderElement>();
+	private ArrayList<OrderElement> buyList = new ArrayList<>();
 	private Customer customer;
 	private Shipping shipping;
 	private Payment payment;
@@ -24,7 +24,7 @@ public class Order {
 
 	public Order(Customer customer, boolean registered, boolean express) {
 		numOrders++;
-		this.buyList.addAll(customer.getBasket());
+		this.buyList.addAll(customer.getBasketList());
 		this.customer = customer;
 		double discountRate = getDiscountRate();
 		shipping = new Shipping(customer.getBasketTotalWeight(), registered, express);

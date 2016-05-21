@@ -10,11 +10,11 @@ public class Store {
 	private ArrayList<Customer> customerList;
 	private double revenue, expense;
 	private boolean restockProduct;
-	private ArrayList<Order> historyList = new ArrayList<Order>();
+	private ArrayList<Order> historyList = new ArrayList<>();
 
 	public Store() {
-		productList = new ArrayList<ProductExt>();
-		customerList = new ArrayList<Customer>();
+		productList = new ArrayList<>();
+		customerList = new ArrayList<>();
 		revenue = 0;
 		expense = 0;
 		restockProduct = false;
@@ -93,9 +93,9 @@ public class Store {
 	}
 
 	public ProductExt searchProduct(String name) {
-		for (int i = 0; i < productList.size(); i++) {
-			if (productList.get(i).getName().equals(name)) {
-				return productList.get(i);
+		for (ProductExt product : productList) {
+			if (product.getName().equals(name)) {
+				return product;
 			}
 		}
 		return null;
@@ -111,7 +111,7 @@ public class Store {
 	}
 
 	public ArrayList<Integer> searchCustomer(String type, String text) {
-		ArrayList<Integer> index = new ArrayList<Integer>();
+		ArrayList<Integer> index = new ArrayList<>();
 		for (int i = 0; i < customerList.size(); i++) {
 			if (type.equalsIgnoreCase("name") && customerList.get(i).getName().equalsIgnoreCase(text)) {
 				index.add(i);
@@ -144,39 +144,34 @@ public class Store {
 	public void updateStock(OrderElement element) {
 		ProductExt customerProduct = element.getProduct();
 
-		for (int i = 0; i < productList.size(); i++) {
+		for (ProductExt product : productList) {
 			// check name
-			if (productList.get(i).getName().equals(customerProduct.getName())) {
+			if (product.getName().equals(customerProduct.getName())) {
 				// check material
-				if (productList.get(i).getMaterial().equals(customerProduct.getMaterial())) {
+				if (product.getMaterial().equals(customerProduct.getMaterial())) {
 					// check size
-					if (productList.get(i).getSize().equals(customerProduct.getSize())) {
-						productList.get(i).withdrawStock(element.getNum());
+					if (product.getSize().equals(customerProduct.getSize())) {
+						product.withdrawStock(element.getNum());
 					}
 				}
 			}
 		}
 
-		for (int i = 0; i < productList.size(); i++) {
-			if (productList.get(i).getCurrNumStock() < 3) {
-				productList.get(i).setRestock(true);
+		for (ProductExt product : productList) {
+			if (product.getCurrNumStock() < 3) {
+				product.setRestock(true);
 				restockProduct = true;
 			}
 		}
 	}
 
-	/**
-	 * return the number to currstock
-	 *
-	 * @param element
-	 */
 	public void refundStock(OrderElement element) {
 		ProductExt customerProduct = element.getProduct();
 
-		for (int i = 0; i < productList.size(); i++) {
+		for (ProductExt product : productList) {
 			// check ID
-			if (productList.get(i).getProductID().equals(customerProduct.getProductID())) {
-				productList.get(i).returnStock(element.getNum());
+			if (product.getProductID().equals(customerProduct.getProductID())) {
+				product.returnStock(element.getNum());
 			}
 		}
 	}
@@ -186,8 +181,11 @@ public class Store {
 	 * revenue and expense And clear product in basket
 	 *
 	 * @param customer
+	 * 		customer
 	 * @param registered
+	 * 		true if customer want to registered
 	 * @param express
+	 * 		true if customer want to express
 	 */
 	public void checkOut(Customer customer, boolean registered, boolean express) {
 		Order order = new Order(customer, registered, express);
@@ -210,19 +208,19 @@ public class Store {
 	}
 
 	/**
-	 * Check product in history list of all customer if it equals keep it in
-	 * arraylist
+	 * Check product in history list of all customer if it equals keep it in arrayList
 	 *
 	 * @param product
-	 * @return arrayList of Customer
+	 * 		product that customer buy
+	 * @return arrayList of Customer that buy the product
 	 */
 	public ArrayList<Customer> checkProductHistory(ProductExt product) {
-		ArrayList<Customer> customer = new ArrayList<Customer>();
-		for (int i = 0; i < customerList.size(); i++) {
-			for (int j = 0; j < customerList.get(i).getHistoryList().size(); j++) {
-				for (int k = 0; k < customerList.get(i).getHistoryList().get(j).getBuyList().size(); k++) {
-					if (customerList.get(i).getHistoryList().get(j).getBuyList().get(k).getName().equals(product.getName())) {
-						customer.add(customerList.get(i));
+		ArrayList<Customer> customer = new ArrayList<>();
+		for (Customer aCustomer : customerList) {
+			for (int j = 0; j < aCustomer.getHistoryList().size(); j++) {
+				for (int k = 0; k < aCustomer.getHistoryList().get(j).getBuyList().size(); k++) {
+					if (aCustomer.getHistoryList().get(j).getBuyList().get(k).getName().equals(product.getName())) {
+						customer.add(aCustomer);
 					}
 				}
 			}
@@ -232,8 +230,8 @@ public class Store {
 
 	public String getCustomerListString() {
 		String output = "";
-		for (int i = 0; i < customerList.size(); i++) {
-			output += customerList.get(i).toString() + "\n";
+		for (Customer customer : customerList) {
+			output += customer.toString() + "\n";
 		}
 		return output;
 	}
