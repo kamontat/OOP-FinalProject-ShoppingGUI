@@ -389,7 +389,7 @@ public class ShoppingPage extends JFrame {
 				shopper.clearBasket();
 
 				MainPage menu = new MainPage();
-				menu.run();
+				menu.run(getLocation());
 				dispose();
 
 			}

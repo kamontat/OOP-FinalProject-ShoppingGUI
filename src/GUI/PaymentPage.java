@@ -219,7 +219,7 @@ public class PaymentPage extends JFrame {
 				shopper.clearBasket();
 
 				MainPage menu = new MainPage();
-				menu.run();
+				menu.run(getLocation());
 				dispose();
 			}
 		});
@@ -261,7 +261,7 @@ public class PaymentPage extends JFrame {
 				check = false;
 				store.checkOut(shopper, register, express);
 				MainPage menu = new MainPage();
-				menu.run();
+				menu.run(getLocation());
 				setVisible(false);
 			}
 		});

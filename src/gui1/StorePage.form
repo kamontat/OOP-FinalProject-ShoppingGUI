@@ -63,12 +63,12 @@
             <properties>
               <autoCreateRowSorter value="true"/>
               <autoResizeMode value="4"/>
-              <background color="-16777216"/>
+              <background color="-1"/>
               <enabled value="true"/>
               <fillsViewportHeight value="true"/>
-              <font size="15"/>
-              <foreground color="-1"/>
-              <gridColor color="-1"/>
+              <font size="15" style="0"/>
+              <foreground color="-16777216"/>
+              <gridColor color="-16777216"/>
             </properties>
             <clientProperties>
               <JTable.autoStartsEdit class="java.lang.Boolean" value="false"/>

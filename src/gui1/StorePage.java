@@ -109,7 +109,7 @@ public class StorePage extends JFrame {
 	private void toMain() {
 		mainButton.addActionListener(e -> {
 			MainPage page = new MainPage();
-			page.run();
+			page.run(getLocation());
 			dispose();
 		});
 	}

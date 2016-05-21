@@ -143,9 +143,10 @@ public class MainPage extends JFrame {
 	/**
 	 * run this gui
 	 */
-	public void run() {
+	public void run(Point point) {
 		pack();
 		setVisible(true);
+		setLocation(point);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setMinimumSize(new Dimension(650, 400));
 	}

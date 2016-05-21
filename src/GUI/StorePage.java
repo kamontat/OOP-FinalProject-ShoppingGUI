@@ -353,7 +353,7 @@ public class StorePage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainPage menu = new MainPage();
-				menu.run();
+				menu.run(getLocation());
 				dispose();
 			}
 		});
