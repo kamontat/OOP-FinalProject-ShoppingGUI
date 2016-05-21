@@ -12,7 +12,6 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 
 public class StorePage extends JFrame {
 	private Store store = MainPage.store;
@@ -353,14 +352,9 @@ public class StorePage extends JFrame {
 		buttonMainMenu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				check = false;
-				try {
-					MainMenu menu = new MainMenu();
-					menu.run();
-					setVisible(false);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				MainPage menu = new MainPage();
+				menu.run();
+				dispose();
 			}
 		});
 		getContentPane().add(buttonMainMenu);

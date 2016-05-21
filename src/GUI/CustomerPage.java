@@ -10,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 
 public class CustomerPage extends JFrame {
@@ -320,15 +319,9 @@ public class CustomerPage extends JFrame {
 		buttonMainMenu.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainMenu menu;
-				check = false;
-				try {
-					menu = new MainMenu();
-					menu.run();
-					setVisible(false);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				MainPage menu = new MainPage();
+				menu.run();
+				dispose();
 			}
 		});
 		

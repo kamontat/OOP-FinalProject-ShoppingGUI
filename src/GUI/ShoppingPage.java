@@ -1,8 +1,8 @@
 package gui;
 
 import code.customer.Customer;
-import code.store.OrderElement;
 import code.product.ProductExt;
+import code.store.OrderElement;
 import code.store.Store;
 import gui1.MainPage;
 
@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.*;
 
 public class ShoppingPage extends JFrame {
@@ -383,19 +382,15 @@ public class ShoppingPage extends JFrame {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				check = false;
 				// return currNumStock
 				for (int i = 0; i < shopper.getBasket().size(); i++) {
 					store.refundStock(shopper.getBasket().get(i));
 				}
 				shopper.clearBasket();
-				try {
-					MainMenu menu = new MainMenu();
-					menu.run();
-					setVisible(false);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+
+				MainPage menu = new MainPage();
+				menu.run();
+				dispose();
 
 			}
 		});

@@ -1,8 +1,8 @@
 package gui;
 
 import code.customer.Customer;
-import code.store.OrderElement;
 import code.payment.Shipping;
+import code.store.OrderElement;
 import code.store.Store;
 import gui1.MainPage;
 
@@ -10,7 +10,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.*;
 
 public class PaymentPage extends JFrame {
@@ -218,13 +217,10 @@ public class PaymentPage extends JFrame {
 					store.refundStock(shopper.getBasket().get(i));
 				}
 				shopper.clearBasket();
-				try {
-					MainMenu menu = new MainMenu();
-					menu.run();
-					setVisible(false);
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+
+				MainPage menu = new MainPage();
+				menu.run();
+				dispose();
 			}
 		});
 		buttonMainMenu.setForeground(new Color(0, 0, 128));
