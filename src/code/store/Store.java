@@ -101,13 +101,13 @@ public class Store {
 		return null;
 	}
 
-	public int searchIDCustomer(String personID) {
+	public Customer searchIDCustomer(String personID) {
 		for (int i = 0; i < customerList.size(); i++) {
 			if (customerList.get(i).getID().equals(personID)) {
-				return i;
+				return customerList.get(i);
 			}
 		}
-		return -1;
+		return null;
 	}
 
 	public ArrayList<Integer> searchCustomer(String type, String text) {
