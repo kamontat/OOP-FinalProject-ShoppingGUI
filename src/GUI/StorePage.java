@@ -429,7 +429,7 @@ public class StorePage extends JFrame {
 						break;
 				}
 				if (check) {
-					HistoryOfStorePage history = new HistoryOfStorePage();
+					HistoryOfStorePage history = new HistoryOfStorePage(store.getProductList().get(indexOfProduct));
 					history.run();
 				}
 			}

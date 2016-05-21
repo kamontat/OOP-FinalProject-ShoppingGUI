@@ -92,13 +92,13 @@ public class Store {
 		customerList.add(customer);
 	}
 
-	public int searchProduct(String name) {
+	public ProductExt searchProduct(String name) {
 		for (int i = 0; i < productList.size(); i++) {
 			if (productList.get(i).getName().equals(name)) {
-				return i;
+				return productList.get(i);
 			}
 		}
-		return -1;
+		return null;
 	}
 
 	public int searchIDCustomer(String personID) {

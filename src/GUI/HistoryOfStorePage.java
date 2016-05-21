@@ -17,9 +17,12 @@ public class HistoryOfStorePage extends JFrame {
 	private ProductExt product;
 	private JLabel textCustomerProduct, textProduct;
 
-	public HistoryOfStorePage() {
+	public HistoryOfStorePage(ProductExt product) {
 		super("History Of Store Page");
 		getContentPane().setBackground(Color.BLACK);
+
+		this.product = product;
+
 		initComponent();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -33,8 +36,6 @@ public class HistoryOfStorePage extends JFrame {
 
 	public void initComponent() {
 		getContentPane().setLayout(null);
-		// make shopper Present
-		product = store.getProductList().get(StorePage.getIndexOfProduct());
 
 		Container firstContainer = new Container();
 		firstContainer.setBounds(0, 0, 650, 90);

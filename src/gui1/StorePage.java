@@ -2,14 +2,13 @@ package gui1;
 
 import code.product.ProductExt;
 import code.store.Store;
+import gui.HistoryOfStorePage;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -33,8 +32,12 @@ public class StorePage extends JFrame {
 	public StorePage() {
 		super("Store Page");
 		setContentPane(panel);
+
 		settingTable();
+
+		toMain();
 		restock();
+		history();
 
 		updateLabel(store.getRevenue(), store.getExpense());
 	}
@@ -65,7 +68,11 @@ public class StorePage extends JFrame {
 				if (text.trim().length() == 0) {
 					sorter.setRowFilter(null);
 				} else {
-					sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+					try {
+						sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+					} catch (Exception ignored) {
+
+					}
 				}
 			}
 
@@ -75,7 +82,11 @@ public class StorePage extends JFrame {
 				if (text.trim().length() == 0) {
 					sorter.setRowFilter(null);
 				} else {
-					sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+					try {
+						sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+					} catch (Exception ignored) {
+
+					}
 				}
 			}
 
@@ -85,39 +96,61 @@ public class StorePage extends JFrame {
 				if (text.trim().length() == 0) {
 					sorter.setRowFilter(null);
 				} else {
-					sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+					try {
+						sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
+					} catch (Exception ignored) {
+
+					}
 				}
 			}
 		});
 	}
 
+	private void toMain() {
+		mainButton.addActionListener(e -> {
+			MainPage page = new MainPage();
+			page.run();
+			dispose();
+		});
+	}
+
 	private void restock() {
-		restockButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int row = table.getSelectedRow();
+		restockButton.addActionListener(e -> {
+			int row = table.getSelectedRow();
 
-				if (row == -1) {
-					JOptionPane.showMessageDialog(null, "Please, choose some product", "Error", JOptionPane.ERROR_MESSAGE);
+			if (row == -1) {
+				JOptionPane.showMessageDialog(null, "Please, choose some product", "Error", JOptionPane.ERROR_MESSAGE);
+			} else {
+				String productName = String.valueOf(table.getValueAt(row, 0));
+				ProductExt product = store.searchProduct(productName);
+
+				if (product.isRestock()) {
+					store.addExpense(product.restockProductExt());
+					store.setRestockProduct(false);
+					updateLabel(store.getRevenue(), store.getExpense());
+					updateTable(product.getCurrNumStock(), row, 3);
 				} else {
-					ProductExt product = store.getProductList().get(row);
-
-					if (product.isRestock()) {
+					int choose = JOptionPane.showConfirmDialog(null, "This product still have in stock", "Do you sure?", JOptionPane.YES_NO_OPTION);
+					if (choose == 0) {
 						store.addExpense(product.restockProductExt());
 						store.setRestockProduct(false);
 						updateLabel(store.getRevenue(), store.getExpense());
 						updateTable(product.getCurrNumStock(), row, 3);
-					} else {
-						int choose = JOptionPane.showConfirmDialog(null, "This product still have in stock", "Do you sure?", JOptionPane.YES_NO_OPTION);
-						if (choose == 0) {
-							store.addExpense(store.getProductList().get(row).restockProductExt());
-							store.setRestockProduct(false);
-							updateLabel(store.getRevenue(), store.getExpense());
-							updateTable(product.getCurrNumStock(), row, 3);
-						}
 					}
 				}
 			}
+		});
+	}
+
+	private void history() {
+		historyButton.addActionListener(e -> {
+
+			int row = table.getSelectedRow();
+			String productName = String.valueOf(table.getValueAt(row, 0));
+			ProductExt product = store.searchProduct(productName);
+
+			HistoryOfStorePage page = new HistoryOfStorePage(product);
+			page.run();
 		});
 	}
 
@@ -131,6 +164,9 @@ public class StorePage extends JFrame {
 		table.setValueAt(newValue, row, column);
 	}
 
+	/**
+	 * own model that specific in each of column
+	 */
 	private class PersonModel extends DefaultTableModel {
 		PersonModel(Object[][] data, Object[] columnNames) {
 			super(data, columnNames);
@@ -159,6 +195,7 @@ public class StorePage extends JFrame {
 					return String.class;
 			}
 		}
+
 	}
 
 	public void run(Point point) {

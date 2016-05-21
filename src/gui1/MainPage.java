@@ -135,7 +135,7 @@ public class MainPage extends JFrame {
 
 	private void setStoreButton() {
 		storeButton.addActionListener(e -> {
-			LoginPage login = new LoginPage();
+			LoginPage login = new LoginPage(this);
 			login.run(getLocation());
 		});
 	}
