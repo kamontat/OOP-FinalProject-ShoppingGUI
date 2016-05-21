@@ -30,7 +30,7 @@ public class MainPage extends JFrame {
 	public static Store store = assignStore();
 
 	public MainPage() {
-		super("Main Menu");
+		super("Main Page");
 
 		setContentPane(panel);
 
@@ -38,6 +38,18 @@ public class MainPage extends JFrame {
 		setShoppingButton();
 		setStoreButton();
 		setExitButton();
+	}
+
+	public static String[][] getProductList() {
+		String[][] temp = new String[productList.size()][ProductExt.numberInfo];
+		for (int i = 0; i < productList.size(); i++) {
+			temp[i] = productList.get(i).getProductInfo();
+		}
+		return temp;
+	}
+
+	public static ArrayList<Customer> getCustomerList() {
+		return customerList;
 	}
 
 	/**

@@ -19,6 +19,7 @@
         <properties>
           <icon value="images/bg1.png"/>
           <text value=""/>
+          <toolTipText value="&lt;html&gt;&#10;&lt;b&gt;Presented&lt;/b&gt; By &lt;br&gt;&#10;1. Kamontat &lt;br&gt;&#10;2. Maythawee &lt;br&gt;&#10;3. Palita &lt;br&gt;&#10;&lt;/html&gt;"/>
         </properties>
       </component>
       <component id="239e7" class="javax.swing.JButton" binding="customerButton">
@@ -31,6 +32,7 @@
           <font name="Apple Chancery" size="30"/>
           <hideActionText value="false"/>
           <text value="- Customer - "/>
+          <toolTipText value=""/>
         </properties>
       </component>
       <component id="44f0f" class="javax.swing.JButton" binding="shoppingButton">
@@ -42,6 +44,7 @@
         <properties>
           <font name="Apple Chancery" size="30"/>
           <text value="- Shopping -"/>
+          <toolTipText value=""/>
         </properties>
       </component>
       <component id="3969c" class="javax.swing.JButton" binding="storeButton" default-binding="true">
@@ -53,6 +56,7 @@
         <properties>
           <font name="Apple Chancery" size="30"/>
           <text value="- Store - "/>
+          <toolTipText value=""/>
         </properties>
       </component>
       <component id="9ae1c" class="javax.swing.JButton" binding="exitButton">
@@ -62,6 +66,7 @@
         <properties>
           <font name="AppleMyungjo" size="35" style="1"/>
           <text value="- Exit -"/>
+          <toolTipText value="Exit from the program"/>
         </properties>
       </component>
       <component id="b9a80" class="javax.swing.JLabel">

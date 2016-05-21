@@ -573,4 +573,9 @@ public class StorePage extends JFrame {
 		product += numOfRestock;
 		return product;
 	}
+
+	public static void main(String[] args) {
+		StorePage storePage = new StorePage();
+		storePage.run();
+	}
 }

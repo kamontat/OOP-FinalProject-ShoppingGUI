@@ -1,6 +1,7 @@
 package code.product;
 
 public class ProductExt extends Product {
+	public static int numberInfo = 8;
 	private String material;
 	private String size;
 	private double buyingPrice;
@@ -46,9 +47,12 @@ public class ProductExt extends Product {
 		this.material = material;
 	}
 
-
 	public void setBuyingPrice(double buyingPrice) {
 		this.buyingPrice = buyingPrice;
+	}
+
+	public String[] getProductInfo() {
+		return new String[]{getName(), String.valueOf(getWeight()), String.valueOf(getPrice()), String.valueOf(getCurrNumStock()), String.valueOf(getNumRestocks()), getMaterial(), getSize(), String.valueOf(getBuyingPrice())};
 	}
 	
 	public ProductExt clone() {

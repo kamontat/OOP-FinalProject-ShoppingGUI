@@ -51,6 +51,7 @@ public class LoginPage extends JDialog {
 	}
 
 	void run(Point point) {
+		setMinimumSize(new Dimension(340, 240));
 		pack();
 		setLocation(point);
 		setVisible(true);
