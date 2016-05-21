@@ -40,8 +40,8 @@ public class MainPage extends JFrame {
 		setExitButton();
 	}
 
-	public static String[][] getProductList() {
-		String[][] temp = new String[productList.size()][ProductExt.numberInfo];
+	public static Object[][] getProductList() {
+		Object[][] temp = new Object[productList.size()][ProductExt.numberInfo];
 		for (int i = 0; i < productList.size(); i++) {
 			temp[i] = productList.get(i).getProductInfo();
 		}

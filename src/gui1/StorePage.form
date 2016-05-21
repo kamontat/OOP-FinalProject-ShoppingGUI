@@ -60,7 +60,7 @@
           <component id="b8eff" class="javax.swing.JTable" binding="table">
             <constraints/>
             <properties>
-              <autoCreateRowSorter value="false"/>
+              <autoCreateRowSorter value="true"/>
               <autoResizeMode value="4"/>
               <background color="-16777216"/>
               <enabled value="true"/>

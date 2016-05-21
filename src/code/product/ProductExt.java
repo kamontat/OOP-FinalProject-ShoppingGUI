@@ -51,8 +51,8 @@ public class ProductExt extends Product {
 		this.buyingPrice = buyingPrice;
 	}
 
-	public String[] getProductInfo() {
-		return new String[]{getName(), String.valueOf(getWeight()), String.valueOf(getPrice()), String.valueOf(getCurrNumStock()), String.valueOf(getNumRestocks()), getMaterial(), getSize(), String.valueOf(getBuyingPrice())};
+	public Object[] getProductInfo() {
+		return new Object[]{getName(), Double.valueOf(getWeight()), Double.valueOf(getPrice()), Integer.valueOf(getCurrNumStock()), Integer.valueOf(getNumRestocks()), getMaterial(), getSize(), Double.valueOf(getBuyingPrice())};
 	}
 	
 	public ProductExt clone() {

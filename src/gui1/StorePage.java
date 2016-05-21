@@ -35,7 +35,7 @@ public class StorePage extends JFrame {
 	}
 
 	private void settingTable() {
-		table.setModel(new DefaultTableModel(MainPage.getProductList(), new String[]{"Name", "Weight", "Price", "In Stock", "Restock", "Material", "Size", "Buying Price"}));
+		table.setModel(new PersonModel(MainPage.getProductList(), new String[]{"Name", "Weight", "Price", "In Stock", "Restock", "Material", "Size", "Buying Price"}));
 
 		table.getColumnModel().getColumn(0).setMinWidth(190);
 		table.getColumnModel().getColumn(1).setMinWidth(50);
@@ -60,7 +60,7 @@ public class StorePage extends JFrame {
 				if (text.trim().length() == 0) {
 					sorter.setRowFilter(null);
 				} else {
-					sorter.setRowFilter(RowFilter.regexFilter("^" + text + "$"));
+					sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
 				}
 			}
 
@@ -70,7 +70,7 @@ public class StorePage extends JFrame {
 				if (text.trim().length() == 0) {
 					sorter.setRowFilter(null);
 				} else {
-					sorter.setRowFilter(RowFilter.regexFilter("^" + text + "$"));
+					sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
 				}
 			}
 
@@ -80,10 +80,40 @@ public class StorePage extends JFrame {
 				if (text.trim().length() == 0) {
 					sorter.setRowFilter(null);
 				} else {
-					sorter.setRowFilter(RowFilter.regexFilter("^" + text + "$"));
+					sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
 				}
 			}
 		});
+	}
+
+	private class PersonModel extends DefaultTableModel {
+		PersonModel(Object[][] data, Object[] columnNames) {
+			super(data, columnNames);
+		}
+
+		@Override
+		public Class<?> getColumnClass(int columnIndex) {
+			switch (columnIndex) {
+				case 0:
+					return String.class;
+				case 1:
+					return Double.class;
+				case 2:
+					return Double.class;
+				case 3:
+					return Integer.class;
+				case 4:
+					return Integer.class;
+				case 5:
+					return String.class;
+				case 6:
+					return String.class;
+				case 7:
+					return Double.class;
+				default:
+					return String.class;
+			}
+		}
 	}
 
 	public void run(Point point) {
