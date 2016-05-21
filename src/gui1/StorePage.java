@@ -44,16 +44,16 @@ public class StorePage extends JFrame {
 
 	private void settingTable() {
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		table.setModel(new PersonModel(MainPage.getProductList(), new String[]{"Name", "Weight", "Price", "In Stock", "Restock", "Material", "Size", "Buying Price"}));
+		table.setModel(new PersonModel(MainPage.getProductList(), new String[]{"Name", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"}));
 
-		table.getColumnModel().getColumn(0).setMinWidth(190);
-		table.getColumnModel().getColumn(1).setMinWidth(50);
-		table.getColumnModel().getColumn(2).setMinWidth(80);
-		table.getColumnModel().getColumn(3).setMinWidth(50);
-		table.getColumnModel().getColumn(4).setMinWidth(50);
-		table.getColumnModel().getColumn(5).setMinWidth(155);
-		table.getColumnModel().getColumn(6).setMinWidth(65);
-		table.getColumnModel().getColumn(7).setMinWidth(85);
+		table.getColumnModel().getColumn(0).setMinWidth(240); // name
+		table.getColumnModel().getColumn(1).setMinWidth(180); // material
+		table.getColumnModel().getColumn(2).setMinWidth(65); // size
+		table.getColumnModel().getColumn(3).setMinWidth(65); // weight
+		table.getColumnModel().getColumn(4).setMinWidth(75); // stock
+		table.getColumnModel().getColumn(5).setMinWidth(65); // restock
+		table.getColumnModel().getColumn(6).setMinWidth(80); // price
+		table.getColumnModel().getColumn(7).setMinWidth(85); // buying price
 
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
@@ -128,14 +128,14 @@ public class StorePage extends JFrame {
 					store.addExpense(product.restockProductExt());
 					store.setRestockProduct(false);
 					updateLabel(store.getRevenue(), store.getExpense());
-					updateTable(product.getCurrNumStock(), row, 3);
+					updateTable(product.getCurrNumStock(), row, 4);
 				} else {
 					int choose = JOptionPane.showConfirmDialog(null, "This product still have in stock", "Do you sure?", JOptionPane.YES_NO_OPTION);
 					if (choose == 0) {
 						store.addExpense(product.restockProductExt());
 						store.setRestockProduct(false);
 						updateLabel(store.getRevenue(), store.getExpense());
-						updateTable(product.getCurrNumStock(), row, 3);
+						updateTable(product.getCurrNumStock(), row, 4);
 					}
 				}
 			}
@@ -178,17 +178,17 @@ public class StorePage extends JFrame {
 				case 0:
 					return String.class;
 				case 1:
-					return Double.class;
+					return String.class;
 				case 2:
-					return Double.class;
+					return String.class;
 				case 3:
-					return Integer.class;
+					return Double.class;
 				case 4:
 					return Integer.class;
 				case 5:
-					return String.class;
+					return Integer.class;
 				case 6:
-					return String.class;
+					return Double.class;
 				case 7:
 					return Double.class;
 				default:
@@ -199,15 +199,10 @@ public class StorePage extends JFrame {
 	}
 
 	public void run(Point point) {
-		setMinimumSize(new Dimension(800, 500));
+		setMinimumSize(new Dimension(860, 500));
 		pack();
 		setLocation(point);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	}
-
-	public static void main(String[] args) {
-		StorePage page = new StorePage();
-		page.run(new Point(0, 0));
 	}
 }

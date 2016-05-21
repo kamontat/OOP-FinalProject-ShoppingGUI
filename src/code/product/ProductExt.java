@@ -52,7 +52,7 @@ public class ProductExt extends Product {
 	}
 
 	public Object[] getProductInfo() {
-		return new Object[]{getName(), Double.valueOf(getWeight()), Double.valueOf(getPrice()), Integer.valueOf(getCurrNumStock()), Integer.valueOf(getNumRestocks()), getMaterial(), getSize(), Double.valueOf(getBuyingPrice())};
+		return new Object[]{getName(), getMaterial(), getSize(), Double.valueOf(getWeight()), Integer.valueOf(getCurrNumStock()), Integer.valueOf(getNumRestocks()), Double.valueOf(getPrice()), Double.valueOf(getBuyingPrice())};
 	}
 
 	public ProductExt clone() {
