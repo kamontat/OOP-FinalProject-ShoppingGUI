@@ -169,7 +169,12 @@ public class Customer extends Person {
 	}
 
 	public Customer clone() {
-		return new Customer(getID(), getName(), getLastName(), getGender(), getAge(), getMemberClass());
+		numCustomers--;
+		Customer temp = new Customer(getID(), getName(), getLastName(), getGender(), getAge(), getMemberClass());
+		temp.setHistoryList(historyList);
+		temp.setBasketList(getBasketList());
+
+		return temp;
 	}
 
 	public boolean equals(String personID, String name, String lastname) {

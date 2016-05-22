@@ -259,7 +259,6 @@ public class PaymentPage extends JFrame {
 		buttonBuy.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				check = false;
 				store.checkOut(shopper, register, express);
 				MainPage menu = new MainPage();
 				menu.run(getLocation());

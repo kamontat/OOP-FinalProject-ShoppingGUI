@@ -34,5 +34,9 @@ public class OrderElement {
 	public OrderElement clone() {
 		return new OrderElement(this.product, this.num);
 	}
-	
+
+	@Override
+	public String toString() {
+		return "OrderElement{" + "product=" + product.toString() + " \nnum=" + num + '}';
+	}
 }
