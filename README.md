@@ -22,7 +22,11 @@ we done it when I study in first term of first year in kasetsert university (12/
 
 ## Renovate program ##
 (5/59) I start to renovate all gui code and add more feature in this project
-- version 6.0.0
+
+- **version**
+    - 6.0.0 <- Renew gui code (Main, Login, Store)
+    - 6.0.3 <- Renew gui code (Customer, Shopping)
+    - 6.0.5 <- create new way to add new customer
 
 ### What is this for? ###
 

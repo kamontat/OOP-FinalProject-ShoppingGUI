@@ -69,6 +69,7 @@
               <font size="15" style="0"/>
               <foreground color="-16777216"/>
               <gridColor color="-5592406"/>
+              <inheritsPopupMenu value="false"/>
               <toolTipText value="click to choose"/>
             </properties>
             <clientProperties>
