@@ -33,7 +33,7 @@ public class MainPage extends JFrame implements ButtonAction {
 
 		setContentPane(panel);
 
-		toShopping(this, shoppingButton, shopper);
+		toShopping(this, shoppingButton);
 		toCustomer(this, customerButton);
 		toLogin(this, storeButton);
 		toExit(exitButton);

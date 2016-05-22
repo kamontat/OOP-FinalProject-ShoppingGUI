@@ -24,6 +24,9 @@ class BasketPage extends JFrame {
 	BasketPage() {
 		super("Basket Page");
 		getContentPane().setBackground(Color.BLACK);
+
+		shopper = MainPage.shopper;
+
 		initComponent();
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
@@ -37,9 +40,6 @@ class BasketPage extends JFrame {
 
 	private void initComponent() {
 		getContentPane().setLayout(null);
-
-		// make shopper Present
-		shopper = store.getCustomerList().get(CustomerPage.getIndexOfCustomer());
 
 		comboProduct = new JComboBox<>(toArray(shopper.getBasketList()));
 		comboProduct.setForeground(UIManager.getColor("Desktop.background"));

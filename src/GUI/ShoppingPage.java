@@ -30,12 +30,12 @@ public class ShoppingPage extends JFrame {
 	private BasketPage basket = new BasketPage();
 	static private boolean check = true;
 
-	public ShoppingPage(Customer customer) {
+	public ShoppingPage() {
 		super("Shopping Page");
 		getContentPane().setBackground(SystemColor.controlDkShadow);
 		this.setBackground(new Color(216, 191, 216));
 
-		shopper = customer;
+		shopper = MainPage.shopper;
 
 		initComponent();
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -25,6 +25,9 @@ public class PaymentPage extends JFrame {
 	public PaymentPage() {
 		super("Payment Page");
 		getContentPane().setBackground(SystemColor.controlText);
+
+		shopper = MainPage.shopper;
+
 		initComponent();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
@@ -46,8 +49,6 @@ public class PaymentPage extends JFrame {
 
 	public void initComponent() {
 		getContentPane().setLayout(null);
-		// make shopper Present
-		shopper = store.getCustomerList().get(CustomerPage.getIndexOfCustomer());
 
 		// create Comtainer
 		Container firstContainer = new Container();
@@ -199,7 +200,7 @@ public class PaymentPage extends JFrame {
 		buttonShopping.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				check = false;
-				ShoppingPage shopping = new ShoppingPage(shopper);
+				ShoppingPage shopping = new ShoppingPage();
 				setTextproductCustomerInShopping();
 				updateElseInShopping();
 				shopping.run();

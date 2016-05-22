@@ -1,6 +1,5 @@
 package code.Interface;
 
-import code.customer.Customer;
 import gui.ShoppingPage;
 import gui1.CustomerPage;
 import gui1.LoginPage;
@@ -23,9 +22,9 @@ public interface ButtonAction {
 		});
 	}
 
-	default void toShopping(JFrame frame, JButton shopping, Customer who) {
+	default void toShopping(JFrame frame, JButton shopping) {
 		shopping.addActionListener(e -> {
-			ShoppingPage page = new ShoppingPage(who);
+			ShoppingPage page = new ShoppingPage();
 			page.run();
 			frame.dispose();
 		});

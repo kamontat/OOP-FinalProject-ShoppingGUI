@@ -66,7 +66,7 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 			int row = table.getSelectedRow();
 			if (checkRow(row)) {
 				MainPage.shopper = getCustomerAt(row);
-				ShoppingPage shopping = new ShoppingPage(MainPage.shopper);
+				ShoppingPage shopping = new ShoppingPage();
 				shopping.run();
 				setVisible(false);
 			}
