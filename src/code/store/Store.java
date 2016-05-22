@@ -102,36 +102,34 @@ public class Store {
 	}
 
 	public Customer searchIDCustomer(String personID) {
-		for (int i = 0; i < customerList.size(); i++) {
-			if (customerList.get(i).getID().equals(personID)) {
-				return customerList.get(i);
+		for (Customer customer : customerList) {
+			if (customer.getID().equals(personID)) {
+				return customer;
 			}
 		}
 		return null;
-	}
-
-	public ArrayList<Integer> searchCustomer(String type, String text) {
-		ArrayList<Integer> index = new ArrayList<>();
-		for (int i = 0; i < customerList.size(); i++) {
-			if (type.equalsIgnoreCase("name") && customerList.get(i).getName().equalsIgnoreCase(text)) {
-				index.add(i);
-			} else if (type.equalsIgnoreCase("lastname") && customerList.get(i).getLastname().equalsIgnoreCase(text)) {
-				index.add(i);
-			} else if (type.equalsIgnoreCase("age") && customerList.get(i).getAge() == Integer.parseInt(text)) {
-				index.add(i);
-			} else if (type.equalsIgnoreCase("memberclass") && customerList.get(i).getMemberClass().equalsIgnoreCase(text)) {
-				index.add(i);
-			}
-		}
-		return index;
 	}
 
 	public void removeCustomer(int CustomerIndex) {
 		customerList.remove(CustomerIndex);
 	}
 
+	public int removeCustomer(Customer custmer) {
+		for (int i = 0; i < customerList.size(); i++) {
+			if (customerList.get(i).getID().equals(custmer.getID())) {
+				customerList.remove(i);
+				return i;
+			}
+		}
+		return -1;
+	}
+
 	public void removeProduct(int ProductIndex) {
 		productList.remove(ProductIndex);
+	}
+
+	public void removeProduct(ProductExt Product) {
+		productList.remove(Product);
 	}
 
 	public int checkAvailability(ProductExt product, int num) {

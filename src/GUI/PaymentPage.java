@@ -199,7 +199,7 @@ public class PaymentPage extends JFrame {
 		buttonShopping.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				check = false;
-				ShoppingPage shopping = new ShoppingPage();
+				ShoppingPage shopping = new ShoppingPage(shopper);
 				setTextproductCustomerInShopping();
 				updateElseInShopping();
 				shopping.run();
@@ -304,7 +304,7 @@ public class PaymentPage extends JFrame {
 	 */
 	public void setTextproductCustomerInBasket() {
 		String printBasket = String.format("<pre>%-10s %-31s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Size", "Weight", "Price", "Number");
-		printBasket += shopper.getBasketStringWithoutMaterial();
+		printBasket += shopper.getBasketString();
 		textProductCustomer.setText("<html>" + printBasket + "</html>");
 	}
 

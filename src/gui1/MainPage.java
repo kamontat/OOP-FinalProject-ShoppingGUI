@@ -26,12 +26,14 @@ public class MainPage extends JFrame implements ButtonAction {
 	private static ArrayList<Customer> customerList = assignCustomer();
 	public static Store store = assignStore();
 
+	public static Customer shopper = customerList.get(0);
+
 	public MainPage() {
 		super("Main Page");
 
 		setContentPane(panel);
 
-		toShopping(this, shoppingButton);
+		toShopping(this, shoppingButton, shopper);
 		toCustomer(this, customerButton);
 		toLogin(this, storeButton);
 		toExit(exitButton);
@@ -48,7 +50,7 @@ public class MainPage extends JFrame implements ButtonAction {
 	public static Object[][] getCustomerList() {
 		Object[][] temp = new Object[customerList.size()][6];
 		for (int i = 0; i < customerList.size(); i++) {
-			temp[i] = customerList.get(i).getCustomerInfo();
+			temp[i] = customerList.get(i).getCustomerInfo(6);
 		}
 		return temp;
 	}

@@ -106,23 +106,26 @@ public class Customer extends Person {
 	}
 
 	public void addToHistoryList(Order order) {
-		if (basketList.size() != 0) {
+		if (order.getBuyList().size() != 0) {
 			historyList.add(order.clone());
 		}
 	}
 
-	public String getBasketString() {
-		String output = "";
-		ProductExt customerProduct;
-		String format = "<pre>%-10s %-31s %-25s %-6s %-6.1f %,-8.0f   %-6d</pre>";
-		for (OrderElement basket : basketList) {
-			customerProduct = basket.getProduct();
-			output += String.format(format, customerProduct.getProductID(), customerProduct.getName(), customerProduct.getMaterial(), customerProduct.getSize(), customerProduct.getWeight(), customerProduct.getPrice(), basket.getNum());
+	public double getDiscountRate() {
+		double discountRate = 0;
+		if (memberClass.equals("Gold")) {
+			discountRate = 0.2;
+		} else if (memberClass.equals("Silver")) {
+			discountRate = 0.1;
+		} else if (memberClass.equals("Green")) {
+			discountRate = 0.05;
+		} else if (getAge() >= 60) {
+			discountRate = 0.01;
 		}
-		return output;
+		return discountRate;
 	}
 
-	public String getBasketStringWithoutMaterial() {
+	public String getBasketString() {
 		String output = "";
 		ProductExt customerProduct;
 		String format = "<pre>%-10s %-31s %-6s %-6.1f %,-8.0f   %-6d</pre>";
@@ -134,10 +137,22 @@ public class Customer extends Person {
 	}
 
 	/**
-	 * @return Array 6 Element
+	 * array in form (ID, Name, LastName, Gender, Age, Class)
+	 * return null if input element more than it have
+	 *
+	 * @param element
+	 * 		element of array
+	 * @return array with element element
 	 */
-	public Object[] getCustomerInfo() {
-		return new Object[]{getID(), getName(), getLastname(), getGender(), getAge(), getMemberClass()};
+	public Object[] getCustomerInfo(int element) {
+		Object[] all = new Object[]{getID(), getName(), getLastName(), getGender(), getAge(), getMemberClass()};
+		if (element <= all.length) {
+			Object[] temp = new Object[element];
+			// copy all into temp with element
+			System.arraycopy(all, 0, temp, 0, element);
+			return temp;
+		}
+		return null;
 	}
 
 	public String getHistoryListString() {
@@ -153,12 +168,16 @@ public class Customer extends Person {
 		return output;
 	}
 
+	public Customer clone() {
+		return new Customer(getID(), getName(), getLastName(), getGender(), getAge(), getMemberClass());
+	}
+
 	public boolean equals(String personID, String name, String lastname) {
-		return super.getID().equals(personID) && super.getName().equals(name) && super.getLastname().equals(lastname);
+		return super.getID().equals(personID) && super.getName().equals(name) && super.getLastName().equals(lastname);
 	}
 
 	public String toString() {
 		String format = "%s %s %s %s %s %d";
-		return String.format(format, this.customerID, super.getID(), super.getName(), super.getLastname(), super.getGender(), super.getAge());
+		return String.format(format, this.customerID, super.getID(), super.getName(), super.getLastName(), super.getGender(), super.getAge());
 	}
 }

@@ -1,12 +1,13 @@
 package gui;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-
 import code.customer.Customer;
 import code.store.Store;
 import gui1.MainPage;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class HistoryOfCustomerPage extends JFrame {
 
@@ -14,11 +15,14 @@ public class HistoryOfCustomerPage extends JFrame {
 	private Customer shopper;
 	private JLabel textProductCustomer, textMemberClass, textCustomer;
 
-	public HistoryOfCustomerPage() {
+	public HistoryOfCustomerPage(Customer customer) {
 		super("History Of Customer Page");
 		getContentPane().setBackground(Color.BLACK);
+
+		this.shopper = customer;
+
 		initComponent();
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
 	public void run() {
@@ -30,8 +34,6 @@ public class HistoryOfCustomerPage extends JFrame {
 
 	public void initComponent() {
 		getContentPane().setLayout(null);
-		// make shopper Present
-		shopper = store.getCustomerList().get(CustomerPage.getIndexOfCustomer());
 
 		Container firstContainer = new Container();
 		firstContainer.setBounds(0, 0, 650, 90);

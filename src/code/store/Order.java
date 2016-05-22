@@ -14,21 +14,15 @@ public class Order {
 	private int orderID;
 	private static int numOrders;
 
-	public Order() {
-		numOrders++;
-		customer = null;
-		shipping = null;
-		payment = null;
-		orderID = numOrders;
-	}
-
 	public Order(Customer customer, boolean registered, boolean express) {
 		numOrders++;
 		this.buyList.addAll(customer.getBasketList());
+
 		this.customer = customer;
-		double discountRate = getDiscountRate();
+
 		shipping = new Shipping(customer.getBasketTotalWeight(), registered, express);
-		payment = new Payment(customer.getBasketTotalPrice(), discountRate, shipping.getShippingFee());
+		payment = new Payment(customer.getBasketTotalPrice(), customer.getDiscountRate(), shipping.getShippingFee());
+
 		orderID = numOrders;
 	}
 
@@ -82,32 +76,7 @@ public class Order {
 
 	public Order clone() {
 		numOrders--;
-
-		Order order = new Order();
-
-		for (int i = 0; i < this.buyList.size(); i++) {
-			order.buyList.add(this.buyList.get(i));
-		}
-
-		order.customer = this.customer;
-		order.shipping = this.shipping;
-		order.payment = this.payment;
-		order.orderID = this.orderID;
-		return order;
-	}
-
-	public double getDiscountRate() {
-		double discountRate = 0;
-		if (customer.getMemberClass().equals("Gold")) {
-			discountRate = 0.2;
-		} else if (customer.getMemberClass().equals("Silver")) {
-			discountRate = 0.1;
-		} else if (customer.getMemberClass().equals("Green")) {
-			discountRate = 0.05;
-		} else if (customer.getAge() >= 60) {
-			discountRate = 0.01;
-		}
-		return discountRate;
+		return new Order(customer.clone(), shipping.isRegistered(), shipping.isExpress());
 	}
 
 	public String toString() {

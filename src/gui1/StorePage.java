@@ -68,9 +68,7 @@ public class StorePage extends JFrame implements Table, ButtonAction {
 		restockButton.addActionListener(e -> {
 			int row = table.getSelectedRow();
 
-			if (row == -1) {
-				JOptionPane.showMessageDialog(null, "Please, choose some product", "Error", JOptionPane.ERROR_MESSAGE);
-			} else {
+			if (checkRow(row)) {
 				ProductExt product = getProductAt(row);
 
 				if (product.isRestock()) {
@@ -88,15 +86,18 @@ public class StorePage extends JFrame implements Table, ButtonAction {
 					}
 				}
 			}
+			resetSelection(table);
 		});
 	}
 
 	private void history() {
 		historyButton.addActionListener(e -> {
-
 			int row = table.getSelectedRow();
-			HistoryOfStorePage page = new HistoryOfStorePage(getProductAt(row));
-			page.run();
+			if (checkRow(row)) {
+				HistoryOfStorePage page = new HistoryOfStorePage(getProductAt(row));
+				page.run();
+			}
+			resetSelection(table);
 		});
 	}
 
@@ -105,10 +106,10 @@ public class StorePage extends JFrame implements Table, ButtonAction {
 		return store.searchProduct(productName);
 	}
 
-	private void updateLabel(double reven, double expen) {
-		revenueLabel.setText("Revenue: " + reven);
-		expenseLabel.setText("Expense: " + expen);
-		profitLabel.setText("Profit: " + (reven - expen));
+	private void updateLabel(double revenue, double expense) {
+		revenueLabel.setText("Revenue: " + revenue);
+		expenseLabel.setText("Expense: " + expense);
+		profitLabel.setText("Profit: " + (revenue - expense));
 	}
 
 	private void updateTable(Object newValue, int row, int column) {

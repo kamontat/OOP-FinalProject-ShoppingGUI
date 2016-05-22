@@ -183,7 +183,7 @@ class BasketPage extends JFrame {
 	 */
 	public void setTextproductCustomerInBasket() {
 		String printBasket = String.format("<pre>%-10s %-31s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Size", "Weight", "Price", "Number");
-		printBasket += shopper.getBasketStringWithoutMaterial();
+		printBasket += shopper.getBasketString();
 		textProductCustomer.setText("<html>" + printBasket + "</html>");
 	}
 
@@ -191,7 +191,7 @@ class BasketPage extends JFrame {
 	 * set basket of Customer in Shopping Page
 	 */
 	private void setTextproductCustomerInShopping() {
-		String printBasket = String.format("<pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Material", "Size", "Weight", "Price", "Number");
+		String printBasket = String.format("<pre>%-10s %-31s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Size", "Weight", "Price", "Number");
 		printBasket += shopper.getBasketString();
 		ShoppingPage.getTextProductCustomer().setText("<html>" + printBasket + "</html>");
 		updateElseInShopping();

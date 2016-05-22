@@ -105,4 +105,16 @@ public interface Table {
 			}
 		});
 	}
+
+	default boolean checkRow(int row) {
+		if (row == -1) {
+			JOptionPane.showMessageDialog(null, "Please, Click to choose something", "Error", JOptionPane.ERROR_MESSAGE);
+			return false;
+		}
+		return true;
+	}
+
+	default void resetSelection(JTable table) {
+		table.clearSelection();
+	}
 }

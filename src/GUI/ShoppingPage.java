@@ -23,17 +23,20 @@ public class ShoppingPage extends JFrame {
 	private Store store = MainPage.store;
 	// get product and customer from store
 	private ArrayList<ProductExt> productList = store.getProductList();
-	private Customer shopper = store.getCustomerList().get(CustomerPage.getIndexOfCustomer());
+	private Customer shopper;
 	// variable else
 	private static int numProductCustomer = 0, priceProductCustomer = 0;
 
 	private BasketPage basket = new BasketPage();
 	static private boolean check = true;
 
-	public ShoppingPage() {
+	public ShoppingPage(Customer customer) {
 		super("Shopping Page");
 		getContentPane().setBackground(SystemColor.controlDkShadow);
 		this.setBackground(new Color(216, 191, 216));
+
+		shopper = customer;
+
 		initComponent();
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}

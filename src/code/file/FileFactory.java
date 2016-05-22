@@ -9,7 +9,7 @@ import java.util.*;
  */
 public class FileFactory {
 	private File file;
-	private int count = 0;
+	private int size;
 
 	/**
 	 * If use this constructor <br>
@@ -33,14 +33,43 @@ public class FileFactory {
 		return file;
 	}
 
-	public void write(String text) {
+	public void add(String text) {
 		try {
 			FileWriter write = new FileWriter(file, true);
-			write.write(++count + ":" + text + "\n");
+			write.write(text + "\n");
+			size++;
 			write.close();
 		} catch (IOException e) {
 			System.err.println(e.toString());
 		}
+	}
+
+	public void write(String[][] list) {
+		String format = "";
+		for (String[] texts : list) {
+			for (int j = 0; j < texts.length; j++) {
+				// last index
+				if (j == texts.length - 1) {
+					format += texts[j] + " \n";
+				} else {
+					format += texts[j] + ":";
+				}
+			}
+		}
+
+		System.out.println(format);
+
+		// read total number
+		size = list.length;
+
+		try {
+			FileWriter write = new FileWriter(file);
+			write.write(format);
+			write.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	public String[][] read(String separate) {
@@ -58,7 +87,7 @@ public class FileFactory {
 			}
 
 			// read total number
-			count = text.size();
+			size = text.size();
 
 			return text.toArray(new String[text.size()][]);
 		} catch (IOException e) {

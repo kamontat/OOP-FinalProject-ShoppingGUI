@@ -1,8 +1,11 @@
 package gui1;
 
-import code.store.Store;
 import code.Interface.ButtonAction;
 import code.Interface.Table;
+import code.customer.Customer;
+import code.store.Store;
+import gui.HistoryOfCustomerPage;
+import gui.ShoppingPage;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
@@ -20,6 +23,7 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 	private JTextField searchField;
 	private JButton addButton;
 	private JTable table;
+	private PersonModel model;
 	private JButton mainButton;
 	private JButton selectButton;
 	private JButton removeButton;
@@ -27,8 +31,13 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 
 	public CustomerPage() {
 		setContentPane(panel);
+		model = new PersonModel(MainPage.getCustomerList(), new String[]{"ID", "Name", "LastName", "Gender", "Age", "Class"});
 
 		settingTable();
+
+		select();
+		history();
+		remove();
 
 		toMain(this, mainButton);
 	}
@@ -38,7 +47,7 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 		// Disable dragging
 		table.getTableHeader().setReorderingAllowed(false);
 
-		table.setModel(new StorePage.PersonModel(MainPage.getCustomerList(), new String[]{"ID", "Name", "LastName", "Gender", "Age", "Class"}));
+		table.setModel(model);
 
 		table.getColumnModel().getColumn(0).setMinWidth(50); // id
 		table.getColumnModel().getColumn(1).setMinWidth(100); // name
@@ -52,10 +61,50 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 		searching(searchField, rowSorter);
 	}
 
+	private void select() {
+		selectButton.addActionListener(e -> {
+			int row = table.getSelectedRow();
+			if (checkRow(row)) {
+				MainPage.shopper = getCustomerAt(row);
+				ShoppingPage shopping = new ShoppingPage(MainPage.shopper);
+				shopping.run();
+				setVisible(false);
+			}
+			resetSelection(table);
+		});
+	}
+
+	private void remove() {
+		removeButton.addActionListener(e -> {
+			int row = table.getSelectedRow();
+			if (checkRow(row)) {
+				int customerIndex = store.removeCustomer(getCustomerAt(row));
+				model.removeRow(customerIndex);
+			}
+			resetSelection(table);
+		});
+	}
+
+	private void history() {
+		historyButton.addActionListener(e -> {
+			int row = table.getSelectedRow();
+			HistoryOfCustomerPage history = new HistoryOfCustomerPage(getCustomerAt(row));
+			history.run();
+		});
+	}
+
+	private void writeToFile() {
+
+	}
+
+	private Customer getCustomerAt(int row) {
+		String id = String.valueOf(table.getValueAt(row, 0));
+		return store.searchIDCustomer(id);
+	}
+
 	public void run(Point point) {
-		setMinimumSize(new Dimension(500, 530));
+		setMinimumSize(new Dimension(650, 530));
 		pack();
-		System.out.println(getSize());
 		setLocation(point);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

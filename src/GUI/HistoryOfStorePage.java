@@ -72,7 +72,7 @@ public class HistoryOfStorePage extends JFrame {
 		String printHistoryList = "<pre>";
 		printHistoryList += String.format(format, "customerID", "personID", "Name", "Lastname", "Gender", "Age");
 		for (int i = 0; i < allCustomer.size(); i++) {
-			printHistoryList += String.format(format, allCustomer.get(i).getCustomerID(), allCustomer.get(i).getID(), allCustomer.get(i).getName(), allCustomer.get(i).getLastname(), allCustomer.get(i).getGender(), Integer.toString(allCustomer.get(i).getAge()));
+			printHistoryList += String.format(format, allCustomer.get(i).getCustomerID(), allCustomer.get(i).getID(), allCustomer.get(i).getName(), allCustomer.get(i).getLastName(), allCustomer.get(i).getGender(), Integer.toString(allCustomer.get(i).getAge()));
 		}
 
 		printHistoryList += "</pre>";

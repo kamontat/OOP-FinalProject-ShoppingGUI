@@ -6,11 +6,6 @@ public class OrderElement {
 	private ProductExt product;
 	private int num;
 
-	public OrderElement() {
-		product = new ProductExt();
-		num = 0;
-	}
-
 	public OrderElement(ProductExt product, int num) {
 		this.product = product;
 		this.num = num;

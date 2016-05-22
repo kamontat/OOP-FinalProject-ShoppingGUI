@@ -116,12 +116,7 @@ public class Product {
 	}
 	
 	public void restock() {
-		currNumStock += numRestocks;
+		returnStock(numRestocks);
 		restock = false;
-	}
-
-	public String toString() {
-		String format = "%s. %s, %.3f, %.2f, %d, %d";
-		return String.format(format, this.productID, this.name, this.weight, this.price, this.currNumStock, this.numRestocks);
 	}
 }
