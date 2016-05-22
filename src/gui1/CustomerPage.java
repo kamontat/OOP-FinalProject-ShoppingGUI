@@ -30,6 +30,7 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 	private JButton historyButton;
 
 	public CustomerPage() {
+		super("Customer Page");
 		setContentPane(panel);
 		model = new PersonModel(MainPage.getCustomerList(), new String[]{"ID", "Name", "LastName", "Gender", "Age", "Class"});
 
