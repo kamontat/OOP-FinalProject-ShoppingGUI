@@ -42,7 +42,7 @@ public class MainPage extends JFrame implements ButtonAction {
 	public static Object[][] getProductList() {
 		Object[][] temp = new Object[productList.size()][9];
 		for (int i = 0; i < productList.size(); i++) {
-			temp[i] = productList.get(i).getProductInfo();
+			temp[i] = productList.get(i).getProductInfo(9);
 		}
 		return temp;
 	}

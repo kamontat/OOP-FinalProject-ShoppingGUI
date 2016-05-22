@@ -50,16 +50,28 @@ public class ProductExt extends Product {
 		this.buyingPrice = buyingPrice;
 	}
 
-	/**
-	 * @return Array 9 Element
-	 */
-	public Object[] getProductInfo() {
-		return new Object[]{getProductID(), getName(), getMaterial(), getSize(), Double.valueOf(getWeight()), Integer.valueOf(getCurrNumStock()), Integer.valueOf(getNumRestocks()), Double.valueOf(getPrice()), Double.valueOf(getBuyingPrice())};
-	}
-	
 	public double restockProductExt() {
 		super.restock();
 		return this.buyingPrice * super.getNumRestocks();
+	}
+
+	/**
+	 * array in form (ID, Name, material, size, weight, stock, restock, price, buying price)
+	 * return null if input element more than it have
+	 *
+	 * @param element
+	 * 		element of array
+	 * @return array with element element
+	 */
+	public Object[] getProductInfo(int element) {
+		Object[] all = new Object[]{getProductID(), getName(), getMaterial(), getSize(), Double.valueOf(getWeight()), Integer.valueOf(getCurrNumStock()), Integer.valueOf(getNumRestocks()), Double.valueOf(getPrice()), Double.valueOf(getBuyingPrice())};
+		if (element <= all.length) {
+			Object[] temp = new Object[element];
+			// copy all into temp with element
+			System.arraycopy(all, 0, temp, 0, element);
+			return temp;
+		}
+		return null;
 	}
 	
 	public String toString() {
