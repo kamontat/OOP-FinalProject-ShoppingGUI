@@ -12,7 +12,8 @@ public class Customer extends Person {
 	private ArrayList<OrderElement> basketList;
 	private ArrayList<Order> historyList;
 	private static int numCustomers;
-
+	
+	// TODO: 22/5/59 guest member
 	public Customer() {
 		super();
 		numCustomers++;

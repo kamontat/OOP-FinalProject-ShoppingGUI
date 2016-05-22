@@ -30,7 +30,6 @@ public class MainPage extends JFrame implements ButtonAction {
 
 	public MainPage() {
 		super("Main Page");
-
 		setContentPane(panel);
 
 		toShopping(this, shoppingButton);
@@ -71,7 +70,6 @@ public class MainPage extends JFrame implements ButtonAction {
 				temp.add(new ProductExt(product[0], product[1], product[2], product[3], product[4], product[5], product[6], product[7]));
 			else System.err.println("product text-file error");
 		}
-
 		return temp;
 	}
 
