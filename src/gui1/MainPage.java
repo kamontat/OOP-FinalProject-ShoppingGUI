@@ -63,6 +63,14 @@ public class MainPage extends JFrame implements ButtonAction {
 	}
 
 	/**
+	 * rewrite customer file by using array of customer
+	 */
+	public static void reWriteStoreInfo() {
+		factory.setPath("src/textfile/StoreInfo.txt");
+		factory.write(new Object[][]{{store.getRevenue(), store.getExpense()}});
+	}
+
+	/**
 	 * Assign product into the arrayList By using <i>text file</i> and <i>return</i>
 	 *
 	 * @return Product Array

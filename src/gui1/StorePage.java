@@ -27,17 +27,20 @@ public class StorePage extends JFrame implements Table, ButtonAction {
 	private JLabel revenueLabel;
 	private JLabel expenseLabel;
 	private JLabel profitLabel;
+	private JButton checkButton;
 
 	public StorePage() {
 		super("Store Page");
 		setContentPane(panel);
 
 		settingTable();
-		// assign button
 
+		// assign button
 		toMain(this, mainButton);
 		restock();
 		history();
+		check();
+
 
 		updateLabel(store.getRevenue(), store.getExpense());
 	}
@@ -98,6 +101,13 @@ public class StorePage extends JFrame implements Table, ButtonAction {
 				page.run();
 			}
 			resetSelection(table);
+		});
+	}
+
+	private void check() {
+		checkButton.addActionListener(e -> {
+			MainPage.reWriteStoreInfo();
+			JOptionPane.showMessageDialog(null, "Update Revenue and expense successful", "Thank you", JOptionPane.INFORMATION_MESSAGE);
 		});
 	}
 
