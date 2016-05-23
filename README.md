@@ -25,8 +25,9 @@ we done it when I study in first term of first year in kasetsert university (12/
 
 - **version**
     - 6.0.0 <- Renew gui code (Main, Login, Store)
-    - 6.0.3 <- Renew gui code (Customer, Shopping)
+    - 6.0.3 <- Renew gui code (Customer)
     - 6.0.5 <- create new way to add new customer
+    - 6.0.6 <- renew all format of gui
 
 ### What is this for? ###
 
