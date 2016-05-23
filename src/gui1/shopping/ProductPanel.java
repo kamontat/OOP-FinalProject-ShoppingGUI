@@ -12,7 +12,7 @@ import java.net.URL;
  * @author kamontat
  * @since 24/5/59 - 00:27
  */
-public class ProductLabel extends JComponent {
+public class ProductPanel extends JComponent {
 
 	private JCheckBox CheckBox;
 	private JSpinner spinner;
@@ -33,7 +33,7 @@ public class ProductLabel extends JComponent {
 	 * @param panel
 	 * 		Add to this panel
 	 */
-	public ProductLabel(JFrame page, JPanel panel) {
+	public ProductPanel(JFrame page, JPanel panel) {
 		panel.add(this.panel);
 		page.pack();
 
@@ -88,7 +88,7 @@ public class ProductLabel extends JComponent {
 	public static void main(String[] args) {
 		ShoppingPage page = new ShoppingPage();
 		page.run(new Point(0, 0));
-		ProductLabel newPage = new ProductLabel(page, page.getProductPanel());
+		ProductPanel newPage = new ProductPanel(page, page.getProductPanel());
 		newPage.setInformation("images/Earring/smallSize/BlueTopazesOliveLeafEarring.jpg", null);
 		newPage.setPopupPic("images/Earring/bigSize/BlueTopazesOliveLeafEarring.jpg");
 	}
