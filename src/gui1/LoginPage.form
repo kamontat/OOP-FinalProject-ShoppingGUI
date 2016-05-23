@@ -40,7 +40,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <font name="AppleMyungjo" size="16" style="1"/>
+                  <font name="AppleMyungjo" size="20" style="1"/>
                   <foreground color="-16777216"/>
                   <horizontalTextPosition value="0"/>
                   <text value="- OK -"/>
@@ -51,7 +51,7 @@
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
-                  <font name="AppleMyungjo" size="16"/>
+                  <font name="AppleMyungjo" size="20"/>
                   <foreground color="-11382190"/>
                   <horizontalTextPosition value="0"/>
                   <text value="- Cancel -"/>
@@ -77,7 +77,7 @@
             </constraints>
             <properties>
               <font name="AppleMyungjo" size="28"/>
-              <foreground color="-1"/>
+              <foreground color="-1644826"/>
               <text value="Password:"/>
             </properties>
           </component>
@@ -88,7 +88,7 @@
             <properties>
               <enabled value="true"/>
               <font name="AppleMyungjo" size="28"/>
-              <foreground color="-1"/>
+              <foreground color="-1644826"/>
               <text value="Username:"/>
             </properties>
           </component>
