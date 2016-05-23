@@ -20,6 +20,8 @@ public class AdderCustomerPage extends JDialog {
 	private JComboBox memberComboBox;
 	private JComboBox genderComboBox;
 
+	private Customer newCustomer;
+
 	public AdderCustomerPage() {
 		setContentPane(contentPane);
 		setModal(true);
@@ -32,6 +34,10 @@ public class AdderCustomerPage extends JDialog {
 
 		// call onOK() when ENTER been press
 		contentPane.registerKeyboardAction(e -> onOK(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+	}
+
+	public Customer getNewCustomer() {
+		return newCustomer;
 	}
 
 	private void onOK() {
@@ -47,9 +53,10 @@ public class AdderCustomerPage extends JDialog {
 
 			if (checkNumber(id) && checkNumber(age) && id.length() == 4 && age.length() <= 3) {
 				// add new customer
-				Customer shopper = new Customer(id, name, lastName, gender, age, member);
-				store.addCustomer(shopper);
+				newCustomer = new Customer(id, name, lastName, gender, age, member);
+				store.addCustomer(newCustomer);
 				MainPage.reWriteCustomer();
+				dispose();
 			} else
 				JOptionPane.showMessageDialog(null, "Enter correct all information", "Error", JOptionPane.ERROR_MESSAGE);
 		}
@@ -58,7 +65,6 @@ public class AdderCustomerPage extends JDialog {
 	private void onCancel() {
 		// add your code here if necessary
 		dispose();
-		String duplicateCode = "";
 	}
 
 	private boolean checkNumber(String text) {

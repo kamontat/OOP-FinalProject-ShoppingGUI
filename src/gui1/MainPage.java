@@ -47,9 +47,9 @@ public class MainPage extends JFrame implements ButtonAction {
 	}
 
 	public static Object[][] getCustomerList() {
-		Object[][] temp = new Object[customerList.size()][6];
-		for (int i = 0; i < customerList.size(); i++) {
-			temp[i] = customerList.get(i).getCustomerInfo(6);
+		Object[][] temp = new Object[customerList.size() - 1][6];
+		for (int i = 0; i < temp.length; i++) {
+			temp[i] = customerList.get(i + 1).getCustomerInfo(6);
 		}
 		return temp;
 	}
@@ -89,10 +89,11 @@ public class MainPage extends JFrame implements ButtonAction {
 	private static ArrayList<Customer> assignCustomer() {
 		ArrayList<Customer> temp = new ArrayList<>();
 
+		// guest member
+		temp.add(new Customer());
+
 		factory.setPath("src/textfile/Customer.txt");
 		String[][] allCustomer = factory.read(":");
-
-		temp.add(new Customer());
 
 		for (String[] customer : allCustomer) {
 			if (customer.length == 6)

@@ -56,9 +56,6 @@ public class FileFactory {
 				}
 			}
 		}
-
-		System.out.println(output);
-
 		// read total number
 		size = list.length;
 

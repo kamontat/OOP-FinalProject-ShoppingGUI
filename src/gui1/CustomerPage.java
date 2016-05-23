@@ -36,6 +36,7 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 
 		settingTable();
 
+		add();
 		select();
 		history();
 		remove();
@@ -62,6 +63,15 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 		searching(searchField, rowSorter);
 	}
 
+	private void add() {
+		addButton.addActionListener(e -> {
+			AdderCustomerPage adderPage = new AdderCustomerPage();
+			adderPage.run(getLocation());
+			model.addRow(adderPage.getNewCustomer().getCustomerInfo(6));
+			resetSelection(table);
+		});
+	}
+
 	private void select() {
 		selectButton.addActionListener(e -> {
 			int row = table.getSelectedRow();
@@ -69,7 +79,7 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 				MainPage.shopper = getCustomerAt(row);
 				ShoppingPage shopping = new ShoppingPage();
 				shopping.run();
-				setVisible(false);
+				dispose();
 			}
 			resetSelection(table);
 		});
@@ -79,8 +89,9 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 		removeButton.addActionListener(e -> {
 			int row = table.getSelectedRow();
 			if (checkRow(row)) {
-				int customerIndex = store.removeCustomer(getCustomerAt(row));
+				int customerIndex = store.removeCustomer(getCustomerAt(row), false);
 				model.removeRow(customerIndex);
+				MainPage.reWriteCustomer();
 			}
 			resetSelection(table);
 		});
@@ -92,10 +103,6 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 			HistoryOfCustomerPage history = new HistoryOfCustomerPage(getCustomerAt(row));
 			history.run();
 		});
-	}
-
-	private void writeToFile() {
-
 	}
 
 	private Customer getCustomerAt(int row) {

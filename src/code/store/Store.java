@@ -114,11 +114,24 @@ public class Store {
 		customerList.remove(CustomerIndex);
 	}
 
-	public int removeCustomer(Customer custmer) {
+	/**
+	 * remove Customer and return index of that customer
+	 *
+	 * @param customer
+	 * 		customer want to remove
+	 * @param guest
+	 * 		include guest or not
+	 * @return index of remove customer
+	 */
+	public int removeCustomer(Customer customer, boolean guest) {
 		for (int i = 0; i < customerList.size(); i++) {
-			if (customerList.get(i).getID().equals(custmer.getID())) {
+			if (customerList.get(i).getID().equals(customer.getID())) {
 				customerList.remove(i);
-				return i;
+				if (guest) {
+					return i;
+				} else {
+					return i - 1;
+				}
 			}
 		}
 		return -1;
