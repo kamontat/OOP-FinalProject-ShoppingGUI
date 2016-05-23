@@ -67,7 +67,9 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 		addButton.addActionListener(e -> {
 			AdderCustomerPage adderPage = new AdderCustomerPage();
 			adderPage.run(getLocation());
-			model.addRow(adderPage.getNewCustomer().getCustomerInfo(6));
+			if (adderPage.getNewCustomer() != null) {
+				model.addRow(adderPage.getNewCustomer().getCustomerInfo(6));
+			}
 			resetSelection(table);
 		});
 	}

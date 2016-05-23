@@ -6,9 +6,14 @@ import code.store.Store;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class AdderCustomerPage extends JDialog {
 	private Store store = MainPage.store;
+
+	private int CORRECTID = 0;
+	private int DUPLICATEID = 1;
+	private int INVALIDID = 2;
 
 	private JPanel contentPane;
 	private JButton buttonOK;
@@ -19,12 +24,16 @@ public class AdderCustomerPage extends JDialog {
 	private JTextField ageField;
 	private JComboBox memberComboBox;
 	private JComboBox genderComboBox;
+	private JLabel checkIDLabel;
 
 	private Customer newCustomer;
 
 	public AdderCustomerPage() {
 		setContentPane(contentPane);
 		setModal(true);
+
+		// check id every time
+		checkIDInstant();
 
 		buttonOK.addActionListener(e -> onOK());
 		buttonCancel.addActionListener(e -> onCancel());
@@ -50,8 +59,7 @@ public class AdderCustomerPage extends JDialog {
 			String gender = (String) genderComboBox.getSelectedItem();
 			String age = ageField.getText();
 			String member = (String) memberComboBox.getSelectedItem();
-
-			if (checkNumber(id) && checkNumber(age) && id.length() == 4 && age.length() <= 3) {
+			if (checkValidID(id) != CORRECTID && checkNumber(age) && age.length() <= 3) {
 				// add new customer
 				newCustomer = new Customer(id, name, lastName, gender, age, member);
 				store.addCustomer(newCustomer);
@@ -67,11 +75,60 @@ public class AdderCustomerPage extends JDialog {
 		dispose();
 	}
 
+	private void checkIDInstant() {
+		idField.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				updateCheckIDLabel();
+			}
+		});
+	}
+
 	private boolean checkNumber(String text) {
 		for (int i = 0; i < text.length(); i++) {
 			if (Character.isLetter(text.charAt(i))) return false;
 		}
 		return true;
+	}
+
+	/**
+	 * if id input is valid or not
+	 *
+	 * @param id
+	 * 		id String
+	 * @return number Error code
+	 */
+	private int checkValidID(String id) {
+		// all is number, and length should be 4
+		if (!checkNumber(id) || id.length() != 4) {
+			return INVALIDID;
+		}
+
+		for (Customer customer : store.getCustomerList()) {
+			if (customer.getID().equals(id)) return DUPLICATEID;
+		}
+		return CORRECTID;
+	}
+
+	private void updateCheckIDLabel() {
+		if (checkValidID(idField.getText()) == CORRECTID) {
+			checkIDLabel.setText("Valid");
+			checkIDLabel.setForeground(new Color(0, 255, 0));
+		} else if (checkValidID(idField.getText()) == DUPLICATEID) {
+			checkIDLabel.setText("Already Member");
+			checkIDLabel.setForeground(new Color(255, 251, 0));
+		} else {
+			checkIDLabel.setText("Invalid");
+			checkIDLabel.setForeground(new Color(255, 0, 0));
+		}
 	}
 
 	private String convertFirstToCapital(String text) {
