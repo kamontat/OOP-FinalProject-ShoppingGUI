@@ -55,6 +55,14 @@ public class MainPage extends JFrame implements ButtonAction {
 	}
 
 	/**
+	 * rewrite customer file by using array of customer
+	 */
+	public static void reWriteCustomer() {
+		factory.setPath("src/textfile/Customer.txt");
+		factory.write(getCustomerList());
+	}
+
+	/**
 	 * Assign product into the arrayList By using <i>text file</i> and <i>return</i>
 	 *
 	 * @return Product Array
@@ -83,6 +91,8 @@ public class MainPage extends JFrame implements ButtonAction {
 
 		factory.setPath("src/textfile/Customer.txt");
 		String[][] allCustomer = factory.read(":");
+
+		temp.add(new Customer());
 
 		for (String[] customer : allCustomer) {
 			if (customer.length == 6)

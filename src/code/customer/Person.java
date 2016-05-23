@@ -8,8 +8,8 @@ public class Person {
 	private int age;
 
 	public Person() {
-		ID = "";
-		name = "";
+		ID = "0000";
+		name = "Guest";
 		lastName = "";
 		gender = "";
 		age = 0;

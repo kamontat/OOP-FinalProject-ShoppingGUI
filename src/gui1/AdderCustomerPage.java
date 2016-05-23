@@ -1,6 +1,6 @@
-
 package gui1;
 
+import code.customer.Customer;
 import code.store.Store;
 
 import javax.swing.*;
@@ -46,17 +46,19 @@ public class AdderCustomerPage extends JDialog {
 			String member = (String) memberComboBox.getSelectedItem();
 
 			if (checkNumber(id) && checkNumber(age) && id.length() == 4 && age.length() <= 3) {
-				System.out.println("ID valid");
-				System.out.println("AGE valid");
-				System.out.println("Name: " + name + " " + lastName + " Gender: " + gender);
-				System.out.println("Member: " + member);
-			}
+				// add new customer
+				Customer shopper = new Customer(id, name, lastName, gender, age, member);
+				store.addCustomer(shopper);
+				MainPage.reWriteCustomer();
+			} else
+				JOptionPane.showMessageDialog(null, "Enter correct all information", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
 	private void onCancel() {
 		// add your code here if necessary
 		dispose();
+		String duplicateCode = "";
 	}
 
 	private boolean checkNumber(String text) {

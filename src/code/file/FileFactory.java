@@ -44,27 +44,27 @@ public class FileFactory {
 		}
 	}
 
-	public void write(String[][] list) {
-		String format = "";
-		for (String[] texts : list) {
+	public void write(Object[][] list) {
+		String output = "";
+		for (Object[] texts : list) {
 			for (int j = 0; j < texts.length; j++) {
 				// last index
 				if (j == texts.length - 1) {
-					format += texts[j] + " \n";
+					output += texts[j] + " \n";
 				} else {
-					format += texts[j] + ":";
+					output += texts[j] + ":";
 				}
 			}
 		}
 
-		System.out.println(format);
+		System.out.println(output);
 
 		// read total number
 		size = list.length;
 
 		try {
 			FileWriter write = new FileWriter(file);
-			write.write(format);
+			write.write(output);
 			write.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -76,6 +76,7 @@ public class FileFactory {
 		try {
 			ArrayList<String[]> text = new ArrayList<>();
 			String temp;
+
 			BufferedReader read = new BufferedReader(new FileReader(file));
 
 			while ((temp = read.readLine()) != null) {
