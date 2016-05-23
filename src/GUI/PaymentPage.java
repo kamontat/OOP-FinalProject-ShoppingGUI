@@ -4,7 +4,7 @@ import code.customer.Customer;
 import code.payment.Shipping;
 import code.store.OrderElement;
 import code.store.Store;
-import gui1.MainPage;
+import gui1.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;

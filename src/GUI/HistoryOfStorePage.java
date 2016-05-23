@@ -3,7 +3,7 @@ package gui;
 import code.customer.Customer;
 import code.product.ProductExt;
 import code.store.Store;
-import gui1.MainPage;
+import gui1.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;

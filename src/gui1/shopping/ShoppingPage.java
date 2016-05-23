@@ -1,4 +1,4 @@
-package gui1;
+package gui1.shopping;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,8 +32,12 @@ public class ShoppingPage extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
+	public JPanel getProductPanel() {
+		return productPanel;
+	}
+
 	public static void main(String[] args) {
-		gui1.ShoppingPage page = new gui1.ShoppingPage();
+		ShoppingPage page = new ShoppingPage();
 		page.run(new Point(0, 0));
 	}
 }

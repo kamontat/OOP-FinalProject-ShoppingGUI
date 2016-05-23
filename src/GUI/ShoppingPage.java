@@ -4,7 +4,7 @@ import code.customer.Customer;
 import code.product.ProductExt;
 import code.store.OrderElement;
 import code.store.Store;
-import gui1.MainPage;
+import gui1.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -502,5 +502,10 @@ public class ShoppingPage extends JFrame {
 				basket.setVisible(false);
 			}
 		});
+	}
+
+	public static void main(String[] args) {
+		ShoppingPage page = new ShoppingPage();
+		page.run();
 	}
 }

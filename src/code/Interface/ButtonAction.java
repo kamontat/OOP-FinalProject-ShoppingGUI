@@ -1,10 +1,10 @@
 package code.Interface;
 
 import gui.ShoppingPage;
-import gui1.CustomerPage;
-import gui1.LoginPage;
-import gui1.MainPage;
-import gui1.StorePage;
+import gui1.customer.CustomerPage;
+import gui1.store.LoginPage;
+import gui1.main.MainPage;
+import gui1.store.StorePage;
 
 import javax.swing.*;
 

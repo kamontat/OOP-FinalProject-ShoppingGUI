@@ -1,4 +1,4 @@
-package gui1;
+package gui1.store;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,10 +1,11 @@
-package gui1;
+package gui1.store;
 
 import code.Interface.ButtonAction;
 import code.product.ProductExt;
 import code.store.Store;
 import gui.HistoryOfStorePage;
 import code.Interface.Table;
+import gui1.main.MainPage;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;

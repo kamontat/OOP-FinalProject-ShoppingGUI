@@ -1,4 +1,4 @@
-package gui1;
+package gui1.main;
 
 import code.Interface.ButtonAction;
 import code.customer.Customer;

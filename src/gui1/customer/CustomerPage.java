@@ -1,4 +1,4 @@
-package gui1;
+package gui1.customer;
 
 import code.Interface.ButtonAction;
 import code.Interface.Table;
@@ -6,6 +6,7 @@ import code.customer.Customer;
 import code.store.Store;
 import gui.HistoryOfCustomerPage;
 import gui.ShoppingPage;
+import gui1.main.MainPage;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
