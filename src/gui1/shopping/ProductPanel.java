@@ -88,9 +88,9 @@ public class ProductPanel extends JComponent {
 	public static void main(String[] args) {
 		ShoppingPage page = new ShoppingPage();
 		page.run(new Point(0, 0));
-		ProductPanel product1 = new ProductPanel(page, page.getProductPanel());
-		ProductPanel product2 = new ProductPanel(page, page.getProductPanel());
-		ProductPanel product3 = new ProductPanel(page, page.getProductPanel());
+		ProductPanel product1 = new ProductPanel(page, page.getEarringPanel());
+		ProductPanel product2 = new ProductPanel(page, page.getEarringPanel());
+		ProductPanel product3 = new ProductPanel(page, page.getEarringPanel());
 		product1.setInformation("images/Earring/smallSize/BlueTopazesOliveLeafEarring.jpg", null);
 		product2.setInformation("images/Earring/smallSize/BowEarring.jpg", null);
 		product3.setInformation("images/Earring/smallSize/ColorByTheYardEarring.jpg", null);
@@ -98,5 +98,7 @@ public class ProductPanel extends JComponent {
 		product1.setPopupPic("images/Earring/bigSize/BlueTopazesOliveLeafEarring.jpg");
 		product2.setPopupPic("images/Earring/bigSize/BowEarring.jpg");
 		product3.setPopupPic("images/Earring/bigSize/ColorByTheYardEarring.jpg");
+
+		page.pack();
 	}
 }

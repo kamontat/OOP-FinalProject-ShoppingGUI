@@ -19,15 +19,13 @@ public class ShoppingPage extends JFrame {
 	private JLabel customerLabel;
 
 	private JTabbedPane tabbedPane;
-	private JPanel productPanel;
-	private JPanel tempPanel;
+	private JPanel earringPanel;
+	private JPanel pendantPanel;
+	private JPanel ringPanel;
 
 	public ShoppingPage() {
 		super("Shopping Page");
 		setContentPane(panel);
-
-		// set product layout size
-
 	}
 
 	public void run(Point point) {
@@ -38,8 +36,16 @@ public class ShoppingPage extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
-	public JPanel getProductPanel() {
-		return productPanel;
+	public JPanel getEarringPanel() {
+		return earringPanel;
+	}
+
+	public JPanel getPendantPanel() {
+		return pendantPanel;
+	}
+
+	public JPanel getRingPanel() {
+		return ringPanel;
 	}
 
 	public static void main(String[] args) {

@@ -171,9 +171,9 @@
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="bbc3f" binding="productPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
+          <grid id="bbc3f" binding="earringPanel" layout-manager="FlowLayout" hgap="5" vgap="5" flow-align="0">
             <constraints>
-              <tabbedpane title="Untitled"/>
+              <tabbedpane title="Earring"/>
             </constraints>
             <properties>
               <maximumSize width="32767" height="32767"/>
@@ -182,16 +182,25 @@
             <border type="none"/>
             <children/>
           </grid>
-          <grid id="b2e25" binding="tempPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="b2e25" binding="pendantPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <tabbedpane title="Untitled"/>
+              <tabbedpane title="Pendant"/>
             </constraints>
             <properties>
               <maximumSize width="2147483647" height="2147483647"/>
               <minimumSize width="0" height="0"/>
               <opaque value="true"/>
             </properties>
+            <border type="none"/>
+            <children/>
+          </grid>
+          <grid id="6bd57" binding="ringPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+            <margin top="0" left="0" bottom="0" right="0"/>
+            <constraints>
+              <tabbedpane title="Ring"/>
+            </constraints>
+            <properties/>
             <border type="none"/>
             <children/>
           </grid>
