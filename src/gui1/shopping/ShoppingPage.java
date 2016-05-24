@@ -14,7 +14,7 @@ public class ShoppingPage extends JFrame {
 	private JButton basketButton;
 	private JButton paymentButton;
 	private JLabel numProductLabel;
-	private JLabel priceLabel;
+	private JLabel totalPriceLabel;
 	private JLabel memberLabel;
 	private JLabel customerLabel;
 
@@ -22,6 +22,7 @@ public class ShoppingPage extends JFrame {
 	private JPanel earringPanel;
 	private JPanel pendantPanel;
 	private JPanel ringPanel;
+	private JLabel totalNumLabel;
 
 	public ShoppingPage() {
 		super("Shopping Page");
@@ -29,8 +30,9 @@ public class ShoppingPage extends JFrame {
 	}
 
 	public void run(Point point) {
-		setMinimumSize(new Dimension(520, 470));
-		pack();
+		setMinimumSize(new Dimension(650, 470));
+		setPreferredSize(new Dimension(800, 850));
+
 		setLocation(point);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

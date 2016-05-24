@@ -100,6 +100,7 @@ public class ProductPanel extends JComponent {
 		ProductPanel product1 = new ProductPanel(page, page.getEarringPanel());
 		ProductPanel product2 = new ProductPanel(page, page.getEarringPanel());
 		ProductPanel product3 = new ProductPanel(page, page.getEarringPanel());
+
 		product1.setInformation("images/Earring/smallSize/BlueTopazesOliveLeafEarring.jpg", MainPage.store.getProductList().get(0));
 		product2.setInformation("images/Earring/smallSize/BowEarring.jpg", MainPage.store.getProductList().get(1));
 		product3.setInformation("images/Earring/smallSize/ColorByTheYardEarring.jpg", MainPage.store.getProductList().get(2));
@@ -107,7 +108,5 @@ public class ProductPanel extends JComponent {
 		product1.setPopupPic("images/Earring/bigSize/BlueTopazesOliveLeafEarring.jpg");
 		product2.setPopupPic("images/Earring/bigSize/BowEarring.jpg");
 		product3.setPopupPic("images/Earring/bigSize/ColorByTheYardEarring.jpg");
-
-		page.pack();
 	}
 }
