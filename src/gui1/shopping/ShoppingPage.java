@@ -29,7 +29,7 @@ public class ShoppingPage extends JFrame {
 	}
 
 	public void run(Point point) {
-		setMinimumSize(new Dimension(0, 0));
+		setMinimumSize(new Dimension(520, 470));
 		pack();
 		setLocation(point);
 		setVisible(true);

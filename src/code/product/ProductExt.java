@@ -73,6 +73,26 @@ public class ProductExt extends Product {
 		}
 		return null;
 	}
+
+	/**
+	 * toString only <i>name</i> and <i>material</i>
+	 *
+	 * @return String in format of toString
+	 */
+	public String toStringInformation1() {
+		String format = "Name: %s, Material: %s";
+		return String.format(format, super.getName(), this.material);
+	}
+
+	/**
+	 * toString only <i>size</i> and <i>weight</i>
+	 *
+	 * @return String in format of toString
+	 */
+	public String toStringInformation2() {
+		String format = "Size: %s, Weight: %.1f";
+		return String.format(format, this.size, super.getWeight());
+	}
 	
 	public String toString() {
 		String format = "%s. %s, %.1f, %s, %s, %.0f, %d";

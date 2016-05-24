@@ -1,6 +1,7 @@
 package gui1.shopping;
 
 import code.product.ProductExt;
+import gui1.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,6 +19,10 @@ public class ProductPanel extends JComponent {
 	private JSpinner spinner;
 	private JLabel picLabel;
 	private JPanel panel;
+	private JLabel priceLabel;
+	private JLabel stockLabel;
+	private JLabel info2Label;
+	private JLabel info1Label;
 
 	private JDialog dialog = new JDialog();
 
@@ -64,6 +69,10 @@ public class ProductPanel extends JComponent {
 		addIcon(picLabel, url);
 
 		// set product
+		info1Label.setText(product.toStringInformation1());
+		info2Label.setText(product.toStringInformation2());
+		priceLabel.setText(product.getPrice() + " ฿");
+		stockLabel.setText("In Stock: " + product.getCurrNumStock());
 	}
 
 	public void setPopupPic(String path) {
@@ -91,9 +100,9 @@ public class ProductPanel extends JComponent {
 		ProductPanel product1 = new ProductPanel(page, page.getEarringPanel());
 		ProductPanel product2 = new ProductPanel(page, page.getEarringPanel());
 		ProductPanel product3 = new ProductPanel(page, page.getEarringPanel());
-		product1.setInformation("images/Earring/smallSize/BlueTopazesOliveLeafEarring.jpg", null);
-		product2.setInformation("images/Earring/smallSize/BowEarring.jpg", null);
-		product3.setInformation("images/Earring/smallSize/ColorByTheYardEarring.jpg", null);
+		product1.setInformation("images/Earring/smallSize/BlueTopazesOliveLeafEarring.jpg", MainPage.store.getProductList().get(0));
+		product2.setInformation("images/Earring/smallSize/BowEarring.jpg", MainPage.store.getProductList().get(1));
+		product3.setInformation("images/Earring/smallSize/ColorByTheYardEarring.jpg", MainPage.store.getProductList().get(2));
 
 		product1.setPopupPic("images/Earring/bigSize/BlueTopazesOliveLeafEarring.jpg");
 		product2.setPopupPic("images/Earring/bigSize/BowEarring.jpg");
