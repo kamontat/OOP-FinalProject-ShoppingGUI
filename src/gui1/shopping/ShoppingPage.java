@@ -13,15 +13,21 @@ public class ShoppingPage extends JFrame {
 	private JButton mainButton;
 	private JButton basketButton;
 	private JButton paymentButton;
-	private JPanel productPanel;
 	private JLabel numProductLabel;
 	private JLabel priceLabel;
 	private JLabel memberLabel;
 	private JLabel customerLabel;
 
+	private JTabbedPane tabbedPane;
+	private JPanel productPanel;
+	private JPanel tempPanel;
+
 	public ShoppingPage() {
 		super("Shopping Page");
 		setContentPane(panel);
+
+		// set product layout size
+
 	}
 
 	public void run(Point point) {
