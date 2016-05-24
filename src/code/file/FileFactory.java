@@ -1,5 +1,6 @@
 package code.file;
 
+import javax.swing.*;
 import java.io.*;
 import java.util.*;
 
@@ -21,7 +22,11 @@ public class FileFactory {
 
 	public FileFactory(String path) {
 		file = new File(path);
-		if (!file.exists()) System.err.println("file is not exist.");
+
+		while (!hasFile()) {
+			String newPath = JOptionPane.showInputDialog("enter new path file");
+			file = new File(newPath);
+		}
 	}
 
 	public void setPath(String path) {
@@ -31,6 +36,14 @@ public class FileFactory {
 
 	public File getFile() {
 		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+
+	public boolean hasFile() {
+		return file.exists();
 	}
 
 	public void add(String text) {

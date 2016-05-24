@@ -17,7 +17,7 @@
           </grid>
         </constraints>
         <properties>
-          <icon value="images/bg1.png"/>
+          <icon value="images/other/bg1.png"/>
           <text value=""/>
           <toolTipText value="&lt;html&gt;&#10;&lt;b&gt;Presented&lt;/b&gt; By &lt;br&gt;&#10;1. Kamontat &lt;br&gt;&#10;2. Maythawee &lt;br&gt;&#10;3. Palita &lt;br&gt;&#10;&lt;/html&gt;"/>
         </properties>
