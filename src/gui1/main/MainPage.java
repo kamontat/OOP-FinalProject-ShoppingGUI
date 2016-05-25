@@ -1,6 +1,6 @@
 package gui1.main;
 
-import code.Interface.ButtonFactory;
+import code.behavior.ButtonFactory;
 import code.customer.Customer;
 import code.file.FileFactory;
 import code.product.ProductExt;
@@ -39,9 +39,9 @@ public class MainPage extends JFrame implements ButtonFactory {
 	}
 
 	public static Object[][] getProductList() {
-		Object[][] temp = new Object[productList.size()][9];
+		Object[][] temp = new Object[productList.size()][10];
 		for (int i = 0; i < productList.size(); i++) {
-			temp[i] = productList.get(i).getProductInfo(9);
+			temp[i] = productList.get(i).getProductInfo(10);
 		}
 		return temp;
 	}
@@ -82,8 +82,8 @@ public class MainPage extends JFrame implements ButtonFactory {
 		String[][] allProduct = factory.read(":");
 
 		for (String[] product : allProduct) {
-			if (product.length == 8)
-				temp.add(new ProductExt(product[0], product[1], product[2], product[3], product[4], product[5], product[6], product[7]));
+			if (product.length == 9)
+				temp.add(new ProductExt(product[0], product[1], product[2], product[3], product[4], product[5], product[6], product[7], product[8]));
 			else System.err.println("product text-file error");
 		}
 		return temp;

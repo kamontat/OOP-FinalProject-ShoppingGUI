@@ -1,4 +1,4 @@
-package code.Interface;
+package code.behavior;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -32,14 +32,16 @@ public interface Table {
 				case 3:
 					return String.class;
 				case 4:
-					return Double.class;
+					return String.class;
 				case 5:
-					return Integer.class;
+					return Double.class;
 				case 6:
 					return Integer.class;
 				case 7:
-					return Double.class;
+					return Integer.class;
 				case 8:
+					return Double.class;
+				case 9:
 					return Double.class;
 				default:
 					return String.class;

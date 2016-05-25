@@ -1,7 +1,7 @@
 package gui1.store;
 
-import code.Interface.ButtonFactory;
-import code.Interface.Table;
+import code.behavior.ButtonFactory;
+import code.behavior.Table;
 import code.product.ProductExt;
 import code.store.Store;
 import gui.HistoryOfStorePage;
@@ -51,17 +51,18 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 		// Disable dragging
 		table.getTableHeader().setReorderingAllowed(false);
 
-		table.setModel(new PersonModel(MainPage.getProductList(), new String[]{"ID", "Name", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"}));
+		table.setModel(new PersonModel(MainPage.getProductList(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"}));
 
 		table.getColumnModel().getColumn(0).setMinWidth(50); // id
-		table.getColumnModel().getColumn(1).setMinWidth(240); // name
-		table.getColumnModel().getColumn(2).setMinWidth(180); // material
-		table.getColumnModel().getColumn(3).setMinWidth(65); // size
-		table.getColumnModel().getColumn(4).setMinWidth(65); // weight
-		table.getColumnModel().getColumn(5).setMinWidth(75); // stock
-		table.getColumnModel().getColumn(6).setMinWidth(65); // restock
-		table.getColumnModel().getColumn(7).setMinWidth(80); // price
-		table.getColumnModel().getColumn(8).setMinWidth(85); // buying price
+		table.getColumnModel().getColumn(1).setMinWidth(190); // name
+		table.getColumnModel().getColumn(2).setMinWidth(75); // type
+		table.getColumnModel().getColumn(3).setMinWidth(180); // material
+		table.getColumnModel().getColumn(4).setMinWidth(65); // size
+		table.getColumnModel().getColumn(5).setMinWidth(65); // weight
+		table.getColumnModel().getColumn(6).setMinWidth(75); // stock
+		table.getColumnModel().getColumn(7).setMinWidth(75); // restock
+		table.getColumnModel().getColumn(8).setMinWidth(80); // price
+		table.getColumnModel().getColumn(9).setMinWidth(100); // buying price
 
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
@@ -79,14 +80,14 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 					store.addExpense(product.restockProductExt());
 					store.setRestockProduct(false);
 					updateLabel(store.getRevenue(), store.getExpense());
-					updateTable(product.getCurrNumStock(), row, 5);
+					updateTable(product.getCurrNumStock(), row, 6);
 				} else {
 					int choose = JOptionPane.showConfirmDialog(null, "This product still have in stock", "Do you sure?", JOptionPane.YES_NO_OPTION);
 					if (choose == 0) {
 						store.addExpense(product.restockProductExt());
 						store.setRestockProduct(false);
 						updateLabel(store.getRevenue(), store.getExpense());
-						updateTable(product.getCurrNumStock(), row, 5);
+						updateTable(product.getCurrNumStock(), row, 6);
 					}
 				}
 			}
@@ -128,7 +129,7 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	}
 
 	public void run(Point point) {
-		setMinimumSize(new Dimension(925, 500));
+		setMinimumSize(new Dimension(970, 500));
 		pack();
 		setLocation(point);
 		setVisible(true);

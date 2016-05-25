@@ -1,7 +1,7 @@
 package gui1.customer;
 
-import code.Interface.ButtonFactory;
-import code.Interface.Table;
+import code.behavior.ButtonFactory;
+import code.behavior.Table;
 import code.customer.Customer;
 import code.store.Store;
 import gui.HistoryOfCustomerPage;

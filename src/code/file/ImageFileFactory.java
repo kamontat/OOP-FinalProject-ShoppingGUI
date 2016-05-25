@@ -1,5 +1,7 @@
 package code.file;
 
+import code.constant.ImageSize;
+
 import java.io.File;
 
 /**
@@ -7,10 +9,6 @@ import java.io.File;
  * @since 25/5/59 - 00:56
  */
 public class ImageFileFactory extends FileFactory {
-	public static String BIGSIZE = "bigSize";
-	public static String SMALLSIZE = "smallSize";
-
-	private String name;
 
 	/**
 	 * assign file by use path to group file and search only file with the "name"
@@ -20,12 +18,11 @@ public class ImageFileFactory extends FileFactory {
 	 * @param name
 	 * 		specific file name
 	 */
-	public ImageFileFactory(String path, String name, String size) {
+	public ImageFileFactory(String path, String name, ImageSize size) {
 		super(path);
-		this.name = name;
 
 		setFileBy(name);
-		setFileBy(size);
+		setFileBy(size.getName());
 	}
 
 	public void setFileBy(String filter) {

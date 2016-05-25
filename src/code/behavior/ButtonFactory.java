@@ -1,4 +1,4 @@
-package code.Interface;
+package code.behavior;
 
 import gui.BasketPage;
 import gui.PaymentPage;

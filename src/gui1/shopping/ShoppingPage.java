@@ -1,6 +1,6 @@
 package gui1.shopping;
 
-import code.Interface.ButtonFactory;
+import code.behavior.ButtonFactory;
 import code.customer.Customer;
 import gui1.main.MainPage;
 
