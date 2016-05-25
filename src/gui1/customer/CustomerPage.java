@@ -1,6 +1,7 @@
 package gui1.customer;
 
 import code.behavior.ButtonFactory;
+import code.behavior.CustomerModel;
 import code.behavior.Table;
 import code.customer.Customer;
 import code.store.Store;
@@ -24,16 +25,17 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 	private JTextField searchField;
 	private JButton addButton;
 	private JTable table;
-	private PersonModel model;
 	private JButton mainButton;
 	private JButton selectButton;
 	private JButton removeButton;
 	private JButton historyButton;
 
+	private CustomerModel model;
+
 	public CustomerPage() {
 		super("Customer Page");
 		setContentPane(panel);
-		model = new PersonModel(MainPage.getCustomerList(), new String[]{"ID", "Name", "LastName", "Gender", "Age", "Class"});
+		model = new CustomerModel(MainPage.getCustomerList(), new String[]{"ID", "Name", "LastName", "Gender", "Age", "Class"});
 
 		settingTable();
 

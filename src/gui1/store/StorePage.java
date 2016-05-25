@@ -1,6 +1,7 @@
 package gui1.store;
 
 import code.behavior.ButtonFactory;
+import code.behavior.ProductModel;
 import code.behavior.Table;
 import code.product.ProductExt;
 import code.store.Store;
@@ -30,9 +31,12 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	private JLabel profitLabel;
 	private JButton checkButton;
 
+	private ProductModel model;
+
 	public StorePage() {
 		super("Store Page");
 		setContentPane(panel);
+		model = new ProductModel(MainPage.getProductList(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"});
 
 		settingTable();
 
@@ -51,7 +55,7 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 		// Disable dragging
 		table.getTableHeader().setReorderingAllowed(false);
 
-		table.setModel(new PersonModel(MainPage.getProductList(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"}));
+		table.setModel(model);
 
 		table.getColumnModel().getColumn(0).setMinWidth(50); // id
 		table.getColumnModel().getColumn(1).setMinWidth(190); // name
@@ -91,7 +95,6 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 					}
 				}
 			}
-			resetSelection(table);
 		});
 	}
 
