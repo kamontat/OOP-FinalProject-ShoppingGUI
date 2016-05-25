@@ -9,7 +9,7 @@ public class Person {
 
 	public Person() {
 		ID = "0000";
-		name = "Guest";
+		name = "";
 		lastName = "";
 		gender = "";
 		age = 0;

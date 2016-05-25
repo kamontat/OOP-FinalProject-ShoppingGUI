@@ -12,15 +12,16 @@ public class Customer extends Person {
 	private ArrayList<OrderElement> basketList;
 	private ArrayList<Order> historyList;
 	private static int numCustomers;
-	
-	// TODO: 22/5/59 guest member
+
+	/**
+	 * for create guest member
+	 */
 	public Customer() {
 		super();
-		numCustomers++;
 		memberClass = "None";
 		basketList = new ArrayList<>();
 		historyList = new ArrayList<>();
-		customerID = "Member" + numCustomers;
+		customerID = "GUEST";
 	}
 
 	public Customer(String ID, String name, String lastName, String gender, int age, String memberClass) {
@@ -183,7 +184,10 @@ public class Customer extends Person {
 	}
 
 	public String toString() {
-		String format = "%s %s %s %s %s %d";
+		String format = "%s, %s, %s %s, %s, %d";
+		if (getCustomerID().equals("GUEST")) {
+			return "GUEST member";
+		}
 		return String.format(format, this.customerID, super.getID(), super.getName(), super.getLastName(), super.getGender(), super.getAge());
 	}
 }

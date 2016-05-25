@@ -1,6 +1,6 @@
 package gui1.main;
 
-import code.Interface.ButtonAction;
+import code.Interface.ButtonFactory;
 import code.customer.Customer;
 import code.file.FileFactory;
 import code.product.ProductExt;
@@ -14,7 +14,7 @@ import java.util.*;
  * @author kamontat
  * @since 20/5/59 - 22:55
  */
-public class MainPage extends JFrame implements ButtonAction {
+public class MainPage extends JFrame implements ButtonFactory {
 	private JButton customerButton;
 	private JButton shoppingButton;
 	private JButton storeButton;

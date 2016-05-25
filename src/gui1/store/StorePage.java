@@ -1,10 +1,10 @@
 package gui1.store;
 
-import code.Interface.ButtonAction;
+import code.Interface.ButtonFactory;
+import code.Interface.Table;
 import code.product.ProductExt;
 import code.store.Store;
 import gui.HistoryOfStorePage;
-import code.Interface.Table;
 import gui1.main.MainPage;
 
 import javax.swing.*;
@@ -16,7 +16,7 @@ import java.awt.*;
  * @author kamontat
  * @since 21/5/59 - 12:26
  */
-public class StorePage extends JFrame implements Table, ButtonAction {
+public class StorePage extends JFrame implements Table, ButtonFactory {
 	private Store store = MainPage.store;
 
 	private JPanel panel;

@@ -1,9 +1,12 @@
 package code.Interface;
 
-import gui.ShoppingPage;
+import gui.BasketPage;
+import gui.PaymentPage;
+
 import gui1.customer.CustomerPage;
-import gui1.store.LoginPage;
 import gui1.main.MainPage;
+import gui1.shopping.ShoppingPage;
+import gui1.store.LoginPage;
 import gui1.store.StorePage;
 
 import javax.swing.*;
@@ -12,7 +15,7 @@ import javax.swing.*;
  * @author kamontat
  * @since 21/5/59 - 23:51
  */
-public interface ButtonAction {
+public interface ButtonFactory {
 
 	default void toMain(JFrame frame, JButton main) {
 		main.addActionListener(e -> {
@@ -25,6 +28,22 @@ public interface ButtonAction {
 	default void toShopping(JFrame frame, JButton shopping) {
 		shopping.addActionListener(e -> {
 			ShoppingPage page = new ShoppingPage();
+			page.run(frame.getLocation());
+			frame.dispose();
+		});
+	}
+
+	default void toBasket(JFrame frame, JButton basket) {
+		basket.addActionListener(e -> {
+			BasketPage page = new BasketPage();
+			page.run();
+			frame.dispose();
+		});
+	}
+
+	default void toPayment(JFrame frame, JButton payment) {
+		payment.addActionListener(e -> {
+			PaymentPage page = new PaymentPage();
 			page.run();
 			frame.dispose();
 		});

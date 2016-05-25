@@ -1,12 +1,12 @@
 package gui1.customer;
 
-import code.Interface.ButtonAction;
+import code.Interface.ButtonFactory;
 import code.Interface.Table;
 import code.customer.Customer;
 import code.store.Store;
 import gui.HistoryOfCustomerPage;
-import gui.ShoppingPage;
 import gui1.main.MainPage;
+import gui1.shopping.ShoppingPage;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
@@ -17,7 +17,7 @@ import java.awt.*;
  * @author kamontat
  * @since 21/5/59 - 22:53
  */
-public class CustomerPage extends JFrame implements Table, ButtonAction {
+public class CustomerPage extends JFrame implements Table, ButtonFactory {
 	private Store store = MainPage.store;
 
 	private JPanel panel;
@@ -81,7 +81,7 @@ public class CustomerPage extends JFrame implements Table, ButtonAction {
 			if (checkRow(row)) {
 				MainPage.shopper = getCustomerAt(row);
 				ShoppingPage shopping = new ShoppingPage();
-				shopping.run();
+				shopping.run(getLocation());
 				dispose();
 			}
 			resetSelection(table);

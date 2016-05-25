@@ -12,7 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.*;
 
-class BasketPage extends JFrame {
+public class BasketPage extends JFrame {
 
 	private Store store = MainPage.store;
 	private Customer shopper;
@@ -21,7 +21,7 @@ class BasketPage extends JFrame {
 	private JLabel textFinalPrice;
 	private JComboBox<String> comboProduct;
 
-	BasketPage() {
+	public BasketPage() {
 		super("Basket Page");
 		getContentPane().setBackground(Color.BLACK);
 
@@ -31,7 +31,7 @@ class BasketPage extends JFrame {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
-	void run() {
+	public void run() {
 		setBounds(1000, 550, 650, 500);
 		setResizable(false);
 		setBackground(Color.LIGHT_GRAY);
