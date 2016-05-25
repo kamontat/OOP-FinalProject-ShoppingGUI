@@ -156,7 +156,7 @@ public class ShoppingPage extends JFrame {
 
 		// create New Button
 		// ring
-		JButton buttonBlueTopazesRing = new JButton(new ImageIcon(loader.getResource("images/ring/big/BlueTopazesRing.jpg")));
+		JButton buttonBlueTopazesRing = new JButton(new ImageIcon(loader.getResource("images/ring/big/BlueTopazes.jpg")));
 		buttonBlueTopazesRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -166,7 +166,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonMidnightTitaniumRing = new JButton(new ImageIcon(loader.getResource("images/ring/big/MidnightTitaniumRing.jpg")));
+		JButton buttonMidnightTitaniumRing = new JButton(new ImageIcon(loader.getResource("images/ring/big/MidnightTitanium.jpg")));
 		buttonMidnightTitaniumRing.addActionListener(new ActionListener() {
 
 			@Override
@@ -176,7 +176,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonPinkDiamondsRing = new JButton(new ImageIcon(loader.getResource("images/ring/big/PinkDiamondsRing.jpg")));
+		JButton buttonPinkDiamondsRing = new JButton(new ImageIcon(loader.getResource("images/ring/big/PinkDiamonds.jpg")));
 		buttonPinkDiamondsRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -185,7 +185,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonSilverBowRing = new JButton(new ImageIcon(loader.getResource("images/ring/big/SilverBowRing.jpg")));
+		JButton buttonSilverBowRing = new JButton(new ImageIcon(loader.getResource("images/ring/big/SilverBow.jpg")));
 		buttonSilverBowRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -194,7 +194,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonXDiamondsRing = new JButton(new ImageIcon(loader.getResource("images/ring/big/XDiamondsRing.jpg")));
+		JButton buttonXDiamondsRing = new JButton(new ImageIcon(loader.getResource("images/ring/big/XDiamonds.jpg")));
 		buttonXDiamondsRing.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -204,7 +204,7 @@ public class ShoppingPage extends JFrame {
 		});
 
 		// pendant
-		JButton buttonMixedClusterPendant = new JButton(new ImageIcon(loader.getResource("images/pendant/big/MixedClusterPendant.jpg")));
+		JButton buttonMixedClusterPendant = new JButton(new ImageIcon(loader.getResource("images/pendant/big/MixedCluster.jpg")));
 		buttonMixedClusterPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -213,7 +213,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonOliveLeafPendant = new JButton(new ImageIcon(loader.getResource("images/pendant/big/OliveLeafPendant.jpg")));
+		JButton buttonOliveLeafPendant = new JButton(new ImageIcon(loader.getResource("images/pendant/big/OliveLeaf.jpg")));
 		buttonOliveLeafPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -222,7 +222,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonPiercedPendant = new JButton(new ImageIcon(loader.getResource("images/pendant/big/PiercedPendant.jpg")));
+		JButton buttonPiercedPendant = new JButton(new ImageIcon(loader.getResource("images/pendant/big/Pierced.jpg")));
 		buttonPiercedPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -231,7 +231,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonSilverBowPendant = new JButton(new ImageIcon(loader.getResource("images/pendant/big/SilverBowPendant.jpg")));
+		JButton buttonSilverBowPendant = new JButton(new ImageIcon(loader.getResource("images/pendant/big/SilverBow.jpg")));
 		buttonSilverBowPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -240,7 +240,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonWhiteGoldBowPendant = new JButton(new ImageIcon(loader.getResource("images/pendant/big/WhiteGoldBowPendant.jpg")));
+		JButton buttonWhiteGoldBowPendant = new JButton(new ImageIcon(loader.getResource("images/pendant/big/WhiteGoldBow.jpg")));
 		buttonWhiteGoldBowPendant.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -250,7 +250,7 @@ public class ShoppingPage extends JFrame {
 		});
 
 		// earring
-		JButton buttonBlueTopazesOliveLeafEarring = new JButton(new ImageIcon(loader.getResource("images/earring/big/BlueTopazesOliveLeafEarring.jpg")));
+		JButton buttonBlueTopazesOliveLeafEarring = new JButton(new ImageIcon(loader.getResource("images/earring/big/BlueTopazesOliveLeaf.jpg")));
 		buttonBlueTopazesOliveLeafEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -259,7 +259,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonBowEarring = new JButton(new ImageIcon(loader.getResource("images/earring/big/BowEarring.jpg")));
+		JButton buttonBowEarring = new JButton(new ImageIcon(loader.getResource("images/earring/big/Bow.jpg")));
 		buttonBowEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -268,7 +268,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonColorByTheYardEarring = new JButton(new ImageIcon(loader.getResource("images/earring/big/ColorByTheYardEarring.jpg")));
+		JButton buttonColorByTheYardEarring = new JButton(new ImageIcon(loader.getResource("images/earring/big/ColorByTheYard.jpg")));
 		buttonColorByTheYardEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -276,7 +276,7 @@ public class ShoppingPage extends JFrame {
 				updateData(text, 12, 30600);
 			}
 		});
-		JButton buttonRivalsNightSkyEarring = new JButton(new ImageIcon(loader.getResource("images/earring/big/RivalsNightSkyEarring.jpg")));
+		JButton buttonRivalsNightSkyEarring = new JButton(new ImageIcon(loader.getResource("images/earring/big/RivalsNightSky.jpg")));
 		buttonRivalsNightSkyEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -285,7 +285,7 @@ public class ShoppingPage extends JFrame {
 			}
 		});
 
-		JButton buttonSilverOliveLeafEarring = new JButton(new ImageIcon(loader.getResource("images/earring/big/SilverOliveLeafEarring.jpg")));
+		JButton buttonSilverOliveLeafEarring = new JButton(new ImageIcon(loader.getResource("images/earring/big/SilverOliveLeaf.jpg")));
 		buttonSilverOliveLeafEarring.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
