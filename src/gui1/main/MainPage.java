@@ -36,6 +36,12 @@ public class MainPage extends JFrame implements ButtonFactory {
 		toCustomer(this, customerButton);
 		toLogin(this, storeButton);
 		toExit(exitButton);
+
+		setUpProduct();
+	}
+
+	private void setUpProduct() {
+
 	}
 
 	public static Object[][] getProductList() {

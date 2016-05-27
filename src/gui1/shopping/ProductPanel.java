@@ -1,10 +1,8 @@
 package gui1.shopping;
 
 import code.product.ProductExt;
-import gui1.main.MainPage;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -75,10 +73,29 @@ public class ProductPanel extends JComponent {
 		stockLabel.setText("In Stock: " + product.getCurrNumStock());
 	}
 
+	public void setInformation(URL url, ProductExt product) {
+		addIcon(picLabel, url);
+
+		// set product
+		info1Label.setText(product.toStringInformation1());
+		info2Label.setText(product.toStringInformation2());
+		priceLabel.setText(product.getPrice() + " ฿");
+		stockLabel.setText("In Stock: " + product.getCurrNumStock());
+	}
+
 	public void setPopupPic(String path) {
 		JLabel label = new JLabel();
 
 		URL url = this.getClass().getClassLoader().getResource(path);
+		addIcon(label, url);
+
+		dialog.add(label);
+		dialog.pack();
+	}
+
+	public void setPopupPic(URL url) {
+		JLabel label = new JLabel();
+
 		addIcon(label, url);
 
 		dialog.add(label);
@@ -92,21 +109,5 @@ public class ProductPanel extends JComponent {
 		} catch (NullPointerException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public static void main(String[] args) {
-		ShoppingPage page = new ShoppingPage();
-		page.run(new Point(0, 0));
-		ProductPanel product1 = new ProductPanel(page, page.getEarringPanel());
-		ProductPanel product2 = new ProductPanel(page, page.getEarringPanel());
-		ProductPanel product3 = new ProductPanel(page, page.getEarringPanel());
-
-		product1.setInformation("images/earring/small/BlueTopazesOliveLeaf.jpg", MainPage.store.getProductList().get(0));
-		product2.setInformation("images/earring/small/Bow.jpg", MainPage.store.getProductList().get(1));
-		product3.setInformation("images/earring/small/ColorByTheYard.jpg", MainPage.store.getProductList().get(2));
-
-		product1.setPopupPic("images/earring/big/BlueTopazesOliveLeaf.jpg");
-		product2.setPopupPic("images/earring/big/Bow.jpg");
-		product3.setPopupPic("images/earring/big/ColorByTheYard.jpg");
 	}
 }

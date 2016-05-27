@@ -144,9 +144,4 @@ public class AdderCustomerPage extends JDialog {
 		setLocation(point);
 		setVisible(true);
 	}
-
-	public static void main(String[] args) {
-		AdderCustomerPage dialog = new AdderCustomerPage();
-		dialog.run(new Point(0, 0));
-	}
 }

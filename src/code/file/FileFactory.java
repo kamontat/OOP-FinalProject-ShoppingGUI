@@ -9,6 +9,7 @@ import java.util.*;
  * @since 20/5/59 - 23:52
  */
 public class FileFactory {
+	private String path;
 	private File file;
 	private int size;
 
@@ -21,17 +22,32 @@ public class FileFactory {
 	}
 
 	public FileFactory(String path) {
+		this.path = path;
 		file = new File(path);
 
+		checkFile();
+	}
+
+	private void checkFile() {
 		while (!hasFile()) {
 			String newPath = JOptionPane.showInputDialog("enter new path file");
 			file = new File(newPath);
 		}
 	}
 
+	/**
+	 * when original file had been change and want to come back to the original file
+	 */
+	public void resetPath() {
+		file = new File(path);
+
+		checkFile();
+	}
+
 	public void setPath(String path) {
 		file = new File(path);
-		if (!file.exists()) System.err.println("file is not exist.");
+
+		checkFile();
 	}
 
 	public File getFile() {

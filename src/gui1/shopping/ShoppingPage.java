@@ -1,11 +1,15 @@
 package gui1.shopping;
 
 import code.behavior.ButtonFactory;
+import code.constant.ImageSize;
+import code.constant.ProductType;
 import code.customer.Customer;
+import code.file.ImageFileFactory;
 import gui1.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.net.URL;
 
 /**
  * @author kamontat
@@ -14,19 +18,23 @@ import java.awt.*;
 public class ShoppingPage extends JFrame implements ButtonFactory {
 	private JPanel panel;
 	private JTable table;
+
 	private JButton mainButton;
 	private JButton basketButton;
 	private JButton paymentButton;
+
 	private JLabel numProductLabel;
 	private JLabel totalPriceLabel;
+	private JLabel totalNumLabel;
+
 	private JLabel memberLabel;
 	private JLabel customerLabel;
 
 	private JTabbedPane tabbedPane;
+
 	private JPanel earringPanel;
 	private JPanel pendantPanel;
 	private JPanel ringPanel;
-	private JLabel totalNumLabel;
 
 	private Customer shopper;
 
@@ -37,6 +45,10 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 		shopper = MainPage.shopper;
 		setCustomer();
 
+		setProduct(earringPanel, ProductType.EARRING);
+		setProduct(pendantPanel, ProductType.PENDANT);
+		setProduct(ringPanel, ProductType.RING);
+
 		toMain(this, mainButton);
 
 	}
@@ -46,6 +58,31 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 		memberLabel.setText(shopper.getMemberClass());
 	}
 
+	private void setProduct(JPanel panel, ProductType name) {
+		ImageFileFactory factory = new ImageFileFactory("src/images");
+
+		factory.setName(name);
+		factory.setSize(ImageSize.BIG);
+
+		URL[] big = factory.getAllImageURL();
+		factory.resetPath();
+
+		factory.setName(name);
+		factory.setSize(ImageSize.SMALL);
+
+		URL[] small = factory.getAllImageURL();
+
+		if (big.length == small.length) {
+			for (int i = 0; i < big.length; i++) {
+				ProductPanel product = new ProductPanel(this, panel);
+				product.setInformation(small[i], MainPage.store.getProductList().get(i));
+				product.setPopupPic(big[i]);
+			}
+		} else {
+			JOptionPane.showMessageDialog(null, "Not enough Picture for product", "Error Images", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+
 	public void run(Point point) {
 		setMinimumSize(new Dimension(650, 470));
 		setPreferredSize(new Dimension(800, 850));
@@ -53,17 +90,5 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 		setLocation(point);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	}
-
-	public JPanel getEarringPanel() {
-		return earringPanel;
-	}
-
-	public JPanel getPendantPanel() {
-		return pendantPanel;
-	}
-
-	public JPanel getRingPanel() {
-		return ringPanel;
 	}
 }
