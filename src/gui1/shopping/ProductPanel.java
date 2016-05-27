@@ -77,6 +77,7 @@ public class ProductPanel extends JComponent {
 				spinner.setValue(1);
 			} else {
 				page.removeNumProduct(1);
+				page.removeTotalProduct(old);
 				spinner.setValue(0);
 			}
 		});
@@ -96,6 +97,7 @@ public class ProductPanel extends JComponent {
 			} else {
 				buyCheckBox.setSelected(false);
 			}
+
 			// update old value
 			old = value;
 		});

@@ -102,6 +102,10 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 		totalProductLabel.setText(String.valueOf(num));
 	}
 
+	public void removeAllProduct() {
+		totalProductLabel.setText("0");
+	}
+
 	public void run(Point point) {
 		setMinimumSize(new Dimension(650, 470));
 		setSize(new Dimension(800, 875));
