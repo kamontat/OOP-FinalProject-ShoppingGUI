@@ -106,7 +106,7 @@ public class ProductExt extends Product {
 	 */
 	public String toStringInformation1() {
 		String format = "Name: %s, Type: %s, Material: %s";
-		return String.format(format, super.getName(), this.type, this.material);
+		return String.format(format, super.getName(), this.type.getName(), this.material);
 	}
 
 	/**

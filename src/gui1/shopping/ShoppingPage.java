@@ -45,9 +45,9 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 		shopper = MainPage.shopper;
 		setCustomer();
 
-		setProduct(earringPanel, ProductType.EARRING);
-		setProduct(pendantPanel, ProductType.PENDANT);
-		setProduct(ringPanel, ProductType.RING);
+		setProduct(earringPanel, ProductType.EARRING, 0);
+		setProduct(pendantPanel, ProductType.PENDANT, 5);
+		setProduct(ringPanel, ProductType.RING, 10);
 
 		toMain(this, mainButton);
 
@@ -58,7 +58,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 		memberLabel.setText(shopper.getMemberClass());
 	}
 
-	private void setProduct(JPanel panel, ProductType name) {
+	private void setProduct(JPanel panel, ProductType name, int startIndex) {
 		ImageFileFactory factory = new ImageFileFactory("src/images");
 
 		factory.setName(name);
@@ -75,7 +75,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 		if (big.length == small.length) {
 			for (int i = 0; i < big.length; i++) {
 				ProductPanel product = new ProductPanel(this, panel);
-				product.setInformation(small[i], MainPage.store.getProductList().get(i));
+				product.setInformation(small[i], MainPage.store.getProductList().get(i + startIndex));
 				product.setPopupPic(big[i]);
 			}
 		} else {
@@ -85,7 +85,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 
 	public void run(Point point) {
 		setMinimumSize(new Dimension(650, 470));
-		setPreferredSize(new Dimension(800, 850));
+		setSize(new Dimension(800, 875));
 
 		setLocation(point);
 		setVisible(true);
