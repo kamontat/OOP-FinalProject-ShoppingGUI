@@ -31,7 +31,6 @@ public class ShoppingPage extends JFrame {
 	static private boolean check = true;
 
 
-
 	public ShoppingPage() {
 		super("Shopping Page");
 		getContentPane().setBackground(SystemColor.controlDkShadow);
@@ -161,6 +160,7 @@ public class ShoppingPage extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String text = JOptionPane.showInputDialog(null, "<html>designed to be stacked or worn alone<br><br>Size: 6<br><br>Material 18k gold with a blue topaz, Carat weight 1.00<br><br>Price: 22,200 ฿</html>", "Blue Topazes ring", JOptionPane.PLAIN_MESSAGE);
+
 				updateData(text, 0, 22200);
 
 			}

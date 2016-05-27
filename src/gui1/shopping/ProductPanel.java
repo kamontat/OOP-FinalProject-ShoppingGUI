@@ -24,6 +24,8 @@ public class ProductPanel extends JComponent {
 	private JLabel info2Label;
 	private JLabel info1Label;
 
+	private int old;
+
 	private JDialog dialog = new JDialog();
 
 	/**
@@ -39,6 +41,9 @@ public class ProductPanel extends JComponent {
 	 * 		Add to this panel
 	 */
 	public ProductPanel(ShoppingPage page, JPanel panel, ProductExt product) {
+
+		SpinnerNumberModel model = new SpinnerNumberModel(0, 0, product.getCurrNumStock(), 1);
+		spinner.setModel(model);
 
 		this.product = product;
 
@@ -77,17 +82,22 @@ public class ProductPanel extends JComponent {
 		});
 
 		spinner.addChangeListener(e -> {
-			int value = Integer.parseInt(spinner.getValue().toString());
-			if (value < 0) {
-				spinner.setValue(0);
-			} else if (value > 0) {
-				if (value >= product.getCurrNumStock()) {
-					spinner.setValue(product.getCurrNumStock());
+			int value = (int) model.getNumber();
+
+			if (value > 0) {
+				// increase
+				if (value > old) {
+					page.addTotalProduct(1);
+					// decrease
+				} else if (value < old) {
+					page.removeTotalProduct(1);
 				}
 				buyCheckBox.setSelected(true);
 			} else {
 				buyCheckBox.setSelected(false);
 			}
+			// update old value
+			old = value;
 		});
 	}
 

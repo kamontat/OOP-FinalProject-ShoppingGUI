@@ -93,12 +93,12 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 	}
 
 	public void addTotalProduct(int numTotalProduct) {
-		int num = Integer.parseInt(numProductLabel.getText()) + numTotalProduct;
+		int num = Integer.parseInt(totalProductLabel.getText()) + numTotalProduct;
 		totalProductLabel.setText(String.valueOf(num));
 	}
 
 	public void removeTotalProduct(int numTotalProduct) {
-		int num = Integer.parseInt(numProductLabel.getText()) - numTotalProduct;
+		int num = Integer.parseInt(totalProductLabel.getText()) - numTotalProduct;
 		totalProductLabel.setText(String.valueOf(num));
 	}
 
