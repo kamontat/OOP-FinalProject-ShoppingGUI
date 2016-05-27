@@ -25,7 +25,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 
 	private JLabel numProductLabel;
 	private JLabel totalPriceLabel;
-	private JLabel totalNumLabel;
+	private JLabel totalProductLabel;
 
 	private JLabel memberLabel;
 	private JLabel customerLabel;
@@ -73,13 +73,33 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 
 		if (big.length == small.length) {
 			for (int i = 0; i < big.length; i++) {
-				ProductPanel product = new ProductPanel(this, panel);
-				product.setInformation(small[i], MainPage.store.getProductList().get(i + startIndex));
+				ProductPanel product = new ProductPanel(this, panel, MainPage.store.getProductList().get(i + startIndex));
+				product.setInformation(small[i]);
 				product.setPopupPic(big[i]);
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Not enough Picture for product", "Error Images", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+	public void addNumProduct(int numProduct) {
+		int num = Integer.parseInt(numProductLabel.getText()) + numProduct;
+		numProductLabel.setText(String.valueOf(num));
+	}
+
+	public void removeNumProduct(int numProduct) {
+		int num = Integer.parseInt(numProductLabel.getText()) - numProduct;
+		numProductLabel.setText(String.valueOf(num));
+	}
+
+	public void addTotalProduct(int numTotalProduct) {
+		int num = Integer.parseInt(numProductLabel.getText()) + numTotalProduct;
+		totalProductLabel.setText(String.valueOf(num));
+	}
+
+	public void removeTotalProduct(int numTotalProduct) {
+		int num = Integer.parseInt(numProductLabel.getText()) - numTotalProduct;
+		totalProductLabel.setText(String.valueOf(num));
 	}
 
 	public void run(Point point) {

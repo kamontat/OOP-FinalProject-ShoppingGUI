@@ -13,8 +13,9 @@ import java.net.URL;
  * @since 24/5/59 - 00:27
  */
 public class ProductPanel extends JComponent {
+	ProductExt product;
 
-	private JCheckBox CheckBox;
+	private JCheckBox buyCheckBox;
 	private JSpinner spinner;
 	private JLabel picLabel;
 	private JPanel panel;
@@ -37,7 +38,10 @@ public class ProductPanel extends JComponent {
 	 * @param panel
 	 * 		Add to this panel
 	 */
-	public ProductPanel(JFrame page, JPanel panel) {
+	public ProductPanel(ShoppingPage page, JPanel panel, ProductExt product) {
+
+		this.product = product;
+
 		panel.add(this.panel);
 		page.pack();
 
@@ -61,9 +65,33 @@ public class ProductPanel extends JComponent {
 				dialog.setVisible(false);
 			}
 		});
+
+		buyCheckBox.addItemListener(e -> {
+			if (buyCheckBox.isSelected()) {
+				page.addNumProduct(1);
+				spinner.setValue(1);
+			} else {
+				page.removeNumProduct(1);
+				spinner.setValue(0);
+			}
+		});
+
+		spinner.addChangeListener(e -> {
+			int value = Integer.parseInt(spinner.getValue().toString());
+			if (value < 0) {
+				spinner.setValue(0);
+			} else if (value > 0) {
+				if (value >= product.getCurrNumStock()) {
+					spinner.setValue(product.getCurrNumStock());
+				}
+				buyCheckBox.setSelected(true);
+			} else {
+				buyCheckBox.setSelected(false);
+			}
+		});
 	}
 
-	public void setInformation(String path, ProductExt product) {
+	public void setInformation(String path) {
 		URL url = this.getClass().getClassLoader().getResource(path);
 		addIcon(picLabel, url);
 
@@ -74,7 +102,7 @@ public class ProductPanel extends JComponent {
 		stockLabel.setText("In Stock: " + product.getCurrNumStock());
 	}
 
-	public void setInformation(URL url, ProductExt product) {
+	public void setInformation(URL url) {
 		addIcon(picLabel, url);
 
 		// set product

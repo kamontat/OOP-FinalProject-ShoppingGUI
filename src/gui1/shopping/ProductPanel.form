@@ -19,7 +19,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="8bf26" class="javax.swing.JCheckBox" binding="CheckBox">
+      <component id="8bf26" class="javax.swing.JCheckBox" binding="buyCheckBox">
         <constraints>
           <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
