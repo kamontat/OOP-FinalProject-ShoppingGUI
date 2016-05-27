@@ -28,6 +28,7 @@ we done it when I study in first term of first year in kasetsert university (12/
     - 6.0.3 <- Renew gui code (Customer)
     - 6.0.5 <- create new way to add new customer
     - 6.0.6 <- renew all format of gui
+    - 6.0.7 <- Renew gui code (Shopping)
 
 ### What is this for? ###
 
