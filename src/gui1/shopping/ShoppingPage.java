@@ -50,7 +50,6 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 		setProduct(ringPanel, ProductType.RING, 10);
 
 		toMain(this, mainButton);
-
 	}
 
 	private void setCustomer() {
@@ -61,15 +60,15 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 	private void setProduct(JPanel panel, ProductType name, int startIndex) {
 		ImageFileFactory factory = new ImageFileFactory("src/images");
 
+		// set url from big picture
 		factory.setName(name);
 		factory.setSize(ImageSize.BIG);
-
 		URL[] big = factory.getAllImageURL();
 		factory.resetPath();
 
+		// set url from small picture
 		factory.setName(name);
 		factory.setSize(ImageSize.SMALL);
-
 		URL[] small = factory.getAllImageURL();
 
 		if (big.length == small.length) {
