@@ -384,20 +384,17 @@ public class ShoppingPage extends JFrame {
 	 * @param button
 	 */
 	public void backToMain(JButton button) {
-		button.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// return currNumStock
-				for (int i = 0; i < shopper.getBasketList().size(); i++) {
-					store.refundStock(shopper.getBasketList().get(i));
-				}
-				shopper.clearBasket();
-
-				MainPage menu = new MainPage();
-				menu.run(getLocation());
-				dispose();
-
+		button.addActionListener(e -> {
+			// return currNumStock
+			for (int i = 0; i < shopper.getBasketList().size(); i++) {
+				store.refundStock(shopper.getBasketList().get(i));
 			}
+			shopper.clearBasket();
+
+			MainPage menu = new MainPage();
+			menu.run(getLocation());
+			dispose();
+
 		});
 	}
 

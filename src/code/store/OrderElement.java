@@ -30,6 +30,10 @@ public class OrderElement {
 	public String getName() {
 		return product.getName();
 	}
+
+	public double getPrice() {
+		return product.getPrice() * num;
+	}
 	
 	public OrderElement clone() {
 		return new OrderElement(this.product, this.num);

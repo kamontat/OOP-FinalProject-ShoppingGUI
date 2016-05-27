@@ -37,6 +37,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 	private JPanel ringPanel;
 
 	private Customer shopper;
+	private ProductPanel[] products = new ProductPanel[MainPage.store.getProductList().size()];
 
 	public ShoppingPage() {
 		super("Shopping Page");
@@ -73,9 +74,9 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 
 		if (big.length == small.length) {
 			for (int i = 0; i < big.length; i++) {
-				ProductPanel product = new ProductPanel(this, panel, MainPage.store.getProductList().get(i + startIndex));
-				product.setInformation(small[i]);
-				product.setPopupPic(big[i]);
+				products[i] = new ProductPanel(this, panel, MainPage.store.getProductList().get(i + startIndex));
+				products[i].setInformation(small[i]);
+				products[i].setPopupPic(big[i]);
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Not enough Picture for product", "Error Images", JOptionPane.ERROR_MESSAGE);
@@ -102,8 +103,14 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 		totalProductLabel.setText(String.valueOf(num));
 	}
 
-	public void removeAllProduct() {
-		totalProductLabel.setText("0");
+	public void addTotalPrice(double price) {
+		double num = Double.parseDouble(totalPriceLabel.getText()) + price;
+		totalPriceLabel.setText(String.valueOf(num));
+	}
+
+	public void removeTotalPrice(double price) {
+		double num = Double.parseDouble(totalPriceLabel.getText()) - price;
+		totalPriceLabel.setText(String.valueOf(num));
 	}
 
 	public void run(Point point) {

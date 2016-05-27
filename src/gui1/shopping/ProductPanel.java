@@ -1,6 +1,7 @@
 package gui1.shopping;
 
 import code.product.ProductExt;
+import code.store.OrderElement;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +14,9 @@ import java.net.URL;
  * @since 24/5/59 - 00:27
  */
 public class ProductPanel extends JComponent {
-	ProductExt product;
+	private ProductExt product;
+	private int newNum;
+	private int oldNum;
 
 	private JCheckBox buyCheckBox;
 	private JSpinner spinner;
@@ -23,8 +26,6 @@ public class ProductPanel extends JComponent {
 	private JLabel stockLabel;
 	private JLabel info2Label;
 	private JLabel info1Label;
-
-	private int old;
 
 	private JDialog dialog = new JDialog();
 
@@ -74,44 +75,32 @@ public class ProductPanel extends JComponent {
 		buyCheckBox.addItemListener(e -> {
 			if (buyCheckBox.isSelected()) {
 				page.addNumProduct(1);
-				spinner.setValue(1);
+				if ((int) model.getNumber() == 0) spinner.setValue(1);
 			} else {
 				page.removeNumProduct(1);
-				page.removeTotalProduct(old);
+				page.removeTotalProduct(oldNum);
 				spinner.setValue(0);
 			}
 		});
 
 		spinner.addChangeListener(e -> {
-			int value = (int) model.getNumber();
+			newNum = (int) model.getNumber();
 
-			if (value > 0) {
+			if (newNum > 0) {
 				// increase
-				if (value > old) {
-					page.addTotalProduct(1);
+				if (newNum > oldNum) {
+					page.addTotalProduct(newNum - oldNum);
 					// decrease
-				} else if (value < old) {
-					page.removeTotalProduct(1);
+				} else if (newNum < oldNum) {
+					page.removeTotalProduct(oldNum - newNum);
 				}
 				buyCheckBox.setSelected(true);
 			} else {
 				buyCheckBox.setSelected(false);
 			}
-
-			// update old value
-			old = value;
+			// update oldNum newNum
+			oldNum = newNum;
 		});
-	}
-
-	public void setInformation(String path) {
-		URL url = this.getClass().getClassLoader().getResource(path);
-		addIcon(picLabel, url);
-
-		// set product
-		info1Label.setText(product.toStringInformation1());
-		info2Label.setText(product.toStringInformation2());
-		priceLabel.setText(product.getPrice() + " ฿");
-		stockLabel.setText("In Stock: " + product.getCurrNumStock());
 	}
 
 	public void setInformation(URL url) {
@@ -124,16 +113,6 @@ public class ProductPanel extends JComponent {
 		stockLabel.setText("In Stock: " + product.getCurrNumStock());
 	}
 
-	public void setPopupPic(String path) {
-		JLabel label = new JLabel();
-
-		URL url = this.getClass().getClassLoader().getResource(path);
-		addIcon(label, url);
-
-		dialog.add(label);
-		dialog.pack();
-	}
-
 	public void setPopupPic(URL url) {
 		JLabel label = new JLabel();
 
@@ -141,6 +120,18 @@ public class ProductPanel extends JComponent {
 
 		dialog.add(label);
 		dialog.pack();
+	}
+
+	public OrderElement getOrder() {
+		return new OrderElement(product, newNum);
+	}
+
+	public int getNumber() {
+		return newNum;
+	}
+
+	public double getPrice() {
+		return getOrder().getPrice();
 	}
 
 	private void addIcon(JLabel label, URL url) {
