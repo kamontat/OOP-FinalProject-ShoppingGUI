@@ -3,6 +3,7 @@ package gui1.shopping;
 import code.product.ProductExt;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -49,7 +50,7 @@ public class ProductPanel extends JComponent {
 			public void mousePressed(MouseEvent e) {
 				super.mousePressed(e);
 
-				dialog.setLocation(e.getLocationOnScreen());
+				dialog.setLocation(new Point((page.getX() + (page.getSize().width / 2)) - (dialog.getSize().width / 2), page.getY()));
 				dialog.setVisible(true);
 			}
 
