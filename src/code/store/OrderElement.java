@@ -3,10 +3,20 @@ package code.store;
 import code.product.ProductExt;
 
 public class OrderElement {
+	private String code;
 	private ProductExt product;
 	private int num;
 
 	public OrderElement(ProductExt product, int num) {
+		for (int i = 0; i < 12; i++) {
+			code += (char) (97 + Math.floor(Math.random() * 25));
+		}
+		this.product = product;
+		this.num = num;
+	}
+
+	private OrderElement(ProductExt product, int num, String code) {
+		this.code = code;
 		this.product = product;
 		this.num = num;
 	}
@@ -34,9 +44,17 @@ public class OrderElement {
 	public double getPrice() {
 		return product.getPrice() * num;
 	}
-	
+
+	public String getCode() {
+		return code;
+	}
+
+	public boolean equals(OrderElement element) {
+		return element.getCode().equals(code);
+	}
+
 	public OrderElement clone() {
-		return new OrderElement(this.product, this.num);
+		return new OrderElement(this.product, this.num, code);
 	}
 
 	@Override

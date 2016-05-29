@@ -5,7 +5,6 @@ import code.constant.ImageSize;
 import code.constant.ProductType;
 import code.customer.Customer;
 import code.file.ImageFileFactory;
-import code.store.OrderElement;
 import gui1.main.MainPage;
 
 import javax.swing.*;
@@ -22,7 +21,6 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 	private JTable table;
 
 	private JButton mainButton;
-	private JButton basketButton;
 	private JButton paymentButton;
 
 	private JLabel numProductLabel;
@@ -135,6 +133,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
+		ProductPanel product = (ProductPanel) o;
 		if (arg != null) {
 
 			if (arg.getClass() == String[].class) {
@@ -146,9 +145,10 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 					setTotalProduct(Integer.parseInt(args[1]));
 					setTotalPrice(Double.parseDouble(args[2]));
 				}
-			} else if (arg.getClass() == OrderElement.class) {
-				System.out.println("Order please.");
 			}
 		}
+
+		shopper.removeFromBasket(product.getOrder());
+		shopper.addToBasket(product.getOrder());
 	}
 }

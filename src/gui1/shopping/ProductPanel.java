@@ -15,6 +15,7 @@ import java.util.*;
  * @since 24/5/59 - 00:27
  */
 public class ProductPanel extends Observable {
+	private OrderElement order;
 	private ProductExt product;
 	private int newNum;
 	private int oldNum;
@@ -48,6 +49,7 @@ public class ProductPanel extends Observable {
 		spinner.setModel(model);
 
 		this.product = product;
+		order = new OrderElement(product, 0);
 
 		panel.add(this.panel);
 		page.pack();
@@ -78,10 +80,6 @@ public class ProductPanel extends Observable {
 
 			if (buyCheckBox.isSelected()) {
 				notifyObservers(new String[]{"numProduct", "1"});
-
-				setChanged();
-				notifyObservers(getOrder());
-
 				if ((int) model.getNumber() == 0) spinner.setValue(1);
 				spinner.setEnabled(true);
 			} else {
@@ -134,7 +132,10 @@ public class ProductPanel extends Observable {
 	}
 
 	public OrderElement getOrder() {
-		return new OrderElement(product, newNum);
+		// make number of product present
+		order.setNum(newNum);
+		// return present OrderElement
+		return order;
 	}
 
 	public int getNumber() {

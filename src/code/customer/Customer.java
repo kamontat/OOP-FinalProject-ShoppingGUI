@@ -86,6 +86,16 @@ public class Customer extends Person {
 		basketList.add(element);
 	}
 
+	public boolean removeFromBasket(OrderElement element) {
+		for (int i = 0; i < basketList.size(); i++) {
+			if (basketList.get(i).equals(element)) {
+				basketList.remove(i);
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public double getBasketTotalWeight() {
 		double weight = 0;
 		for (OrderElement basket : basketList) {
