@@ -8,12 +8,13 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
+import java.util.*;
 
 /**
  * @author kamontat
  * @since 24/5/59 - 00:27
  */
-public class ProductPanel extends JComponent {
+public class ProductPanel extends Observable {
 	private ProductExt product;
 	private int newNum;
 	private int oldNum;
@@ -73,31 +74,38 @@ public class ProductPanel extends JComponent {
 		});
 
 		buyCheckBox.addItemListener(e -> {
+			setChanged();
+
 			if (buyCheckBox.isSelected()) {
-				page.addNumProduct(1);
+				notifyObservers(new String[]{"numProduct", "1"});
 				if ((int) model.getNumber() == 0) spinner.setValue(1);
+				spinner.setEnabled(true);
 			} else {
-				page.removeNumProduct(1);
-				page.removeTotalProduct(oldNum);
+				notifyObservers(new String[]{"numProduct", "-1"});
 				spinner.setValue(0);
+				spinner.setEnabled(false);
 			}
 		});
 
 		spinner.addChangeListener(e -> {
 			newNum = (int) model.getNumber();
+			System.out.println(newNum);
+			setChanged();
+
+			// increase
+			if (newNum > oldNum) {
+				notifyObservers(new String[]{"totalProduct", String.valueOf(newNum - oldNum), String.valueOf(getPrice(newNum - oldNum))});
+				// decrease
+			} else if (newNum < oldNum) {
+				notifyObservers(new String[]{"totalProduct", String.valueOf(newNum - oldNum), String.valueOf(getPrice(newNum - oldNum))});
+			}
 
 			if (newNum > 0) {
-				// increase
-				if (newNum > oldNum) {
-					page.addTotalProduct(newNum - oldNum);
-					// decrease
-				} else if (newNum < oldNum) {
-					page.removeTotalProduct(oldNum - newNum);
-				}
 				buyCheckBox.setSelected(true);
 			} else {
 				buyCheckBox.setSelected(false);
 			}
+
 			// update oldNum newNum
 			oldNum = newNum;
 		});
@@ -130,8 +138,8 @@ public class ProductPanel extends JComponent {
 		return newNum;
 	}
 
-	public double getPrice() {
-		return getOrder().getPrice();
+	public double getPrice(int number) {
+		return product.getPrice() * number;
 	}
 
 	private void addIcon(JLabel label, URL url) {

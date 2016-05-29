@@ -10,12 +10,13 @@ import gui1.main.MainPage;
 import javax.swing.*;
 import java.awt.*;
 import java.net.URL;
+import java.util.*;
 
 /**
  * @author kamontat
  * @since 22/5/59 - 17:34
  */
-public class ShoppingPage extends JFrame implements ButtonFactory {
+public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 	private JPanel panel;
 	private JTable table;
 
@@ -50,6 +51,9 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 		setProduct(pendantPanel, ProductType.PENDANT, 5);
 		setProduct(ringPanel, ProductType.RING, 10);
 
+		// add this to observer
+		Arrays.stream(products).forEach(productPanel -> productPanel.addObserver(this));
+
 		toMain(this, mainButton);
 	}
 
@@ -74,43 +78,49 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 
 		if (big.length == small.length) {
 			for (int i = 0; i < big.length; i++) {
-				products[i] = new ProductPanel(this, panel, MainPage.store.getProductList().get(i + startIndex));
-				products[i].setInformation(small[i]);
-				products[i].setPopupPic(big[i]);
+				products[i + startIndex] = new ProductPanel(this, panel, MainPage.store.getProductList().get(i + startIndex));
+				products[i + startIndex].setInformation(small[i]);
+				products[i + startIndex].setPopupPic(big[i]);
 			}
 		} else {
 			JOptionPane.showMessageDialog(null, "Not enough Picture for product", "Error Images", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 
-	public void addNumProduct(int numProduct) {
-		int num = Integer.parseInt(numProductLabel.getText()) + numProduct;
-		numProductLabel.setText(String.valueOf(num));
+	/**
+	 * when number in positive this method will increase
+	 * otherwise this method will decrease number Product
+	 *
+	 * @param num
+	 * 		some number
+	 */
+	private void setNumProduct(int num) {
+		int number = Integer.parseInt(numProductLabel.getText()) + num;
+		this.numProductLabel.setText(String.valueOf(number));
 	}
 
-	public void removeNumProduct(int numProduct) {
-		int num = Integer.parseInt(numProductLabel.getText()) - numProduct;
-		numProductLabel.setText(String.valueOf(num));
+	/**
+	 * when number in positive this method will increase
+	 * otherwise this method will decrease total Product
+	 *
+	 * @param total
+	 * 		some number
+	 */
+	public void setTotalProduct(int total) {
+		int number = Integer.parseInt(totalProductLabel.getText()) + total;
+		this.totalProductLabel.setText(String.valueOf(number));
 	}
 
-	public void addTotalProduct(int numTotalProduct) {
-		int num = Integer.parseInt(totalProductLabel.getText()) + numTotalProduct;
-		totalProductLabel.setText(String.valueOf(num));
-	}
-
-	public void removeTotalProduct(int numTotalProduct) {
-		int num = Integer.parseInt(totalProductLabel.getText()) - numTotalProduct;
-		totalProductLabel.setText(String.valueOf(num));
-	}
-
-	public void addTotalPrice(double price) {
-		double num = Double.parseDouble(totalPriceLabel.getText()) + price;
-		totalPriceLabel.setText(String.valueOf(num));
-	}
-
-	public void removeTotalPrice(double price) {
-		double num = Double.parseDouble(totalPriceLabel.getText()) - price;
-		totalPriceLabel.setText(String.valueOf(num));
+	/**
+	 * when number in positive this method will increase
+	 * otherwise this method will decrease total price
+	 *
+	 * @param price
+	 * 		some number
+	 */
+	public void setTotalPrice(double price) {
+		double number = Double.parseDouble(totalPriceLabel.getText()) + price;
+		this.totalPriceLabel.setText(String.valueOf(number));
 	}
 
 	public void run(Point point) {
@@ -120,5 +130,22 @@ public class ShoppingPage extends JFrame implements ButtonFactory {
 		setLocation(point);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		if (arg != null) {
+
+			if (arg.getClass() == String[].class) {
+				String[] args = (String[]) arg;
+
+				if (args[0].equals("numProduct")) {
+					setNumProduct(Integer.parseInt(args[1]));
+				} else if (args[0].equals("totalProduct")) {
+					setTotalProduct(Integer.parseInt(args[1]));
+					setTotalPrice(Double.parseDouble(args[2]));
+				}
+			}
+		}
 	}
 }
