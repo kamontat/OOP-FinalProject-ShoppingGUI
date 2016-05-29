@@ -12,6 +12,8 @@ import javax.swing.*;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 /**
  * @author kamontat
@@ -42,10 +44,9 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 
 		// assign button
 		toMain(this, mainButton);
-		restock();
+		restockButton.addActionListener(e -> restock());
 		history();
 		check();
-
 
 		updateLabel(store.getRevenue(), store.getExpense());
 	}
@@ -56,6 +57,17 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 		table.getTableHeader().setReorderingAllowed(false);
 
 		table.setModel(model);
+
+		table.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				super.keyPressed(e);
+				// 10 mean space bar
+				if (e.getKeyCode() == 10) {
+					restock();
+				}
+			}
+		});
 
 		table.getColumnModel().getColumn(0).setMinWidth(50); // id
 		table.getColumnModel().getColumn(1).setMinWidth(190); // name
@@ -74,28 +86,26 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	}
 
 	private void restock() {
-		restockButton.addActionListener(e -> {
-			int row = table.getSelectedRow();
+		int row = table.getSelectedRow();
 
-			if (checkRow(row)) {
-				ProductExt product = getProductAt(row);
+		if (checkRow(row)) {
+			ProductExt product = getProductAt(row);
 
-				if (product.isRestock()) {
+			if (product.isRestock()) {
+				store.addExpense(product.restockProductExt());
+				store.setRestockProduct(false);
+				updateLabel(store.getRevenue(), store.getExpense());
+				updateTable(product.getCurrNumStock(), row, 6);
+			} else {
+				int choose = JOptionPane.showConfirmDialog(null, "This product still have in stock", "Do you sure?", JOptionPane.YES_NO_OPTION);
+				if (choose == 0) {
 					store.addExpense(product.restockProductExt());
 					store.setRestockProduct(false);
 					updateLabel(store.getRevenue(), store.getExpense());
 					updateTable(product.getCurrNumStock(), row, 6);
-				} else {
-					int choose = JOptionPane.showConfirmDialog(null, "This product still have in stock", "Do you sure?", JOptionPane.YES_NO_OPTION);
-					if (choose == 0) {
-						store.addExpense(product.restockProductExt());
-						store.setRestockProduct(false);
-						updateLabel(store.getRevenue(), store.getExpense());
-						updateTable(product.getCurrNumStock(), row, 6);
-					}
 				}
 			}
-		});
+		}
 	}
 
 	private void history() {
