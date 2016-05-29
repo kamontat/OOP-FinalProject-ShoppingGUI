@@ -127,8 +127,8 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	}
 
 	private ProductExt getProductAt(int row) {
-		String productName = String.valueOf(table.getValueAt(row, 1));
-		return store.searchProduct(productName);
+		String productID = String.valueOf(table.getValueAt(row, 0));
+		return store.searchIDProduct(productID);
 	}
 
 	private void updateLabel(double revenue, double expense) {

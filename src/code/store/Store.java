@@ -96,9 +96,9 @@ public class Store {
 		customerList.add(customer);
 	}
 
-	public ProductExt searchProduct(String name) {
+	public ProductExt searchIDProduct(String productID) {
 		for (ProductExt product : productList) {
-			if (product.getName().equals(name)) {
+			if (product.getProductID().equals(productID)) {
 				return product;
 			}
 		}

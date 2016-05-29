@@ -6,11 +6,15 @@ import code.constant.ImageSize;
 import code.constant.ProductType;
 import code.customer.Customer;
 import code.file.ImageFileFactory;
+import code.product.ProductExt;
+import code.store.Store;
 import gui1.main.MainPage;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.*;
 
@@ -19,6 +23,10 @@ import java.util.*;
  * @since 22/5/59 - 17:34
  */
 public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
+	private Store store = MainPage.store;
+	private Customer shopper;
+	private ProductPanel[] products = new ProductPanel[MainPage.store.getProductList().size()];
+
 	private JPanel panel;
 	private JTable table;
 
@@ -37,9 +45,6 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 	private JPanel earringPanel;
 	private JPanel pendantPanel;
 	private JPanel ringPanel;
-
-	private Customer shopper;
-	private ProductPanel[] products = new ProductPanel[MainPage.store.getProductList().size()];
 
 	public ShoppingPage() {
 		super("Shopping Page");
@@ -61,7 +66,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 	private void updateTable() {
 		DefaultTableModel model = new DefaultModel(shopper.getBasketToArray(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "Price", "Number"}, false);
 
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+				table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// Disable dragging
 		table.getTableHeader().setReorderingAllowed(false);
 
@@ -75,6 +80,29 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		table.getColumnModel().getColumn(5).setMinWidth(65); // weight
 		table.getColumnModel().getColumn(6).setMinWidth(80); // price
 		table.getColumnModel().getColumn(7).setMinWidth(65); // number
+
+		table.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				if (e.getClickCount() == 2) {
+					int row = table.getSelectedRow();
+					ProductExt product = getProductAt(row);
+					if (product.getType().equals(ProductType.EARRING)) {
+						tabbedPane.setSelectedIndex(0);
+					} else if (product.getType().equals(ProductType.PENDANT)) {
+						tabbedPane.setSelectedIndex(1);
+					} else if (product.getType().equals(ProductType.RING)) {
+						tabbedPane.setSelectedIndex(2);
+					}
+				}
+			}
+		});
+	}
+
+	private ProductExt getProductAt(int row) {
+		String productID = String.valueOf(table.getValueAt(row, 0));
+		return store.searchIDProduct(productID);
 	}
 
 	private void setCustomer() {

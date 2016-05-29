@@ -27,6 +27,7 @@
               <fillsViewportHeight value="true"/>
               <rowHeight value="20"/>
               <rowSelectionAllowed value="true"/>
+              <toolTipText value="(double click) To point to product screen"/>
             </properties>
           </component>
         </children>
