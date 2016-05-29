@@ -29,6 +29,7 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 	private JButton selectButton;
 	private JButton removeButton;
 	private JButton historyButton;
+	private JButton guestButton;
 
 	private CustomerModel model;
 
@@ -40,7 +41,20 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 		settingTable();
 
 		add();
-		select();
+
+		selectButton.addActionListener(e -> {
+			int row = table.getSelectedRow();
+			if (checkValid(row)) {
+				MainPage.shopper = getCustomerAt(row);
+				openShoppingPage();
+			}
+		});
+
+		guestButton.addActionListener(e -> {
+			MainPage.shopper = store.getGuest();
+			openShoppingPage();
+		});
+
 		history();
 		remove();
 
@@ -77,23 +91,17 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 		});
 	}
 
-	private void select() {
-		selectButton.addActionListener(e -> {
-			int row = table.getSelectedRow();
-			if (checkRow(row)) {
-				MainPage.shopper = getCustomerAt(row);
-				ShoppingPage shopping = new ShoppingPage();
-				shopping.run(getLocation());
-				dispose();
-			}
-			resetSelection(table);
-		});
+	private void openShoppingPage() {
+		ShoppingPage shopping = new ShoppingPage();
+		shopping.run(getLocation());
+		dispose();
+		resetSelection(table);
 	}
 
 	private void remove() {
 		removeButton.addActionListener(e -> {
 			int row = table.getSelectedRow();
-			if (checkRow(row)) {
+			if (checkValid(row)) {
 				int customerIndex = store.removeCustomer(getCustomerAt(row), false);
 				model.removeRow(customerIndex);
 				MainPage.reWriteCustomer();

@@ -88,7 +88,7 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	private void restock() {
 		int row = table.getSelectedRow();
 
-		if (checkRow(row)) {
+		if (checkValid(row)) {
 			ProductExt product = getProductAt(row);
 
 			if (product.isRestock()) {
@@ -111,7 +111,7 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	private void history() {
 		historyButton.addActionListener(e -> {
 			int row = table.getSelectedRow();
-			if (checkRow(row)) {
+			if (checkValid(row)) {
 				HistoryOfStorePage page = new HistoryOfStorePage(getProductAt(row));
 				page.run();
 			}

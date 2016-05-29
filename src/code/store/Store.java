@@ -84,6 +84,10 @@ public class Store {
 		this.restockProduct = restockProduct;
 	}
 
+	public Customer getGuest() {
+		return customerList.get(0);
+	}
+
 	public void addProduct(ProductExt product) {
 		productList.add(product);
 	}
