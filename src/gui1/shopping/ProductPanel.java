@@ -78,6 +78,10 @@ public class ProductPanel extends Observable {
 
 			if (buyCheckBox.isSelected()) {
 				notifyObservers(new String[]{"numProduct", "1"});
+
+				setChanged();
+				notifyObservers(getOrder());
+
 				if ((int) model.getNumber() == 0) spinner.setValue(1);
 				spinner.setEnabled(true);
 			} else {
@@ -89,7 +93,6 @@ public class ProductPanel extends Observable {
 
 		spinner.addChangeListener(e -> {
 			newNum = (int) model.getNumber();
-			System.out.println(newNum);
 			setChanged();
 
 			// increase

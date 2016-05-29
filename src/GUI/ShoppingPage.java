@@ -425,7 +425,7 @@ public class ShoppingPage extends JFrame {
 		if (text != null) {
 			// check if text isn't integer
 			int num = checkInteger(text);
-			// check is availaility
+			// check is availability
 			int availStatus = store.checkAvailability(productList.get(index), num);
 			String printBasket = String.format("<pre>%-10s %-31s %-25s %-6s %-6s %-8s   %6s</pre>", "ProductID", "Name", "Material", "Size", "Weight", "Price", "Number");
 			if (num > 0) {
