@@ -100,6 +100,15 @@ public class ProductExt extends Product {
 	}
 
 	/**
+	 * Extra use to print in basket only
+	 *
+	 * @return product information in form of array
+	 */
+	public Object[] getProductInfoExtra() {
+		return new Object[]{getProductID(), getName(), getTypeToString(), getMaterial(), getSize(), Double.valueOf(getWeight()), Double.valueOf(getPrice())};
+	}
+
+	/**
 	 * toString only <i>name</i> and <i>material</i>
 	 *
 	 * @return String in format of toString

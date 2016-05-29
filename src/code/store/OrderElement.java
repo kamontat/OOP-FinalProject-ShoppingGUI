@@ -49,6 +49,16 @@ public class OrderElement {
 		return code;
 	}
 
+	public Object[] getProductInfoExtra() {
+		int productLength = product.getProductInfoExtra().length;
+		Object[] temp = new Object[productLength + 1];
+		for (int i = 0; i < productLength; i++) {
+			temp[i] = product.getProductInfoExtra()[i];
+		}
+		temp[temp.length - 1] = num;
+		return temp;
+	}
+
 	public boolean equals(OrderElement element) {
 		return element.getCode().equals(code);
 	}

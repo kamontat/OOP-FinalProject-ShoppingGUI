@@ -19,7 +19,15 @@
         <children>
           <component id="1e394" class="javax.swing.JTable" binding="table">
             <constraints/>
-            <properties/>
+            <properties>
+              <autoResizeMode value="4"/>
+              <cellSelectionEnabled value="false"/>
+              <columnSelectionAllowed value="false"/>
+              <enabled value="true"/>
+              <fillsViewportHeight value="true"/>
+              <rowHeight value="20"/>
+              <rowSelectionAllowed value="true"/>
+            </properties>
           </component>
         </children>
       </scrollpane>

@@ -83,7 +83,10 @@ public class Customer extends Person {
 	}
 
 	public void addToBasket(OrderElement element) {
-		basketList.add(element);
+		// 0 is mean don't order
+		if (element.getNum() != 0) {
+			basketList.add(element);
+		}
 	}
 
 	public boolean removeFromBasket(OrderElement element) {
@@ -94,6 +97,20 @@ public class Customer extends Person {
 			}
 		}
 		return false;
+	}
+
+	public Object[][] getBasketToArray() {
+		// don't have basket yet.
+		if (basketList.size() == 0) {
+			return null;
+		}
+
+		// first [] is row of all orderElement, second [] is get info of pruduct and add by 1 (Because number in OrderElement)
+		Object[][] temp = new Object[basketList.size()][basketList.get(0).getProductInfoExtra().length];
+		for (int i = 0; i < temp.length; i++) {
+			temp[i] = basketList.get(i).getProductInfoExtra();
+		}
+		return temp;
 	}
 
 	public double getBasketTotalWeight() {

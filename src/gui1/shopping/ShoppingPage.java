@@ -1,6 +1,7 @@
 package gui1.shopping;
 
 import code.behavior.ButtonFactory;
+import code.behavior.DefaultModel;
 import code.constant.ImageSize;
 import code.constant.ProductType;
 import code.customer.Customer;
@@ -8,6 +9,7 @@ import code.file.ImageFileFactory;
 import gui1.main.MainPage;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.net.URL;
 import java.util.*;
@@ -54,6 +56,25 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		Arrays.stream(products).forEach(productPanel -> productPanel.addObserver(this));
 
 		toMain(this, mainButton);
+	}
+
+	private void updateTable() {
+		DefaultTableModel model = new DefaultModel(shopper.getBasketToArray(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "Price", "Number"}, false);
+
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		// Disable dragging
+		table.getTableHeader().setReorderingAllowed(false);
+
+		table.setModel(model);
+
+		table.getColumnModel().getColumn(0).setMinWidth(50); // id
+		table.getColumnModel().getColumn(1).setMinWidth(190); // name
+		table.getColumnModel().getColumn(2).setMinWidth(75); // type
+		table.getColumnModel().getColumn(3).setMinWidth(180); // material
+		table.getColumnModel().getColumn(4).setMinWidth(65); // size
+		table.getColumnModel().getColumn(5).setMinWidth(65); // weight
+		table.getColumnModel().getColumn(6).setMinWidth(80); // price
+		table.getColumnModel().getColumn(7).setMinWidth(65); // number
 	}
 
 	private void setCustomer() {
@@ -123,8 +144,8 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 	}
 
 	public void run(Point point) {
-		setMinimumSize(new Dimension(650, 470));
-		setSize(new Dimension(800, 875));
+		setMinimumSize(new Dimension(850, 470));
+		setSize(new Dimension(1000, 875));
 
 		setLocation(point);
 		setVisible(true);
@@ -144,11 +165,13 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 				} else if (args[0].equals("totalProduct")) {
 					setTotalProduct(Integer.parseInt(args[1]));
 					setTotalPrice(Double.parseDouble(args[2]));
+
+					shopper.removeFromBasket(product.getOrder());
+					shopper.addToBasket(product.getOrder());
+
+					updateTable();
 				}
 			}
 		}
-
-		shopper.removeFromBasket(product.getOrder());
-		shopper.addToBasket(product.getOrder());
 	}
 }
