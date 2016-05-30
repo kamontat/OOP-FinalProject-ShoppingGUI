@@ -25,6 +25,7 @@
               <columnSelectionAllowed value="false"/>
               <enabled value="true"/>
               <fillsViewportHeight value="true"/>
+              <font size="15" style="0"/>
               <rowHeight value="20"/>
               <rowSelectionAllowed value="true"/>
               <toolTipText value="(double click) To point to product screen"/>

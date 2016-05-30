@@ -66,7 +66,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 	private void updateTable() {
 		DefaultTableModel model = new DefaultModel(shopper.getBasketToArray(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "Price", "Number"}, false);
 
-				table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// Disable dragging
 		table.getTableHeader().setReorderingAllowed(false);
 
@@ -79,7 +79,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		table.getColumnModel().getColumn(4).setMinWidth(65); // size
 		table.getColumnModel().getColumn(5).setMinWidth(65); // weight
 		table.getColumnModel().getColumn(6).setMinWidth(80); // price
-		table.getColumnModel().getColumn(7).setMinWidth(65); // number
+		table.getColumnModel().getColumn(7).setMinWidth(100); // number
 
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -172,8 +172,8 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 	}
 
 	public void run(Point point) {
-		setMinimumSize(new Dimension(850, 470));
-		setSize(new Dimension(1000, 875));
+		setMinimumSize(new Dimension(1017, 860));
+		setSize(new Dimension(1017, 860));
 
 		setLocation(point);
 		setVisible(true);
