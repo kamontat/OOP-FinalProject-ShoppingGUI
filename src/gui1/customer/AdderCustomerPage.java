@@ -10,7 +10,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 public class AdderCustomerPage extends JDialog {
-	private Store store = MainPage.store;
+	private Store store = Store.getInstance();
 
 	private int CORRECTID = 0;
 	private int DUPLICATEID = 1;

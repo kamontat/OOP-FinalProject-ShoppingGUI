@@ -11,7 +11,7 @@ import java.awt.event.ActionListener;
 
 public class HistoryOfCustomerPage extends JFrame {
 
-	private Store store = MainPage.store;
+	private Store store = Store.getInstance();
 	private Customer shopper;
 	private JLabel textProductCustomer, textMemberClass, textCustomer;
 

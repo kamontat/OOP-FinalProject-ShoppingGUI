@@ -22,11 +22,9 @@ public class MainPage extends JFrame implements ButtonFactory {
 	private JPanel panel;
 
 	private static FileFactory factory = new FileFactory();
-	private static ArrayList<ProductExt> productList = assignProduct();
-	private static ArrayList<Customer> customerList = assignCustomer();
-	public static Store store = assignStore();
+	private static Store store = assignStore();
 
-	public static Customer shopper = customerList.get(0);
+	public static Customer shopper = store.getGuest();
 
 	public MainPage() {
 		super("Main Page");
@@ -36,28 +34,6 @@ public class MainPage extends JFrame implements ButtonFactory {
 		toCustomer(this, customerButton);
 		toLogin(this, storeButton);
 		toExit(exitButton);
-
-		setUpProduct();
-	}
-
-	private void setUpProduct() {
-
-	}
-
-	public static Object[][] getProductList() {
-		Object[][] temp = new Object[productList.size()][10];
-		for (int i = 0; i < productList.size(); i++) {
-			temp[i] = productList.get(i).getProductInfo(10);
-		}
-		return temp;
-	}
-
-	public static Object[][] getCustomerList() {
-		Object[][] temp = new Object[customerList.size() - 1][6];
-		for (int i = 0; i < temp.length; i++) {
-			temp[i] = customerList.get(i + 1).getCustomerInfo(6);
-		}
-		return temp;
 	}
 
 	/**
@@ -65,7 +41,7 @@ public class MainPage extends JFrame implements ButtonFactory {
 	 */
 	public static void reWriteCustomer() {
 		factory.setPath("src/textfile/Customer.txt");
-		factory.write(getCustomerList());
+		factory.write(store.getAllCustomer());
 	}
 
 	/**
@@ -125,11 +101,14 @@ public class MainPage extends JFrame implements ButtonFactory {
 	 * @return Store
 	 */
 	private static Store assignStore() {
+		ArrayList<ProductExt> productList = assignProduct();
+		ArrayList<Customer> customerList = assignCustomer();
+
 		Store temp = null;
 		factory.setPath("src/textfile/StoreInfo.txt");
 		String[][] informations = factory.read(":");
 		for (String[] info : informations) {
-			temp = new Store(productList, customerList, info[0], info[1]);
+			temp = Store.getInstance(productList, customerList, info[0], info[1]);
 		}
 
 		return temp;

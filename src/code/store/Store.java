@@ -3,8 +3,12 @@ package code.store;
 import code.customer.Customer;
 import code.product.ProductExt;
 
-import java.util.ArrayList;
+import java.util.*;
 
+/**
+ * @author kamontat
+ * @since 31/5/59 - 22:35
+ */
 public class Store {
 	private ArrayList<ProductExt> productList;
 	private ArrayList<Customer> customerList;
@@ -12,23 +16,18 @@ public class Store {
 	private boolean restockProduct;
 	private ArrayList<Order> historyList = new ArrayList<>();
 
-	public Store() {
-		productList = new ArrayList<>();
-		customerList = new ArrayList<>();
-		revenue = 0;
-		expense = 0;
-		restockProduct = false;
+	private static Store store;
+	
+	public static Store getInstance(ArrayList<ProductExt> productList, ArrayList<Customer> customerList, String revenue, String expense) {
+		if (store == null) store = new Store(productList, customerList, revenue, expense);
+		return store;
 	}
 
-	public Store(ArrayList<ProductExt> productList, ArrayList<Customer> customerList, double revenue, double expense) {
-		this.productList = productList;
-		this.customerList = customerList;
-		this.revenue = revenue;
-		this.expense = expense;
-		this.restockProduct = false;
+	public static Store getInstance() {
+		return store;
 	}
 
-	public Store(ArrayList<ProductExt> productList, ArrayList<Customer> customerList, String revenue, String expense) {
+	private Store(ArrayList<ProductExt> productList, ArrayList<Customer> customerList, String revenue, String expense) {
 		this.productList = productList;
 		this.customerList = customerList;
 		this.revenue = Double.parseDouble(revenue);
@@ -40,28 +39,20 @@ public class Store {
 		return productList;
 	}
 
-	public ArrayList<Customer> getCustomerList() {
-		return customerList;
-	}
-
-	public double getRevenue() {
-		return revenue;
-	}
-
-	public double getExpense() {
-		return expense;
-	}
-
-	public boolean getRestockProduct() {
-		return restockProduct;
-	}
-
 	public void setProductList(ArrayList<ProductExt> productList) {
 		this.productList = productList;
 	}
 
+	public ArrayList<Customer> getCustomerList() {
+		return customerList;
+	}
+
 	public void setCustomerList(ArrayList<Customer> customerList) {
 		this.customerList = customerList;
+	}
+
+	public double getRevenue() {
+		return revenue;
 	}
 
 	public void setRevenue(double revenue) {
@@ -72,6 +63,10 @@ public class Store {
 		this.revenue += revenue;
 	}
 
+	public double getExpense() {
+		return expense;
+	}
+
 	public void setExpense(double expense) {
 		this.expense = expense;
 	}
@@ -80,8 +75,36 @@ public class Store {
 		this.expense += expense;
 	}
 
+	public boolean isRestockProduct() {
+		return restockProduct;
+	}
+
 	public void setRestockProduct(boolean restockProduct) {
 		this.restockProduct = restockProduct;
+	}
+
+	public ArrayList<Order> getHistoryList() {
+		return historyList;
+	}
+
+	public void setHistoryList(ArrayList<Order> historyList) {
+		this.historyList = historyList;
+	}
+
+	public Object[][] getAllProduct() {
+		Object[][] temp = new Object[productList.size()][10];
+		for (int i = 0; i < productList.size(); i++) {
+			temp[i] = productList.get(i).getProductInfo(10);
+		}
+		return temp;
+	}
+
+	public Object[][] getAllCustomer() {
+		Object[][] temp = new Object[customerList.size() - 1][6];
+		for (int i = 0; i < temp.length; i++) {
+			temp[i] = customerList.get(i + 1).getCustomerInfo(6);
+		}
+		return temp;
 	}
 
 	public Customer getGuest() {

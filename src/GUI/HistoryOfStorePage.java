@@ -3,7 +3,6 @@ package gui;
 import code.customer.Customer;
 import code.product.ProductExt;
 import code.store.Store;
-import gui1.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,7 @@ import java.util.*;
 
 public class HistoryOfStorePage extends JFrame {
 
-	private Store store = MainPage.store;
+	private Store store = Store.getInstance();
 	private ProductExt product;
 	private JLabel textCustomerProduct, textProduct;
 

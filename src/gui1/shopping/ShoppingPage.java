@@ -23,9 +23,9 @@ import java.util.*;
  * @since 22/5/59 - 17:34
  */
 public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
-	private Store store = MainPage.store;
+	private Store store = Store.getInstance();
 	private Customer shopper;
-	private ProductPanel[] products = new ProductPanel[MainPage.store.getProductList().size()];
+	private ProductPanel[] products = new ProductPanel[store.getProductList().size()];
 
 	private JPanel panel;
 	private JTable table;
@@ -61,6 +61,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		Arrays.stream(products).forEach(productPanel -> productPanel.addObserver(this));
 
 		toMain(this, mainButton);
+		toPayment(this, paymentButton);
 	}
 
 	private void updateTable() {
@@ -126,7 +127,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 
 		if (big.length == small.length) {
 			for (int i = 0; i < big.length; i++) {
-				products[i + startIndex] = new ProductPanel(this, panel, MainPage.store.getProductList().get(i + startIndex));
+				products[i + startIndex] = new ProductPanel(this, panel, store.getProductList().get(i + startIndex));
 				products[i + startIndex].setInformation(small[i]);
 				products[i + startIndex].setPopupPic(big[i]);
 			}

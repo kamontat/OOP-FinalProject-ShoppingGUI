@@ -1,8 +1,8 @@
 package gui;
 
 import code.customer.Customer;
-import code.store.OrderElement;
 import code.payment.Shipping;
+import code.store.OrderElement;
 import code.store.Store;
 import gui1.main.MainPage;
 
@@ -14,7 +14,7 @@ import java.util.*;
 
 public class BasketPage extends JFrame {
 
-	private Store store = MainPage.store;
+	private Store store = Store.getInstance();
 	private Customer shopper;
 	private JLabel textProductCustomer;
 	private JLabel textPriceShipping;

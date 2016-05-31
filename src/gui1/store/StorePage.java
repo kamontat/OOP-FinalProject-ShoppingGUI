@@ -20,7 +20,7 @@ import java.awt.event.KeyEvent;
  * @since 21/5/59 - 12:26
  */
 public class StorePage extends JFrame implements Table, ButtonFactory {
-	private Store store = MainPage.store;
+	private Store store = Store.getInstance();
 
 	private JPanel panel;
 	private JTextField searchField;
@@ -38,7 +38,7 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	public StorePage() {
 		super("Store Page");
 		setContentPane(panel);
-		model = new ProductModel(MainPage.getProductList(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"});
+		model = new ProductModel(store.getAllProduct(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"});
 
 		settingTable();
 

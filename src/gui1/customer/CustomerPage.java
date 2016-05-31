@@ -19,7 +19,7 @@ import java.awt.*;
  * @since 21/5/59 - 22:53
  */
 public class CustomerPage extends JFrame implements Table, ButtonFactory {
-	private Store store = MainPage.store;
+	private Store store = Store.getInstance();
 
 	private JPanel panel;
 	private JTextField searchField;
@@ -36,7 +36,7 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 	public CustomerPage() {
 		super("Customer Page");
 		setContentPane(panel);
-		model = new CustomerModel(MainPage.getCustomerList(), new String[]{"ID", "Name", "LastName", "Gender", "Age", "Class"});
+		model = new CustomerModel(store.getAllCustomer(), new String[]{"ID", "Name", "LastName", "Gender", "Age", "Class"});
 
 		settingTable();
 

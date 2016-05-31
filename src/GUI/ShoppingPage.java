@@ -20,7 +20,7 @@ public class ShoppingPage extends JFrame {
 	// To import file image
 	private ClassLoader loader = this.getClass().getClassLoader();
 	// get store in MainMenu
-	private Store store = MainPage.store;
+	private Store store = Store.getInstance();
 	// get product and customer from store
 	private ArrayList<ProductExt> productList = store.getProductList();
 	private Customer shopper;
