@@ -18,4 +18,5 @@ public class PaymentPage {
 	private JLabel memberLabel;
 	private JLabel customerLabel;
 	private JLabel finalPriceLabel;
+	private JTextField shippingLabel;
 }
