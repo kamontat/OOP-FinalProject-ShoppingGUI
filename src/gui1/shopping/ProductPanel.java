@@ -54,6 +54,11 @@ public class ProductPanel extends Observable {
 		panel.add(this.panel);
 		page.pack();
 
+		// change color of stock if less than 1
+		if (product.getCurrNumStock() <= 1) {
+			stockLabel.setForeground(new Color(255, 0, 0));
+		}
+
 		dialog.setUndecorated(true);
 		dialog.setAlwaysOnTop(true);
 

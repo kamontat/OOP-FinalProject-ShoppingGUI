@@ -13,6 +13,8 @@ import gui1.main.MainPage;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -57,6 +59,14 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		setProduct(pendantPanel, ProductType.PENDANT, 5);
 		setProduct(ringPanel, ProductType.RING, 10);
 
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				super.componentResized(e);
+				System.out.println(getSize());
+			}
+		});
+
 		// add this to observer
 		Arrays.stream(products).forEach(productPanel -> productPanel.addObserver(this));
 
@@ -65,7 +75,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 	}
 
 	private void updateTable() {
-		DefaultTableModel model = new DefaultModel(shopper.getBasketToArray(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "Price", "Number"}, false);
+		DefaultTableModel model = new DefaultModel(shopper.getBasketToArray(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "Price", "Num"}, false);
 
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// Disable dragging
@@ -80,7 +90,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		table.getColumnModel().getColumn(4).setMinWidth(65); // size
 		table.getColumnModel().getColumn(5).setMinWidth(65); // weight
 		table.getColumnModel().getColumn(6).setMinWidth(80); // price
-		table.getColumnModel().getColumn(7).setMinWidth(100); // number
+		table.getColumnModel().getColumn(7).setMinWidth(55); // number
 
 		table.addMouseListener(new MouseAdapter() {
 			@Override
@@ -173,8 +183,9 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 	}
 
 	public void run(Point point) {
-		setMinimumSize(new Dimension(1017, 860));
-		setSize(new Dimension(1017, 860));
+		setMinimumSize(new Dimension(1062, 927));
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		setSize(screenSize);
 
 		setLocation(point);
 		setVisible(true);
