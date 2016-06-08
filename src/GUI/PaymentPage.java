@@ -18,7 +18,7 @@ public class PaymentPage extends JFrame {
 	private Customer shopper;
 	private JLabel textProductCustomer, textMemberClass, textCustomer, textPriceShipping, textFinalPrice;
 	private JComboBox<String> comboProduct;
-	private boolean register, express;
+	private code.constant.Shipping shipping = code.constant.Shipping.NONE;
 	// check run only first time
 	static private boolean check = true;
 
@@ -157,7 +157,7 @@ public class PaymentPage extends JFrame {
 		firstContainer.add(customerInformationContainer);
 		getContentPane().add(firstContainer);
 
-		textMemberClass = new JLabel(shopper.getMemberClass());
+		textMemberClass = new JLabel(shopper.getMemberClass().getName());
 		textMemberClass.setBounds(199, 7, 190, 57);
 		firstContainer.add(textMemberClass);
 		textMemberClass.setFont(new Font("Gujarati MT", Font.PLAIN, 27));
@@ -259,7 +259,7 @@ public class PaymentPage extends JFrame {
 		buttonBuy.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				store.checkOut(shopper, register, express);
+				store.checkOut(shopper, shipping);
 				MainPage menu = new MainPage();
 				menu.run(getLocation());
 				setVisible(false);
@@ -271,8 +271,7 @@ public class PaymentPage extends JFrame {
 		radioButtonRegister.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				register = true;
-				express = false;
+				shipping = code.constant.Shipping.REGISTER;
 				updatePriceShipping();
 				updateFinalPrice();
 			}
@@ -281,8 +280,7 @@ public class PaymentPage extends JFrame {
 		radioButtonExpress.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				register = false;
-				express = true;
+				shipping = code.constant.Shipping.EXPRESS;
 				updatePriceShipping();
 				updateFinalPrice();
 			}
@@ -291,8 +289,7 @@ public class PaymentPage extends JFrame {
 		radioButtonNone.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				register = false;
-				express = false;
+				shipping = code.constant.Shipping.NONE;
 				updatePriceShipping();
 				updateFinalPrice();
 			}
@@ -345,7 +342,7 @@ public class PaymentPage extends JFrame {
 		for (int i = 0; i < basket.size(); i++) {
 			totalWeight += basket.get(i).getProduct().getWeight() * basket.get(i).getNum();
 		}
-		Shipping shipping = new Shipping(totalWeight, register, express);
+		Shipping shipping = new Shipping(totalWeight, this.shipping);
 		String tempOutput = String.format("<html>" + "Weight: %.2f<br>Price: %d</html>", totalWeight, shipping.getShippingFee());
 		textPriceShipping.setText(tempOutput);
 	}
@@ -359,7 +356,7 @@ public class PaymentPage extends JFrame {
 		for (int i = 0; i < basket.size(); i++) {
 			totalWeight += basket.get(i).getProduct().getWeight() * basket.get(i).getNum();
 		}
-		Shipping shipping = new Shipping(totalWeight, register, express);
+		Shipping shipping = new Shipping(totalWeight, this.shipping);
 		// priceProductCustmer
 		String tempOutput = String.format("%,d", shipping.getShippingFee() + ShoppingPage.getPriceProductCustmer());
 		textFinalPrice.setText(tempOutput);

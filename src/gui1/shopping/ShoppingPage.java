@@ -118,7 +118,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 
 	private void setCustomer() {
 		customerLabel.setText(shopper.toString());
-		memberLabel.setText(shopper.getMemberClass());
+		memberLabel.setText(shopper.getMemberClass().getName());
 	}
 
 	private void setProduct(JPanel panel, ProductType name, int startIndex) {

@@ -7,16 +7,11 @@ import javax.swing.*;
  * @since 1/6/59 - 16:36
  */
 public class PaymentPage {
-	private JTable table;
+	private JTable table1;
 	private JButton buyButton;
-	private JButton mainButton;
-	private JButton shoppingButton;
-	private JComboBox comboBox;
+	private JButton mainPageButton;
+	private JButton shoppingPageButton;
+	private JComboBox comboBox1;
 	private JTextField priceLabel;
 	private JTextField weightLabel;
-	private JLabel discountLabel;
-	private JLabel memberLabel;
-	private JLabel customerLabel;
-	private JLabel finalPriceLabel;
-	private JTextField shippingLabel;
 }

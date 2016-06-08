@@ -124,7 +124,7 @@ public class ShoppingPage extends JFrame {
 		buttonZoneContainer.setLayout(new GridLayout(1, 5));
 
 		// assign MemberClass
-		textMemberClass = new JLabel(shopper.getMemberClass());
+		textMemberClass = new JLabel(shopper.getMemberClass().getName());
 		textMemberClass.setHorizontalAlignment(SwingConstants.CENTER);
 		textMemberClass.setForeground(new Color(255, 250, 240));
 		textMemberClass.setFont(new Font("Iowan Old Style", Font.PLAIN, 28));

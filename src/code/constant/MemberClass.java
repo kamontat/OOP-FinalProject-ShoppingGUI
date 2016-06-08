@@ -26,6 +26,14 @@ public enum MemberClass {
 		}
 	}
 
+	public static MemberClass checkMember(String className) {
+		for (MemberClass name : MemberClass.values()) {
+			if (name.getName().equals(className)) return name;
+		}
+		System.err.println("Dpon't have " + className + " class");
+		return null;
+	}
+
 	public String getName() {
 		return name;
 	}

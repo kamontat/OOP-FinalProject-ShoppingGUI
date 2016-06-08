@@ -3,20 +3,17 @@ package code.payment;
 public class Shipping {
 	private double totalWeight;
 	private int shippingFee;
-	private boolean registered;
-	private boolean express;
+	private code.constant.Shipping shipping;
 
 	public Shipping() {
 		totalWeight = 0;
 		shippingFee = 0;
-		registered = false;
-		express = false;
+		shipping = code.constant.Shipping.NONE;
 	}
 
-	public Shipping(double totalWeight, boolean registered, boolean express) {
+	public Shipping(double totalWeight, code.constant.Shipping shipping) {
 		this.totalWeight = totalWeight;
-		this.registered = registered;
-		this.express = express;
+		this.shipping = shipping;
 		calculateShippingFee();
 	}
 
@@ -28,28 +25,8 @@ public class Shipping {
 		return shippingFee;
 	}
 
-	public boolean isRegistered() {
-		return registered;
-	}
-
-	public boolean isExpress() {
-		return express;
-	}
-
-	public void setTotalWeight(double totalWeight) {
-		this.totalWeight = totalWeight;
-	}
-
-	public void setShippingFee(int shippingFee) {
-		this.shippingFee = shippingFee;
-	}
-
-	public void setRegistered(boolean registered) {
-		this.registered = registered;
-	}
-
-	public void setExpress(boolean express) {
-		this.express = express;
+	public code.constant.Shipping getShipping() {
+		return shipping;
 	}
 
 	public void calculateShippingFee() {
@@ -65,8 +42,8 @@ public class Shipping {
 				shippingFee += 3 * (weight - 1);
 			}
 		}
-		// when registered true and express false
-		if (registered && !express) {
+
+		if (shipping.equals(code.constant.Shipping.REGISTER)) {
 			if (totalWeight > 0 && totalWeight < 10) {
 				shippingFee += 24;
 			} else if (totalWeight < 20) {
@@ -74,9 +51,7 @@ public class Shipping {
 			} else {
 				shippingFee += 72;
 			}
-
-			// when registered false and express true
-		} else if (!registered && express) {
+		} else if (shipping.equals(code.constant.Shipping.EXPRESS)) {
 			if (totalWeight > 0 && totalWeight < 10) {
 				shippingFee += 55;
 			} else if (totalWeight < 25) {
@@ -91,14 +66,8 @@ public class Shipping {
 	}
 
 	public String toString() {
-		String registeredMail = "No", expressMail = "No";
-		if (registered) {
-			registeredMail = "Yes";
-		}
-
-		if (express) {
-			expressMail = "Yes";
-		}
+		String registeredMail = shipping.equals(code.constant.Shipping.REGISTER) ? "Yes": "No";
+		String expressMail = shipping.equals(code.constant.Shipping.EXPRESS) ? "Yes": "No";
 
 		String format = "Total weight = %.3f, Registered mail = %s, Express mail = %s, Shipping fee = %d Baht";
 		return String.format(format, this.totalWeight, registeredMail, expressMail, this.shippingFee);

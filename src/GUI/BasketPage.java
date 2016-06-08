@@ -141,7 +141,7 @@ public class BasketPage extends JFrame {
 		textCustomer.setFont(new Font("Century Gothic", Font.PLAIN, 17));
 		customerInformationContainer.add(textCustomer);
 
-		JLabel textMemberClass = new JLabel(shopper.getMemberClass());
+		JLabel textMemberClass = new JLabel(shopper.getMemberClass().getName());
 		textMemberClass.setBounds(199, 7, 190, 57);
 		firstContainer.add(textMemberClass);
 		textMemberClass.setFont(new Font("Gujarati MT", Font.PLAIN, 27));
@@ -224,7 +224,7 @@ public class BasketPage extends JFrame {
 		for (OrderElement basket : baskets) {
 			totalWeight += basket.getProduct().getWeight() * basket.getNum();
 		}
-		Shipping shipping = new Shipping(totalWeight, false, false);
+		Shipping shipping = new Shipping(totalWeight, code.constant.Shipping.NONE);
 		String tempOutput = String.format("<html>" + "Weight: %.2f<br>Price: %d</html>", totalWeight, shipping.getShippingFee());
 		textPriceShipping.setText(tempOutput);
 	}
@@ -238,7 +238,7 @@ public class BasketPage extends JFrame {
 		for (OrderElement basket : baskets) {
 			totalWeight += basket.getProduct().getWeight() * basket.getNum();
 		}
-		Shipping shipping = new Shipping(totalWeight, false, false);
+		Shipping shipping = new Shipping(totalWeight, code.constant.Shipping.NONE);
 		// priceProductCustmer
 		String tempOutput = String.format("%,d", shipping.getShippingFee() + ShoppingPage.getPriceProductCustmer());
 		textFinalPrice.setText(tempOutput);

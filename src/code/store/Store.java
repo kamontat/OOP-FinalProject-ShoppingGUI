@@ -1,5 +1,6 @@
 package code.store;
 
+import code.constant.Shipping;
 import code.customer.Customer;
 import code.product.ProductExt;
 
@@ -225,8 +226,8 @@ public class Store {
 	 * @param express
 	 * 		true if customer want to express
 	 */
-	public void checkOut(Customer customer, boolean registered, boolean express) {
-		Order order = new Order(customer, registered, express);
+	public void checkOut(Customer customer, Shipping shipping) {
+		Order order = new Order(customer, shipping);
 		customer.addToHistoryList(order);
 		revenue += order.getPayment().getValue();
 		expense += order.getPayment().getShippingFee();

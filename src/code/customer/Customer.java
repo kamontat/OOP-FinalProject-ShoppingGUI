@@ -1,5 +1,6 @@
 package code.customer;
 
+import code.constant.MemberClass;
 import code.store.Order;
 import code.store.OrderElement;
 import code.product.ProductExt;
@@ -8,7 +9,7 @@ import java.util.*;
 
 public class Customer extends Person {
 	private String customerID;
-	private String memberClass;
+	private MemberClass memberClass;
 	private ArrayList<OrderElement> basketList;
 	private ArrayList<Order> historyList;
 	private static int numCustomers;
@@ -18,13 +19,13 @@ public class Customer extends Person {
 	 */
 	public Customer() {
 		super();
-		memberClass = "None";
+		memberClass = MemberClass.NONE;
 		basketList = new ArrayList<>();
 		historyList = new ArrayList<>();
 		customerID = "GUEST";
 	}
 
-	public Customer(String ID, String name, String lastName, String gender, int age, String memberClass) {
+	public Customer(String ID, String name, String lastName, String gender, int age, MemberClass memberClass) {
 		super(ID, name, lastName, gender, age);
 		numCustomers++;
 		this.memberClass = memberClass;
@@ -36,7 +37,7 @@ public class Customer extends Person {
 	public Customer(String ID, String name, String lastName, String gender, String age, String memberClass) {
 		super(ID, name, lastName, gender, Integer.parseInt(age));
 		numCustomers++;
-		this.memberClass = memberClass;
+		this.memberClass = MemberClass.checkMember(memberClass);
 		basketList = new ArrayList<>();
 		historyList = new ArrayList<>();
 		customerID = "Member" + numCustomers;
@@ -46,7 +47,7 @@ public class Customer extends Person {
 		return customerID;
 	}
 
-	public String getMemberClass() {
+	public MemberClass getMemberClass() {
 		return memberClass;
 	}
 
@@ -66,7 +67,7 @@ public class Customer extends Person {
 		this.customerID = customerID;
 	}
 
-	public void setMemberClass(String memberClass) {
+	public void setMemberClass(MemberClass memberClass) {
 		this.memberClass = memberClass;
 	}
 
@@ -140,20 +141,6 @@ public class Customer extends Person {
 		}
 	}
 
-	public double getDiscountRate() {
-		double discountRate = 0;
-		if (memberClass.equals("Gold")) {
-			discountRate = 0.2;
-		} else if (memberClass.equals("Silver")) {
-			discountRate = 0.1;
-		} else if (memberClass.equals("Green")) {
-			discountRate = 0.05;
-		} else if (getAge() >= 60) {
-			discountRate = 0.01;
-		}
-		return discountRate;
-	}
-
 	public String getBasketString() {
 		String output = "";
 		ProductExt customerProduct;
@@ -174,7 +161,7 @@ public class Customer extends Person {
 	 * @return array with element element
 	 */
 	public Object[] getCustomerInfo(int element) {
-		Object[] all = new Object[]{getID(), getName(), getLastName(), getGender(), getAge(), getMemberClass()};
+		Object[] all = new Object[]{getID(), getName(), getLastName(), getGender(), getAge(), getMemberClass().getName()};
 		if (element <= all.length) {
 			Object[] temp = new Object[element];
 			// copy all into temp with element

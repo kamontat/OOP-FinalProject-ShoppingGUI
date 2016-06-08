@@ -2,7 +2,6 @@ package gui;
 
 import code.customer.Customer;
 import code.store.Store;
-import gui1.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -53,7 +52,7 @@ public class HistoryOfCustomerPage extends JFrame {
 		textCustomer.setFont(new Font("Gujarati MT", Font.PLAIN, 23));
 		customerInformationContainer.add(textCustomer);
 
-		textMemberClass = new JLabel(shopper.getMemberClass());
+		textMemberClass = new JLabel(shopper.getMemberClass().getName());
 		textMemberClass.setHorizontalAlignment(SwingConstants.CENTER);
 		textMemberClass.setBounds(232, 18, 138, 41);
 		firstContainer.add(textMemberClass);

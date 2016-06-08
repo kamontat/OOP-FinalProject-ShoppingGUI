@@ -14,14 +14,14 @@ public class Order {
 	private int orderID;
 	private static int numOrders;
 
-	public Order(Customer customer, boolean registered, boolean express) {
+	public Order(Customer customer, code.constant.Shipping shipping) {
 		numOrders++;
 		this.buyList.addAll(customer.getBasketList());
 
 		this.customer = customer;
 
-		shipping = new Shipping(customer.getBasketTotalWeight(), registered, express);
-		payment = new Payment(customer.getBasketTotalPrice(), customer.getDiscountRate(), shipping.getShippingFee());
+		this.shipping = new Shipping(customer.getBasketTotalWeight(), shipping);
+		payment = new Payment(customer.getBasketTotalPrice(), customer.getMemberClass().getDiscount(), this.shipping.getShippingFee());
 
 		orderID = numOrders;
 	}
@@ -76,7 +76,7 @@ public class Order {
 
 	public Order clone() {
 		numOrders--;
-		return new Order(customer.clone(), shipping.isRegistered(), shipping.isExpress());
+		return new Order(customer.clone(), shipping.getShipping());
 	}
 
 	public String toString() {
