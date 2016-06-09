@@ -1,10 +1,9 @@
 package code.behavior;
 
-import gui.BasketPage;
-import gui.PaymentPage;
 
 import gui1.customer.CustomerPage;
 import gui1.main.MainPage;
+import gui1.shopping.PaymentPage;
 import gui1.shopping.ShoppingPage;
 import gui1.store.LoginPage;
 import gui1.store.StorePage;
@@ -33,18 +32,10 @@ public interface ButtonFactory {
 		});
 	}
 
-	default void toBasket(JFrame frame, JButton basket) {
-		basket.addActionListener(e -> {
-			BasketPage page = new BasketPage();
-			page.run();
-			frame.dispose();
-		});
-	}
-
 	default void toPayment(JFrame frame, JButton payment) {
 		payment.addActionListener(e -> {
 			PaymentPage page = new PaymentPage();
-			page.run();
+			page.run(frame.getLocation());
 			frame.dispose();
 		});
 	}

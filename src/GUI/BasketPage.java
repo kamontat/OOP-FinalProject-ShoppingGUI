@@ -1,7 +1,7 @@
 package gui;
 
+import code.constant.Shipping;
 import code.customer.Customer;
-import code.payment.Shipping;
 import code.store.OrderElement;
 import code.store.Store;
 import gui1.main.MainPage;
@@ -224,8 +224,8 @@ public class BasketPage extends JFrame {
 		for (OrderElement basket : baskets) {
 			totalWeight += basket.getProduct().getWeight() * basket.getNum();
 		}
-		Shipping shipping = new Shipping(totalWeight, code.constant.Shipping.NONE);
-		String tempOutput = String.format("<html>" + "Weight: %.2f<br>Price: %d</html>", totalWeight, shipping.getShippingFee());
+		Shipping shipping = Shipping.NONE;
+		String tempOutput = String.format("<html>" + "Weight: %.2f<br>Price: %d</html>", totalWeight, shipping.getPrice(totalWeight));
 		textPriceShipping.setText(tempOutput);
 	}
 
@@ -238,9 +238,9 @@ public class BasketPage extends JFrame {
 		for (OrderElement basket : baskets) {
 			totalWeight += basket.getProduct().getWeight() * basket.getNum();
 		}
-		Shipping shipping = new Shipping(totalWeight, code.constant.Shipping.NONE);
+		Shipping shipping = Shipping.NONE;
 		// priceProductCustmer
-		String tempOutput = String.format("%,d", shipping.getShippingFee() + ShoppingPage.getPriceProductCustmer());
+		String tempOutput = String.format("%,d", shipping.getPrice(totalWeight) + ShoppingPage.getPriceProductCustmer());
 		textFinalPrice.setText(tempOutput);
 	}
 

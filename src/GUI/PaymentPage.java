@@ -1,7 +1,7 @@
 package gui;
 
+import code.constant.Shipping;
 import code.customer.Customer;
-import code.payment.Shipping;
 import code.store.OrderElement;
 import code.store.Store;
 import gui1.main.MainPage;
@@ -18,7 +18,7 @@ public class PaymentPage extends JFrame {
 	private Customer shopper;
 	private JLabel textProductCustomer, textMemberClass, textCustomer, textPriceShipping, textFinalPrice;
 	private JComboBox<String> comboProduct;
-	private code.constant.Shipping shipping = code.constant.Shipping.NONE;
+	private Shipping shipping = Shipping.NONE;
 	// check run only first time
 	static private boolean check = true;
 
@@ -271,7 +271,7 @@ public class PaymentPage extends JFrame {
 		radioButtonRegister.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				shipping = code.constant.Shipping.REGISTER;
+				shipping = Shipping.REGISTER;
 				updatePriceShipping();
 				updateFinalPrice();
 			}
@@ -280,7 +280,7 @@ public class PaymentPage extends JFrame {
 		radioButtonExpress.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				shipping = code.constant.Shipping.EXPRESS;
+				shipping = Shipping.EXPRESS;
 				updatePriceShipping();
 				updateFinalPrice();
 			}
@@ -289,7 +289,7 @@ public class PaymentPage extends JFrame {
 		radioButtonNone.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				shipping = code.constant.Shipping.NONE;
+				shipping = Shipping.NONE;
 				updatePriceShipping();
 				updateFinalPrice();
 			}
@@ -341,24 +341,23 @@ public class PaymentPage extends JFrame {
 		double totalWeight = 0;
 		for (int i = 0; i < basket.size(); i++) {
 			totalWeight += basket.get(i).getProduct().getWeight() * basket.get(i).getNum();
+			String tempOutput = String.format("<html>" + "Weight: %.2f<br>Price: %d</html>", totalWeight, shipping.getPrice(totalWeight));
+			textPriceShipping.setText(tempOutput);
 		}
-		Shipping shipping = new Shipping(totalWeight, this.shipping);
-		String tempOutput = String.format("<html>" + "Weight: %.2f<br>Price: %d</html>", totalWeight, shipping.getShippingFee());
-		textPriceShipping.setText(tempOutput);
 	}
 
 	/**
 	 * Update final price to present and set in textLabel
 	 */
+
 	public void updateFinalPrice() {
 		ArrayList<OrderElement> basket = shopper.getBasketList();
 		double totalWeight = 0;
 		for (int i = 0; i < basket.size(); i++) {
 			totalWeight += basket.get(i).getProduct().getWeight() * basket.get(i).getNum();
 		}
-		Shipping shipping = new Shipping(totalWeight, this.shipping);
 		// priceProductCustmer
-		String tempOutput = String.format("%,d", shipping.getShippingFee() + ShoppingPage.getPriceProductCustmer());
+		String tempOutput = String.format("%,d", shipping.getPrice(totalWeight) + ShoppingPage.getPriceProductCustmer());
 		textFinalPrice.setText(tempOutput);
 	}
 

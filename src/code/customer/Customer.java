@@ -85,10 +85,20 @@ public class Customer extends Person {
 		return getPrice() * getDiscount();
 	}
 
+	/**
+	 * get only product count by type
+	 *
+	 * @return num product
+	 */
 	public int getNumProduct() {
 		return basketList.size();
 	}
 
+	/**
+	 * get total product include num in orderElement
+	 *
+	 * @return num product
+	 */
 	public int getTotalProduct() {
 		int num = 0;
 		for (OrderElement ele : basketList) {

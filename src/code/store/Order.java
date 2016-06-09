@@ -1,8 +1,8 @@
 package code.store;
 
+import code.constant.Shipping;
 import code.customer.Customer;
 import code.payment.Payment;
-import code.payment.Shipping;
 
 import java.util.ArrayList;
 
@@ -14,14 +14,14 @@ public class Order {
 	private int orderID;
 	private static int numOrders;
 
-	public Order(Customer customer, code.constant.Shipping shipping) {
+	public Order(Customer customer, Shipping shipping) {
 		numOrders++;
 		this.buyList.addAll(customer.getBasketList());
 
 		this.customer = customer;
+		this.shipping = shipping;
 
-		this.shipping = new Shipping(customer.getWeight(), shipping);
-		payment = new Payment(customer.getPrice(), customer.getMemberClass().getDiscount(), this.shipping.getShippingFee());
+		payment = new Payment(customer.getPrice(), customer.getMemberClass().getDiscount(), shipping.getPrice(customer.getWeight()));
 
 		orderID = numOrders;
 	}
@@ -76,7 +76,7 @@ public class Order {
 
 	public Order clone() {
 		numOrders--;
-		return new Order(customer.clone(), shipping.getShipping());
+		return new Order(customer.clone(), shipping);
 	}
 
 	public String toString() {

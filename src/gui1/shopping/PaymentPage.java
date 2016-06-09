@@ -1,6 +1,7 @@
 package gui1.shopping;
 
 import code.behavior.ButtonFactory;
+import code.constant.Shipping;
 import code.customer.Customer;
 import code.store.Store;
 import gui1.main.MainPage;
@@ -16,6 +17,7 @@ public class PaymentPage extends JFrame implements ButtonFactory {
 	private Store store = Store.getInstance();
 	private Customer shopper = MainPage.shopper;
 
+	private JPanel panel;
 	private JTable table;
 	private JButton buyButton;
 	private JButton mainButton;
@@ -28,7 +30,6 @@ public class PaymentPage extends JFrame implements ButtonFactory {
 	private JLabel customerLabel;
 	private JLabel finalPriceLabel;
 	private JTextField shippingLabel;
-	private JPanel panel;
 
 	public PaymentPage() {
 		super("Payment Page");
@@ -38,12 +39,19 @@ public class PaymentPage extends JFrame implements ButtonFactory {
 		toShopping(this, shoppingButton);
 
 		setCustomer();
+		setComboBox();
 	}
 
 	private void setCustomer() {
 		customerLabel.setText(shopper.toString());
 		memberLabel.setText(shopper.getMemberClass().getName());
+	}
 
+	private void setComboBox() {
+		shippingLabel.setText(Shipping.NONE.toString(shopper.getWeight()));
+		comboBox.addItemListener(e -> {
+			shippingLabel.setText(Shipping.check(String.valueOf(e.getItem())).toString(shopper.getWeight()));
+		});
 	}
 
 	public void run(Point point) {
