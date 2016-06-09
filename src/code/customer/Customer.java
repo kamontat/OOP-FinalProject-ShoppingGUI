@@ -60,7 +60,7 @@ public class Customer extends Person {
 	}
 
 	public double getDiscount() {
-		return memberClass.getDiscount();
+		return getPrice() * memberClass.getDiscount();
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class Customer extends Person {
 	 * @return price
 	 */
 	public double getTotalPrice() {
-		return getPrice() * getDiscount();
+		return getPrice() - getDiscount();
 	}
 
 	/**

@@ -250,6 +250,7 @@
           </grid>
         </constraints>
         <properties>
+          <editable value="false"/>
           <foreground color="-1993984"/>
           <text value="None : 0฿"/>
         </properties>

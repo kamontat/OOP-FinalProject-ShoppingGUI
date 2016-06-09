@@ -16,6 +16,7 @@ import java.awt.*;
 public class PaymentPage extends JFrame implements ButtonFactory {
 	private Store store = Store.getInstance();
 	private Customer shopper = MainPage.shopper;
+	private Shipping shipping = Shipping.NONE;
 
 	private JPanel panel;
 	private JTable table;
@@ -40,6 +41,7 @@ public class PaymentPage extends JFrame implements ButtonFactory {
 
 		setCustomer();
 		setComboBox();
+		setLabel();
 	}
 
 	private void setCustomer() {
@@ -48,10 +50,20 @@ public class PaymentPage extends JFrame implements ButtonFactory {
 	}
 
 	private void setComboBox() {
-		shippingLabel.setText(Shipping.NONE.toString(shopper.getWeight()));
+		shippingLabel.setText(shipping.toString(shopper.getWeight()));
 		comboBox.addItemListener(e -> {
-			shippingLabel.setText(Shipping.check(String.valueOf(e.getItem())).toString(shopper.getWeight()));
+			// change shipping
+			shipping = Shipping.check(String.valueOf(e.getItem()));
+			setLabel();
 		});
+	}
+
+	public void setLabel() {
+		weightLabel.setText(String.format("%.2f", shopper.getWeight()));
+		priceLabel.setText(String.valueOf(shopper.getPrice()));
+		finalPriceLabel.setText(String.valueOf(shopper.getTotalPrice() + shipping.getPrice(shopper.getWeight())));
+		discountLabel.setText(String.valueOf(shopper.getDiscount()));
+		shippingLabel.setText(shipping.toString(shopper.getWeight()));
 	}
 
 	public void run(Point point) {
