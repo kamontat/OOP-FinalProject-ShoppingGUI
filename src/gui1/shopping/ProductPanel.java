@@ -1,5 +1,6 @@
 package gui1.shopping;
 
+import code.product.Product;
 import code.product.ProductExt;
 import code.store.OrderElement;
 
@@ -68,15 +69,14 @@ public class ProductPanel extends Observable {
 			public void mousePressed(MouseEvent e) {
 				super.mousePressed(e);
 
-				dialog.setLocation(new Point((page.getX() + (page.getSize().width / 2)) - (dialog.getSize().width / 2), page.getY()));
-				dialog.setVisible(true);
+				popup(page);
 			}
 
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				super.mouseReleased(e);
 
-				dialog.setVisible(false);
+				cancel();
 			}
 		});
 
@@ -117,6 +117,15 @@ public class ProductPanel extends Observable {
 		});
 	}
 
+	public void popup(JFrame page) {
+		dialog.setLocation(new Point((page.getX() + (page.getSize().width / 2)) - (dialog.getSize().width / 2), page.getY()));
+		dialog.setVisible(true);
+	}
+
+	public void cancel() {
+		dialog.setVisible(false);
+	}
+
 	public void setInformation(URL url) {
 		addIcon(picLabel, url);
 
@@ -149,6 +158,10 @@ public class ProductPanel extends Observable {
 
 	public double getPrice(int number) {
 		return product.getPrice() * number;
+	}
+
+	public boolean equals(Product product) {
+		return product.getProductID().equals(this.product.getProductID());
 	}
 
 	private void addIcon(JLabel label, URL url) {

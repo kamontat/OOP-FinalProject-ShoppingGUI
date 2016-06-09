@@ -25,6 +25,7 @@ import java.util.*;
  * @since 22/5/59 - 17:34
  */
 public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
+	private JFrame page = this;
 	private Store store = Store.getInstance();
 	private Customer shopper;
 	private ProductPanel[] products = new ProductPanel[store.getProductList().size()];
@@ -93,12 +94,16 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		table.getColumnModel().getColumn(7).setMinWidth(55); // number
 
 		table.addMouseListener(new MouseAdapter() {
+			private boolean mousePressed = false;
+
+			// when user double click in the table
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
 				if (e.getClickCount() == 2) {
 					int row = table.getSelectedRow();
 					ProductExt product = getProductAt(row);
+
 					if (product.getType().equals(ProductType.EARRING)) {
 						tabbedPane.setSelectedIndex(0);
 					} else if (product.getType().equals(ProductType.PENDANT)) {
@@ -106,6 +111,39 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 					} else if (product.getType().equals(ProductType.RING)) {
 						tabbedPane.setSelectedIndex(2);
 					}
+				}
+			}
+
+			// for long click
+			@Override
+			public void mousePressed(MouseEvent e) {
+				new Thread(() -> {
+					mousePressed = true;
+					while (mousePressed) {
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e1) {
+							e1.printStackTrace();
+						}
+						if (mousePressed) {
+							int row = table.getSelectedRow();
+							ProductExt product = getProductAt(row);
+
+							for (int i = 0; i < products.length; i++) {
+								if (products[i].equals(product)) {
+									products[i].popup(page);
+								}
+							}
+						}
+					}
+				}).start();
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				mousePressed = false;
+				for (ProductPanel pa : products) {
+					pa.cancel();
 				}
 			}
 		});

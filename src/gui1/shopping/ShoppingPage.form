@@ -30,7 +30,7 @@
               <font size="15" style="0"/>
               <rowHeight value="20"/>
               <rowSelectionAllowed value="false"/>
-              <toolTipText value="(double click) To point to product screen"/>
+              <toolTipText value="&lt;html&gt;&#10;(Long click) To show picture of product &lt;br&gt;&#10;(Double click) To point to product screen&#10;&lt;/html&gt;"/>
             </properties>
           </component>
         </children>
