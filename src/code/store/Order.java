@@ -20,8 +20,8 @@ public class Order {
 
 		this.customer = customer;
 
-		this.shipping = new Shipping(customer.getBasketTotalWeight(), shipping);
-		payment = new Payment(customer.getBasketTotalPrice(), customer.getMemberClass().getDiscount(), this.shipping.getShippingFee());
+		this.shipping = new Shipping(customer.getWeight(), shipping);
+		payment = new Payment(customer.getPrice(), customer.getMemberClass().getDiscount(), this.shipping.getShippingFee());
 
 		orderID = numOrders;
 	}

@@ -30,7 +30,7 @@ public enum MemberClass {
 		for (MemberClass name : MemberClass.values()) {
 			if (name.getName().equals(className)) return name;
 		}
-		System.err.println("Dpon't have " + className + " class");
+		System.err.println("Don't have " + className + " class yet.");
 		return null;
 	}
 

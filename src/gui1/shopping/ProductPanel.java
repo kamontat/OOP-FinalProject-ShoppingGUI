@@ -18,8 +18,8 @@ import java.util.*;
 public class ProductPanel extends Observable {
 	private OrderElement order;
 	private ProductExt product;
-	private int newNum;
-	private int oldNum;
+
+	private int num;
 
 	private JCheckBox buyCheckBox;
 	private JSpinner spinner;
@@ -82,38 +82,28 @@ public class ProductPanel extends Observable {
 
 		buyCheckBox.addItemListener(e -> {
 			setChanged();
+			notifyObservers();
 
 			if (buyCheckBox.isSelected()) {
-				notifyObservers(new String[]{"numProduct", "1"});
 				if ((int) model.getNumber() == 0) spinner.setValue(1);
 				spinner.setEnabled(true);
 			} else {
-				notifyObservers(new String[]{"numProduct", "-1"});
 				spinner.setValue(0);
 				spinner.setEnabled(false);
 			}
 		});
 
 		spinner.addChangeListener(e -> {
-			newNum = (int) model.getNumber();
+			num = (int) model.getNumber();
+
 			setChanged();
+			notifyObservers();
 
-			// increase
-			if (newNum > oldNum) {
-				notifyObservers(new String[]{"totalProduct", String.valueOf(newNum - oldNum), String.valueOf(getPrice(newNum - oldNum))});
-				// decrease
-			} else if (newNum < oldNum) {
-				notifyObservers(new String[]{"totalProduct", String.valueOf(newNum - oldNum), String.valueOf(getPrice(newNum - oldNum))});
-			}
-
-			if (newNum > 0) {
+			if (num > 0) {
 				buyCheckBox.setSelected(true);
 			} else {
 				buyCheckBox.setSelected(false);
 			}
-
-			// update oldNum newNum
-			oldNum = newNum;
 		});
 	}
 
@@ -147,13 +137,9 @@ public class ProductPanel extends Observable {
 
 	public OrderElement getOrder() {
 		// make number of product present
-		order.setNum(newNum);
+		order.setNum(num);
 		// return present OrderElement
 		return order;
-	}
-
-	public int getNumber() {
-		return newNum;
 	}
 
 	public double getPrice(int number) {

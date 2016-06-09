@@ -454,6 +454,7 @@ public class ShoppingPage extends JFrame {
 
 			String tempPrice = String.format("%,d", priceProductCustomer);
 			printBasket += shopper.getBasketString();
+
 			updatePage(printBasket, Integer.toString(numProductCustomer), tempPrice);
 		}
 	}

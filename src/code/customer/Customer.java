@@ -59,6 +59,52 @@ public class Customer extends Person {
 		return historyList;
 	}
 
+	public double getDiscount() {
+		return memberClass.getDiscount();
+	}
+
+	/**
+	 * get original price without minus any discount
+	 *
+	 * @return price
+	 */
+	public double getPrice() {
+		double price = 0;
+		for (OrderElement basket : basketList) {
+			price += basket.getProduct().getPrice() * basket.getNum();
+		}
+		return price;
+	}
+
+	/**
+	 * price that calculate discount already
+	 *
+	 * @return price
+	 */
+	public double getTotalPrice() {
+		return getPrice() * getDiscount();
+	}
+
+	public int getNumProduct() {
+		return basketList.size();
+	}
+
+	public int getTotalProduct() {
+		int num = 0;
+		for (OrderElement ele : basketList) {
+			num += ele.getNum();
+		}
+		return num;
+	}
+
+	public double getWeight() {
+		double weight = 0;
+		for (OrderElement basket : basketList) {
+			weight += basket.getProduct().getWeight() * basket.getNum();
+		}
+		return weight;
+	}
+
 	public static int getNumCustomers() {
 		return numCustomers;
 	}
@@ -112,23 +158,6 @@ public class Customer extends Person {
 			temp[i] = basketList.get(i).getProductInfoExtra();
 		}
 		return temp;
-	}
-
-	public double getBasketTotalWeight() {
-		double weight = 0;
-		for (OrderElement basket : basketList) {
-			weight += basket.getProduct().getWeight() * basket.getNum();
-		}
-		return weight;
-	}
-
-	public double getBasketTotalPrice() {
-		double price = 0;
-		for (OrderElement basket : basketList) {
-			price += basket.getProduct().getPrice() * basket.getNum();
-
-		}
-		return price;
 	}
 
 	public void clearBasket() {

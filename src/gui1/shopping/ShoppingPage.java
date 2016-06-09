@@ -13,8 +13,6 @@ import gui1.main.MainPage;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
@@ -27,7 +25,8 @@ import java.util.*;
 public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 	private JFrame page = this;
 	private Store store = Store.getInstance();
-	private Customer shopper;
+	private Customer shopper = MainPage.shopper;
+
 	private ProductPanel[] products = new ProductPanel[store.getProductList().size()];
 
 	private JPanel panel;
@@ -53,20 +52,11 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		super("Shopping Page");
 		setContentPane(panel);
 
-		shopper = MainPage.shopper;
 		setCustomer();
 
 		setProduct(earringPanel, ProductType.EARRING, 0);
 		setProduct(pendantPanel, ProductType.PENDANT, 5);
 		setProduct(ringPanel, ProductType.RING, 10);
-
-		addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				super.componentResized(e);
-				System.out.println(getSize());
-			}
-		});
 
 		// add this to observer
 		Arrays.stream(products).forEach(productPanel -> productPanel.addObserver(this));
@@ -184,42 +174,6 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		}
 	}
 
-	/**
-	 * when number in positive this method will increase
-	 * otherwise this method will decrease number Product
-	 *
-	 * @param num
-	 * 		some number
-	 */
-	private void setNumProduct(int num) {
-		int number = Integer.parseInt(numProductLabel.getText()) + num;
-		this.numProductLabel.setText(String.valueOf(number));
-	}
-
-	/**
-	 * when number in positive this method will increase
-	 * otherwise this method will decrease total Product
-	 *
-	 * @param total
-	 * 		some number
-	 */
-	public void setTotalProduct(int total) {
-		int number = Integer.parseInt(totalProductLabel.getText()) + total;
-		this.totalProductLabel.setText(String.valueOf(number));
-	}
-
-	/**
-	 * when number in positive this method will increase
-	 * otherwise this method will decrease total price
-	 *
-	 * @param price
-	 * 		some number
-	 */
-	public void setTotalPrice(double price) {
-		double number = Double.parseDouble(totalPriceLabel.getText()) + price;
-		this.totalPriceLabel.setText(String.valueOf(number));
-	}
-
 	public void run(Point point) {
 		setMinimumSize(new Dimension(1062, 927));
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -233,23 +187,13 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 	@Override
 	public void update(Observable o, Object arg) {
 		ProductPanel product = (ProductPanel) o;
-		if (arg != null) {
+		shopper.removeFromBasket(product.getOrder());
+		shopper.addToBasket(product.getOrder());
 
-			if (arg.getClass() == String[].class) {
-				String[] args = (String[]) arg;
+		this.numProductLabel.setText(String.valueOf(shopper.getNumProduct()));
+		this.totalProductLabel.setText(String.valueOf(shopper.getTotalProduct()));
+		this.totalPriceLabel.setText(String.valueOf(shopper.getPrice()));
 
-				if (args[0].equals("numProduct")) {
-					setNumProduct(Integer.parseInt(args[1]));
-				} else if (args[0].equals("totalProduct")) {
-					setTotalProduct(Integer.parseInt(args[1]));
-					setTotalPrice(Double.parseDouble(args[2]));
-
-					shopper.removeFromBasket(product.getOrder());
-					shopper.addToBasket(product.getOrder());
-
-					updateTable();
-				}
-			}
-		}
+		updateTable();
 	}
 }
