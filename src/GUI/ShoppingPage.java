@@ -402,7 +402,7 @@ public class ShoppingPage extends JFrame {
 	 * check that text is or not Integer
 	 *
 	 * @param text
-	 * @return if text equals Integer will return int, otherwise return -1
+	 * @return if text equalsByCode Integer will return int, otherwise return -1
 	 */
 	public int checkInteger(String text) {
 		try {
