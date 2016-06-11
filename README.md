@@ -29,10 +29,12 @@ we done it when I study in first term of first year in kasetsert university (12/
     - 6.0.5 <- create new way to add new customer
     - 6.0.6 <- renew all format of gui
     - 6.0.7 <- Renew gui code (Shopping)
+    - 6.0.8 <- Renew gui code (Payment) and add minor feature
 
 ### What is this for? ###
 
 - practice java gui programming
+- learn to do some big project
 
 ### Who done this project? ###
 
