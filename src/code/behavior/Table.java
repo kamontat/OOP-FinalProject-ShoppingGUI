@@ -1,7 +1,10 @@
 package code.behavior;
 
 import javax.swing.*;
-import javax.swing.table.*;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -107,10 +110,10 @@ public interface Table {
 				int rendererWidth = component.getPreferredSize().width;
 				TableColumn tableColumn = getColumnModel().getColumn(column);
 				tableColumn.setPreferredWidth(Math.max(rendererWidth + getIntercellSpacing().width, tableColumn.getPreferredWidth()));
-				System.out.println(tableColumn.getWidth());
 				return component;
 			}
 		};
+
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		return table;
 	}
@@ -118,7 +121,8 @@ public interface Table {
 
 	/**
 	 * make `table` cannot drag and make in can single selection <br>
-	 * and fixed min size by `sizes`
+	 * and fixed min size of column by `sizes` <br>
+	 * if size been null min size will be `75`
 	 *
 	 * @param table
 	 * 		JTable
@@ -126,15 +130,26 @@ public interface Table {
 	 * 		array of size, if don't want, make it to null
 	 */
 	default void settingTable(JTable table, int[] sizes) {
+
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// Disable dragging
 		table.getTableHeader().setReorderingAllowed(false);
 
+
 		int i = 0;
+		int size = table.getModel().getColumnCount();
 
 		if (sizes != null) {
-			for (int size : sizes) {
-				table.getColumnModel().getColumn(i++).setMinWidth(size);
+			if (sizes.length == size) {
+				for (int aSize : sizes) {
+					table.getColumnModel().getColumn(i++).setMinWidth(aSize);
+				}
+			} else {
+				System.err.println("sizes and table column size does't match");
+			}
+		} else {
+			for (i = 0; i < size; i++) {
+				table.getColumnModel().getColumn(i).setMinWidth(table.getColumnModel().getColumn(i).getPreferredWidth());
 			}
 		}
 	}
