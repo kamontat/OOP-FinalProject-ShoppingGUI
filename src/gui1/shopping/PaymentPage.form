@@ -25,8 +25,11 @@
           <component id="ffdce" class="javax.swing.JTable" binding="table" custom-create="true">
             <constraints/>
             <properties>
+              <autoResizeMode value="4"/>
               <fillsViewportHeight value="true"/>
+              <font size="15" style="0"/>
               <gridColor color="-1"/>
+              <rowHeight value="20"/>
               <toolTipText value="&lt;html&gt;&#10;(Double click) To point to product screen in shopping page&#10;&lt;/html&gt;"/>
             </properties>
           </component>
