@@ -4,6 +4,7 @@ public class Product {
 	private String productID;
 	private String name;
 	private double price;
+	// weight is 'g'
 	private double weight;
 	private int currNumStock;
 	private boolean restock;

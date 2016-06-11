@@ -1,6 +1,8 @@
 package gui1.shopping;
 
 import code.behavior.ButtonFactory;
+import code.TableModel.DefaultModel;
+import code.behavior.Table;
 import code.constant.Shipping;
 import code.customer.Customer;
 import code.store.Store;
@@ -8,12 +10,14 @@ import gui1.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * @author kamontat
  * @since 1/6/59 - 16:36
  */
-public class PaymentPage extends JFrame implements ButtonFactory {
+public class PaymentPage extends JFrame implements ButtonFactory, Table {
 	private Store store = Store.getInstance();
 	private Customer shopper = MainPage.shopper;
 	private Shipping shipping = Shipping.NONE;
@@ -42,6 +46,25 @@ public class PaymentPage extends JFrame implements ButtonFactory {
 		setCustomer();
 		setComboBox();
 		setLabel();
+
+		updateTable();
+	}
+
+	private void updateTable() {
+		DefaultModel model = new DefaultModel(shopper.getBasketToArray(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "Price", "Num"}, false);
+		table.setModel(model);
+		settingTable(table, new int[]{75, 75, 75, 75, 75, 75, 75, 75});
+
+		table.addMouseListener(new MouseAdapter() {
+			// when user double click in the table
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				if (e.getClickCount() == 2) {
+
+				}
+			}
+		});
 	}
 
 	private void setCustomer() {
@@ -59,7 +82,7 @@ public class PaymentPage extends JFrame implements ButtonFactory {
 	}
 
 	public void setLabel() {
-		weightLabel.setText(String.format("%.2f", shopper.getWeight()));
+		weightLabel.setText(String.format("%.2f g", shopper.getWeight()));
 		priceLabel.setText(String.valueOf(shopper.getPrice()));
 		finalPriceLabel.setText(String.valueOf(shopper.getTotalPrice() + shipping.getPrice(shopper.getWeight())));
 		discountLabel.setText(String.valueOf(shopper.getDiscount()));
@@ -77,5 +100,10 @@ public class PaymentPage extends JFrame implements ButtonFactory {
 	public static void main(String[] args) {
 		PaymentPage page = new PaymentPage();
 		page.run(new Point(0, 0));
+	}
+
+	private void createUIComponents() {
+		// make table fit size by contact
+		table = fitSize(table);
 	}
 }

@@ -8,11 +8,7 @@ public class Payment {
 	private double value;
 
 	public Payment() {
-		totalPrice = 0;
-		discountRate = 0;
-		shippingFee = 0;
-		discount = 0;
-		value = 0;
+		this(0, 0, 0);
 	}
 
 	public Payment(double totalPrice, double discountRate, double shippingFee) {

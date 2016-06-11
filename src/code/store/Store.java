@@ -221,10 +221,8 @@ public class Store {
 	 *
 	 * @param customer
 	 * 		customer
-	 * @param registered
-	 * 		true if customer want to registered
-	 * @param express
-	 * 		true if customer want to express
+	 * @param shipping
+	 * 		how customer shipping
 	 */
 	public void checkOut(Customer customer, Shipping shipping) {
 		Order order = new Order(customer, shipping);

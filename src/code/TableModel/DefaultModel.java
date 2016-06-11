@@ -1,4 +1,4 @@
-package code.behavior;
+package code.TableModel;
 
 import javax.swing.table.DefaultTableModel;
 
@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DefaultModel extends DefaultTableModel {
 	private boolean edit;
-
+	
 	/**
 	 * own model that specific in each of column
 	 */
@@ -16,12 +16,12 @@ public class DefaultModel extends DefaultTableModel {
 		super(data, columnNames);
 		this.edit = edit;
 	}
-
+	
 	@Override
 	public Class<?> getColumnClass(int columnIndex) {
 		return String.class;
 	}
-
+	
 	@Override
 	public boolean isCellEditable(int row, int column) {
 		return edit;

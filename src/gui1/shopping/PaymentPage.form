@@ -22,11 +22,11 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="ffdce" class="javax.swing.JTable" binding="table">
+          <component id="ffdce" class="javax.swing.JTable" binding="table" custom-create="true">
             <constraints/>
             <properties>
               <fillsViewportHeight value="true"/>
-              <gridColor color="-16777216"/>
+              <gridColor color="-1"/>
             </properties>
           </component>
         </children>

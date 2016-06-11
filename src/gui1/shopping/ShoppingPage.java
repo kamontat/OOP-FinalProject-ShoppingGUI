@@ -1,7 +1,8 @@
 package gui1.shopping;
 
 import code.behavior.ButtonFactory;
-import code.behavior.DefaultModel;
+import code.TableModel.DefaultModel;
+import code.behavior.Table;
 import code.constant.ImageSize;
 import code.constant.ProductType;
 import code.customer.Customer;
@@ -11,18 +12,19 @@ import code.store.Store;
 import gui1.main.MainPage;
 
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.*;
 
+import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
+
 /**
  * @author kamontat
  * @since 22/5/59 - 17:34
  */
-public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
+public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Table {
 	private JFrame page = this;
 	private Store store = Store.getInstance();
 	private Customer shopper = MainPage.shopper;
@@ -61,27 +63,17 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		// add this to observer
 		Arrays.stream(products).forEach(productPanel -> productPanel.addObserver(this));
 
-		toMain(this, mainButton);
+		toMain();
 		toPayment(this, paymentButton);
+
+		updateTable();
 	}
 
 	private void updateTable() {
-		DefaultTableModel model = new DefaultModel(shopper.getBasketToArray(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "Price", "Num"}, false);
-
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		// Disable dragging
-		table.getTableHeader().setReorderingAllowed(false);
-
+		DefaultModel model = new DefaultModel(shopper.getBasketToArray(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "Price", "Num"}, false);
 		table.setModel(model);
 
-		table.getColumnModel().getColumn(0).setMinWidth(50); // id
-		table.getColumnModel().getColumn(1).setMinWidth(190); // name
-		table.getColumnModel().getColumn(2).setMinWidth(75); // type
-		table.getColumnModel().getColumn(3).setMinWidth(180); // material
-		table.getColumnModel().getColumn(4).setMinWidth(65); // size
-		table.getColumnModel().getColumn(5).setMinWidth(65); // weight
-		table.getColumnModel().getColumn(6).setMinWidth(80); // price
-		table.getColumnModel().getColumn(7).setMinWidth(55); // number
+		settingTable(table, new int[]{75, 75, 75, 75, 75, 75, 75, 75});
 
 		table.addMouseListener(new MouseAdapter() {
 			private boolean mousePressed = false;
@@ -174,6 +166,21 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		}
 	}
 
+	public void toMain() {
+		mainButton.addActionListener(e -> {
+			int status = JOptionPane.showConfirmDialog(null, "do you want to keep shopping cart?", "Message", YES_NO_CANCEL_OPTION);
+			// 2 = cancel, 1 = no, 0 = yes
+			if (status != 2) {
+				if (status == 1) {
+					shopper.clearBasket();
+				}
+				MainPage page = new MainPage();
+				page.run(getLocation());
+				dispose();
+			}
+		});
+	}
+
 	public void run(Point point) {
 		setMinimumSize(new Dimension(1062, 927));
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -195,5 +202,9 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer {
 		this.totalPriceLabel.setText(String.valueOf(shopper.getPrice()));
 
 		updateTable();
+	}
+
+	private void createUIComponents() {
+		table = fitSize(table);
 	}
 }

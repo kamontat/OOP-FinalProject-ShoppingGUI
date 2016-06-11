@@ -17,7 +17,6 @@ public class Order {
 	public Order(Customer customer, Shipping shipping) {
 		numOrders++;
 		this.buyList.addAll(customer.getBasketList());
-
 		this.customer = customer;
 		this.shipping = shipping;
 

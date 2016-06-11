@@ -1,7 +1,7 @@
 package gui1.store;
 
 import code.behavior.ButtonFactory;
-import code.behavior.ProductModel;
+import code.TableModel.ProductModel;
 import code.behavior.Table;
 import code.product.ProductExt;
 import code.store.Store;
@@ -52,11 +52,8 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	}
 
 	private void settingTable() {
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		// Disable dragging
-		table.getTableHeader().setReorderingAllowed(false);
-
 		table.setModel(model);
+		settingTable(table, new int[]{50, 190, 75, 180, 65, 65, 75, 75, 80, 100});
 
 		table.addKeyListener(new KeyAdapter() {
 			@Override
@@ -68,17 +65,6 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 				}
 			}
 		});
-
-		table.getColumnModel().getColumn(0).setMinWidth(50); // id
-		table.getColumnModel().getColumn(1).setMinWidth(190); // name
-		table.getColumnModel().getColumn(2).setMinWidth(75); // type
-		table.getColumnModel().getColumn(3).setMinWidth(180); // material
-		table.getColumnModel().getColumn(4).setMinWidth(65); // size
-		table.getColumnModel().getColumn(5).setMinWidth(65); // weight
-		table.getColumnModel().getColumn(6).setMinWidth(75); // stock
-		table.getColumnModel().getColumn(7).setMinWidth(75); // restock
-		table.getColumnModel().getColumn(8).setMinWidth(80); // price
-		table.getColumnModel().getColumn(9).setMinWidth(100); // buying price
 
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
@@ -147,5 +133,9 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 		setLocation(point);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	}
+
+	private void createUIComponents() {
+		table = fitSize(table);
 	}
 }

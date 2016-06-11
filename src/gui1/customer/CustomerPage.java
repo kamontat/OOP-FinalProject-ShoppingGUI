@@ -1,7 +1,7 @@
 package gui1.customer;
 
 import code.behavior.ButtonFactory;
-import code.behavior.CustomerModel;
+import code.TableModel.CustomerModel;
 import code.behavior.Table;
 import code.customer.Customer;
 import code.store.Store;
@@ -62,18 +62,8 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 	}
 
 	private void settingTable() {
-		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		// Disable dragging
-		table.getTableHeader().setReorderingAllowed(false);
-
 		table.setModel(model);
-
-		table.getColumnModel().getColumn(0).setMinWidth(50); // id
-		table.getColumnModel().getColumn(1).setMinWidth(100); // name
-		table.getColumnModel().getColumn(2).setMinWidth(120); // last name
-		table.getColumnModel().getColumn(3).setMinWidth(50); // gender
-		table.getColumnModel().getColumn(4).setMinWidth(50); // age
-		table.getColumnModel().getColumn(5).setMinWidth(75); // class
+		settingTable(table, new int[]{50, 100, 120, 50, 50, 75});
 
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
@@ -129,5 +119,10 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 		setLocation(point);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+	}
+
+	private void createUIComponents() {
+		// make table fit size by contact
+		table = fitSize(table);
 	}
 }
