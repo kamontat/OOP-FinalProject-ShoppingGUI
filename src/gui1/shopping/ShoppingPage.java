@@ -25,7 +25,6 @@ import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
  * @since 22/5/59 - 17:34
  */
 public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Table {
-	// FIXME: 12/6/59 change new page and than came back but checkBox isn't check
 	private JFrame page = this;
 	private Store store = Store.getInstance();
 	private Customer shopper = MainPage.shopper;

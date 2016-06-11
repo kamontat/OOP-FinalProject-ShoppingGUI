@@ -36,6 +36,16 @@ public class OrderElement {
 	public void setNum(int num) {
 		this.num = num;
 	}
+
+	/**
+	 * Warning: code is some String that defined orderElement is same or not.
+	 *
+	 * @param code
+	 * 		some String with 12 char
+	 */
+	public void setCode(String code) {
+		this.code = code;
+	}
 	
 	public String getName() {
 		return product.getName();

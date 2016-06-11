@@ -1,8 +1,10 @@
 package gui1.shopping;
 
+import code.customer.Customer;
 import code.product.Product;
 import code.product.ProductExt;
 import code.store.OrderElement;
+import gui1.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
@@ -80,6 +82,7 @@ public class ProductPanel extends Observable {
 			}
 		});
 
+		autoCheck(MainPage.shopper);
 		buyCheckBox.addItemListener(e -> {
 			setChanged();
 			notifyObservers();
@@ -105,6 +108,30 @@ public class ProductPanel extends Observable {
 				buyCheckBox.setSelected(false);
 			}
 		});
+	}
+
+	private void autoCheck(Customer shopper) {
+		for (OrderElement element : shopper.getBasketList()) {
+			// check duplicate product id
+			if (getOrder().getProduct().getProductID().equals(element.getProduct().getProductID())) {
+				// change new element code same with old one
+				getOrder().setCode(element.getCode());
+				// check checkBox
+				buyCheckBox.setSelected(true);
+				// change spinner
+				spinner.setValue(element.getNum());
+				spinner.setEnabled(true);
+			}
+		}
+	}
+
+	private void addIcon(JLabel label, URL url) {
+		try {
+			if (url == null) throw new NullPointerException();
+			label.setIcon(new ImageIcon(url));
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void popup(JFrame page) {
@@ -148,14 +175,5 @@ public class ProductPanel extends Observable {
 
 	public boolean equals(Product product) {
 		return product.getProductID().equals(this.product.getProductID());
-	}
-
-	private void addIcon(JLabel label, URL url) {
-		try {
-			if (url == null) throw new NullPointerException();
-			label.setIcon(new ImageIcon(url));
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
 	}
 }
