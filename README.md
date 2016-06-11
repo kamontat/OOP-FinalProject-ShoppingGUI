@@ -23,12 +23,12 @@ we done it when I study in first term of first year in kasetsert university (12/
 ## Renovate program ##
 (5/59) I start to renovate all gui code and add more feature in this project
 
-- **version**
-    - 6.0.0 <- Renew gui code (Main, Login, Store)
+- **version 6**
+    - 6.0.0 <- Renew gui code (Main, Login, Store) and add minor feature
     - 6.0.3 <- Renew gui code (Customer)
     - 6.0.5 <- create new way to add new customer
     - 6.0.6 <- renew all format of gui
-    - 6.0.7 <- Renew gui code (Shopping)
+    - 6.0.7 <- Renew gui code (Shopping) and add minor feature
     - 6.0.8 <- Renew gui code (Payment) and add minor feature
 
 ### What is this for? ###
