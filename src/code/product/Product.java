@@ -34,14 +34,7 @@ public class Product {
 	}
 
 	public Product(String name, String weight, String price, String currNumStock, String numRestocks) {
-		numProducts++;
-		productID = Integer.toString(numProducts);
-		this.name = name;
-		this.weight = Double.parseDouble(weight);
-		this.price = Double.parseDouble(price);
-		this.currNumStock = Integer.parseInt(currNumStock);
-		this.numRestocks = Integer.parseInt(numRestocks);
-		restock = false;
+		this(name, Double.parseDouble(weight), Double.parseDouble(price), Integer.parseInt(currNumStock), Integer.parseInt(numRestocks));
 	}
 	
 	public String getProductID() {

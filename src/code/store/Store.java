@@ -120,7 +120,7 @@ public class Store {
 		customerList.add(customer);
 	}
 
-	public ProductExt searchIDProduct(String productID) {
+	public ProductExt searchProductID(String productID) {
 		for (ProductExt product : productList) {
 			if (product.getProductID().equals(productID)) {
 				return product;
@@ -129,17 +129,13 @@ public class Store {
 		return null;
 	}
 
-	public Customer searchIDCustomer(String personID) {
+	public Customer searchCustomerID(String personID) {
 		for (Customer customer : customerList) {
 			if (customer.getID().equals(personID)) {
 				return customer;
 			}
 		}
 		return null;
-	}
-
-	public void removeCustomer(int CustomerIndex) {
-		customerList.remove(CustomerIndex);
 	}
 
 	/**

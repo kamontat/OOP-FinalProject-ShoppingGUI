@@ -110,7 +110,7 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 
 	private Customer getCustomerAt(int row) {
 		String id = String.valueOf(table.getValueAt(row, 0));
-		return store.searchIDCustomer(id);
+		return store.searchCustomerID(id);
 	}
 
 	public void run(Point point) {

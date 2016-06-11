@@ -33,7 +33,6 @@ public class ProductExt extends Product {
 			}
 		}
 
-
 		this.material = material;
 		this.size = size;
 		this.buyingPrice = Double.parseDouble(buyingPrice);

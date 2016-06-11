@@ -133,7 +133,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 
 	private ProductExt getProductAt(int row) {
 		String productID = String.valueOf(table.getValueAt(row, 0));
-		return store.searchIDProduct(productID);
+		return store.searchProductID(productID);
 	}
 
 	private void setCustomer() {
