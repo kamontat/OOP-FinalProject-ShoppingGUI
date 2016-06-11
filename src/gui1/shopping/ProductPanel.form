@@ -9,6 +9,7 @@
       <background color="-16777216"/>
     </properties>
     <border type="line">
+      <font/>
       <color color="-1"/>
     </border>
     <children>

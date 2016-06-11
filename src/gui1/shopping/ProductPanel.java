@@ -23,10 +23,10 @@ public class ProductPanel extends Observable {
 
 	private int num;
 
+	private JPanel panel;
 	private JCheckBox buyCheckBox;
 	private JSpinner spinner;
 	private JLabel picLabel;
-	private JPanel panel;
 	private JLabel priceLabel;
 	private JLabel stockLabel;
 	private JLabel info2Label;
@@ -90,9 +90,11 @@ public class ProductPanel extends Observable {
 			if (buyCheckBox.isSelected()) {
 				if ((int) model.getNumber() == 0) spinner.setValue(1);
 				spinner.setEnabled(true);
+				this.panel.setBorder(BorderFactory.createLineBorder(new Color(255, 0, 0), 2));
 			} else {
 				spinner.setValue(0);
 				spinner.setEnabled(false);
+				this.panel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 1));
 			}
 		});
 
@@ -121,6 +123,8 @@ public class ProductPanel extends Observable {
 				// change spinner
 				spinner.setValue(element.getNum());
 				spinner.setEnabled(true);
+				// set border color
+				this.panel.setBorder(BorderFactory.createLineBorder(new Color(255, 0, 0), 2));
 			}
 		}
 	}

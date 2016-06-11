@@ -1,7 +1,7 @@
 package gui1.shopping;
 
-import code.behavior.ButtonFactory;
 import code.TableModel.DefaultModel;
+import code.behavior.ButtonFactory;
 import code.behavior.Table;
 import code.constant.Shipping;
 import code.customer.Customer;
@@ -93,7 +93,7 @@ public class PaymentPage extends JFrame implements ButtonFactory, Table {
 	}
 
 	public void run(Point point) {
-		setMinimumSize(new Dimension(0, 0));
+		setMinimumSize(new Dimension(780, 630));
 		pack();
 		setLocation(point);
 		setVisible(true);
