@@ -10,8 +10,7 @@ import gui1.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 
 /**
  * @author kamontat
@@ -47,13 +46,15 @@ public class PaymentPage extends JFrame implements ButtonFactory, Table {
 		setComboBox();
 		setLabel();
 
+		buyButton.addActionListener(e -> buy());
+
 		updateTable();
 	}
 
 	private void updateTable() {
 		DefaultModel model = new DefaultModel(shopper.getBasketToArray(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "Price", "Num"}, false);
 		table.setModel(model);
-		settingTable(table, new int[]{75, 75, 75, 75, 75, 75, 75, 75});
+		settingTable(table, null);
 
 		table.addMouseListener(new MouseAdapter() {
 			// when user double click in the table
@@ -84,6 +85,16 @@ public class PaymentPage extends JFrame implements ButtonFactory, Table {
 		});
 	}
 
+	private void buy() {
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				super.componentResized(e);
+				System.out.println(getSize());
+			}
+		});
+	}
+
 	public void setLabel() {
 		weightLabel.setText(String.format("%.2f g", shopper.getWeight()));
 		priceLabel.setText(String.valueOf(shopper.getPrice()));
@@ -93,7 +104,7 @@ public class PaymentPage extends JFrame implements ButtonFactory, Table {
 	}
 
 	public void run(Point point) {
-		setMinimumSize(new Dimension(780, 630));
+		setMinimumSize(new Dimension(930, 600));
 		pack();
 		setLocation(point);
 		setVisible(true);

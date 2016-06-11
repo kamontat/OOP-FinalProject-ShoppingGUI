@@ -73,7 +73,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 		DefaultModel model = new DefaultModel(shopper.getBasketToArray(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "Price", "Num"}, false);
 		table.setModel(model);
 
-		settingTable(table, new int[]{75, 75, 75, 75, 75, 75, 75, 75});
+		settingTable(table, null);
 
 		table.addMouseListener(new MouseAdapter() {
 			private boolean mousePressed = false;
