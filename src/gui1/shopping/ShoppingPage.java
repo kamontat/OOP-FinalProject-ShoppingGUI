@@ -84,15 +84,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 				super.mouseClicked(e);
 				if (e.getClickCount() == 2) {
 					int row = table.getSelectedRow();
-					ProductExt product = getProductAt(row);
-
-					if (product.getType().equals(ProductType.EARRING)) {
-						tabbedPane.setSelectedIndex(0);
-					} else if (product.getType().equals(ProductType.PENDANT)) {
-						tabbedPane.setSelectedIndex(1);
-					} else if (product.getType().equals(ProductType.RING)) {
-						tabbedPane.setSelectedIndex(2);
-					}
+					directToProduct(row);
 				}
 			}
 
@@ -111,9 +103,9 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 							int row = table.getSelectedRow();
 							ProductExt product = getProductAt(row);
 
-							for (int i = 0; i < products.length; i++) {
-								if (products[i].equals(product)) {
-									products[i].popup(page);
+							for (ProductPanel productPanel : products) {
+								if (productPanel.equals(product)) {
+									productPanel.popup(page);
 								}
 							}
 						}
@@ -166,7 +158,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 		}
 	}
 
-	public void toMain() {
+	private void toMain() {
 		mainButton.addActionListener(e -> {
 			int status = JOptionPane.showConfirmDialog(null, "do you want to keep shopping cart?", "Message", YES_NO_CANCEL_OPTION);
 			// 2 = cancel, 1 = no, 0 = yes
@@ -179,6 +171,17 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 				dispose();
 			}
 		});
+	}
+
+	public void directToProduct(int tableRow) {
+		ProductExt product = getProductAt(tableRow);
+		if (product.getType().equals(ProductType.EARRING)) {
+			tabbedPane.setSelectedIndex(0);
+		} else if (product.getType().equals(ProductType.PENDANT)) {
+			tabbedPane.setSelectedIndex(1);
+		} else if (product.getType().equals(ProductType.RING)) {
+			tabbedPane.setSelectedIndex(2);
+		}
 	}
 
 	public void run(Point point) {

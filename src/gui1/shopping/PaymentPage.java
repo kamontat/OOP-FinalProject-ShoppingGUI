@@ -61,7 +61,10 @@ public class PaymentPage extends JFrame implements ButtonFactory, Table {
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
 				if (e.getClickCount() == 2) {
-					// TODO: 12/6/59 change page to in shopping page
+					ShoppingPage page = new ShoppingPage();
+					page.directToProduct(table.getSelectedRow());
+					page.run(getLocation());
+					dispose();
 				}
 			}
 		});

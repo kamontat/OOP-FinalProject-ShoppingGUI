@@ -27,6 +27,7 @@
             <properties>
               <fillsViewportHeight value="true"/>
               <gridColor color="-1"/>
+              <toolTipText value="&lt;html&gt;&#10;(Double click) To point to product screen in shopping page&#10;&lt;/html&gt;"/>
             </properties>
           </component>
         </children>
