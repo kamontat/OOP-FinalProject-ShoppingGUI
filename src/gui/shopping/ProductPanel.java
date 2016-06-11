@@ -1,10 +1,10 @@
-package gui1.shopping;
+package gui.shopping;
 
 import code.customer.Customer;
 import code.product.Product;
 import code.product.ProductExt;
 import code.store.OrderElement;
-import gui1.main.MainPage;
+import gui.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;

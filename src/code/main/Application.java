@@ -1,6 +1,6 @@
 package code.main;
 
-import gui1.main.MainPage;
+import gui.main.MainPage;
 
 import java.awt.*;
 

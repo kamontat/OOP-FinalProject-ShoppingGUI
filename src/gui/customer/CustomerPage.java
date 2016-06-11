@@ -1,13 +1,13 @@
-package gui1.customer;
+package gui.customer;
 
 import code.behavior.ButtonFactory;
 import code.TableModel.CustomerModel;
 import code.behavior.Table;
 import code.customer.Customer;
 import code.store.Store;
-import gui.HistoryOfCustomerPage;
-import gui1.main.MainPage;
-import gui1.shopping.ShoppingPage;
+import oldgui.HistoryOfCustomerPage;
+import gui.main.MainPage;
+import gui.shopping.ShoppingPage;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;

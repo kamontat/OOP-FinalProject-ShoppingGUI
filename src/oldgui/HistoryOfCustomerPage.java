@@ -1,4 +1,4 @@
-package gui;
+package oldgui;
 
 import code.customer.Customer;
 import code.store.Store;

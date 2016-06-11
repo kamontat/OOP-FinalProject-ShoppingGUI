@@ -1,8 +1,8 @@
-package gui1.customer;
+package gui.customer;
 
 import code.customer.Customer;
 import code.store.Store;
-import gui1.main.MainPage;
+import gui.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;

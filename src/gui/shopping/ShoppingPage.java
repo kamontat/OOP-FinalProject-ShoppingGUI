@@ -1,4 +1,4 @@
-package gui1.shopping;
+package gui.shopping;
 
 import code.behavior.ButtonFactory;
 import code.TableModel.DefaultModel;
@@ -9,7 +9,7 @@ import code.customer.Customer;
 import code.file.ImageFileFactory;
 import code.product.ProductExt;
 import code.store.Store;
-import gui1.main.MainPage;
+import gui.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;

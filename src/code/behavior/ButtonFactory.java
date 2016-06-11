@@ -1,12 +1,12 @@
 package code.behavior;
 
 
-import gui1.customer.CustomerPage;
-import gui1.main.MainPage;
-import gui1.shopping.PaymentPage;
-import gui1.shopping.ShoppingPage;
-import gui1.store.LoginPage;
-import gui1.store.StorePage;
+import gui.customer.CustomerPage;
+import gui.main.MainPage;
+import gui.shopping.PaymentPage;
+import gui.shopping.ShoppingPage;
+import gui.store.LoginPage;
+import gui.store.StorePage;
 
 import javax.swing.*;
 

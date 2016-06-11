@@ -1,4 +1,4 @@
-package gui1.main;
+package gui.main;
 
 import code.behavior.ButtonFactory;
 import code.customer.Customer;
@@ -115,7 +115,7 @@ public class MainPage extends JFrame implements ButtonFactory {
 	}
 
 	/**
-	 * run this gui
+	 * run this oldgui
 	 */
 	public void run(Point point) {
 		pack();
