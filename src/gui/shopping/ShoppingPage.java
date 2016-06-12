@@ -186,9 +186,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 
 	public void run(Point point) {
 		setMinimumSize(new Dimension(1062, 927));
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setSize(screenSize);
-
+		pack();
 		setLocation(point);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

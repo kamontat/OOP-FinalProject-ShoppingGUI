@@ -47,6 +47,8 @@ public class ProductPanel extends Observable {
 	 * 		Add to this panel
 	 */
 	public ProductPanel(ShoppingPage page, JPanel panel, ProductExt product) {
+		// force change layout
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
 		SpinnerNumberModel model = new SpinnerNumberModel(0, 0, product.getCurrNumStock(), 1);
 		spinner.setModel(model);
@@ -61,7 +63,7 @@ public class ProductPanel extends Observable {
 		if (product.getCurrNumStock() <= 1) {
 			stockLabel.setForeground(new Color(255, 0, 0));
 		}
-
+		// set dialog to be popup
 		dialog.setUndecorated(true);
 		dialog.setAlwaysOnTop(true);
 

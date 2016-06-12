@@ -25,7 +25,7 @@
           <component id="ffdce" class="javax.swing.JTable" binding="table" custom-create="true">
             <constraints/>
             <properties>
-              <autoResizeMode value="4"/>
+              <autoResizeMode value="0"/>
               <fillsViewportHeight value="true"/>
               <font size="15" style="0"/>
               <gridColor color="-1"/>
