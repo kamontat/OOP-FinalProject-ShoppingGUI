@@ -92,10 +92,12 @@ public class Store {
 		this.historyList = historyList;
 	}
 
-	public Object[][] getAllProduct() {
-		Object[][] temp = new Object[productList.size()][10];
+	public Object[][] getAllProduct(boolean id) {
+		int size = productList.get(0).getProductInfo(10, id).length;
+
+		Object[][] temp = new Object[productList.size()][size];
 		for (int i = 0; i < productList.size(); i++) {
-			temp[i] = productList.get(i).getProductInfo(10);
+			temp[i] = productList.get(i).getProductInfo(10, id);
 		}
 		return temp;
 	}

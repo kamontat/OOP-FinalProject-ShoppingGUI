@@ -16,7 +16,7 @@ public class ProductExt extends Product {
 		buyingPrice = 0;
 	}
 	
-	public ProductExt(String name, ProductType type, double weight, double price, int currNumStock, int numRestocks, String material, String size, double buyingPrice) {
+	public ProductExt(String name, ProductType type, String material, String size, double weight, int currNumStock, int numRestocks, double price, double buyingPrice) {
 		super(name, weight, price, currNumStock, numRestocks);
 		this.type = type;
 		this.material = material;
@@ -24,7 +24,7 @@ public class ProductExt extends Product {
 		this.buyingPrice = buyingPrice;
 	}
 
-	public ProductExt(String name, String type, String weight, String price, String currNumStock, String numRestocks, String material, String size, String buyingPrice) {
+	public ProductExt(String name, String type, String material, String size, String weight, String currNumStock, String numRestocks, String price, String buyingPrice) {
 		super(name, weight, price, currNumStock, numRestocks);
 
 		for (ProductType productType : ProductType.values()) {
@@ -84,17 +84,29 @@ public class ProductExt extends Product {
 	 * return null if input element more than it have
 	 *
 	 * @param element
-	 * 		element of array
+	 * 		element of array include id everytime
+	 * @param id
+	 * 		if true will return id too; otherwise, return without id
 	 * @return array with element element
 	 */
-	public Object[] getProductInfo(int element) {
-		Object[] all = new Object[]{getProductID(), getName(), getTypeToString(), getMaterial(), getSize(), Double.valueOf(getWeight()), Integer.valueOf(getCurrNumStock()), Integer.valueOf(getNumRestocks()), Double.valueOf(getPrice()), Double.valueOf(getBuyingPrice())};
+	public Object[] getProductInfo(int element, boolean id) {
+		Object[] all = null;
+
+		if (id)
+			all = new Object[]{getProductID(), getName(), getTypeToString(), getMaterial(), getSize(), Double.valueOf(getWeight()), Integer.valueOf(getCurrNumStock()), Integer.valueOf(getNumRestocks()), Double.valueOf(getPrice()), Double.valueOf(getBuyingPrice())};
+		else {
+			all = new Object[]{getName(), getTypeToString(), getMaterial(), getSize(), Double.valueOf(getWeight()), Integer.valueOf(getCurrNumStock()), Integer.valueOf(getNumRestocks()), Double.valueOf(getPrice()), Double.valueOf(getBuyingPrice())};
+			element--;
+		}
+
 		if (element <= all.length) {
 			Object[] temp = new Object[element];
 			// copy all into temp with element
 			System.arraycopy(all, 0, temp, 0, element);
 			return temp;
 		}
+
+
 		return null;
 	}
 

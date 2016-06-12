@@ -38,7 +38,7 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	public StorePage() {
 		super("Store Page");
 		setContentPane(panel);
-		model = new ProductModel(store.getAllProduct(), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"});
+		model = new ProductModel(store.getAllProduct(true), new String[]{"ID", "Name", "Type", "Material", "Size", "Weight", "In Stock", "Restock", "Price", "Buying Price"});
 
 		settingTable();
 
@@ -110,7 +110,7 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 			MainPage.reWriteStoreInfo();
 			MainPage.reWriteProductInfo();
 
-			JOptionPane.showMessageDialog(null, "Update Revenue and expense successful", "Thank you", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Update text file successful", "Thank you", JOptionPane.INFORMATION_MESSAGE);
 		});
 	}
 

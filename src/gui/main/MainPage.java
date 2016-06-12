@@ -49,7 +49,7 @@ public class MainPage extends JFrame implements ButtonFactory {
 	 */
 	public static void reWriteProductInfo() {
 		factory.setPath("src/textfile/Product.txt");
-		factory.write(store.getAllProduct());
+		factory.write(store.getAllProduct(false));
 	}
 
 	/**

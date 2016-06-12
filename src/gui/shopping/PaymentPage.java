@@ -106,11 +106,6 @@ public class PaymentPage extends JFrame implements ButtonFactory, Table {
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
-	public static void main(String[] args) {
-		PaymentPage page = new PaymentPage();
-		page.run(new Point(0, 0));
-	}
-
 	private void createUIComponents() {
 		// make table fit size by contact
 		table = fitSize(table);
