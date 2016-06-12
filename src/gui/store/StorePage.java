@@ -108,6 +108,8 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	private void check() {
 		checkButton.addActionListener(e -> {
 			MainPage.reWriteStoreInfo();
+			MainPage.reWriteProductInfo();
+
 			JOptionPane.showMessageDialog(null, "Update Revenue and expense successful", "Thank you", JOptionPane.INFORMATION_MESSAGE);
 		});
 	}

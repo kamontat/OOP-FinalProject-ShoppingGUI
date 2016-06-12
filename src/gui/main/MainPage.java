@@ -45,6 +45,14 @@ public class MainPage extends JFrame implements ButtonFactory {
 	}
 
 	/**
+	 * rewrite newer product into file by using array of product
+	 */
+	public static void reWriteProductInfo() {
+		factory.setPath("src/textfile/Product.txt");
+		factory.write(store.getAllProduct());
+	}
+
+	/**
 	 * rewrite customer file by using array of customer
 	 */
 	public static void reWriteStoreInfo() {
