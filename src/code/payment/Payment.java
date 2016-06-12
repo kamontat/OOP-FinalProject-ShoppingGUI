@@ -60,7 +60,7 @@ public class Payment {
 	}
 
 	public String toString() {
-		String format = "Total price = %.2f, Discount rate = %.2f%%, Discount = %.2f, Shipping fee = %.2f, Payment = %.2f";
-		return String.format(format, this.totalPrice, this.discountRate * 100, this.discount, this.shippingFee, this.value);
+		String format = "Price = %.2f, Discount = %.2f, Shipping fee = %.2f, Payment = %.2f";
+		return String.format(format, this.totalPrice, this.discount, this.shippingFee, this.value);
 	}
 }

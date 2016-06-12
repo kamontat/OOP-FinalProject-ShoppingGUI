@@ -3,7 +3,6 @@ package code.customer;
 import code.constant.MemberClass;
 import code.store.Order;
 import code.store.OrderElement;
-import code.product.ProductExt;
 
 import java.util.*;
 
@@ -180,17 +179,6 @@ public class Customer extends Person {
 		}
 	}
 
-	public String getBasketString() {
-		String output = "";
-		ProductExt customerProduct;
-		String format = "<pre>%-10s %-31s %-6s %-6.1f %,-8.0f   %-6d</pre>";
-		for (OrderElement basket : basketList) {
-			customerProduct = basket.getProduct();
-			output += String.format(format, customerProduct.getProductID(), customerProduct.getName(), customerProduct.getSize(), customerProduct.getWeight(), customerProduct.getPrice(), basket.getNum());
-		}
-		return output;
-	}
-
 	/**
 	 * array in form (ID, Name, LastName, Gender, Age, Class)
 	 * return null if input element more than it have
@@ -210,17 +198,14 @@ public class Customer extends Person {
 		return null;
 	}
 
-	public String getHistoryListString() {
-		String output = "<pre>";
-
+	public Object[] getHistoryListArray() {
+		Object[] temp = new Object[historyList.size()];
+		int i = 0;
 		for (Order history : historyList) {
-			basketList.removeAll(basketList);
-			basketList.addAll(history.getBuyList());
 			String format = "OrderNumber: %s %s";
-			output += String.format(format, history.getOrderID(), getBasketString());
+			temp[i++] = String.format(format, history.getOrderID(), history.toString());
 		}
-		output += "</pre>";
-		return output;
+		return temp;
 	}
 
 	public Customer clone() {

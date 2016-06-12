@@ -6,7 +6,6 @@ import code.behavior.Table;
 import code.product.ProductExt;
 import code.store.Store;
 import gui.main.MainPage;
-import oldgui.HistoryOfStorePage;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
@@ -98,8 +97,7 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 		historyButton.addActionListener(e -> {
 			int row = table.getSelectedRow();
 			if (checkValid(row)) {
-				HistoryOfStorePage page = new HistoryOfStorePage(getProductAt(row));
-				page.run();
+				// TODO: 12/6/59 open history list
 			}
 			resetSelection(table);
 		});

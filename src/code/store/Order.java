@@ -79,11 +79,6 @@ public class Order {
 	}
 
 	public String toString() {
-		String output = "";
-		output += shipping.toString();
-		output += "\n";
-		output += payment.toString();
-		output += "\n";
-		return output;
+		return payment.toString();
 	}
 }

@@ -1,11 +1,11 @@
 package gui.customer;
 
-import code.behavior.ButtonFactory;
 import code.TableModel.CustomerModel;
+import code.behavior.ButtonFactory;
 import code.behavior.Table;
 import code.customer.Customer;
 import code.store.Store;
-import oldgui.HistoryOfCustomerPage;
+import gui.History;
 import gui.main.MainPage;
 import gui.shopping.ShoppingPage;
 
@@ -103,14 +103,17 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 	private void history() {
 		historyButton.addActionListener(e -> {
 			int row = table.getSelectedRow();
-			HistoryOfCustomerPage history = new HistoryOfCustomerPage(getCustomerAt(row));
-			history.run();
+			History history = new History(getCustomerAt(table.getSelectedRow()), getCustomerAt(table.getSelectedRow()).toString());
+			history.run(getLocation());
 		});
 	}
 
 	private Customer getCustomerAt(int row) {
-		String id = String.valueOf(table.getValueAt(row, 0));
-		return store.searchCustomerID(id);
+		if (row != -1) {
+			String id = String.valueOf(table.getValueAt(row, 0));
+			return store.searchCustomerID(id);
+		}
+		return store.getGuest();
 	}
 
 	public void run(Point point) {
