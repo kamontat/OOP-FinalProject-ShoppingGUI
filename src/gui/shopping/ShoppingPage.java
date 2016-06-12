@@ -166,9 +166,8 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 				if (status == 1) {
 					shopper.clearBasket();
 				}
-				MainPage page = new MainPage();
-				page.run(getLocation());
-				dispose();
+
+				toMain(page, null);
 			}
 		});
 	}

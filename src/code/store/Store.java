@@ -212,8 +212,9 @@ public class Store {
 	}
 
 	/**
-	 * create Order by using paramater and store it into HistoryList Update
-	 * revenue and expense And clear product in basket
+	 * Create Order by using parameter and store it into HistoryList <br>
+	 * Update revenue and expense <br>
+	 * Clear product in basket
 	 *
 	 * @param customer
 	 * 		customer
@@ -223,8 +224,12 @@ public class Store {
 	public void checkOut(Customer customer, Shipping shipping) {
 		Order order = new Order(customer, shipping);
 		customer.addToHistoryList(order);
+
 		revenue += order.getPayment().getValue();
 		expense += order.getPayment().getShippingFee();
+
+		customer.getBasketList().forEach(this::updateStock);
+
 		customer.clearBasket();
 	}
 

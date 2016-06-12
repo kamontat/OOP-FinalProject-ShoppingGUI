@@ -86,13 +86,8 @@ public class PaymentPage extends JFrame implements ButtonFactory, Table {
 	}
 
 	private void buy() {
-		addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				super.componentResized(e);
-				System.out.println(getSize());
-			}
-		});
+		store.checkOut(shopper, shipping);
+		toMain(this, null);
 	}
 
 	public void setLabel() {
