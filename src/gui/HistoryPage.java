@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class History extends JDialog {
+public class HistoryPage extends JDialog {
 	private JPanel contentPane;
 	private JButton buttonCancel;
 	private JLabel infoLabel;
@@ -20,7 +20,7 @@ public class History extends JDialog {
 	 *
 	 * @param text
 	 */
-	public History(Object obj, String text) {
+	public HistoryPage(Object obj, String text) {
 		setContentPane(contentPane);
 		setModal(true);
 

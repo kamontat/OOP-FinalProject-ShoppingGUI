@@ -13,6 +13,7 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 /**
  * @author kamontat
@@ -104,11 +105,28 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	}
 
 	private void check() {
-		checkButton.addActionListener(e -> {
+		checkButton.addActionListener(evt -> {
 			MainPage.reWriteStoreInfo();
 			MainPage.reWriteProductInfo();
 
-			JOptionPane.showMessageDialog(null, "Update text file successful", "Thank you", JOptionPane.INFORMATION_MESSAGE);
+			int status = JOptionPane.showConfirmDialog(null, "Did store payment is correct?", "Checking", JOptionPane.YES_NO_OPTION);
+			// mean no
+			if (status == 1) {
+				try {
+					File file = new File("src/textfile");
+					if (file.isDirectory()) {
+						if (Desktop.isDesktopSupported()) {
+							Desktop.getDesktop().open(file);
+						} else {
+							JOptionPane.showMessageDialog(null, "your OS is not support to open auto, please go to text file manually", "Error", JOptionPane.ERROR_MESSAGE);
+						}
+					} else {
+						JOptionPane.showMessageDialog(null, "Can't auto find text file, please go to text file manually", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
 		});
 	}
 
