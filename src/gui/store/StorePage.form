@@ -58,7 +58,7 @@
         </properties>
         <border type="none"/>
         <children>
-          <component id="b8eff" class="javax.swing.JTable" binding="table" custom-create="true">
+          <component id="b8eff" class="javax.swing.JTable" binding="table">
             <constraints/>
             <properties>
               <autoCreateRowSorter value="true"/>
@@ -71,7 +71,7 @@
               <gridColor color="-16777216"/>
               <inheritsPopupMenu value="false"/>
               <rowHeight value="20"/>
-              <toolTipText value="click to choose"/>
+              <toolTipText value="&lt;html&gt;&#10;(click) to choose &lt;br&gt;&#10;(press enter) to restock&#10;&lt;/html&gt;"/>
             </properties>
             <clientProperties>
               <JTable.autoStartsEdit class="java.lang.Boolean" value="false"/>

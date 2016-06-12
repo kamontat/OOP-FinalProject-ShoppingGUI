@@ -1,12 +1,12 @@
 package gui.store;
 
-import code.behavior.ButtonFactory;
 import code.TableModel.ProductModel;
+import code.behavior.ButtonFactory;
 import code.behavior.Table;
 import code.product.ProductExt;
 import code.store.Store;
-import oldgui.HistoryOfStorePage;
 import gui.main.MainPage;
+import oldgui.HistoryOfStorePage;
 
 import javax.swing.*;
 import javax.swing.table.TableModel;
@@ -59,7 +59,7 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				super.keyPressed(e);
-				// 10 mean space bar
+				// 10 mean enter
 				if (e.getKeyCode() == 10) {
 					restock();
 				}
@@ -135,9 +135,5 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 		setLocation(point);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-	}
-
-	private void createUIComponents() {
-		table = fitSize(table);
 	}
 }

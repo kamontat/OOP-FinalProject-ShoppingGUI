@@ -59,10 +59,14 @@ public class ProductPanel extends Observable {
 		panel.add(this.panel);
 		page.pack();
 
-		// change color of stock if less than 1
-		if (product.getCurrNumStock() <= 1) {
+		// change color of stock if stock is 0
+		if (product.getCurrNumStock() < 1) {
 			stockLabel.setForeground(new Color(255, 0, 0));
+			buyCheckBox.setEnabled(false);
+		} else {
+			buyCheckBox.setEnabled(true);
 		}
+
 		// set dialog to be popup
 		dialog.setUndecorated(true);
 		dialog.setAlwaysOnTop(true);
