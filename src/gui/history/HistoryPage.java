@@ -1,13 +1,11 @@
-package gui;
+package gui.history;
 
 import code.customer.Customer;
 import code.product.ProductExt;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 
 public class HistoryPage extends JDialog {
 	private JPanel contentPane;
@@ -57,6 +55,16 @@ public class HistoryPage extends JDialog {
 			temp = product.getProductInfo(10, true);
 		}
 		list.setListData(temp);
+
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				if (e.getClickCount() == 2) {
+					// TODO: 12/6/59 expend all product that user have buy before
+				}
+			}
+		});
 	}
 
 	private void onCancel() {

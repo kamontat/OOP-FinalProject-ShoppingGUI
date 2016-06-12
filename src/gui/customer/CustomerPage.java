@@ -5,7 +5,7 @@ import code.behavior.ButtonFactory;
 import code.behavior.Table;
 import code.customer.Customer;
 import code.store.Store;
-import gui.HistoryPage;
+import gui.history.HistoryPage;
 import gui.main.MainPage;
 import gui.shopping.ShoppingPage;
 
