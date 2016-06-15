@@ -194,12 +194,10 @@ public class Store {
 			}
 		}
 		
-		for (ProductExt product : productList) {
-			if (product.getCurrNumStock() < 3) {
-				product.setRestock(true);
-				restockProduct = true;
-			}
-		}
+		productList.stream().filter(product -> product.getCurrNumStock() < 3).forEach(product -> {
+			product.setRestock(true);
+			restockProduct = true;
+		});
 	}
 	
 	public void refundStock(OrderElement element) {
