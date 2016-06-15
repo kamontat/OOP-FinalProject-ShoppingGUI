@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class HistoryPage extends JDialog {
+	private Dialog page = this;
+
 	private JPanel contentPane;
 	private JButton buttonCancel;
 	private JLabel infoLabel;
@@ -16,19 +18,20 @@ public class HistoryPage extends JDialog {
 	/**
 	 * can use only history of customer & product only!
 	 *
-	 * @param text
+	 * @param obj
+	 * 		some object that want to show in this gui
 	 */
-	public HistoryPage(Object obj, String text) {
+	public HistoryPage(Object obj) {
 		setContentPane(contentPane);
 		setModal(true);
 
-		setInformationLabel(text);
-		setList(obj);
+		setInformationLabel(obj.toString());
+
+		if (obj instanceof Customer) setList((Customer) obj);
+		else setList((ProductExt) obj);
 
 		buttonCancel.addActionListener(e -> onCancel());
 
-		// call onCancel() when cross is clicked
-		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				onCancel();
@@ -45,23 +48,32 @@ public class HistoryPage extends JDialog {
 		infoLabel.setText(text);
 	}
 
-	private void setList(Object obj) {
-		Object[] temp = null;
-		if (obj instanceof Customer) {
-			Customer shopper = (Customer) obj;
-			temp = shopper.getHistoryListArray();
-		} else {
-			ProductExt product = (ProductExt) obj;
-			temp = product.getProductInfo(10, true);
-		}
-		list.setListData(temp);
+	private void setList(Customer customer) {
+		list.setListData(customer.getHistoryListArray());
 
 		list.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
 				if (e.getClickCount() == 2) {
-					// TODO: 12/6/59 expend all product that user have buy before
+					int index = list.getSelectedIndex();
+					ExpendProduct somePage = new ExpendProduct(page, customer, index);
+					somePage.run(getLocation());
+				}
+			}
+		});
+	}
+
+	private void setList(ProductExt product) {
+		list.setListData(product.getProductInfo(10, true));
+
+		list.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				if (e.getClickCount() == 2) {
+					ExpendProduct somePage = new ExpendProduct(page, null, 0);
+					somePage.run(getLocation());
 				}
 			}
 		});
@@ -72,10 +84,11 @@ public class HistoryPage extends JDialog {
 	}
 
 	public void run(Point point) {
-		setMinimumSize(new Dimension(0, 0));
 		pack();
 		setLocation(point);
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
+
+
 }

@@ -55,6 +55,13 @@ public class OrderElement {
 		return product.getPrice() * num;
 	}
 
+	/**
+	 * @return in form price * num = totalPrice
+	 */
+	public String getPriceToString() {
+		return product.getPrice() + " * " + num + " = " + product.getPrice() * getNum();
+	}
+
 	public String getCode() {
 		return code;
 	}

@@ -208,6 +208,34 @@ public class Customer extends Person {
 		return temp;
 	}
 
+	/**
+	 * <b>This method use in ExpendProduct/history only</b>
+	 * the will print information in form of {"Order ID", "Name", "Type", "Size", "Weight", "Num", "Price"} <br>
+	 * and return array 2D of information, if don't have <code>id</code> id return null.
+	 *
+	 * @param index
+	 * 		index of historyList
+	 * @return object array
+	 */
+	public Object[][] getHistoryListInform(int index) {
+		Object[][] temp = new Object[historyList.get(index).getBuyList().size()][7];
+
+		for (int j = 0; j < temp.length; j++) {
+			if (j == 0) temp[j][0] = historyList.get(index).getOrderID(); // order id
+			else temp[j][0] = "";
+
+			temp[j][1] = historyList.get(index).getBuyList().get(j).getProduct().getName(); // name
+			temp[j][2] = historyList.get(index).getBuyList().get(j).getProduct().getTypeToString(); // type
+			temp[j][3] = historyList.get(index).getBuyList().get(j).getProduct().getSize(); // size
+			temp[j][4] = historyList.get(index).getBuyList().get(j).getProduct().getWeight(); // weight
+			temp[j][5] = historyList.get(index).getBuyList().get(j).getNum(); // number of product
+			temp[j][6] = historyList.get(index).getBuyList().get(j).getPriceToString(); // price
+		}
+		return temp;
+	}
+
+	// TODO: 15/6/59 search product in history List
+
 	public Customer clone() {
 		numCustomers--;
 		Customer temp = new Customer(getID(), getName(), getLastName(), getGender(), getAge(), getMemberClass());
