@@ -3,7 +3,7 @@
   <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="4" column-count="7" same-size-horizontally="false" same-size-vertically="false" hgap="10" vgap="10">
     <margin top="5" left="5" bottom="5" right="5"/>
     <constraints>
-      <xy x="20" y="20" width="787" height="406"/>
+      <xy x="20" y="20" width="829" height="406"/>
     </constraints>
     <properties>
       <background color="-16777216"/>
@@ -66,6 +66,7 @@
                   <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <font name="AppleMyungjo" size="20"/>
                   <text value="- Main Page -"/>
                 </properties>
               </component>
@@ -74,6 +75,7 @@
                   <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
+                  <font name="AppleMyungjo" size="20"/>
                   <text value="- Shopping Page -"/>
                 </properties>
               </component>
@@ -84,6 +86,7 @@
               <grid row="0" column="2" row-span="2" col-span="1" vsize-policy="4" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font name="AppleMyungjo" size="28" style="1"/>
               <text value="- Buy -"/>
             </properties>
           </component>
@@ -104,6 +107,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font size="14" style="1"/>
               <foreground color="-2031616"/>
               <text value="Discount: "/>
             </properties>
@@ -113,6 +117,7 @@
               <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font size="16" style="1"/>
               <foreground color="-2031616"/>
               <text value="0.00"/>
             </properties>
@@ -122,6 +127,7 @@
               <grid row="5" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font size="16"/>
               <foreground color="-16711681"/>
               <text value="- Final Price -"/>
             </properties>
@@ -131,6 +137,7 @@
               <grid row="6" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font size="20"/>
               <foreground color="-16711681"/>
               <text value="0.00"/>
             </properties>
@@ -140,6 +147,7 @@
               <grid row="3" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font size="14"/>
               <foreground color="-1993984"/>
               <text value="- SHIPPING -"/>
             </properties>
@@ -184,6 +192,7 @@
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font size="15"/>
               <foreground color="-1"/>
               <text value="- Class Member -"/>
             </properties>
@@ -193,6 +202,7 @@
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font size="16"/>
               <foreground color="-1"/>
               <text value="None"/>
             </properties>
@@ -212,6 +222,7 @@
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <font size="18"/>
               <foreground color="-1"/>
               <text value="Guest Member"/>
             </properties>
@@ -223,6 +234,7 @@
           <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="15"/>
           <foreground color="-16719616"/>
           <text value="Weight: "/>
         </properties>
@@ -235,6 +247,7 @@
         </constraints>
         <properties>
           <editable value="false"/>
+          <font size="16"/>
           <foreground color="-16719616"/>
           <text value="0.00"/>
         </properties>
@@ -244,6 +257,7 @@
           <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="15"/>
           <foreground color="-1993984"/>
           <text value="Shipping: "/>
         </properties>
@@ -256,6 +270,7 @@
         </constraints>
         <properties>
           <editable value="false"/>
+          <font size="16"/>
           <foreground color="-1993984"/>
           <text value="None : 0฿"/>
         </properties>
@@ -265,6 +280,7 @@
           <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
+          <font size="15"/>
           <foreground color="-16711455"/>
           <text value="Price: "/>
         </properties>
@@ -277,6 +293,7 @@
         </constraints>
         <properties>
           <editable value="false"/>
+          <font size="16"/>
           <foreground color="-16711455"/>
           <text value="0.00"/>
         </properties>
