@@ -16,11 +16,11 @@ public class ExpendProduct extends JDialog implements Table {
 	private JButton buttonCancel;
 	private JTable table;
 
-	public ExpendProduct(Window page, Object obj, int index) {
+	public ExpendProduct(Window page, Customer customer, int index) {
 		setContentPane(contentPane);
 		setModal(true);
 
-		updateTable(obj, index);
+		updateTable(customer, index);
 
 		buttonCancel.addActionListener(e -> onCancel());
 
@@ -36,10 +36,11 @@ public class ExpendProduct extends JDialog implements Table {
 		contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 	}
 
-	private void updateTable(Object obj, int index) {
+	private void updateTable(Customer shopper, int index) {
 		Object[][] temp = null;
-		if (obj instanceof Customer) {
-			Customer shopper = (Customer) obj;
+		if (index < 0) {
+			temp = shopper.getHistoryListInform();
+		} else {
 			temp = shopper.getHistoryListInform(index);
 		}
 

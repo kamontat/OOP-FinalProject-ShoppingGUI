@@ -2,10 +2,12 @@ package gui.history;
 
 import code.customer.Customer;
 import code.product.ProductExt;
+import code.store.Store;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 public class HistoryPage extends JDialog {
 	private Dialog page = this;
@@ -65,14 +67,17 @@ public class HistoryPage extends JDialog {
 	}
 
 	private void setList(ProductExt product) {
-		list.setListData(product.getProductInfo(10, true));
+		Store store = Store.getInstance();
+		ArrayList<Customer> customers = store.checkProductHistory(product);
+		list.setListData(customers.toArray());
 
 		list.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
 				if (e.getClickCount() == 2) {
-					ExpendProduct somePage = new ExpendProduct(page, null, 0);
+
+					ExpendProduct somePage = new ExpendProduct(page, customers.get(list.getSelectedIndex()), -1);
 					somePage.run(getLocation());
 				}
 			}

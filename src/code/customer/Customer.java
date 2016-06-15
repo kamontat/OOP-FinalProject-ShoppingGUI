@@ -210,8 +210,8 @@ public class Customer extends Person {
 
 	/**
 	 * <b>This method use in ExpendProduct/history only</b>
-	 * the will print information in form of {"Order ID", "Name", "Type", "Size", "Weight", "Num", "Price"} <br>
-	 * and return array 2D of information, if don't have <code>id</code> id return null.
+	 * the will print information of buyList in <code>index</code> in form of {"Order ID", "Name", "Type", "Size", "Weight", "Num", "Price"} <br>
+	 * and return array 2D of information, if don't have <code>index</code> id return null.
 	 *
 	 * @param index
 	 * 		index of historyList
@@ -234,7 +234,27 @@ public class Customer extends Person {
 		return temp;
 	}
 
-	// TODO: 15/6/59 search product in history List
+	/**
+	 * <b>This method use in ExpendProduct/history only</b>
+	 * the will print information of all in buyList in form of {"Order ID", "Name", "Type", "Size", "Weight", "Num", "Price"} <br>
+	 * and return array 2D of information, if don't have <code>id</code> id return null.
+	 *
+	 * @return object array
+	 */
+	public Object[][] getHistoryListInform() {
+		int size = 0;
+		for (Order history : historyList) {
+			size += history.getBuyList().size();
+		}
+
+		ArrayList<Object[]> temp = new ArrayList<>();
+
+		for (int i = 0; i < historyList.size(); i++) {
+			Object[][] temp2 = getHistoryListInform(i);
+			Collections.addAll(temp, temp2);
+		}
+		return temp.toArray(new Object[][]{});
+	}
 
 	public Customer clone() {
 		numCustomers--;
