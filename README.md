@@ -31,6 +31,7 @@ we done it when I study in first term of first year in kasetsert university (12/
     - 6.0.7 <- Renew gui code (Shopping) and add minor feature
     - 6.0.8 <- Renew gui code (Payment) and add minor feature
     - 6.1.0 <- finish all gui page (history is include)
+    - 6.1.1 <- finish code inside program (NEXT: reformat all code)
 
 ### What is this for? ###
 
