@@ -78,10 +78,10 @@ public class Order {
 		temp[0] = orderID; // order id
 		temp[1] = ""; // white space
 		temp[2] = ""; // white space
-		temp[3] = "Price: " + payment.getTotalPrice(); // price
-		temp[4] = "Discount: " + payment.getDiscount(); // discount
-		temp[5] = "Shipping Fee: " + payment.getShippingFee(); // shipping
-		temp[6] = "Total Price: " + payment.getValue(); // total price
+		temp[3] = String.format("Price: %,.2f", payment.getTotalPrice()); // price
+		temp[4] = String.format("Discount: %,.2f", payment.getDiscount()); // discount
+		temp[5] = String.format("Shipping Fee: %,.2f", payment.getShippingFee()); // shipping
+		temp[6] = String.format("Total Price: %,.2f", payment.getValue()); // total price
 		return temp;
 	}
 

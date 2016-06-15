@@ -59,7 +59,7 @@ public class OrderElement {
 	 * @return in form price * num = totalPrice
 	 */
 	public String getPriceToString() {
-		return product.getPrice() + " * " + num + " = " + product.getPrice() * getNum();
+		return String.format("%,.2f * %,d = %,.2f", product.getPrice(), num, product.getPrice() * getNum());
 	}
 
 	public String getCode() {
