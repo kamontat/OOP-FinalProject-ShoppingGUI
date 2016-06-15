@@ -73,6 +73,18 @@ public class Order {
 		Order.numOrders = numOrders;
 	}
 
+	public Object[] informationArray() {
+		Object[] temp = new Object[7];
+		temp[0] = orderID; // order id
+		temp[1] = ""; // white space
+		temp[2] = ""; // white space
+		temp[3] = "Price: " + payment.getTotalPrice(); // price
+		temp[4] = "Discount: " + payment.getDiscount(); // discount
+		temp[5] = "Shipping Fee: " + payment.getShippingFee(); // shipping
+		temp[6] = "Total Price: " + payment.getValue(); // total price
+		return temp;
+	}
+
 	public Order clone() {
 		numOrders--;
 		return new Order(customer.clone(), shipping);

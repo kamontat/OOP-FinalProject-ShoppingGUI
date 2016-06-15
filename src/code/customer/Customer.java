@@ -218,9 +218,9 @@ public class Customer extends Person {
 	 * @return object array
 	 */
 	public Object[][] getHistoryListInform(int index) {
-		Object[][] temp = new Object[historyList.get(index).getBuyList().size()][7];
+		Object[][] temp = new Object[historyList.get(index).getBuyList().size() + 1][7];
 
-		for (int j = 0; j < temp.length; j++) {
+		for (int j = 0; j < temp.length - 1; j++) {
 			if (j == 0) temp[j][0] = historyList.get(index).getOrderID(); // order id
 			else temp[j][0] = "";
 
@@ -231,6 +231,7 @@ public class Customer extends Person {
 			temp[j][5] = historyList.get(index).getBuyList().get(j).getNum(); // number of product
 			temp[j][6] = historyList.get(index).getBuyList().get(j).getPriceToString(); // price
 		}
+		temp[temp.length - 1] = historyList.get(index).informationArray();
 		return temp;
 	}
 

@@ -268,15 +268,18 @@ public class Store {
 		
 		// remove same customer
 		for (int i = customers.size() - 1; i >= 0; i--) {
-			Customer temp = customers.get(i);
-			if (i != 0) {
-				for (int j = i - 1; j >= 0; j--) {
-					if (customers.get(j).getID().equals(temp.getID())) {
-						customers.remove(j);
+			if (i != customers.size()) {
+				Customer temp = customers.get(i);
+				if (i != 0) {
+					for (int j = i - 1; j >= 0; j--) {
+						if (customers.get(j).getID().equals(temp.getID())) {
+							customers.remove(j);
+						}
 					}
 				}
 			}
 		}
+
 		return customers;
 	}
 	
