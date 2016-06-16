@@ -1,6 +1,7 @@
 package code.behavior;
 
 
+import code.customer.Customer;
 import gui.customer.CustomerPage;
 import gui.main.MainPage;
 import gui.shopping.PaymentPage;
@@ -10,11 +11,37 @@ import gui.store.StorePage;
 
 import javax.swing.*;
 
+import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
+
 /**
  * @author kamontat
  * @since 21/5/59 - 23:51
  */
 public interface ButtonFactory {
+
+	/**
+	 * use in shopping page & payment only <br>
+	 * to check before goto main page that want to save basket or not.
+	 *
+	 * @param page
+	 * 		last page
+	 * @param main
+	 * 		button
+	 * @param shopper
+	 * 		basket of shopper
+	 */
+	default void toMain(JFrame page, JButton main, Customer shopper) {
+		main.addActionListener(e -> {
+			int status = JOptionPane.showConfirmDialog(null, "do you want to keep shopping cart?", "Message", YES_NO_CANCEL_OPTION);
+			// 2 = cancel, 1 = no, 0 = yes
+			if (status != 2) {
+				if (status == 1) {
+					shopper.clearBasket();
+				}
+				toMain(page, null);
+			}
+		});
+	}
 
 	default void toMain(JFrame frame, JButton main) {
 		if (main == null) {

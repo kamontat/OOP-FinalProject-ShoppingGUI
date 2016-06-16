@@ -1,7 +1,7 @@
 package gui.shopping;
 
-import code.behavior.ButtonFactory;
 import code.TableModel.DefaultModel;
+import code.behavior.ButtonFactory;
 import code.behavior.Table;
 import code.constant.ImageSize;
 import code.constant.ProductType;
@@ -17,8 +17,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.*;
-
-import static javax.swing.JOptionPane.YES_NO_CANCEL_OPTION;
 
 /**
  * @author kamontat
@@ -63,7 +61,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 		// add this to observer
 		Arrays.stream(products).forEach(productPanel -> productPanel.addObserver(this));
 
-		toMain();
+		toMain(this, mainButton, shopper);
 		toPayment(this, paymentButton);
 
 		updateTable();
@@ -156,20 +154,6 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 		} else {
 			JOptionPane.showMessageDialog(null, "Not enough Picture for product", "Error Images", JOptionPane.ERROR_MESSAGE);
 		}
-	}
-
-	private void toMain() {
-		mainButton.addActionListener(e -> {
-			int status = JOptionPane.showConfirmDialog(null, "do you want to keep shopping cart?", "Message", YES_NO_CANCEL_OPTION);
-			// 2 = cancel, 1 = no, 0 = yes
-			if (status != 2) {
-				if (status == 1) {
-					shopper.clearBasket();
-				}
-
-				toMain(page, null);
-			}
-		});
 	}
 
 	public void directToProduct(int tableRow) {

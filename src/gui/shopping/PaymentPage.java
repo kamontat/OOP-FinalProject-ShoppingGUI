@@ -10,7 +10,8 @@ import gui.main.MainPage;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * @author kamontat
@@ -39,7 +40,7 @@ public class PaymentPage extends JFrame implements ButtonFactory, Table {
 		super("Payment Page");
 		setContentPane(panel);
 
-		toMain(this, mainButton);
+		toMain(this, mainButton, shopper);
 		toShopping(this, shoppingButton);
 
 		setCustomer();
