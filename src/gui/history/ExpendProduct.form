@@ -74,9 +74,10 @@
                   <background color="-16777216"/>
                   <dragEnabled value="false"/>
                   <enabled value="false"/>
-                  <fillsViewportHeight value="false"/>
+                  <fillsViewportHeight value="true"/>
                   <font size="15"/>
                   <foreground color="-1"/>
+                  <gridColor color="-16777216"/>
                   <rowHeight value="20"/>
                 </properties>
               </component>
