@@ -9,32 +9,38 @@ public class Product {
 	private int currNumStock;
 	private boolean restock;
 	private int numRestocks;
-	private static int numProducts = 1000;
+	private static int numProducts = 0;
 
 	public Product() {
-		numProducts++;
-		productID = Integer.toString(numProducts);
 		name = "";
 		price = 0;
 		weight = 0;
 		currNumStock = 0;
 		numRestocks = 0;
 		restock = false;
+
+		numProducts++;
+		setID();
 	}
 	
 	public Product(String name, double weight, double price, int currNumStock, int numRestocks) {
-		numProducts++;
-		productID = Integer.toString(numProducts);
 		this.name = name;
 		this.weight = weight;
 		this.price = price;
 		this.currNumStock = currNumStock;
 		this.numRestocks = numRestocks;
 		restock = false;
+
+		numProducts++;
+		setID();
 	}
 
 	public Product(String name, String weight, String price, String currNumStock, String numRestocks) {
 		this(name, Double.parseDouble(weight), Double.parseDouble(price), Integer.parseInt(currNumStock), Integer.parseInt(numRestocks));
+	}
+
+	private void setID() {
+		productID = String.valueOf(Math.abs(name.hashCode()) % 1000) + numProducts;
 	}
 	
 	public String getProductID() {
