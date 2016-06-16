@@ -91,7 +91,7 @@ public class PaymentPage extends JFrame implements ButtonFactory, Table {
 		toMain(this, null);
 	}
 
-	public void setLabel() {
+	private void setLabel() {
 		weightLabel.setText(String.format("%.2f g", shopper.getWeight()));
 		priceLabel.setText(String.valueOf(shopper.getPrice()));
 		finalPriceLabel.setText(String.valueOf(shopper.getTotalPrice() + shipping.getPrice(shopper.getWeight())));
