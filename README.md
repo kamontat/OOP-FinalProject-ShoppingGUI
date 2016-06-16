@@ -25,7 +25,7 @@ we done it when I study in first term of first year in kasetsert university (12/
 
 ### version 6 ###
 
-##### Version log:
+#### Version log:
 
 - 6.0.0 <- Renew gui code (Main, Login, Store) and add minor feature
 - 6.0.3 <- Renew gui code (Customer)
@@ -37,7 +37,7 @@ we done it when I study in first term of first year in kasetsert university (12/
 - 6.1.1 <- finish code inside program (NEXT: reformat all code)
 - 6.1.2 <- change font size
 
-##### Feature:
+#### Feature:
 
 - **All page**
     - can resize
@@ -72,6 +72,19 @@ we done it when I study in first term of first year in kasetsert university (12/
 - **History page**
     - can view information of order
     - can `expend` to see all product that buy
+
+#### ScreenShot
+![main page](https://github.com/kamontat/FinalProject-ShoppingGUI/blob/master/Screenshots/Screenshot-MainPage.png)
+![shopping page](https://github.com/kamontat/FinalProject-ShoppingGUI/blob/master/Screenshots/Screenshot-ShoppingPage.png)
+![payment page](https://github.com/kamontat/FinalProject-ShoppingGUI/blob/master/Screenshots/Screenshot-PaymentPage.png)
+![customer page](https://github.com/kamontat/FinalProject-ShoppingGUI/blob/master/Screenshots/Screenshot-CustomerPage.png)
+![login page](https://github.com/kamontat/FinalProject-ShoppingGUI/blob/master/Screenshots/Screenshot-LoginPage.png)
+![store page](https://github.com/kamontat/FinalProject-ShoppingGUI/blob/master/Screenshots/Screenshot-StorePage.png)
+![history customer page](https://github.com/kamontat/FinalProject-ShoppingGUI/blob/master/Screenshots/Screenshot-HistoryCustomerPage.png)
+![expend customer page](https://github.com/kamontat/FinalProject-ShoppingGUI/blob/master/Screenshots/Screenshot-ExpendCustomerPage.png)
+![history store page](https://github.com/kamontat/FinalProject-ShoppingGUI/blob/master/Screenshots/Screenshot-HistoryStorePage.png)
+![expend store page](https://github.com/kamontat/FinalProject-ShoppingGUI/blob/master/Screenshots/Screenshot-ExpendStorePage.png)
+
 
 ### What is this for? ###
 
