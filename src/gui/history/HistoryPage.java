@@ -10,8 +10,6 @@ import java.awt.event.*;
 import java.util.*;
 
 public class HistoryPage extends JDialog {
-	private Dialog page = this;
-
 	private JPanel contentPane;
 	private JButton buttonCancel;
 	private JLabel infoLabel;
@@ -44,6 +42,8 @@ public class HistoryPage extends JDialog {
 		contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		// call onCancel() on ENTER
 		contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 
 	private void setInformationLabel(String text) {
@@ -59,8 +59,8 @@ public class HistoryPage extends JDialog {
 				super.mouseClicked(e);
 				if (e.getClickCount() == 2) {
 					int index = list.getSelectedIndex();
-					ExpendProduct somePage = new ExpendProduct(page, customer, index);
-					somePage.run(getLocation());
+					ExpendProduct somePage = new ExpendProduct(customer, index);
+					somePage.run(getWidth(), getLocation());
 				}
 			}
 		});
@@ -77,8 +77,8 @@ public class HistoryPage extends JDialog {
 				super.mouseClicked(e);
 				if (e.getClickCount() == 2) {
 
-					ExpendProduct somePage = new ExpendProduct(page, customers.get(list.getSelectedIndex()), -1);
-					somePage.run(getLocation());
+					ExpendProduct somePage = new ExpendProduct(customers.get(list.getSelectedIndex()), -1);
+					somePage.run(getWidth(), getLocation());
 				}
 			}
 		});
@@ -88,11 +88,11 @@ public class HistoryPage extends JDialog {
 		dispose();
 	}
 
-	public void run(Point point) {
+	public void run(int width, Point point) {
 		pack();
+		setSize(width, getHeight());
 		setLocation(point);
 		setVisible(true);
-		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 
 

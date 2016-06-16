@@ -100,7 +100,7 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 			int row = table.getSelectedRow();
 			if (checkValid(row)) {
 				HistoryPage page = new HistoryPage(getProductAt(row));
-				page.run(getLocation());
+				page.run(getWidth(), getLocation());
 			}
 			resetSelection(table);
 		});

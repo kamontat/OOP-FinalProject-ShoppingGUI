@@ -16,7 +16,7 @@ public class ExpendProduct extends JDialog implements Table {
 	private JButton buttonCancel;
 	private JTable table;
 
-	public ExpendProduct(Window page, Customer customer, int index) {
+	public ExpendProduct(Customer customer, int index) {
 		setContentPane(contentPane);
 		setModal(true);
 
@@ -34,6 +34,8 @@ public class ExpendProduct extends JDialog implements Table {
 		contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
 		// call onCancel() on ENTER
 		contentPane.registerKeyboardAction(e -> onCancel(), KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 
 	private void updateTable(Customer shopper, int index) {
@@ -54,11 +56,11 @@ public class ExpendProduct extends JDialog implements Table {
 		dispose();
 	}
 
-	public void run(Point point) {
+	public void run(int width, Point point) {
 		pack();
+		setSize(width, getHeight());
 		setLocation(point);
 		setVisible(true);
-		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 
 	private void createUIComponents() {

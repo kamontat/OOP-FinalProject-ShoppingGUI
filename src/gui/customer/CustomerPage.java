@@ -104,7 +104,7 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 		historyButton.addActionListener(e -> {
 			int row = table.getSelectedRow();
 			HistoryPage history = new HistoryPage(getCustomerAt(table.getSelectedRow()));
-			history.run(getLocation());
+			history.run(getWidth(), getLocation());
 		});
 	}
 
