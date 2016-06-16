@@ -63,6 +63,8 @@
                   <dragEnabled value="false"/>
                   <enabled value="false"/>
                   <fillsViewportHeight value="false"/>
+                  <font size="15"/>
+                  <rowHeight value="20"/>
                 </properties>
               </component>
             </children>

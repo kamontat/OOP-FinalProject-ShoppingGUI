@@ -64,6 +64,7 @@
               </grid>
             </constraints>
             <properties>
+              <font size="15"/>
               <selectionMode value="0"/>
             </properties>
           </component>
