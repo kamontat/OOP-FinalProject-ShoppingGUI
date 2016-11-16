@@ -20,7 +20,7 @@ import java.awt.*;
  */
 public class CustomerPage extends JFrame implements Table, ButtonFactory {
 	private Store store = Store.getInstance();
-
+	
 	private JPanel panel;
 	private JTextField searchField;
 	private JButton addButton;
@@ -30,18 +30,18 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 	private JButton removeButton;
 	private JButton historyButton;
 	private JButton guestButton;
-
+	
 	private CustomerModel model;
-
+	
 	public CustomerPage() {
 		super("Customer Page");
 		setContentPane(panel);
 		model = new CustomerModel(store.getAllCustomer(), new String[]{"ID", "Name", "LastName", "Gender", "Age", "Class"});
-
+		
 		settingTable();
-
+		
 		add();
-
+		
 		selectButton.addActionListener(e -> {
 			int row = table.getSelectedRow();
 			if (checkValid(row)) {
@@ -49,27 +49,26 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 				openShoppingPage();
 			}
 		});
-
+		
 		guestButton.addActionListener(e -> {
 			MainPage.shopper = store.getGuest();
-			openShoppingPage();
 		});
-
+		
 		history();
 		remove();
-
+		
 		toMain(this, mainButton);
 	}
-
+	
 	private void settingTable() {
 		table.setModel(model);
 		settingTable(table, new int[]{50, 100, 120, 50, 50, 75});
-
+		
 		TableRowSorter<TableModel> rowSorter = new TableRowSorter<>(table.getModel());
 		table.setRowSorter(rowSorter);
 		searching(searchField, rowSorter);
 	}
-
+	
 	private void add() {
 		addButton.addActionListener(e -> {
 			AdderCustomerPage adderPage = new AdderCustomerPage();
@@ -80,14 +79,14 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 			resetSelection(table);
 		});
 	}
-
+	
 	private void openShoppingPage() {
 		ShoppingPage shopping = new ShoppingPage();
 		shopping.run(getLocation());
 		dispose();
 		resetSelection(table);
 	}
-
+	
 	private void remove() {
 		removeButton.addActionListener(e -> {
 			int row = table.getSelectedRow();
@@ -99,7 +98,7 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 			resetSelection(table);
 		});
 	}
-
+	
 	private void history() {
 		historyButton.addActionListener(e -> {
 			int row = table.getSelectedRow();
@@ -107,7 +106,7 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 			history.run(getWidth(), getLocation());
 		});
 	}
-
+	
 	private Customer getCustomerAt(int row) {
 		if (row != -1) {
 			String id = String.valueOf(table.getValueAt(row, 0));
@@ -115,7 +114,7 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 		}
 		return store.getGuest();
 	}
-
+	
 	public void run(Point point) {
 		setMinimumSize(new Dimension(650, 530));
 		pack();
@@ -123,7 +122,7 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 		setVisible(true);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
-
+	
 	private void createUIComponents() {
 		// make table fit size by contact
 		table = fitSize(table);

@@ -14,7 +14,7 @@ import java.awt.event.KeyListener;
  * @since 21/5/59 - 23:27
  */
 public interface Table {
-
+	
 	/**
 	 * assign searching text in table by use JtextField
 	 *
@@ -34,11 +34,11 @@ public interface Table {
 					try {
 						sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
 					} catch (Exception ignored) {
-
+						
 					}
 				}
 			}
-
+			
 			@Override
 			public void keyPressed(KeyEvent e) {
 				String text = input.getText();
@@ -48,11 +48,11 @@ public interface Table {
 					try {
 						sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
 					} catch (Exception ignored) {
-
+						
 					}
 				}
 			}
-
+			
 			@Override
 			public void keyReleased(KeyEvent e) {
 				String text = input.getText();
@@ -62,13 +62,13 @@ public interface Table {
 					try {
 						sorter.setRowFilter(RowFilter.regexFilter("(?i)" + text));
 					} catch (Exception ignored) {
-
+						
 					}
 				}
 			}
 		});
 	}
-
+	
 	/**
 	 * check that row is -1 or not, -1 is mean no found
 	 *
@@ -83,7 +83,7 @@ public interface Table {
 		}
 		return true;
 	}
-
+	
 	/**
 	 * clear all selected in `table`
 	 *
@@ -93,7 +93,7 @@ public interface Table {
 	default void resetSelection(JTable table) {
 		table.clearSelection();
 	}
-
+	
 	/**
 	 * fit size in JTable, BUT it will create new JTable
 	 *
@@ -112,13 +112,19 @@ public interface Table {
 				tableColumn.setPreferredWidth(Math.max(rendererWidth + getIntercellSpacing().width, tableColumn.getPreferredWidth()));
 				return component;
 			}
+			
+			// deselect in table if press same cell
+//			@Override
+			//			public void changeSelection(int rowIndex, int columnIndex, boolean toggle, boolean extend) {
+			//				super.changeSelection(rowIndex, 0, true, false);
+			//			}
 		};
-
+		
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		return table;
 	}
-
-
+	
+	
 	/**
 	 * make `table` cannot drag and make in can single selection <br>
 	 * and fixed min size of column by `sizes` <br>
@@ -130,15 +136,15 @@ public interface Table {
 	 * 		array of size, if don't want, make it to null
 	 */
 	default void settingTable(JTable table, int[] sizes) {
-
+		
 		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// Disable dragging
 		table.getTableHeader().setReorderingAllowed(false);
-
-
+		
+		
 		int i = 0;
 		int size = table.getModel().getColumnCount();
-
+		
 		if (sizes != null) {
 			if (sizes.length == size) {
 				for (int aSize : sizes) {
