@@ -5,9 +5,9 @@ package code.constant;
  * @since 26/5/59 - 00:23
  */
 public enum ProductType {
-	EARRING("Earring"),
-	PENDANT("Pendant"),
-	RING("Ring");
+	EARRING("earring"),
+	PENDANT("pendant"),
+	RING("ring");
 
 	private String name;
 

@@ -23,6 +23,8 @@ we done it when I study in first term of first year in kasetsert university (12/
 ## Renovate program ##
 (5/59) I start to renovate all gui code and add more feature in this project
 
+PS. This program only runnable in **java environment 8 or more** 
+
 ### version 6 ###
 
 #### Version log:
@@ -36,6 +38,7 @@ we done it when I study in first term of first year in kasetsert university (12/
 - 6.1.0 <- finish all gui page (history is include)
 - 6.1.1 <- finish code inside program (NEXT: reformat all code)
 - 6.1.2 <- change font size
+- 6.2.0 <- add jar textfile for more comfort to run the program
 
 #### Feature:
 
@@ -44,10 +47,11 @@ we done it when I study in first term of first year in kasetsert university (12/
     - fixed min size
     - locate page in last page location
 - **Store page**
-    - username: `admin`, password: `password`
+    - username and pass of admin will set up at first run only
+        - if you want to set again go to isAdminSet and set first line to false
     - sort data in table
     - more easy to choose product
-    - add `check button` to update text file
+    - add `check button` to update text textfile
 - **Customer page**
     - change searching to `active searching`
     - more easy to choose customer

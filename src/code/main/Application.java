@@ -1,6 +1,6 @@
 package code.main;
 
-import gui.main.MainPage;
+import gui.store.SetAdminPage;
 
 import java.awt.*;
 
@@ -10,7 +10,7 @@ import java.awt.*;
  */
 public class Application {
 	public static void main(String[] args) {
-		MainPage page = new MainPage();
+		SetAdminPage page = new SetAdminPage();
 		page.run(new Point(0, 0));
 	}
 }

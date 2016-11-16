@@ -2,7 +2,7 @@ package gui.history;
 
 import code.TableModel.DefaultModel;
 import code.behavior.Table;
-import code.customer.Customer;
+import code.human.Customer;
 
 import javax.swing.*;
 import java.awt.*;

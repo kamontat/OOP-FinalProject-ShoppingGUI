@@ -1,6 +1,6 @@
 package code.file;
 
-import code.constant.ImageSize;
+import code.constant.ProductSize;
 import code.constant.ProductType;
 
 import java.io.File;
@@ -20,10 +20,10 @@ public class ImageFileFactory extends FileFactory {
 	 * 		the group of picture file and images file
 	 */
 	public ImageFileFactory(String path) {
-		super(path);
+		super();
 	}
 
-	public void setSize(ImageSize size) {
+	public void setSize(ProductSize size) {
 		setFileBy(size.getName());
 	}
 
@@ -32,18 +32,18 @@ public class ImageFileFactory extends FileFactory {
 	}
 
 	private void setFileBy(String filter) {
-		File[] files = getFile().listFiles();
+		File[] files = getTextfile().listFiles();
 		if (files != null) {
 			for (File folder : files) {
 				if (folder.getName().equalsIgnoreCase(filter)) {
-					setFile(folder);
+					setTextfile(folder);
 				}
 			}
 		}
 	}
 
 	public String[] getAllImagePath() {
-		File[] images = getFile().listFiles();
+		File[] images = getTextfile().listFiles();
 		if (images != null) {
 			String[] paths = new String[images.length];
 			for (int i = 0; i < paths.length; i++) {
@@ -57,7 +57,7 @@ public class ImageFileFactory extends FileFactory {
 	}
 
 	public URL[] getAllImageURL() {
-		File[] images = getFile().listFiles();
+		File[] images = getTextfile().listFiles();
 		if (images != null) {
 			URL[] urls = new URL[images.length];
 			for (int i = 0; i < urls.length; i++) {

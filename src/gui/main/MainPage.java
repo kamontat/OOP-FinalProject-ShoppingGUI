@@ -1,7 +1,7 @@
 package gui.main;
 
 import code.behavior.ButtonFactory;
-import code.customer.Customer;
+import code.human.Customer;
 import code.file.FileFactory;
 import code.product.ProductExt;
 import code.store.Store;
@@ -37,7 +37,7 @@ public class MainPage extends JFrame implements ButtonFactory {
 	}
 
 	/**
-	 * rewrite customer file by using array of customer
+	 * rewrite human file by using array of human
 	 */
 	public static void reWriteCustomer() {
 		factory.setPath("src/textfile/Customer.txt");
@@ -53,7 +53,7 @@ public class MainPage extends JFrame implements ButtonFactory {
 	}
 
 	/**
-	 * rewrite customer file by using array of customer
+	 * rewrite human file by using array of human
 	 */
 	public static void reWriteStoreInfo() {
 		factory.setPath("src/textfile/StoreInfo.txt");
@@ -80,7 +80,7 @@ public class MainPage extends JFrame implements ButtonFactory {
 	}
 
 	/**
-	 * Assign customer into the arrayList By using <i>text file</i> and <i>return</i>
+	 * Assign human into the arrayList By using <i>text file</i> and <i>return</i>
 	 *
 	 * @return Customer Array
 	 */
@@ -96,7 +96,7 @@ public class MainPage extends JFrame implements ButtonFactory {
 		for (String[] customer : allCustomer) {
 			if (customer.length == 6)
 				temp.add(new Customer(customer[0], customer[1], customer[2], customer[3], customer[4], customer[5]));
-			else System.err.println("customer text-file error");
+			else System.err.println("human text-file error");
 		}
 		Customer.setNumCustomers(temp.size());
 

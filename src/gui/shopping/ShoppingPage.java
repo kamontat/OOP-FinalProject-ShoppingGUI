@@ -3,9 +3,9 @@ package gui.shopping;
 import code.TableModel.DefaultModel;
 import code.behavior.ButtonFactory;
 import code.behavior.Table;
-import code.constant.ImageSize;
+import code.constant.ProductSize;
 import code.constant.ProductType;
-import code.customer.Customer;
+import code.human.Customer;
 import code.file.ImageFileFactory;
 import code.product.ProductExt;
 import code.store.Store;
@@ -136,13 +136,13 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 
 		// set url from big picture
 		factory.setName(name);
-		factory.setSize(ImageSize.BIG);
+		factory.setSize(ProductSize.BIG);
 		URL[] big = factory.getAllImageURL();
 		factory.resetPath();
 
 		// set url from small picture
 		factory.setName(name);
-		factory.setSize(ImageSize.SMALL);
+		factory.setSize(ProductSize.SMALL);
 		URL[] small = factory.getAllImageURL();
 
 		if (big.length == small.length) {

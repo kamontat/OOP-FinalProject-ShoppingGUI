@@ -1,7 +1,7 @@
 package code.behavior;
 
 
-import code.customer.Customer;
+import code.human.Customer;
 import gui.customer.CustomerPage;
 import gui.main.MainPage;
 import gui.shopping.PaymentPage;

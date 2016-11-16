@@ -3,7 +3,7 @@ package gui.customer;
 import code.TableModel.CustomerModel;
 import code.behavior.ButtonFactory;
 import code.behavior.Table;
-import code.customer.Customer;
+import code.human.Customer;
 import code.store.Store;
 import gui.history.HistoryPage;
 import gui.main.MainPage;

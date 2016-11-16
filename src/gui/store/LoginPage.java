@@ -47,6 +47,7 @@ public class LoginPage extends JDialog {
 	}
 
 	private boolean checkAdmin(String user, String pass) {
+		
 		return user.equals("admin") && pass.equals("password");
 	}
 

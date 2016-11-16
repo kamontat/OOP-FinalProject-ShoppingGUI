@@ -4,7 +4,7 @@ import code.TableModel.DefaultModel;
 import code.behavior.ButtonFactory;
 import code.behavior.Table;
 import code.constant.Shipping;
-import code.customer.Customer;
+import code.human.Customer;
 import code.store.Store;
 import gui.main.MainPage;
 
