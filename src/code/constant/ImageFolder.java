@@ -30,4 +30,9 @@ public enum ImageFolder implements File<ImageFolder> {
 	public ImageFolder which() {
 		return this;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 }

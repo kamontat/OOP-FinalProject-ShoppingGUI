@@ -12,7 +12,7 @@ public class Customer extends Person {
 	private ArrayList<OrderElement> basketList;
 	private ArrayList<Order> historyList;
 	private static int numCustomers;
-
+	
 	/**
 	 * for create guest member
 	 */
@@ -23,7 +23,7 @@ public class Customer extends Person {
 		historyList = new ArrayList<>();
 		customerID = "GUEST";
 	}
-
+	
 	public Customer(String ID, String name, String lastName, String gender, int age, MemberClass memberClass) {
 		super(ID, name, lastName, gender, age);
 		numCustomers++;
@@ -32,7 +32,7 @@ public class Customer extends Person {
 		historyList = new ArrayList<>();
 		customerID = "Member" + numCustomers;
 	}
-
+	
 	public Customer(String ID, String name, String lastName, String gender, String age, String memberClass) {
 		super(ID, name, lastName, gender, Integer.parseInt(age));
 		numCustomers++;
@@ -41,27 +41,27 @@ public class Customer extends Person {
 		historyList = new ArrayList<>();
 		customerID = "Member" + numCustomers;
 	}
-
+	
 	public String getCustomerID() {
 		return customerID;
 	}
-
+	
 	public MemberClass getMemberClass() {
 		return memberClass;
 	}
-
+	
 	public ArrayList<OrderElement> getBasketList() {
 		return basketList;
 	}
-
+	
 	public ArrayList<Order> getHistoryList() {
 		return historyList;
 	}
-
+	
 	public double getDiscount() {
 		return getPrice() * memberClass.getDiscount();
 	}
-
+	
 	/**
 	 * get original price without minus any discount
 	 *
@@ -74,7 +74,7 @@ public class Customer extends Person {
 		}
 		return price;
 	}
-
+	
 	/**
 	 * price that calculate discount already
 	 *
@@ -83,7 +83,7 @@ public class Customer extends Person {
 	public double getTotalPrice() {
 		return getPrice() - getDiscount();
 	}
-
+	
 	/**
 	 * get only product count by type
 	 *
@@ -92,7 +92,7 @@ public class Customer extends Person {
 	public int getNumProduct() {
 		return basketList.size();
 	}
-
+	
 	/**
 	 * get total product include num in orderElement
 	 *
@@ -105,7 +105,7 @@ public class Customer extends Person {
 		}
 		return num;
 	}
-
+	
 	public double getWeight() {
 		double weight = 0;
 		for (OrderElement basket : basketList) {
@@ -113,38 +113,38 @@ public class Customer extends Person {
 		}
 		return weight;
 	}
-
+	
 	public static int getNumCustomers() {
 		return numCustomers;
 	}
-
+	
 	public void setCustomerID(String customerID) {
 		this.customerID = customerID;
 	}
-
+	
 	public void setMemberClass(MemberClass memberClass) {
 		this.memberClass = memberClass;
 	}
-
+	
 	public void setBasketList(ArrayList<OrderElement> basketList) {
 		this.basketList = basketList;
 	}
-
+	
 	public void setHistoryList(ArrayList<Order> historyList) {
 		this.historyList = historyList;
 	}
-
+	
 	public static void setNumCustomers(int numCustomers) {
 		Customer.numCustomers = numCustomers;
 	}
-
+	
 	public void addToBasket(OrderElement element) {
 		// 0 is mean don't order
 		if (element.getNum() != 0) {
 			basketList.add(element);
 		}
 	}
-
+	
 	public boolean removeFromBasket(OrderElement element) {
 		for (int i = 0; i < basketList.size(); i++) {
 			if (basketList.get(i).equals(element)) {
@@ -154,13 +154,13 @@ public class Customer extends Person {
 		}
 		return false;
 	}
-
+	
 	public Object[][] getBasketToArray() {
 		// don't have basket yet.
 		if (basketList.size() == 0) {
 			return null;
 		}
-
+		
 		// first [] is row of all orderElement, second [] is get info of pruduct and update by 1 (Because number in OrderElement)
 		Object[][] temp = new Object[basketList.size()][basketList.get(0).getProductInfoExtra().length];
 		for (int i = 0; i < temp.length; i++) {
@@ -168,17 +168,21 @@ public class Customer extends Person {
 		}
 		return temp;
 	}
-
+	
+	public int getBasketSize() {
+		return basketList.size();
+	}
+	
 	public void clearBasket() {
 		basketList.removeAll(basketList);
 	}
-
+	
 	public void addToHistoryList(Order order) {
 		if (order.getBuyList().size() != 0) {
 			historyList.add(order.clone());
 		}
 	}
-
+	
 	/**
 	 * array in form (ID, Name, LastName, Gender, Age, Class)
 	 * return null if input element more than it have
@@ -197,7 +201,7 @@ public class Customer extends Person {
 		}
 		return null;
 	}
-
+	
 	public Object[] getHistoryListArray() {
 		Object[] temp = new Object[historyList.size()];
 		int i = 0;
@@ -207,7 +211,7 @@ public class Customer extends Person {
 		}
 		return temp;
 	}
-
+	
 	/**
 	 * <b>This method use in ExpendProduct/history only</b>
 	 * the will print information of buyList in <code>index</code> in form of {"Order ID", "Name", "Type", "Size", "Weight", "Num", "Price"} <br>
@@ -219,11 +223,11 @@ public class Customer extends Person {
 	 */
 	public Object[][] getHistoryListInform(int index) {
 		Object[][] temp = new Object[historyList.get(index).getBuyList().size() + 1][7];
-
+		
 		for (int j = 0; j < temp.length - 1; j++) {
 			if (j == 0) temp[j][0] = historyList.get(index).getOrderID(); // order id
 			else temp[j][0] = "";
-
+			
 			temp[j][1] = historyList.get(index).getBuyList().get(j).getProduct().getName(); // name
 			temp[j][2] = historyList.get(index).getBuyList().get(j).getProduct().getTypeToString(); // type
 			temp[j][3] = historyList.get(index).getBuyList().get(j).getProduct().getSize(); // size
@@ -234,7 +238,7 @@ public class Customer extends Person {
 		temp[temp.length - 1] = historyList.get(index).informationArray();
 		return temp;
 	}
-
+	
 	/**
 	 * <b>This method use in ExpendProduct/history only</b>
 	 * the will print information of all in buyList in form of {"Order ID", "Name", "Type", "Size", "Weight", "Num", "Price"} <br>
@@ -247,29 +251,29 @@ public class Customer extends Person {
 		for (Order history : historyList) {
 			size += history.getBuyList().size();
 		}
-
+		
 		ArrayList<Object[]> temp = new ArrayList<>();
-
+		
 		for (int i = 0; i < historyList.size(); i++) {
 			Object[][] temp2 = getHistoryListInform(i);
 			Collections.addAll(temp, temp2);
 		}
 		return temp.toArray(new Object[][]{});
 	}
-
+	
 	public Customer clone() {
 		numCustomers--;
 		Customer temp = new Customer(getID(), getName(), getLastName(), getGender(), getAge(), getMemberClass());
 		temp.setHistoryList(historyList);
 		temp.setBasketList(getBasketList());
-
+		
 		return temp;
 	}
-
+	
 	public boolean equals(String personID, String name, String lastname) {
 		return super.getID().equals(personID) && super.getName().equals(name) && super.getLastName().equals(lastname);
 	}
-
+	
 	public String toString() {
 		String format = "%s, %s, %s %s, %s, %d";
 		if (getCustomerID().equals("GUEST")) {

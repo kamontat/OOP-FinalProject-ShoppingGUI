@@ -5,8 +5,8 @@ package code.constant;
  * @since 26/5/59 - 00:30
  */
 public enum ProductSize {
-	BIG("big"),
-	SMALL("small");
+	BIG("Big"),
+	SMALL("Small");
 
 	private String name;
 
@@ -16,5 +16,10 @@ public enum ProductSize {
 
 	public String getName() {
 		return name;
+	}
+	
+	@Override
+	public String toString() {
+		return name.toLowerCase();
 	}
 }

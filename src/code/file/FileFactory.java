@@ -24,7 +24,7 @@ public class FileFactory {
 	private Map<TextFile, File> textFile;
 	private Map<ImageFolder, Map<ProductType, Map<ProductSize, File>>> imageFolder;
 	private int size;
-	private static FileFactory factory = new FileFactory();
+	private static FileFactory factory;
 	
 	private final String separate = ":";
 	
@@ -47,24 +47,24 @@ public class FileFactory {
 		ProductSize[] allSize = ProductSize.values();
 		
 		String newPath = imagePath + product;
+		Map<ProductType, Map<ProductSize, File>> inner = new HashMap<>();
 		for (ProductType type : allType) {
+			Map<ProductSize, File> innerInner = new HashMap<>();
 			for (ProductSize size : allSize) {
-				String newestPath = newPath + type + "/" + size + "/";
-				Map<ProductSize, File> innerInner = new HashMap<>();
-				Map<ProductType, Map<ProductSize, File>> inner = new HashMap<>();
-				
+				String newestPath = newPath + "/" + type + "/" + size + "/";
 				innerInner.put(size, new File(newestPath));
-				
-				inner.putIfAbsent(type, innerInner);
-				
-				imageFolder.putIfAbsent(product, inner);
 			}
+			inner.putIfAbsent(type, innerInner);
 		}
+		imageFolder.put(product, inner);
 		
 		checkFile();
 	}
 	
 	public static FileFactory getInstance() {
+		if (factory == null) {
+			factory = new FileFactory();
+		}
 		return factory;
 	}
 	
@@ -82,6 +82,8 @@ public class FileFactory {
 			}
 		})));
 		
+		if (pathNotFound.size() == 0) return;
+		
 		StringBuilder print = new StringBuilder();
 		pathNotFound.forEach(s -> {
 			print.append(s).append("\n");
@@ -90,9 +92,10 @@ public class FileFactory {
 		JOptionPane.showMessageDialog(null, print.toString(), "Total NotFound: " + pathNotFound.size() + " file(s)", JOptionPane.ERROR_MESSAGE);
 	}
 	
-	public File getTextFile(TextFile cons) {
+	private File getTextFile(TextFile cons) {
 		return textFile.get(cons);
 	}
+	
 	
 	/**
 	 * return file if this textFile already created (NOT overwrite, if want to overwrite please use method <b>updateTextFile</b>)
@@ -103,7 +106,7 @@ public class FileFactory {
 	 * 		which file to update
 	 * @return file that exist, or null
 	 */
-	public File setTextFile(TextFile cons, File file) {
+	private File setTextFile(TextFile cons, File file) {
 		if (!textFile.containsKey(cons)) {
 			return textFile.putIfAbsent(cons, file);
 		}
@@ -119,7 +122,7 @@ public class FileFactory {
 	 * 		which file to update
 	 * @return file that be replace, or null if key not exist
 	 */
-	public File updateTextFile(TextFile cons, File file) {
+	private File updateTextFile(TextFile cons, File file) {
 		if (textFile.containsKey(cons)) {
 			return textFile.replace(cons, file);
 		}
@@ -160,18 +163,18 @@ public class FileFactory {
 		} catch (IOException e) {
 			System.err.println(e.toString());
 		}
-		
 	}
 	
-	public String[][] read(code.file.File which) {
+	public ArrayList<String[]> readText(TextFile which) {
 		try {
 			ArrayList<String[]> text = new ArrayList<>();
 			String temp;
 			
-			BufferedReader read = new BufferedReader(new FileReader(textfile));
+			BufferedReader read = new BufferedReader(new FileReader(textFile.get(which)));
 			
 			while ((temp = read.readLine()) != null) {
 				String[] info = temp.split(separate);
+				// remove white space
 				for (int i = 0; i < info.length; i++) {
 					info[i] = info[i].trim();
 				}
@@ -181,9 +184,17 @@ public class FileFactory {
 			// read total number
 			size = text.size();
 			
-			return text.toArray(new String[text.size()][]);
+			return text;
 		} catch (IOException e) {
 			System.err.println(e.toString());
+		}
+		return null;
+	}
+	
+	public File[] getAllImageURL(ImageFolder folder, ProductType type, ProductSize size) {
+		File images = imageFolder.get(folder).get(type).get(size);
+		if (images.exists() && images.isDirectory()) {
+			return images.listFiles();
 		}
 		return null;
 	}
