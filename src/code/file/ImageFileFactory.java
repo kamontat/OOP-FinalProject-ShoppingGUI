@@ -1,6 +1,6 @@
 package code.file;
 
-import code.constant.ImageSize;
+import code.constant.ProductSize;
 import code.constant.ProductType;
 
 import java.io.File;
@@ -23,7 +23,7 @@ public class ImageFileFactory extends FileFactory {
 		super(path);
 	}
 
-	public void setSize(ImageSize size) {
+	public void setSize(ProductSize size) {
 		setFileBy(size.getName());
 	}
 

@@ -1,6 +1,6 @@
 package gui.shopping;
 
-import code.customer.Customer;
+import code.human.Customer;
 import code.product.Product;
 import code.product.ProductExt;
 import code.store.OrderElement;

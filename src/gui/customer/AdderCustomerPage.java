@@ -1,6 +1,6 @@
 package gui.customer;
 
-import code.customer.Customer;
+import code.human.Customer;
 import code.store.Store;
 import gui.main.MainPage;
 
@@ -61,7 +61,7 @@ public class AdderCustomerPage extends JDialog {
 			String age = ageField.getText();
 			String member = (String) memberComboBox.getSelectedItem();
 			if (checkValidID(id) == CORRECTID && checkNumber(age) && age.length() <= 3) {
-				// add new customer
+				// add new human
 				newCustomer = new Customer(id, name, lastName, gender, age, member);
 				store.addCustomer(newCustomer);
 				MainPage.reWriteCustomer();

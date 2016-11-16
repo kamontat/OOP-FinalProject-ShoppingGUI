@@ -1,4 +1,4 @@
-package code.customer;
+package code.human;
 
 import code.constant.MemberClass;
 import code.store.Order;

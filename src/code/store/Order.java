@@ -1,7 +1,7 @@
 package code.store;
 
 import code.constant.Shipping;
-import code.customer.Customer;
+import code.human.Customer;
 import code.payment.Payment;
 
 import java.util.ArrayList;

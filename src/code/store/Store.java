@@ -1,7 +1,7 @@
 package code.store;
 
 import code.constant.Shipping;
-import code.customer.Customer;
+import code.human.Customer;
 import code.product.ProductExt;
 
 import java.util.*;
@@ -141,13 +141,13 @@ public class Store {
 	}
 	
 	/**
-	 * remove Customer and return index of that customer
+	 * remove Customer and return index of that human
 	 *
 	 * @param customer
-	 * 		customer want to remove
+	 * 		human want to remove
 	 * @param guest
 	 * 		include guest or not
-	 * @return index of remove customer
+	 * @return index of remove human
 	 */
 	public int removeCustomer(Customer customer, boolean guest) {
 		for (int i = 0; i < customerList.size(); i++) {
@@ -217,9 +217,9 @@ public class Store {
 	 * Clear product in basket
 	 *
 	 * @param customer
-	 * 		customer
+	 * 		human
 	 * @param shipping
-	 * 		how customer shipping
+	 * 		how human shipping
 	 */
 	public void checkOut(Customer customer, Shipping shipping) {
 		Order order = new Order(customer, shipping);
@@ -246,10 +246,10 @@ public class Store {
 	}
 	
 	/**
-	 * Check product in history list of all customer if it equals keep it in arrayList
+	 * Check product in history list of all human if it equals keep it in arrayList
 	 *
 	 * @param product
-	 * 		product that customer buy
+	 * 		product that human buy
 	 * @return arrayList of Customer that buy the product
 	 */
 	public ArrayList<Customer> checkProductHistory(ProductExt product) {
@@ -264,7 +264,7 @@ public class Store {
 			}
 		}
 		
-		// remove same customer
+		// remove same human
 		for (int i = customers.size() - 1; i >= 0; i--) {
 			if (i != customers.size()) {
 				Customer temp = customers.get(i);

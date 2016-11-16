@@ -1,7 +1,14 @@
 package code.file;
 
+import code.constant.ImageFolder;
+import code.constant.ProductSize;
+import code.constant.ProductType;
+import code.constant.TextFile;
+
 import javax.swing.*;
 import java.io.*;
+import java.io.File;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -9,62 +16,95 @@ import java.util.*;
  * @since 20/5/59 - 23:52
  */
 public class FileFactory {
-	private String path;
-	private File file;
+	/**
+	 * get current dir
+	 */
+	public static File dir = Paths.get("").toAbsolutePath().toFile();
+	
+	private Map<TextFile, File> textFile;
+	private Map<ImageFolder, Map<ProductType, Map<ProductSize, File>>> imageFolder;
 	private int size;
-
-	/**
-	 * If use this constructor <br>
-	 * Please, call method <b>setPath</b> to set file
-	 */
-	public FileFactory() {
-		file = null;
-	}
-
-	public FileFactory(String path) {
-		this.path = path;
-		file = new File(path);
-
-		checkFile();
-	}
-
-	private void checkFile() {
-		while (!hasFile()) {
-			String newPath = JOptionPane.showInputDialog("enter new path file");
-			file = new File(newPath);
+	private static FileFactory factory = new FileFactory();
+	
+	private FileFactory() {
+		String textPath = dir.getPath() + "/src/textfile/";
+		
+		TextFile[] allText = TextFile.values();
+		
+		for (TextFile cons : allText) {
+			String newPath = textPath + cons.getFileName();
+			textFile.putIfAbsent(cons, new File(newPath));
 		}
+		
+		String imagePath = dir.getPath() + "/src/images/";
+		ImageFolder product = ImageFolder.PRODUCT;
+		ProductType[] allType = ProductType.values();
+		ProductSize[] allSize = ProductSize.values();
+		
+		String newPath = imagePath + product;
+		for (ProductType type : allType) {
+			for (ProductSize size : allSize) {
+				String newestPath = newPath + type + "/" + size + "/";
+				imageFolder.putIfAbsent(product, )
+			}
+		}
+		
+		checkFile();
 	}
-
+	
+	public static FileFactory getInstance() {
+		return factory;
+	}
+	
+	private void checkFile() {
+		ArrayList<String> pathNotFound = new ArrayList<>();
+		textFile.forEach((textFile1, file) -> {
+			while (!file.exists()) {
+				pathNotFound.add(file.getAbsolutePath());
+			}
+		});
+		JOptionPane.showMessageDialog(null, pathNotFound.toString(), "Total NotFound: " + pathNotFound.size() + " file(s)", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	public File getTextFile(TextFile cons) {
+		return textFile.get(cons);
+	}
+	
 	/**
-	 * when original file had been change and want to come back to the original file
+	 * return file if this textFile already created (NOT overwrite, if want to overwrite please use method <b>updateTextFile</b>)
+	 *
+	 * @param cons
+	 * 		which text-file
+	 * @param file
+	 * 		which file to add
+	 * @return file that exist, or null
 	 */
-	public void resetPath() {
-		file = new File(path);
-
-		checkFile();
+	public File setTextFile(TextFile cons, File file) {
+		if (!textFile.containsKey(cons)) {
+			return textFile.putIfAbsent(cons, file);
+		}
+		return null;
 	}
-
-	public void setPath(String path) {
-		file = new File(path);
-
-		checkFile();
+	
+	/**
+	 * update file in some <b>TextFile</b>
+	 *
+	 * @param cons
+	 * 		which text-file
+	 * @param file
+	 * 		which file to add
+	 * @return file that be replace, or null if key not exist
+	 */
+	public File updateTextFile(TextFile cons, File file) {
+		if (textFile.containsKey(cons)) {
+			return textFile.replace(cons, file);
+		}
+		return null;
 	}
-
-	public File getFile() {
-		return file;
-	}
-
-	public void setFile(File file) {
-		this.file = file;
-	}
-
-	public boolean hasFile() {
-		return file.exists();
-	}
-
+	
 	public void add(String text) {
 		try {
-			FileWriter write = new FileWriter(file, true);
+			FileWriter write = new FileWriter(textfile, true);
 			write.write(text + "\n");
 			size++;
 			write.close();
@@ -72,7 +112,7 @@ public class FileFactory {
 			System.err.println(e.toString());
 		}
 	}
-
+	
 	public void write(Object[][] list) {
 		String output = "";
 		for (Object[] texts : list) {
@@ -87,24 +127,24 @@ public class FileFactory {
 		}
 		// read total number
 		size = list.length;
-
+		
 		try {
-			FileWriter write = new FileWriter(file);
+			FileWriter write = new FileWriter(textfile);
 			write.write(output);
 			write.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+		
 	}
-
+	
 	public String[][] read(String separate) {
 		try {
 			ArrayList<String[]> text = new ArrayList<>();
 			String temp;
-
-			BufferedReader read = new BufferedReader(new FileReader(file));
-
+			
+			BufferedReader read = new BufferedReader(new FileReader(textfile));
+			
 			while ((temp = read.readLine()) != null) {
 				String[] info = temp.split(separate);
 				for (int i = 0; i < info.length; i++) {
@@ -112,10 +152,10 @@ public class FileFactory {
 				}
 				text.add(info);
 			}
-
+			
 			// read total number
 			size = text.size();
-
+			
 			return text.toArray(new String[text.size()][]);
 		} catch (IOException e) {
 			System.err.println(e.toString());

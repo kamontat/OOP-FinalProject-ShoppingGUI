@@ -1,4 +1,4 @@
-package code.customer;
+package code.human;
 
 public class Person {
 	private String ID;

@@ -1,6 +1,6 @@
 package gui.history;
 
-import code.customer.Customer;
+import code.human.Customer;
 import code.product.ProductExt;
 import code.store.Store;
 
@@ -16,7 +16,7 @@ public class HistoryPage extends JDialog {
 	private JList<Object> list;
 
 	/**
-	 * can use only history of customer & product only!
+	 * can use only history of human & product only!
 	 *
 	 * @param obj
 	 * 		some object that want to show in this gui
