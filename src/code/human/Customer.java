@@ -161,7 +161,7 @@ public class Customer extends Person {
 			return null;
 		}
 
-		// first [] is row of all orderElement, second [] is get info of pruduct and add by 1 (Because number in OrderElement)
+		// first [] is row of all orderElement, second [] is get info of pruduct and update by 1 (Because number in OrderElement)
 		Object[][] temp = new Object[basketList.size()][basketList.get(0).getProductInfoExtra().length];
 		for (int i = 0; i < temp.length; i++) {
 			temp[i] = basketList.get(i).getProductInfoExtra();
@@ -276,5 +276,9 @@ public class Customer extends Person {
 			return "GUEST member";
 		}
 		return String.format(format, this.customerID, super.getID(), super.getName(), super.getLastName(), super.getGender(), super.getAge());
+	}
+	
+	public String saveFormat() {
+		return "";
 	}
 }

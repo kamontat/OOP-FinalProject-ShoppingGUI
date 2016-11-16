@@ -26,7 +26,12 @@ public class FileFactory {
 	private int size;
 	private static FileFactory factory = new FileFactory();
 	
+	private final String separate = ":";
+	
 	private FileFactory() {
+		textFile = new HashMap<>();
+		imageFolder = new HashMap<>();
+		
 		String textPath = dir.getPath() + "/src/textfile/";
 		
 		TextFile[] allText = TextFile.values();
@@ -45,7 +50,14 @@ public class FileFactory {
 		for (ProductType type : allType) {
 			for (ProductSize size : allSize) {
 				String newestPath = newPath + type + "/" + size + "/";
-				imageFolder.putIfAbsent(product, )
+				Map<ProductSize, File> innerInner = new HashMap<>();
+				Map<ProductType, Map<ProductSize, File>> inner = new HashMap<>();
+				
+				innerInner.put(size, new File(newestPath));
+				
+				inner.putIfAbsent(type, innerInner);
+				
+				imageFolder.putIfAbsent(product, inner);
 			}
 		}
 		
@@ -63,7 +75,19 @@ public class FileFactory {
 				pathNotFound.add(file.getAbsolutePath());
 			}
 		});
-		JOptionPane.showMessageDialog(null, pathNotFound.toString(), "Total NotFound: " + pathNotFound.size() + " file(s)", JOptionPane.ERROR_MESSAGE);
+		
+		imageFolder.forEach((imageFolder1, productTypeMapMap) -> productTypeMapMap.forEach((productType, productSizeFileMap) -> productSizeFileMap.forEach((productSize, file) -> {
+			while (!file.exists()) {
+				pathNotFound.add(file.getAbsolutePath());
+			}
+		})));
+		
+		StringBuilder print = new StringBuilder();
+		pathNotFound.forEach(s -> {
+			print.append(s).append("\n");
+		});
+		
+		JOptionPane.showMessageDialog(null, print.toString(), "Total NotFound: " + pathNotFound.size() + " file(s)", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	public File getTextFile(TextFile cons) {
@@ -76,7 +100,7 @@ public class FileFactory {
 	 * @param cons
 	 * 		which text-file
 	 * @param file
-	 * 		which file to add
+	 * 		which file to update
 	 * @return file that exist, or null
 	 */
 	public File setTextFile(TextFile cons, File file) {
@@ -92,7 +116,7 @@ public class FileFactory {
 	 * @param cons
 	 * 		which text-file
 	 * @param file
-	 * 		which file to add
+	 * 		which file to update
 	 * @return file that be replace, or null if key not exist
 	 */
 	public File updateTextFile(TextFile cons, File file) {
@@ -102,9 +126,9 @@ public class FileFactory {
 		return null;
 	}
 	
-	public void add(String text) {
+	public void update(TextFile which, String text) {
 		try {
-			FileWriter write = new FileWriter(textfile, true);
+			FileWriter write = new FileWriter(textFile.get(which), true);
 			write.write(text + "\n");
 			size++;
 			write.close();
@@ -113,7 +137,7 @@ public class FileFactory {
 		}
 	}
 	
-	public void write(Object[][] list) {
+	public void overwrite(TextFile which, Object[][] list) {
 		String output = "";
 		for (Object[] texts : list) {
 			for (int j = 0; j < texts.length; j++) {
@@ -129,16 +153,17 @@ public class FileFactory {
 		size = list.length;
 		
 		try {
-			FileWriter write = new FileWriter(textfile);
+			FileWriter write = new FileWriter(textFile.get(which));
 			write.write(output);
+			size++;
 			write.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			System.err.println(e.toString());
 		}
 		
 	}
 	
-	public String[][] read(String separate) {
+	public String[][] read(code.file.File which) {
 		try {
 			ArrayList<String[]> text = new ArrayList<>();
 			String temp;

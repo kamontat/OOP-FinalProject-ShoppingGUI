@@ -61,7 +61,7 @@ public class AdderCustomerPage extends JDialog {
 			String age = ageField.getText();
 			String member = (String) memberComboBox.getSelectedItem();
 			if (checkValidID(id) == CORRECTID && checkNumber(age) && age.length() <= 3) {
-				// add new human
+				// update new human
 				newCustomer = new Customer(id, name, lastName, gender, age, member);
 				store.addCustomer(newCustomer);
 				MainPage.reWriteCustomer();
@@ -72,7 +72,7 @@ public class AdderCustomerPage extends JDialog {
 	}
 
 	private void onCancel() {
-		// add your code here if necessary
+		// update your code here if necessary
 		dispose();
 	}
 

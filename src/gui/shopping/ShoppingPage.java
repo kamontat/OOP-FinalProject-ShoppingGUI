@@ -58,7 +58,7 @@ public class ShoppingPage extends JFrame implements ButtonFactory, Observer, Tab
 		setProduct(pendantPanel, ProductType.PENDANT, 5);
 		setProduct(ringPanel, ProductType.RING, 10);
 
-		// add this to observer
+		// update this to observer
 		Arrays.stream(products).forEach(productPanel -> productPanel.addObserver(this));
 
 		toMain(this, mainButton, shopper);

@@ -6,10 +6,15 @@ import code.product.ProductExt;
 import code.store.OrderElement;
 import gui.main.MainPage;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.*;
 
@@ -137,9 +142,15 @@ public class ProductPanel extends Observable {
 
 	private void addIcon(JLabel label, URL url) {
 		try {
+			BufferedImage a = ImageIO.read(new File(url.toURI()));
+			Image image = a.getScaledInstance(a.getWidth(), a.getHeight(), 1);
 			if (url == null) throw new NullPointerException();
-			label.setIcon(new ImageIcon(url));
+			label.setIcon(new ImageIcon(image));
 		} catch (NullPointerException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
 			e.printStackTrace();
 		}
 	}

@@ -1,8 +1,8 @@
 Product:
-Name : Type : Material : Size : Weight : Current Stock : Restock : Price : Buying Price
+Name:Type:Material:Size:Weight:CurrentStock:Restock:Price:BuyingPrice
 
 Customer:
-Person ID : Name : Last Name : Gender : Age : Membership class
+PersonID:Name:LastName:Gender:Age:Membershipclass
 
 Store:
-Revenue : Expense
+Revenue:Expense

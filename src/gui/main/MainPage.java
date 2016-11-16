@@ -41,7 +41,7 @@ public class MainPage extends JFrame implements ButtonFactory {
 	 */
 	public static void reWriteCustomer() {
 		factory.setPath("src/textfile/Customer.txt");
-		factory.write(store.getAllCustomer());
+		factory.overwrite(store.getAllCustomer());
 	}
 
 	/**
@@ -49,7 +49,7 @@ public class MainPage extends JFrame implements ButtonFactory {
 	 */
 	public static void reWriteProductInfo() {
 		factory.setPath("src/textfile/Product.txt");
-		factory.write(store.getAllProduct(false));
+		factory.overwrite(store.getAllProduct(false));
 	}
 
 	/**
@@ -57,7 +57,7 @@ public class MainPage extends JFrame implements ButtonFactory {
 	 */
 	public static void reWriteStoreInfo() {
 		factory.setPath("src/textfile/StoreInfo.txt");
-		factory.write(new Object[][]{{store.getRevenue(), store.getExpense()}});
+		factory.overwrite(new Object[][]{{store.getRevenue(), store.getExpense()}});
 	}
 
 	/**
