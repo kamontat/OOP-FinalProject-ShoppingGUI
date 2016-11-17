@@ -1,5 +1,8 @@
 package code.file;
 
+import code.constant.ImageFolder;
+import code.constant.TextFile;
+
 /**
  * @author kamontat
  * @version 1.0
@@ -11,4 +14,13 @@ public interface File<T> {
 	public String getFileName();
 	
 	public T which();
+	
+	default String getFolderName() {
+		if (this instanceof TextFile) {
+			return "textfile/";
+		} else if (this instanceof ImageFolder) {
+			return "images/";
+		}
+		return "";
+	}
 }

@@ -23,7 +23,7 @@ public enum ImageFolder implements File<ImageFolder> {
 	
 	@Override
 	public String getFileName() {
-		return name;
+		return name + "/";
 	}
 	
 	@Override

@@ -8,11 +8,7 @@ import code.file.File;
  * @since 11/16/2016 AD - 9:08 PM
  */
 public enum TextFile implements File<TextFile> {
-	CUSTOMER("Customer"),
-	PRODUCT("Product"),
-	STORE_INFORMATION("StoreInfo"),
-	FORM("Form"),
-	ADMIN("Admin");
+	CUSTOMER("Customer"), PRODUCT("Product"), STORE_INFORMATION("StoreInfo"), FORM("Form"), ADMIN("Admin");
 	
 	private String name;
 	

@@ -8,7 +8,7 @@ import code.constant.TextFile;
 import javax.swing.*;
 import java.io.*;
 import java.io.File;
-import java.nio.file.Paths;
+import java.net.URISyntaxException;
 import java.util.*;
 
 /**
@@ -16,11 +16,6 @@ import java.util.*;
  * @since 20/5/59 - 23:52
  */
 public class FileFactory {
-	/**
-	 * get current dir
-	 */
-	public static File dir = Paths.get("").toAbsolutePath().toFile();
-	
 	private Map<TextFile, File> textFile;
 	private Map<ImageFolder, Map<ProductType, Map<ProductSize, File>>> imageFolder;
 	private int size;
@@ -32,27 +27,25 @@ public class FileFactory {
 		textFile = new HashMap<>();
 		imageFolder = new HashMap<>();
 		
-		String textPath = dir.getPath() + "/src/textfile/";
-		
 		TextFile[] allText = TextFile.values();
-		
 		for (TextFile cons : allText) {
-			String newPath = textPath + cons.getFileName();
-			textFile.putIfAbsent(cons, new File(newPath));
+			String path = "/" + cons.getFolderName() + cons.getFileName();
+			File file = FileFactory.getFile(path);
+			textFile.putIfAbsent(cons, file);
 		}
 		
-		String imagePath = dir.getPath() + "/src/images/";
 		ImageFolder product = ImageFolder.PRODUCT;
 		ProductType[] allType = ProductType.values();
 		ProductSize[] allSize = ProductSize.values();
 		
-		String newPath = imagePath + product;
+		String path = "/" + product.getFolderName() + product.getFileName();
 		Map<ProductType, Map<ProductSize, File>> inner = new HashMap<>();
 		for (ProductType type : allType) {
 			Map<ProductSize, File> innerInner = new HashMap<>();
 			for (ProductSize size : allSize) {
-				String newestPath = newPath + "/" + type + "/" + size + "/";
-				innerInner.put(size, new File(newestPath));
+				File file = FileFactory.getFile(path + type.getFolderName() + size.getFolderName());
+				System.out.println(file);
+				innerInner.put(size, file);
 			}
 			inner.putIfAbsent(type, innerInner);
 		}
@@ -71,13 +64,13 @@ public class FileFactory {
 	private void checkFile() {
 		ArrayList<String> pathNotFound = new ArrayList<>();
 		textFile.forEach((textFile1, file) -> {
-			while (!file.exists()) {
+			if (!file.exists()) {
 				pathNotFound.add(file.getAbsolutePath());
 			}
 		});
 		
 		imageFolder.forEach((imageFolder1, productTypeMapMap) -> productTypeMapMap.forEach((productType, productSizeFileMap) -> productSizeFileMap.forEach((productSize, file) -> {
-			while (!file.exists()) {
+			if (!file.exists()) {
 				pathNotFound.add(file.getAbsolutePath());
 			}
 		})));
@@ -198,4 +191,15 @@ public class FileFactory {
 		}
 		return null;
 	}
+	
+	public static File getFile(String path) {
+		try {
+			return new File(FileFactory.class.getResource(path).toURI());
+		} catch (URISyntaxException e) {
+			JOptionPane.showMessageDialog(null, "something wrong whn load file", "Error", JOptionPane.ERROR_MESSAGE);
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
+

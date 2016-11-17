@@ -51,6 +51,7 @@ public class CustomerPage extends JFrame implements Table, ButtonFactory {
 		});
 		
 		guestButton.addActionListener(e -> {
+			table.getSelectionModel().clearSelection();
 			MainPage.shopper = store.getGuest();
 		});
 		
