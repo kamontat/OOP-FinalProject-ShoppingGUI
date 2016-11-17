@@ -138,9 +138,21 @@ public class StorePage extends JFrame implements Table, ButtonFactory {
 	}
 	
 	private void updateLabel(double revenue, double expense) {
-		revenueLabel.setText(String.format("Revenue: %,f", revenue));
-		expenseLabel.setText(String.format("Expense: %,f", expense));
-		profitLabel.setText(String.format("Profit: %,f", (revenue - expense)));
+		if (revenue % 1 == 0) {
+			revenueLabel.setText(String.format("Revenue: %,.0f", revenue));
+		} else {
+			revenueLabel.setText(String.format("Revenue: %,.2f", revenue));
+		}
+		if (expense % 1 == 0) {
+			expenseLabel.setText(String.format("Expense: %,.0f", expense));
+		} else {
+			expenseLabel.setText(String.format("Expense: %,.2f", expense));
+		}
+		if ((revenue - expense) % 1 == 0) {
+			profitLabel.setText(String.format("Profit: %,.0f", (revenue - expense)));
+		} else {
+			profitLabel.setText(String.format("Profit: %,.2f", (revenue - expense)));
+		}
 	}
 	
 	private void updateTable(Object newValue, int row, int column) {
