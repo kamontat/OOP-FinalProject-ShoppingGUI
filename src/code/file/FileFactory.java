@@ -44,7 +44,6 @@ public class FileFactory {
 			Map<ProductSize, File> innerInner = new HashMap<>();
 			for (ProductSize size : allSize) {
 				File file = FileFactory.getFile(path + type.getFolderName() + size.getFolderName());
-				System.out.println(file);
 				innerInner.put(size, file);
 			}
 			inner.putIfAbsent(type, innerInner);
