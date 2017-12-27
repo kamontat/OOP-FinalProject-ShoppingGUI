@@ -1,0 +1,8 @@
+Product:
+Name : Type : Material : Size : Weight : Current Stock : Restock : Price : Buying Price
+
+Customer:
+Person ID : Name : Last Name : Gender : Age : Membership class
+
+Store:
+Revenue : Expense

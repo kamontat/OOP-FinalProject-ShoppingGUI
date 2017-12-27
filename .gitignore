@@ -16,4 +16,5 @@ out/production
 *.MF
 
 ### Java template
+!bin
 *.class
